@@ -12,7 +12,7 @@
 
     
     <title>
-        Welcome! |
+        Packet Tracer实验 |
         
         EternalZero2022 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,17 +23,31 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="你好，欢迎来到我的博客虽然现在不是很好( 纪念一下该博客创立的时间：2023&#x2F;10&#x2F;28 20:32:43 至于为什么要创建这个博客呢？  一来是因为大家都在写博客，我当然也得写一个； 二来是因为博客可以用来记录我的生活，就当是写日记了，还能记录一下我最近都干了些啥，留下一些你在这个世界上存在过的证据，可不要虚度光阴（×）； 第三，写博客以后还是很有用的，也可以让我学会一项新的">
+    <meta name="description" content="packet tracer实验学习笔记主要说明一些基本的使用方法，有助于上机实验的顺利进行 1、界面说明打开软件之后，在下方会出现一些不同设备的标志  从左到右依次是路由器，交换机、集线器和无线设备。 点击左边的图标就可以在右边显示详细型号。我们一般路由器选择2811（端口数量多），交换机选择Switch-PT。左下角主机中我们可以选择最普通的PC-PT，而右边的电标志是不同的网线，其中的cons">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Welcome!">
-<meta property="og:url" content="http://example.com/2023/10/28/Welcome!/index.html">
+<meta property="og:title" content="Packet Tracer实验">
+<meta property="og:url" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/index.html">
 <meta property="og:site_name" content="EternalZero2022 的博客">
-<meta property="og:description" content="你好，欢迎来到我的博客虽然现在不是很好( 纪念一下该博客创立的时间：2023&#x2F;10&#x2F;28 20:32:43 至于为什么要创建这个博客呢？  一来是因为大家都在写博客，我当然也得写一个； 二来是因为博客可以用来记录我的生活，就当是写日记了，还能记录一下我最近都干了些啥，留下一些你在这个世界上存在过的证据，可不要虚度光阴（×）； 第三，写博客以后还是很有用的，也可以让我学会一项新的">
+<meta property="og:description" content="packet tracer实验学习笔记主要说明一些基本的使用方法，有助于上机实验的顺利进行 1、界面说明打开软件之后，在下方会出现一些不同设备的标志  从左到右依次是路由器，交换机、集线器和无线设备。 点击左边的图标就可以在右边显示详细型号。我们一般路由器选择2811（端口数量多），交换机选择Switch-PT。左下角主机中我们可以选择最普通的PC-PT，而右边的电标志是不同的网线，其中的cons">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-28T12:32:43.000Z">
-<meta property="article:modified_time" content="2023-10-29T15:06:45.905Z">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%AE%BE%E5%A4%87.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/Console%E7%BA%BF1.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/PC%E6%A1%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE1.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E6%AD%A3%E7%A1%AE%E7%9A%84IP%E9%85%8D%E7%BD%AE1.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/PC1%E5%92%8C%E8%B7%AF%E7%94%B1%E5%99%A81%E8%81%94%E9%80%9A.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/ping1.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E6%B7%BB%E5%8A%A0%E7%9B%B4%E9%80%9A%E7%BA%BF.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%BC%80%E5%90%AF.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/IP%E9%85%8D%E7%BD%AE2.png">
+<meta property="og:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5ping.png">
+<meta property="article:published_time" content="2023-10-31T09:11:38.000Z">
+<meta property="article:modified_time" content="2023-10-31T09:12:42.473Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%AE%BE%E5%A4%87.png">
     
         <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
     
@@ -108,7 +122,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="/images/banner.jpg" data-sizes="auto" alt="Welcome!" class="lazyload">
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="Packet Tracer实验" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -116,7 +130,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>Welcome!</h1></a>
+                        <a href="/" id="logo"><h1>Packet Tracer实验</h1></a>
                     
                 
             </div>
@@ -165,14 +179,14 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main"><article id="post-Welcome!" class="h-entry article article-type-post"
+                <section id="main"><article id="post-Packet-Tracer实验" class="h-entry article article-type-post"
          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="article-inner">
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
-    <a href="/2023/10/28/Welcome!/" class="article-date-link">
-        <time datetime="2023-10-28T12:32:43.000Z"
-              itemprop="datePublished">2023-10-28</time>
+    <a href="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/" class="article-date-link">
+        <time datetime="2023-10-31T09:11:38.000Z"
+              itemprop="datePublished">2023-10-31</time>
     </a>
 </div>
 
@@ -184,20 +198,48 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h1 id="你好，欢迎来到我的博客"><a href="#你好，欢迎来到我的博客" class="headerlink" title="你好，欢迎来到我的博客"></a>你好，欢迎来到我的博客</h1><p><del>虽然现在不是很好(</del></p>
-<p>纪念一下该博客创立的时间：<b><i><font color = orange>2023&#x2F;10&#x2F;28 20:32:43</font></i></b></p>
-<p>至于为什么要创建这个博客呢？</p>
-<ul>
-<li>一来是因为大家都在写博客，我当然也得写一个；<br></li>
-<li>二来是因为博客可以用来记录我的生活，就当是写日记了，还能记录一下我最近都干了些啥，留下一些你在这个世界上存在过的证据，可不要虚度光阴（×）；<br></li>
-<li>第三，写博客以后还是很有用的，也可以让我学会一项新的技能；<br></li>
-<li><del>第四，当然是炫耀咯</del></li>
-</ul>
+                <h1 id="packet-tracer实验学习笔记"><a href="#packet-tracer实验学习笔记" class="headerlink" title="packet tracer实验学习笔记"></a>packet tracer实验学习笔记</h1><p>主要说明一些基本的使用方法，有助于上机实验的顺利进行</p>
+<h2 id="1、界面说明"><a href="#1、界面说明" class="headerlink" title="1、界面说明"></a>1、界面说明</h2><p>打开软件之后，在下方会出现一些不同设备的标志</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%AE%BE%E5%A4%87.png"></p>
+<p>从左到右依次是路由器，交换机、集线器和无线设备。</p>
+<p>点击左边的图标就可以在右边显示详细型号。我们一般路由器选择2811（端口数量多），交换机选择Switch-PT。左下角主机中我们可以选择最普通的PC-PT，而右边的电标志是不同的网线，其中的console线、copper straight-through和copper cross-over线最为常用。</p>
+<h2 id="2、电脑连接路由器"><a href="#2、电脑连接路由器" class="headerlink" title="2、电脑连接路由器"></a>2、电脑连接路由器</h2><p>我们可以首先设置一个路由器，然后设置一个PC，然后使用console线将它们连起来。我们需要让console线接在PC的RS-232端口上，以及路由器的Console端口上。这样就可以通过PC来操作路由器。</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/Console%E7%BA%BF1.png"></p>
+<p>之后我们再连一条交叉线crossover线在PC和路由器之间，使用PC剩下的FastEthernet端口和Router的FastEthernet端口。</p>
+<p>我们可以看到现在这两条线的两端都是红色的，这是因为我们还没有给它们配置端口IP。</p>
+<p>点击PC，点击上方的desktop，来到desktop界面</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/PC%E6%A1%8C%E9%9D%A2.png"></p>
+<p> 选择里面的terminal，点击ok，来到路由器的配置命令行界面（相当于我们在通过console线和PC上的命令行来远程操作路由器）。在第一次使用时，我们可以输入no来跳过配置阶段。之后我们可以输入<code>enable</code>命令开启管理员权限</p>
+<p> 输入<code>configure terminal</code>命令进入配置模式</p>
+<p> 输入<code>int fastEthernet 0/0</code>进入0&#x2F;0端口</p>
+<p> 输入<code>ip address 192.168.0.1 255.255.255.0</code>配置端口ip和子网掩码<br><br> 注意：不能为IP配192.168.0.0，因为这是一个保留地址，必须从192.168.0.1开始</p>
+<p> 输入<code>no shutdown</code>打开该端口</p>
+<p> 输入<code>exit</code>退出端口</p>
+<p> <img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE1.png"></p>
+<p> 接下来关闭teriminal，返回desktop，点击左上角的ip configuration进入本机的IP配置，选择static（非DHCP自动分配IP地址），在第一行IP Address输入192.168.0.2（区别于路由器地址），但是必须和路由器在同一网段，即192.168.0的网段。</p>
+<p> 输入完成之后，子网掩码应该会被自动配置。然后我们对第三行Default Gateway中输入路由器端口地址，即192.168.0.1</p>
+<p> <img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E6%AD%A3%E7%A1%AE%E7%9A%84IP%E9%85%8D%E7%BD%AE1.png"></p>
+<p> 这个时候应该路由器和PC之间的线的两端就会显示绿色。</p>
+<p> <img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/PC1%E5%92%8C%E8%B7%AF%E7%94%B1%E5%99%A81%E8%81%94%E9%80%9A.png"></p>
+<p> 我们也可以打开本地的命令提示符，即desktop界面上面的右边第二个Command Prompt，输入ping 192.168.0.1，应该可以正确ping通。</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/ping1.png"></p>
+<p>然后我们就可以在这个拓扑中添加一个交换机，并使用直通线连接两者。直通线选择交换机的0&#x2F;1端口，选择路由器的0&#x2F;1端口</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E6%B7%BB%E5%8A%A0%E7%9B%B4%E9%80%9A%E7%BA%BF.png"></p>
+<p>再次进入PC的terminal，用相同的方法为端口0&#x2F;1配置一个新的IP，如192.168.1.1，注意这里的网段已经改变了，从192.168.0变成了192.168.1。因为路由器的功能就是在不同的端口处分配不同的网段。</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE.png"></p>
+<p>然后，我们再添加一个电脑，用一根直通线连接到交换机。PC使用fastEthernet端口，而交换机使用1&#x2F;1端口。然后再使用一根console线从PC的RS-232端口连接到交换机的console端口。</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E8%BF%9E%E6%8E%A5.png"></p>
+<p>接下来打开这个新的PC的Terminal，来确保交换机已经开启。正常情况下应该不需要对交换机进行操作也能自动打开。</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%BC%80%E5%90%AF.png"></p>
+<p>接下来返回desktop界面，在IP Configuration 中配置本机的IP，可以是192.168.1.2</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/IP%E9%85%8D%E7%BD%AE2.png"></p>
+<p>接下来你就可以在这台PC上ping之前一台PC，理论上就可以ping通</p>
+<p><img src="/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5ping.png"></p>
 
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://example.com/2023/10/28/Welcome!/" data-id="clob5a8ti00034kuw3cvga7m5" data-title="Welcome!"
+            <a data-url="http://example.com/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/" data-id="cloe42frr000000uwg1gk6qzp" data-title="Packet Tracer实验"
                class="article-share-link">分享</a>
             
             
@@ -210,35 +252,19 @@
         
     <nav id="article-nav" class="wow fadeInUp">
         
-            <div class="article-nav-link-wrap article-nav-link-left">
-                
-                    
-                    
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="分类" class="lazyload">
-                    
-                
-                <a href="/2023/10/30/%E5%88%86%E7%B1%BB/"></a>
-                <div class="article-nav-caption">前一篇</div>
-                <h3 class="article-nav-title">
-                    
-                        分类
-                    
-                </h3>
-            </div>
-        
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
                     
                     
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="Hello World" class="lazyload">
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="生活" class="lazyload">
                     
                 
-                <a href="/2023/10/28/hello-world/"></a>
+                <a href="/2023/10/31/%E7%94%9F%E6%B4%BB/"></a>
                 <div class="article-nav-caption">后一篇</div>
                 <h3 class="article-nav-title">
                     
-                        Hello World
+                        生活
                     
                 </h3>
             </div>
