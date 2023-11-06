@@ -47,8 +47,9 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/%E5%9C%B0%E7%90%83%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E5%BB%BA%E9%80%A0%E4%B8%80%E4%B8%AA%E5%AE%9C%E5%B1%85%E8%A1%8C%E6%98%9F/image-14.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/%E5%9C%B0%E7%90%83%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E5%BB%BA%E9%80%A0%E4%B8%80%E4%B8%AA%E5%AE%9C%E5%B1%85%E8%A1%8C%E6%98%9F/image-15.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/%E5%9C%B0%E7%90%83%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E5%BB%BA%E9%80%A0%E4%B8%80%E4%B8%AA%E5%AE%9C%E5%B1%85%E8%A1%8C%E6%98%9F/image-16.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/%E5%9C%B0%E7%90%83%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E5%BB%BA%E9%80%A0%E4%B8%80%E4%B8%AA%E5%AE%9C%E5%B1%85%E8%A1%8C%E6%98%9F/%E7%AD%89%E6%97%B6%E7%BA%BF%E7%9B%B8%E9%99%A4.png">
 <meta property="article:published_time" content="2023-10-31T13:19:53.000Z">
-<meta property="article:modified_time" content="2023-10-31T13:21:26.449Z">
+<meta property="article:modified_time" content="2023-11-06T14:10:52.205Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2023/10/31/%E5%9C%B0%E7%90%83%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E5%BB%BA%E9%80%A0%E4%B8%80%E4%B8%AA%E5%AE%9C%E5%B1%85%E8%A1%8C%E6%98%9F/image.png">
@@ -377,7 +378,26 @@
 <p>对于 $^{14}$ C，宇宙射线会源源不断的产生，如果产生速率不变，并且$^{12}$ CO $_2$ 的含量不变，那么14C和12C的比值恒定<br><br>所有与二氧化碳反应的体系都会有一个最初的14C&#x2F;12C比值，这个值由大气决定</p>
 <p>如果物质不再与大气交换（达成封闭体系），那么会发生衰变，时间越长，14C&#x2F;12C的比值逐渐降低，由此通过公式得出<br><img src="/2023/10/31/%E5%9C%B0%E7%90%83%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E5%BB%BA%E9%80%A0%E4%B8%80%E4%B8%AA%E5%AE%9C%E5%B1%85%E8%A1%8C%E6%98%9F/image-16.png" alt="Alt text"></p>
 <p>如果当今体系和原来体系不一样怎么办？</p>
-<h3 id="3、等时线定年"><a href="#3、等时线定年" class="headerlink" title="3、等时线定年"></a>3、等时线定年</h3>
+<h3 id="3、等时线定年"><a href="#3、等时线定年" class="headerlink" title="3、等时线定年"></a>3、等时线定年</h3><p>可以利用公式$N(t) &#x3D; N_0 e^{-\lambda t}$来计算，但是很多情况下初始母体值$N_0$没有办法测量，必须使用新的方法</p>
+<h4 id="子体同位素的演化"><a href="#子体同位素的演化" class="headerlink" title="子体同位素的演化"></a>子体同位素的演化</h4><p>母体同位素N会衰变成子体同位素$D$，但是初始的系统中可能已经存在了一些$D$，因此需要区分初始的D和放射后衰变形成的D。</p>
+<ul>
+<li>$D_0$:初始的D的含量</li>
+<li>$D^*$:母体衰变形成的D的含量</li>
+</ul>
+<p>可以得到公式：$$D(t) &#x3D; D_0+D^*(t)$$<br>其中$D(t)$代表t时刻的D，$D^*(t)$代表从刚开始到t时刻一共衰变形成的D，它等于的是原来的母体含量减去现在的母体含量，即：$N_0-N(t)$，因此可以代入得到：</p>
+<p>在一个封闭系统中：$D(t)&#x3D;D_0+[N_0-N(t)]&#x3D;D_0+N_0(1-e^{-\lambda t})$，然后我们再公式转换一下，得到$N_0&#x3D;Ne^{\lambda t}$，就可以得到：<br>$$D(t) &#x3D; D_0+N(t)(e^{\lambda t}-1)$$</p>
+<p>这个方程中仍然含有两个未知量。解决办法就是：利用一下第三个元素。这个元素的特性必须是：<strong>稳定的，非放射成因的</strong>。这意味着这个元素自始至终含量都未发生变化，因此可以将其看成一个常数。</p>
+<p>假设这个元素的含量是S(t)，那么我们就可以将刚刚的式子整体除以一个S(t)，就可以得到如下式子：<br>$$\frac{D(t)}{S(t)}&#x3D;\frac{D_0}{S(t)}+\frac{N(t)}{S(t)}(e^{\lambda t}-1)$$</p>
+<p>即：$$(\frac{D}{S})_t&#x3D;(\frac{D}{S})_0+(\frac{N}{S})_t(e^{\lambda t}-1)$$</p>
+<p>这个就是<font color = orange>等时线方程</font></p>
+<p>这个方程仍然有两个未知量，但是已经化成了一个线性的形式，可以看成Y&#x3D;截距+X*斜率，其中Y是$(\frac{D}{S})_t$，而X是$(\frac{N}{S})_t$。而Y和X都是现在的两个物质浓度的比值，都是可以测量的，因此是已知的。所以我们就可以通过多取几个点，然后进行直线拟合，就可以得到这个直线的斜率和截距。而其中斜率就包含了我们所需要知道的<strong>年龄</strong>。</p>
+<p>$^{86}Sr$是一个稳定的同位素，通常可以用来作为稳定元素来代入等时线方程。</p>
+<p>等时线方程的前提：<font color = red>必须是一个封闭的，充分混合的系统</font></p>
+<p> 通过计算球粒陨石的等时线方程，我们可以得到球粒陨石的形成时间大约在45.6亿年</p>
+<p> 月球和球粒陨石形成的年龄非常接近：</p>
+<p> 但是地球的年龄是多少？我们可以知道：地球整体是一个封闭体系。使用的是235U衰变为207Pb，稳定元素204Pb的体系，以及238U衰变成206U，稳定元素204Pb的体系。然后我们可以将两个等时线方程的式子的初始项移到左边，然后将两个等式相除，就可以得到：<br><img src="/2023/10/31/%E5%9C%B0%E7%90%83%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E5%BB%BA%E9%80%A0%E4%B8%80%E4%B8%AA%E5%AE%9C%E5%B1%85%E8%A1%8C%E6%98%9F/%E7%AD%89%E6%97%B6%E7%BA%BF%E7%9B%B8%E9%99%A4.png"></p>
+<p>这里面只有t未知，并且左边的可以通过测量不同的样本来得到。</p>
+
             
         </div>
         <footer class="article-footer">
@@ -538,10 +558,10 @@
             
                 <div>
                     <span class="icon-brush"></span>
-                    13.2k
+                    14k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    00:50
+                    00:53
                 </div>
             
             
