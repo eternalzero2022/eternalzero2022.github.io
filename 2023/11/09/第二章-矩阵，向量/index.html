@@ -1,0 +1,639 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        第二章 矩阵，向量 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="第二章 矩阵、向量一、基础知识向量可以看成只有一行或一列的矩阵，因此向量可以和矩阵运算  零矩阵：所有元素为0的矩阵，可以写成$O$ 零向量：所有分量为0的矩阵，可以写成$\theta$ 对角矩阵：只有对角线的元素($a_{ii}$)非0，其他元素均为0的矩阵 数量矩阵：对角矩阵每个元素相等，记为k 单位矩阵：对角矩阵的对角线元素均为1，记为$E$ $E_n$表示n阶单位矩阵  注意：$e_n$表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二章 矩阵，向量">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="第二章 矩阵、向量一、基础知识向量可以看成只有一行或一列的矩阵，因此向量可以和矩阵运算  零矩阵：所有元素为0的矩阵，可以写成$O$ 零向量：所有分量为0的矩阵，可以写成$\theta$ 对角矩阵：只有对角线的元素($a_{ii}$)非0，其他元素均为0的矩阵 数量矩阵：对角矩阵每个元素相等，记为k 单位矩阵：对角矩阵的对角线元素均为1，记为$E$ $E_n$表示n阶单位矩阵  注意：$e_n$表">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%9F%A9%E9%98%B5%E5%8A%A0%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E9%80%86%E7%9F%A9%E9%98%B5%E6%80%A7%E8%B4%A8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%9F%A9%E9%98%B5%E7%9A%84%E7%A7%A9%E5%85%AC%E5%BC%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%BB%8F%E5%85%B8%E4%BE%8B%E5%AD%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E6%9E%81%E5%A4%A7%E6%97%A0%E5%85%B3%E7%BB%84.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%9F%A9%E9%98%B5%E7%A7%A9%E7%9A%84%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E5%88%86%E5%9D%97%E4%B9%98%E6%B3%95.png">
+<meta property="article:published_time" content="2023-11-09T13:34:02.000Z">
+<meta property="article:modified_time" content="2023-11-09T13:34:33.726Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%9F%A9%E9%98%B5%E5%8A%A0%E6%B3%95.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="第二章 矩阵，向量" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>第二章 矩阵，向量</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-第二章-矩阵，向量" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/" class="article-date-link">
+        <time datetime="2023-11-09T13:34:02.000Z"
+              itemprop="datePublished">2023-11-09</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="第二章-矩阵、向量"><a href="#第二章-矩阵、向量" class="headerlink" title="第二章 矩阵、向量"></a>第二章 矩阵、向量</h1><h2 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h2><p>向量可以看成只有一行或一列的矩阵，因此向量可以和矩阵运算</p>
+<ul>
+<li>零矩阵：所有元素为0的矩阵，可以写成$O$</li>
+<li>零向量：所有分量为0的矩阵，可以写成$\theta$</li>
+<li>对角矩阵：只有对角线的元素($a_{ii}$)非0，其他元素均为0的矩阵</li>
+<li>数量矩阵：对角矩阵每个元素相等，记为k</li>
+<li>单位矩阵：对角矩阵的对角线元素均为1，记为$E$</li>
+<li>$E_n$表示n阶单位矩阵</li>
+</ul>
+<p>注意：$e_n$表示只有第n个元素为1，其他元素为0的单位向量。</p>
+<p>|A|表示A的行列式。如果行列式非0，则A是非奇异矩阵；行列式为0表示为奇异矩阵（退化矩阵）</p>
+<p>矩阵的乘法：左边的矩阵的每一行与右边的矩阵的每一列的每个元素的乘积的和构成的矩阵</p>
+<p>方法：可以通过给左边的矩阵画横线分隔每行、右边的矩阵画竖线分隔每列来算。</p>
+<p>如果是a*b阶矩阵和b*c阶矩阵来算，结果是一个a*c阶矩阵（如果第一个矩阵列和第二个矩阵行数不同是不可以乘的）</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%9F%A9%E9%98%B5%E5%8A%A0%E6%B3%95.png"></p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95.png"></p>
+<p>注意：矩阵不能和一个数相加。如果矩阵要和一个数相加（例如提取公因式后），需要将那个数字转化为几倍的$E$。例如$AB+A要写成A(B+E)$</p>
+<p>kA求行列式时想把k提出去需要乘以一个n，即$|kA| &#x3D; k^n|A|$</p>
+<p>(与行列式不一样，行列式乘以一个数只需要某一行或某一列乘以一个数，而矩阵乘以一个数需要所有元素都乘以这个数)</p>
+<p>乘法时，两个矩阵的顺序<strong>不能轻易变动</strong>！</p>
+<p>基本公式：</p>
+<ul>
+<li>$|AB| &#x3D; |A||B|$（可以扩展到很多项）</li>
+</ul>
+<p>转置矩阵的基本公式：</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F.png"></p>
+<h3 id="分块矩阵"><a href="#分块矩阵" class="headerlink" title="分块矩阵"></a>分块矩阵</h3><p>包括乘法和转置的运算基本都遵循链式法则（先转置矩阵本身，然后对里面的每个矩阵也转置）</p>
+<p>矩阵可以按行分块或者按列分块，分块后将使得矩阵的运算大大简化</p>
+<p>一般可以将左边的矩阵进行按行分块，右边的矩阵按列分块。这样计算后结果会变得简洁，也有助于更进一步的计算</p>
+<p>对于同阶方阵来说，组成的分块矩阵的行列式具有如下公式：<br>$\begin{vmatrix}<br>A &amp; B\<br>C&amp;D<br>\end{vmatrix} &#x3D; |A||D-CA^{-1}B|$（虽然很少用得上）</p>
+<h3 id="逆矩阵"><a href="#逆矩阵" class="headerlink" title="逆矩阵"></a>逆矩阵</h3><p><img src="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E9%80%86%E7%9F%A9%E9%98%B5%E6%80%A7%E8%B4%A8.png"></p>
+<p>注意：如果A和B可逆，A+B不一定可逆，即使A+B可逆，一般$(A+B)^{-1} \neq A^{-1}+B^{-1}$</p>
+<p>求逆矩阵的常用方法</p>
+<ul>
+<li>定义法：找一个矩阵，让它和原来矩阵相乘后等于单位矩阵。通常适用于不给矩阵具体细节，用参数让你表示逆矩阵</li>
+<li>公式法：设x，解方程（不推荐）</li>
+<li>初等变换法：分为行初等变换和列初等变换。一般可以使用行初等变换，把一个矩阵和单位阵E横着组成一个分块矩阵，(A E),然后<strong>只通过行初等变换</strong>，将A变为E，这个时候E就成为了A的逆矩阵。</li>
+</ul>
+<h3 id="伴随矩阵"><a href="#伴随矩阵" class="headerlink" title="伴随矩阵"></a>伴随矩阵</h3><p>最最重要的公式：$AA^*&#x3D;|A|E$</p>
+<p>每次题目中出现了关于A*的任何东西，你都可以立刻写下这个式子，因为大部分题目的解决方法都需要使用这个式子。</p>
+<p>这个式子有很多变形，例如$A^* &#x3D; |A|A^{-1}$，$A^{-1} &#x3D; \frac{1}{|A|}A^*$。当然也可以得出：$|A^*| &#x3D; |A|^{n-1}$</p>
+<p>从这里也可看出$A^*$和$A^{-1}$的关系：$A^*$实际上就是$A^{-1}$乘以了一个数，这个数就是A的行列式。</p>
+<h3 id="矩阵的初等变换："><a href="#矩阵的初等变换：" class="headerlink" title="矩阵的初等变换："></a>矩阵的初等变换：</h3><ul>
+<li>对调变换：交换两行</li>
+<li>数乘变换：某行乘以一个数</li>
+<li>倍加变换：某行乘以一个数加到另一行</li>
+</ul>
+<p>对单位矩阵进行一次初等变换就是初等矩阵。对一个矩阵进行一次初等变换相当于<br>这个矩阵左乘（行变换）或右乘（列变换）一个初等矩阵</p>
+<h3 id="矩阵的简化"><a href="#矩阵的简化" class="headerlink" title="矩阵的简化"></a>矩阵的简化</h3><p>等价：矩阵A经过有限次初等变换变成矩阵B；</p>
+<p>注意等价和相似的区别：等价是只要能够经过初等变换变成就可以，可以表示PAQ，而相似必须是左乘P逆，右乘P，即等价：$B &#x3D; PAQ$，而等价：$B &#x3D; P^{-1}AP$</p>
+<p>标准型：既是行简化梯形，又是列简化梯形（对角线由1和0构成，其余位置全为0，并且对角线上所有的1一定位于所有的0的左上方）</p>
+<p>所有矩阵都可以写成$P_s…P_3P_2P_1\Lambda Q_1Q_2Q_3…Q_t$的形式，其中$\Lambda$表示标准型矩阵。这个方法在一些证明题中可以发挥作用。</p>
+<h3 id="矩阵的秩"><a href="#矩阵的秩" class="headerlink" title="矩阵的秩"></a>矩阵的秩</h3><p>概念：非零子式的最高阶数（如果秩为r，那么所有r+1阶的子式全部为0），有时候证明中会用到这样的定义</p>
+<p>r(A) &#x3D; n 可以得出：|A|不为0</p>
+<p>矩阵的分解：假如矩阵秩为r，那么可以化成$P\Lambda Q$，其中$\Lambda$为<br>$\begin{pmatrix}<br>E_r &amp; O\<br>O &amp; O<br>\end{pmatrix}$</p>
+<p>重要的不等式：<br><img src="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%9F%A9%E9%98%B5%E7%9A%84%E7%A7%A9%E5%85%AC%E5%BC%8F.png"></p>
+<h3 id="线性相关与线性无关"><a href="#线性相关与线性无关" class="headerlink" title="线性相关与线性无关"></a>线性相关与线性无关</h3><p>等价向量组：两个向量组中的一个向量组中的每个向量都能用另一个向量组中的向量线性表示。</p>
+<p>证明一个向量组线性无关的方法：列出方程$k_1\alpha_1+…+k_n\alpha_n &#x3D; \theta$，然后证明这个方程想要成立则必须k1&#x3D;k2&#x3D;…&#x3D;kn&#x3D;0。这个方法常常在不知道向量组具体有哪些向量的时候使用</p>
+<p>一个经典的例子：</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%BB%8F%E5%85%B8%E4%BE%8B%E5%AD%90.png"></p>
+<p>想要证明线性相关也可以用这个方法，只不过需要解出K的非零解</p>
+<p>n维基本向量组$e_1,e_2,…e_n$是线性无关的，这个结论有时候用已知矩阵构造具体秩为多少的矩阵时可能会用到。</p>
+<h3 id="极大无关组与向量组的秩"><a href="#极大无关组与向量组的秩" class="headerlink" title="极大无关组与向量组的秩"></a>极大无关组与向量组的秩</h3><p>两个向量组等价的充要条件：两个向量组的一个极大无关组等价</p>
+<p>证明极大无关组：向量组线性无关，且可以表示其他剩余向量（任意添加一个其他向量后线性相关）</p>
+<p>求极大无关组时，你可以将各个向量按列放成一个矩阵，并将矩阵化成一个行简化梯形矩阵。所有为1的列所代表的向量构成一个极大无关组，所有非1的列的向量，它用极大无关组表示的系数就是这一列的各个数。例如：</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E6%9E%81%E5%A4%A7%E6%97%A0%E5%85%B3%E7%BB%84.png"></p>
+<p>这个时候$\alpha_1,\alpha_2,\alpha_4$就是一个极大无关组，而$\alpha_3$就等于$3\alpha_1-\alpha_2$，$\alpha_5 &#x3D; 5\alpha_2-2\alpha_3$</p>
+<p>如果向量组的秩为r，那么从这个向量组中任意选取r个向量，只要这些向量是线性无关的，那么它们就是向量组的一个极大无关组</p>
+<p>前面的秩的不等式中$r(AB)\geq r(A) + r(B) - n$，这里的AB可以不是方阵，并且n为A的列数</p>
+<p>矩阵秩的关系：</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E7%9F%A9%E9%98%B5%E7%A7%A9%E7%9A%84%E5%85%B3%E7%B3%BB.png"></p>
+<h1 id="二、实用技巧"><a href="#二、实用技巧" class="headerlink" title="二、实用技巧"></a>二、实用技巧</h1><ul>
+<li><p>一个矩阵可以写成很多个行或列向量的组合（按行或按列分块），比如把一个矩阵写成列向量的组合$(\alpha_1,\alpha_2,…\alpha_n)$。这样有一个好处，在矩阵运算时隐藏具体的细节，直观感受到矩阵实际发生的变化。这样也适用于矩阵某一行元素个数、列元素任意的情况，比如$(\alpha_1,\alpha_2,\alpha_3)$，如果这个矩阵经历某些运算后得到了$(2\alpha_1,3\alpha_2,4\alpha_3)$，那么它肯定是对矩阵的每一列进行整体的变换的，就和这个矩阵本身行的个数（向量b的维数）无关。</p>
+</li>
+<li><p>有的时候要学会将一个矩阵拆成两个向量的乘法，如：<br><img src="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/pic/%E5%88%86%E5%9D%97%E4%B9%98%E6%B3%95.png"></p>
+</li>
+</ul>
+<p>这个结果矩阵的每一行和每一列都有一个共有的因数，比如第一行都有一个α1，第一列都有一个β1。而这就可以看成左边的行向量构成的矩阵和右边的列向量构成的矩阵的参与的结果。</p>
+<ul>
+<li>对角矩阵有时候很有用，因为它可以操作某个矩阵的行和列。一般来说，左乘一个对角矩阵是对矩阵进行行变换，右乘对角矩阵是列变换。</li>
+</ul>
+<p>例如，有一个矩阵$(\alpha_1,\alpha_2,\alpha_3)$，如果想让他每列都乘以一个数，就可以让它右乘一个对角矩阵diag(a,b,c)，就可以变成$(a\alpha_1,b\alpha_2,c\alpha_3)$。这在某些需要你构造某些特殊矩阵的时候会用到。</p>
+<ul>
+<li><p>更进一步，如果一些向量可以由其他向量组合，比如$\beta_1 &#x3D; \alpha_1 + \alpha_2 + \alpha_3$，$\beta_2 &#x3D; 2\alpha_1 + 3\alpha_2 - \alpha_3$，$\beta_3 &#x3D; 5\alpha_1 + -5\alpha_2$，那么我们可以通过矩阵来表示这种变换。将β铺开成一个矩阵：$(\beta_1,\beta_2,\beta_3)$，那么它就可以通过矩阵$(\alpha_1,\alpha_2,\alpha_3)$右乘一个矩阵<br>$\begin{pmatrix}<br>1 &amp; 2 &amp;5 \<br>1 &amp; 3 &amp; -5 \<br>1 &amp; -1 &amp; 0<br>\end{pmatrix}$<br>来实现。这个矩阵的每一列的元素就是每个β对应的α向量的组合前面的系数。这个方法在证明向量组等价时会很有用。当然也可以β竖着放，然后变成竖着放的α矩阵左乘一个系数矩阵来表示。这个时候每一行就是表示每个β前面的系数。</p>
+</li>
+<li><p>分块矩阵在计算行列式时也可以模仿普通元素的行列式进行操作（需要注意前提，往往乘是可以的，但是加减的时候需要注意）</p>
+</li>
+<li><p>如果要求一个矩阵的逆矩阵，你可以通过想办法找一个矩阵，让它和原来的矩阵相乘后变成单位矩阵来做。（可能需要靠自己猜一下）。</p>
+</li>
+<li><p>在解一些矩阵方程时，你可以不必要直接写出X的表达式，然后一个一个求逆矩阵，再算矩阵乘法。而是可以先将复杂的乘积设成一个未知量，然后先求出这个未知量，再具体求出里面的X。</p>
+</li>
+</ul>
+<p>例如：AXB &#x3D; C，可以先设XB &#x3D; Y，然后求AY &#x3D; C，这个时候可以使用初等变换法算出Y，即列出矩阵$\begin{pmatrix}<br>A &amp; C<br>\end{pmatrix}$，然后只通过初等行变换把A化成E，这个时候C所在的矩阵就变成了Y。然后我们就可以解XB &#x3D; Y这个方程。注意这里X是在B的左边（刚刚是在右边），所以我们必须竖着放矩阵：$\begin{pmatrix}<br>B  \<br>Y  \<br>\end{pmatrix}$,然后只通过初等列变换，将B变成E，然后Y所在的矩阵就变成了X。通过这种方式可以大大简化计算步骤。</p>
+<ul>
+<li><p>如果$A^T &#x3D; A^{-1}$的话，就可以利用两者的性质得到$A^T(A+B)B^T &#x3D; (A+B)^T$，也许可以证明一些结论</p>
+</li>
+<li><p>题目要是给出了一个带有AB、A、B、E矩阵的等式，就可以从中找到一对互为逆矩阵的式子。例如：$AB-A-2B&#x3D;O，A(B-E)-2B&#x3D;O，A(B-E)-2(B-E)&#x3D;2E，(A-2E)(B-E)&#x3D;2E$，就可以找到一对互为逆矩阵的式子了</p>
+</li>
+</ul>
+<p>很多时候我们在求矩阵的秩的时候都只能使用那几个不等式来推导，例如如果知道r(A)和r(B)的时候，我们就可以利用r(AB)&lt;&#x3D;min(r(A),r(B))&#x3D;n以及r(AB)&gt;&#x3D;r(A)+r(B)-n &#x3D; n得出r(AB) &#x3D; n</p>
+<p>对于矩阵P来说，右乘一个向量$e_k$就相当于变成矩阵的第k行（本质上右乘一个向量就是把矩阵的第k列乘以向量的第k个坐标，然后每行求和） </p>
+<p>矩阵$A_n$可逆的等价条件：</p>
+<ul>
+<li>$|A|\neq 0 $</li>
+<li>$r(A) &#x3D; n$</li>
+<li>$A &#x3D; PEQ$，其中PQ为可逆矩阵</li>
+<li>A行向量组或列向量组线性相关</li>
+<li>以A为系数矩阵的齐次线性方程组只有零解</li>
+<li>$A^T$可逆</li>
+<li>A的所有特征值都不为0</li>
+</ul>
+<p>有一个结论：如果一个矩阵的秩为r，然后这个矩阵和另一个矩阵组合形成一个分块矩阵以后，这个分块矩阵的秩仍然为r，那么这个新的矩阵中的行（列）向量就可以用原来的矩阵表示。这个结论可以用极大无关组证明。设原来矩阵的行（列）向量的极大无关组是某r个向量，然后因为组合后秩不变，所以新的矩阵的极大无关组也是那r个向量，因此新矩阵的几个向量也可以使用原来的极大无关组的向量表示，因此新的矩阵中的向量就可以用原来矩阵中的向量表示。这个结论可以用来证明两个矩阵等价。</p>
+<p>一般想要证明一个矩阵和另一个矩阵组合后的秩仍然是原来的矩阵的秩，可以通过让它大于等于同时小于等于原来矩阵的秩实现。大于等于原来矩阵的秩可根据组合矩阵的秩一定大于等于单个矩阵的秩直接得出，而小于等于原来矩阵的秩可通过将组合矩阵化为两个矩阵相乘实现，并且乘积的秩一定小于等于乘积中的任何一个矩阵的秩。</p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/" data-id="clor8hbnq00034guw2qwtft1m" data-title="第二章 矩阵，向量"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+            <div class="article-nav-link-wrap article-nav-link-left">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第三章 线性方程组解的结构" class="lazyload">
+                    
+                
+                <a href="/2023/11/09/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/"></a>
+                <div class="article-nav-caption">前一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        第三章 线性方程组解的结构
+                    
+                </h3>
+            </div>
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第一章 行列式" class="lazyload">
+                    
+                
+                <a href="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        第一章 行列式
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">17</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    23.8k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    01:29
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">17</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+

@@ -12,7 +12,7 @@
 
     
     <title>
-        分类 |
+        第一章 行列式 |
         
         EternalZero2022 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,17 +23,28 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="📖学习💻 🕹️娱乐🧩 🏖️生活☕ 👓经验&#x2F;杂谈📝">
+    <meta name="description" content="第一章 行列式一、二阶与三阶行列式行列式：用于表示线性方程组的解 二阶行列式：$\begin{vmatrix}a &amp; b \c &amp; d\end{vmatrix}$ &#x3D; ad-bc，最初用于表示二阶方程组的解 三阶行列式：$\begin{vmatrix}a &amp; b &amp; c\d &amp; e&amp;f\g &amp;h&amp;i\end{vmatrix}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://eternalzero2022.github.io/2023/10/30/%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:title" content="第一章 行列式">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/index.html">
 <meta property="og:site_name" content="EternalZero2022 的博客">
-<meta property="og:description" content="📖学习💻 🕹️娱乐🧩 🏖️生活☕ 👓经验&#x2F;杂谈📝">
+<meta property="og:description" content="第一章 行列式一、二阶与三阶行列式行列式：用于表示线性方程组的解 二阶行列式：$\begin{vmatrix}a &amp; b \c &amp; d\end{vmatrix}$ &#x3D; ad-bc，最初用于表示二阶方程组的解 三阶行列式：$\begin{vmatrix}a &amp; b &amp; c\d &amp; e&amp;f\g &amp;h&amp;i\end{vmatrix}">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-30T12:06:42.000Z">
-<meta property="article:modified_time" content="2023-11-08T04:59:00.504Z">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%B3%95%E5%88%99.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E6%8C%89%E8%A1%8C%E5%B1%95%E5%BC%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E8%BD%AC%E7%BD%AE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E4%B8%8A%E4%B8%89%E8%A7%92.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/n%E5%85%83%E4%B8%80%E6%AC%A1%E6%96%B9%E7%A8%8B%E7%BB%84.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E8%8C%83%E5%BE%B7%E8%92%99%E5%BE%B7%E8%A1%8C%E5%88%97%E5%BC%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E5%9D%97%E4%B8%89%E8%A7%92%E8%A1%8C%E5%88%97%E5%BC%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E6%8C%89%E8%A1%8C%E5%B1%95%E5%BC%80%E6%8A%80%E5%B7%A7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E8%A1%8C%E5%88%97%E5%BC%8F%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E5%8A%A0%E8%BE%B9%E6%B3%95.png">
+<meta property="article:published_time" content="2023-11-09T13:33:02.000Z">
+<meta property="article:modified_time" content="2023-11-09T13:35:00.896Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%B3%95%E5%88%99.png">
     
         <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
     
@@ -108,7 +119,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="/images/banner.jpg" data-sizes="auto" alt="分类" class="lazyload">
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="第一章 行列式" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -116,7 +127,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>分类</h1></a>
+                        <a href="/" id="logo"><h1>第一章 行列式</h1></a>
                     
                 
             </div>
@@ -165,14 +176,14 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main"><article id="post-分类" class="h-entry article article-type-post"
+                <section id="main"><article id="post-第一章-行列式" class="h-entry article article-type-post"
          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="article-inner">
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
-    <a href="/2023/10/30/%E5%88%86%E7%B1%BB/" class="article-date-link">
-        <time datetime="2023-10-30T12:06:42.000Z"
-              itemprop="datePublished">2023-10-30</time>
+    <a href="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/" class="article-date-link">
+        <time datetime="2023-11-09T13:33:02.000Z"
+              itemprop="datePublished">2023-11-09</time>
     </a>
 </div>
 
@@ -184,14 +195,84 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h1 id="📖学习💻"><a href="#📖学习💻" class="headerlink" title="📖学习💻"></a><div align = "center"><font color = orange><a href="../../../../2023/10/30/%E5%AD%A6%E4%B9%A0/" title="警告：这个页面中除了学习还是学习，慎入">📖学习💻</a></font></div></h1><hr>
-<h1 id="🕹️娱乐🧩"><a href="#🕹️娱乐🧩" class="headerlink" title="🕹️娱乐🧩"></a><div align = "center"><font color = red><a href="../../../../2023/10/31/%E5%A8%B1%E4%B9%90/" title="游戏娱乐也是很重要的不是吗">🕹️娱乐🧩</a></font></div></h1><hr>
-<h1 id="🏖️生活☕"><a href="#🏖️生活☕" class="headerlink" title="🏖️生活☕"></a><div align = "center"><font color = green><a href="../../../../2023/10/31/%E7%94%9F%E6%B4%BB/" title="简单的生活趣事记录">🏖️生活☕</a></font></div></h1><hr>
-<h1 id="👓经验-杂谈📝"><a href="#👓经验-杂谈📝" class="headerlink" title="👓经验&#x2F;杂谈📝"></a><div align = "center"><font color = green><a href="../../../../2023/11/07/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/" title="一些课程学习之外的经验分享">👓经验&#x2F;杂谈📝</a></font></div></h1>
+                <h1 id="第一章-行列式"><a href="#第一章-行列式" class="headerlink" title="第一章 行列式"></a>第一章 行列式</h1><h2 id="一、二阶与三阶行列式"><a href="#一、二阶与三阶行列式" class="headerlink" title="一、二阶与三阶行列式"></a>一、二阶与三阶行列式</h2><p>行列式：用于表示线性方程组的解</p>
+<p>二阶行列式：<br>$\begin{vmatrix}<br>a &amp; b \<br>c &amp; d<br>\end{vmatrix}$ &#x3D; ad-bc，最初用于表示二阶方程组的解</p>
+<p>三阶行列式：<br>$\begin{vmatrix}<br>a &amp; b &amp; c\<br>d &amp; e&amp;f\<br>g &amp;h&amp;i<br>\end{vmatrix}$ &#x3D; aei+dhe+gbf-gec-dbi-ahf（对角线法则）</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%B3%95%E5%88%99.png"></p>
+<p>四阶及以上行列式不适用对角线法则。</p>
+<p>行列式的性质：</p>
+<ul>
+<li>如果行列式一行可以拆成两行之和，那么行列式可以拆成两个行列式之和</li>
+</ul>
+<p>$\begin{vmatrix}<br>a+m &amp; b \<br>c+n &amp; d<br>\end{vmatrix}$ &#x3D;<br>$\begin{vmatrix}<br>a &amp; b \<br>c &amp; d<br>\end{vmatrix}$ +<br>$\begin{vmatrix}<br>m &amp; b \<br>n &amp; d<br>\end{vmatrix}$</p>
+<ul>
+<li>相邻两列交换改变符号</li>
+</ul>
+<p>$\begin{vmatrix}<br>a &amp; b \<br>c &amp; d<br>\end{vmatrix}$ &#x3D; -<br>$\begin{vmatrix}<br>b &amp; a \<br>d &amp; c<br>\end{vmatrix}$</p>
+<ul>
+<li>行列式<strong>某一行</strong>的公因子可以提出成为改行列式的因子</li>
+</ul>
+<p>$\begin{vmatrix}<br>ka &amp; b \<br>kc &amp; d<br>\end{vmatrix}$ &#x3D; k<br>$\begin{vmatrix}<br>a &amp; b \<br>c &amp; d<br>\end{vmatrix}$</p>
+<h1 id="二、n阶行列式"><a href="#二、n阶行列式" class="headerlink" title="二、n阶行列式"></a>二、n阶行列式</h1><p>余子式：某个元素消去它所在的行和列后得到的行列式，<strong>不带符号</strong>，记为$M_{ij}$</p>
+<p>代数余子式：余子式<strong>带符号</strong>（乘以$(-1)^{i+j}$，i和j为该元素的行和列），记为$A_{ij}$</p>
+<p>$A_{ij} &#x3D; (-1)^{i+j}M_{ij}$</p>
+<p>行列式的一种计算方式：按某行或某列展开展开</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E6%8C%89%E8%A1%8C%E5%B1%95%E5%BC%80.png"></p>
+<p>转置行列式：行列式的行与列互换，即可以视为行列式按斜向右下的线轴对称后的行列式</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E8%BD%AC%E7%BD%AE.png"></p>
+<h3 id="重要性质"><a href="#重要性质" class="headerlink" title="重要性质"></a>重要性质</h3><ul>
+<li>行列式与它的转置行列式的值相等</li>
+<li>行列式有两行相等或成比例，值为0</li>
+<li>行列式任一行或列与<strong>另一行</strong>元素的代数余子式对应乘积之和为0</li>
+</ul>
+<p>行列式计算相关操作</p>
+<ul>
+<li>某行与某行互换（变号）</li>
+<li>某行乘以数倍（总体乘以几分之一）</li>
+<li>某行乘以一个数加到另一行（值不变）</li>
+</ul>
+<p>行列式计算方式3：化成上三角或下三角行列式（常用上三角，通过以上三种操作），值就是对角线的乘积。<br><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E4%B8%8A%E4%B8%89%E8%A7%92.png"></p>
+<p>反对称行列式：$a_{ij}$和$a_{ji}$互为相反数<br><br>奇数阶反对称行列式值为0</p>
+<p>克莱姆法则（用于解线性方程组）：</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/n%E5%85%83%E4%B8%80%E6%AC%A1%E6%96%B9%E7%A8%8B%E7%BB%84.png"></p>
+<p>D为系数矩阵，Dn为将系数矩阵的第n列替换为$b_1$、$b_2$、…、$b_n$</p>
+<p>如果Δ不为0，则：<br>$x_1 &#x3D; \frac{D_1}{D}$，$x_2 &#x3D; \frac{D_2}{D}$、$x_n &#x3D; \frac{D_n}{D}$</p>
+<p>如果D &#x3D; 0，则有可能无解或有无穷解（具体在第三章讨论）</p>
+<h1 id="三、实用技巧"><a href="#三、实用技巧" class="headerlink" title="三、实用技巧"></a>三、实用技巧</h1><ul>
+<li><p>如果看到行列式里本身就有0，可以尝试将一行或一列多化为几个0，然后把这行展开来算</p>
+</li>
+<li><p>如果是一个除了对角线外其他元素都相同的式子（对角线元素各不相同），可以选择用第一行减去其余行，然后每一列的除了第一行以外的元素都通过除以这些元素本身来化为1</p>
+</li>
+<li><p>如果是一个除了对角线外其他元素都相同的式子（对角线元素也相同），可以选择将每一行都加到第一行，然后第一行提取公因式后用它去减其余每行，把相同元素都变成0</p>
+</li>
+<li><p>范德蒙德行列式：</p>
+</li>
+</ul>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E8%8C%83%E5%BE%B7%E8%92%99%E5%BE%B7%E8%A1%8C%E5%88%97%E5%BC%8F.png"></p>
+<ul>
+<li>块三角行列式</li>
+</ul>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E5%9D%97%E4%B8%89%E8%A7%92%E8%A1%8C%E5%88%97%E5%BC%8F.png"><br>这种方式在解一些元素比较有规律的矩阵可以使用，将整个矩阵看成分块矩阵的组合，对每个矩阵分别求行列式</p>
+<ul>
+<li>通常碰到n阶，只有对角线附近有元素的行列式，可以选择按第一行或列展开，一般都可以得到D的递推公式。这种做法是最容易想到的做法</li>
+</ul>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E6%8C%89%E8%A1%8C%E5%B1%95%E5%BC%80%E6%8A%80%E5%B7%A7.png"></p>
+<ul>
+<li>当然，也可以使用数学归纳法</li>
+</ul>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E8%A1%8C%E5%88%97%E5%BC%8F%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95.png"></p>
+<ul>
+<li><p>如果每行或每列之间有一定关系，可以考虑行列比例相加（2+1，3+2，4+3……）</p>
+</li>
+<li><p>加边法：可以给整个行列式在外面加一行和一列，如果碰到每一行和每一列都有一个相同的组成部分，但是是以加法的形式存在的，就可以尝试加边法，加一边来消去这个本身存在的组成部分。</p>
+</li>
+</ul>
+<p><img src="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/pic/%E5%8A%A0%E8%BE%B9%E6%B3%95.png"></p>
+
             
         </div>
         <footer class="article-footer">
-            <a data-url="https://eternalzero2022.github.io/2023/10/30/%E5%88%86%E7%B1%BB/" data-id="clocvuchx0000m0uwhy0g1ofg" data-title="分类"
+            <a data-url="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/" data-id="clor8hbnp00014guw1by81etn" data-title="第一章 行列式"
                class="article-share-link">分享</a>
             
             
@@ -208,14 +289,14 @@
                 
                     
                     
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="2023Fall-互联网计算" class="lazyload">
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第二章 矩阵，向量" class="lazyload">
                     
                 
-                <a href="/2023/10/30/2023Fall-%E4%BA%92%E8%81%94%E7%BD%91%E8%AE%A1%E7%AE%97/"></a>
+                <a href="/2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/"></a>
                 <div class="article-nav-caption">前一篇</div>
                 <h3 class="article-nav-title">
                     
-                        2023Fall-互联网计算
+                        第二章 矩阵，向量
                     
                 </h3>
             </div>
@@ -225,14 +306,14 @@
                 
                     
                     
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="Welcome!" class="lazyload">
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="2023Fall-线性代数" class="lazyload">
                     
                 
-                <a href="/2023/10/28/Welcome!/"></a>
+                <a href="/2023/11/09/2023Fall-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"></a>
                 <div class="article-nav-caption">后一篇</div>
                 <h3 class="article-nav-title">
                     
-                        Welcome!
+                        2023Fall-线性代数
                     
                 </h3>
             </div>

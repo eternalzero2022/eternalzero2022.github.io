@@ -12,7 +12,7 @@
 
     
     <title>
-        分类 |
+        第四章 矩阵的特征值与特征向量 |
         
         EternalZero2022 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,17 +23,20 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="📖学习💻 🕹️娱乐🧩 🏖️生活☕ 👓经验&#x2F;杂谈📝">
+    <meta name="description" content="第四章 矩阵的特征值和特征向量一、基础知识相似矩阵：存在可逆矩阵P使得$B &#x3D; P^{-1}AP$，那么A和B就是可逆矩阵 其实相似矩阵P是：如果一个基底通过矩阵P可以过渡到另一个基底，并且第一个基底上有一个线性变换T，这个线性变换的矩阵表示是A，那么这个线性变换在第二个基底下的矩阵就是$P^{-1}AP$，就可以表示不同坐标系（基底）下的同一个线性变换（详情见《线性代数讲义》P173">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://eternalzero2022.github.io/2023/10/30/%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:title" content="第四章 矩阵的特征值与特征向量">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/index.html">
 <meta property="og:site_name" content="EternalZero2022 的博客">
-<meta property="og:description" content="📖学习💻 🕹️娱乐🧩 🏖️生活☕ 👓经验&#x2F;杂谈📝">
+<meta property="og:description" content="第四章 矩阵的特征值和特征向量一、基础知识相似矩阵：存在可逆矩阵P使得$B &#x3D; P^{-1}AP$，那么A和B就是可逆矩阵 其实相似矩阵P是：如果一个基底通过矩阵P可以过渡到另一个基底，并且第一个基底上有一个线性变换T，这个线性变换的矩阵表示是A，那么这个线性变换在第二个基底下的矩阵就是$P^{-1}AP$，就可以表示不同坐标系（基底）下的同一个线性变换（详情见《线性代数讲义》P173">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-30T12:06:42.000Z">
-<meta property="article:modified_time" content="2023-11-08T04:59:00.504Z">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/pic/%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5%E6%80%A7%E8%B4%A8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/pic/ABBA.png">
+<meta property="article:published_time" content="2023-11-09T13:36:43.000Z">
+<meta property="article:modified_time" content="2023-11-09T13:36:59.873Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/pic/%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5%E6%80%A7%E8%B4%A8.png">
     
         <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
     
@@ -108,7 +111,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="/images/banner.jpg" data-sizes="auto" alt="分类" class="lazyload">
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="第四章 矩阵的特征值与特征向量" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -116,7 +119,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>分类</h1></a>
+                        <a href="/" id="logo"><h1>第四章 矩阵的特征值与特征向量</h1></a>
                     
                 
             </div>
@@ -165,14 +168,14 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main"><article id="post-分类" class="h-entry article article-type-post"
+                <section id="main"><article id="post-第四章-矩阵的特征值与特征向量" class="h-entry article article-type-post"
          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="article-inner">
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
-    <a href="/2023/10/30/%E5%88%86%E7%B1%BB/" class="article-date-link">
-        <time datetime="2023-10-30T12:06:42.000Z"
-              itemprop="datePublished">2023-10-30</time>
+    <a href="/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" class="article-date-link">
+        <time datetime="2023-11-09T13:36:43.000Z"
+              itemprop="datePublished">2023-11-09</time>
     </a>
 </div>
 
@@ -184,14 +187,41 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h1 id="📖学习💻"><a href="#📖学习💻" class="headerlink" title="📖学习💻"></a><div align = "center"><font color = orange><a href="../../../../2023/10/30/%E5%AD%A6%E4%B9%A0/" title="警告：这个页面中除了学习还是学习，慎入">📖学习💻</a></font></div></h1><hr>
-<h1 id="🕹️娱乐🧩"><a href="#🕹️娱乐🧩" class="headerlink" title="🕹️娱乐🧩"></a><div align = "center"><font color = red><a href="../../../../2023/10/31/%E5%A8%B1%E4%B9%90/" title="游戏娱乐也是很重要的不是吗">🕹️娱乐🧩</a></font></div></h1><hr>
-<h1 id="🏖️生活☕"><a href="#🏖️生活☕" class="headerlink" title="🏖️生活☕"></a><div align = "center"><font color = green><a href="../../../../2023/10/31/%E7%94%9F%E6%B4%BB/" title="简单的生活趣事记录">🏖️生活☕</a></font></div></h1><hr>
-<h1 id="👓经验-杂谈📝"><a href="#👓经验-杂谈📝" class="headerlink" title="👓经验&#x2F;杂谈📝"></a><div align = "center"><font color = green><a href="../../../../2023/11/07/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/" title="一些课程学习之外的经验分享">👓经验&#x2F;杂谈📝</a></font></div></h1>
+                <h1 id="第四章-矩阵的特征值和特征向量"><a href="#第四章-矩阵的特征值和特征向量" class="headerlink" title="第四章 矩阵的特征值和特征向量"></a>第四章 矩阵的特征值和特征向量</h1><h2 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h2><p>相似矩阵：存在可逆矩阵P使得$B &#x3D; P^{-1}AP$，那么A和B就是可逆矩阵</p>
+<p>其实相似矩阵P是：如果一个基底通过矩阵P可以过渡到另一个基底，并且第一个基底上有一个线性变换T，这个线性变换的矩阵表示是A，那么这个线性变换在第二个基底下的矩阵就是$P^{-1}AP$，就可以表示不同坐标系（基底）下的同一个线性变换（详情见《线性代数讲义》P173 定理6.4.4）（目前不做了解）</p>
+<p>相似矩阵的性质：</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/pic/%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5%E6%80%A7%E8%B4%A8.png"></p>
+<h3 id="特征值与特征向量"><a href="#特征值与特征向量" class="headerlink" title="特征值与特征向量"></a>特征值与特征向量</h3><p>特征值：满足$A\lambda &#x3D; \xi \lambda$</p>
+<p>其实这个特征值与之前我们离散数学中计算递推公式使用的特征值是一个东西。</p>
+<p>计算特征值与特征向量的步骤：</p>
+<ul>
+<li>计算$|\lambda E-A|&#x3D;0$，求出$\lambda$</li>
+<li>对每个$\lambda $，代入解齐次方程组$(\lambda E-A) \xi &#x3D; 0$</li>
+<li>$A属于\lambda 的全部特征向量就是方程的基础解系。</li>
+</ul>
+<p>通常一个特征值可能对应多个特征向量，但是每个特征向量只能对应一个特征值。并且必须称呼为“属于a的特征向量”。</p>
+<p>互为共轭的两个特征值的特征向量也共轭。</p>
+<p>定理：如果f(x)为x的多项式，矩阵A有特征值$\lambda$，那么f(A)有特征值f($\lambda$)<br><br>同时，逆矩阵的特征值为原来特征值的倒数。<br><br>这个定理可以用来将某些复杂式子的特征值表示出来，结合复杂式子题目给的特性就可以求出这些式子的特征值，从而求出原始矩阵的特征值。</p>
+<p>如果$Ax &#x3D; \theta$有非零解，那么A有0特征值（一定可以找到一个非零向量$<br>\xi$，使得A $\xi$&#x3D;$\theta$）</p>
+<p>定理：相似矩阵具有相同的特征多项式，特征值也相同。但是具有相同的特征多项式不等于相似。</p>
+<h3 id="矩阵的迹"><a href="#矩阵的迹" class="headerlink" title="矩阵的迹"></a>矩阵的迹</h3><p><strong>矩阵的迹</strong>：矩阵对角线元素和，同时也等于矩阵所有特征值的和</p>
+<p>矩阵的行列式的值同时也等于矩阵所有特征值的积。<br><br>注意：如果是n重特征值，用这种方法计算矩阵的迹或行列式时需要把这个特征值计算n次。</p>
+<p>相似矩阵的迹和行列式都相同。利用这一点就可以很快速的做出两个带参数矩阵相似的题目，可以分别求出两个矩阵的迹，相等，可以迅速消去第一个参数。</p>
+<p>定理：如果A是一个块对角矩阵（分块矩阵，但是只有对角线有块），那么A的特征值就是A中每个块的所有特征值的汇总</p>
+<p>AB与BA具有相同的特征值，以及它们的迹也相同，证明过程如下：</p>
+<p><img src="/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/pic/ABBA.png"></p>
+<h2 id="二、常用技巧"><a href="#二、常用技巧" class="headerlink" title="二、常用技巧"></a>二、常用技巧</h2><ul>
+<li><p>通常我们求$|\lambda E-A| &#x3D; 0的时候都不是直接将行列式拆开，而是用一些技巧来因式分解，例如行列式凑几个0元素，然后使用按行列展开，或者把一行列加的每个元素相同，从而提取出来它们。$</p>
+</li>
+<li><p>当要求一个矩阵的n次方时，我们可以考虑将其对角化，然后列出等于$P\Lambda P^{-1}$，这样的话它的n次方就可以直接使用$P\Lambda^{n} P^{-1}$来表示。</p>
+</li>
+</ul>
+<p>如果想要求$A^*$的特征值，那么可以使用经典式子$AA^* &#x3D; |A|E$，变形成$A^* &#x3D; |A|A^{-1}$，利用f(A)特征值的定理就可以得到$A^*$的特征值就是$A^{-1}$的特征值乘以A的行列式</p>
+
             
         </div>
         <footer class="article-footer">
-            <a data-url="https://eternalzero2022.github.io/2023/10/30/%E5%88%86%E7%B1%BB/" data-id="clocvuchx0000m0uwhy0g1ofg" data-title="分类"
+            <a data-url="https://eternalzero2022.github.io/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" data-id="clor8hbnp00024guw57ptevz5" data-title="第四章 矩阵的特征值与特征向量"
                class="article-share-link">分享</a>
             
             
@@ -204,35 +234,19 @@
         
     <nav id="article-nav" class="wow fadeInUp">
         
-            <div class="article-nav-link-wrap article-nav-link-left">
-                
-                    
-                    
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="2023Fall-互联网计算" class="lazyload">
-                    
-                
-                <a href="/2023/10/30/2023Fall-%E4%BA%92%E8%81%94%E7%BD%91%E8%AE%A1%E7%AE%97/"></a>
-                <div class="article-nav-caption">前一篇</div>
-                <h3 class="article-nav-title">
-                    
-                        2023Fall-互联网计算
-                    
-                </h3>
-            </div>
-        
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
                     
                     
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="Welcome!" class="lazyload">
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第三章 线性方程组解的结构" class="lazyload">
                     
                 
-                <a href="/2023/10/28/Welcome!/"></a>
+                <a href="/2023/11/09/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/"></a>
                 <div class="article-nav-caption">后一篇</div>
                 <h3 class="article-nav-title">
                     
-                        Welcome!
+                        第三章 线性方程组解的结构
                     
                 </h3>
             </div>
