@@ -12,7 +12,7 @@
 
     
     <title>
-        经验/杂谈 |
+        GitHub Pages部署网页指南 |
         
         EternalZero2022 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,17 +23,31 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="目录个人博客搭建指南">
+    <meta name="description" content="GitHub Pages 网页部署指南 当我们在本地做出了一个网站之后，想要把它部署到网上，让其他人可以通过网址来访问这个网站，该怎么做呢？ 通常，我们会想到租借一个服务器，在上面就可以存放我们的网站内容。但是这样做非常复杂，并且资金消耗也巨大（而且很多时候只能用爱发电）。如果我们制作的网站不是一个规模非常巨大的网站时，我们也可以考虑把我们的网页文件托管到一些免费托管服务平台上。这个时候我们就可">
 <meta property="og:type" content="article">
-<meta property="og:title" content="经验&#x2F;杂谈">
-<meta property="og:url" content="https://eternalzero2022.github.io/2023/11/07/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/index.html">
+<meta property="og:title" content="GitHub Pages部署网页指南">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="EternalZero2022 的博客">
-<meta property="og:description" content="目录个人博客搭建指南">
+<meta property="og:description" content="GitHub Pages 网页部署指南 当我们在本地做出了一个网站之后，想要把它部署到网上，让其他人可以通过网址来访问这个网站，该怎么做呢？ 通常，我们会想到租借一个服务器，在上面就可以存放我们的网站内容。但是这样做非常复杂，并且资金消耗也巨大（而且很多时候只能用爱发电）。如果我们制作的网站不是一个规模非常巨大的网站时，我们也可以考虑把我们的网页文件托管到一些免费托管服务平台上。这个时候我们就可">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-07T15:49:56.000Z">
-<meta property="article:modified_time" content="2023-11-08T05:08:54.335Z">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E5%88%9B%E5%BB%BA%E5%AE%8C%E6%88%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E6%9C%AC%E5%9C%B0%E5%88%9B%E5%BB%BA%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/git%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E4%BB%A3%E7%A0%81%E6%8F%90%E7%A4%BA.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/hw.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E4%B8%8A%E4%BC%A0%E8%BF%87%E5%90%8E.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/pages.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/main%E5%88%86%E6%94%AF.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/deploy.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2023-11-11T09:10:46.000Z">
+<meta property="article:modified_time" content="2023-11-11T10:05:00.363Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E7%A4%BA%E4%BE%8B.png">
     
         <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
     
@@ -112,7 +126,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="/images/banner.jpg" data-sizes="auto" alt="经验/杂谈" class="lazyload">
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="GitHub Pages部署网页指南" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -120,7 +134,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>经验/杂谈</h1></a>
+                        <a href="/" id="logo"><h1>GitHub Pages部署网页指南</h1></a>
                     
                 
             </div>
@@ -169,18 +183,22 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main"><article id="post-经验-杂谈" class="h-entry article article-type-post"
+                <section id="main"><article id="post-GitHub-Pages部署网页指南" class="h-entry article article-type-post"
          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="article-inner">
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
-    <a href="/2023/11/07/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/" class="article-date-link">
-        <time datetime="2023-11-07T15:49:56.000Z"
-              itemprop="datePublished">2023-11-07</time>
+    <a href="/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/" class="article-date-link">
+        <time datetime="2023-11-11T09:10:46.000Z"
+              itemprop="datePublished">2023-11-11</time>
     </a>
 </div>
 
             
+    <div class="article-category wow slideInLeft">
+        <a class="article-category-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a>
+    </div>
+
 
         </div>
         <div class="hr-line"></div>
@@ -188,11 +206,50 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a><center>目录</center></h1><h2 id="个人博客搭建指南"><a href="#个人博客搭建指南" class="headerlink" title="个人博客搭建指南"></a><a href="../../../../2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/">个人博客搭建指南</a></h2>
+                <h1 id="github-pages-网页部署指南"><a class="markdownIt-Anchor" href="#github-pages-网页部署指南"></a> GitHub Pages 网页部署指南</h1>
+<p>当我们在本地做出了一个网站之后，想要把它部署到网上，让其他人可以通过网址来访问这个网站，该怎么做呢？</p>
+<p>通常，我们会想到租借一个服务器，在上面就可以存放我们的网站内容。但是这样做非常复杂，并且资金消耗也巨大（而且很多时候只能用爱发电）。如果我们制作的网站不是一个规模非常巨大的网站时，我们也可以考虑把我们的网页文件<font color = orange><strong>托管到一些免费托管服务平台上</strong></font>。这个时候我们就可以在这些托管平台的域名之上部署属于自己的网站。Github Pages就是这样一个网站。</p>
+<p><img src="pic/%E7%A4%BA%E4%BE%8B.png" alt="" /></p>
+<p>例如以上情况，我们自己手动写了一个Hello World网页，并将其托管到了Github Pages上（放进了一个仓库）。此时我们就可以在昵称.github.io的域名之上访问到我们的仓库以及仓库中的网页。</p>
+<p>以下是具体步骤</p>
+<h2 id="一-在github上创建仓库"><a class="markdownIt-Anchor" href="#一-在github上创建仓库"></a> 一、在GitHub上创建仓库</h2>
+<p>先登录GitHub，来到仓库页面，点击右上角绿色的New按钮创建一个新的仓库。</p>
+<p><img src="pic/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" alt="" /></p>
+<p>取一个仓库名字，设置为public，<strong>不要</strong>勾选Add a Readme File。然后点击创建，创建完毕后如下图。</p>
+<p><img src="pic/%E5%88%9B%E5%BB%BA%E5%AE%8C%E6%88%90.png" alt="" /></p>
+<h2 id="二-在本地创建仓库"><a class="markdownIt-Anchor" href="#二-在本地创建仓库"></a> 二、在本地创建仓库</h2>
+<p>在创建仓库之前要先确保你已经设置过了ssh密钥。如果还没有设置的话可以查看我之前一篇文章 <a href="../../../../2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/">个人博客搭建指南</a> 上的第六部分【创建GitHub仓库】的前半部分内容进行设置。</p>
+<p>创建完成后，我们可以在本地选择一个文件夹，作为网页的仓库。然后在这个文件夹下git bash（没有安装过git的可以看<a href="../../../../2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/">个人博客搭建指南</a> 上的第一部分内容），复制刚刚GitHub仓库界面的…or create a new repository on the command line部分的代码，如下：</p>
+<p><img src="pic/%E6%9C%AC%E5%9C%B0%E5%88%9B%E5%BB%BA%E4%BB%A3%E7%A0%81.png" alt="" /></p>
+<p>可以出现如下结果</p>
+<p><img src="pic/git%E7%BB%93%E6%9E%9C.png" alt="" /></p>
+<p>然后，在这个文件夹下创建一个简单的html网页。新建一个txt文件，并<font color = orange>把它的名称包括后缀一起改为<strong>index.html</strong></font>（只有名为index.html的网页文件才会最先显示）。然后使用vscode打开这个文件。在文件中按下英文叹号&quot;!&quot;，然后会显示代码提示，按下回车，就可以建立这样一个简单的网页代码框架。</p>
+<p><img src="pic/%E4%BB%A3%E7%A0%81%E6%8F%90%E7%A4%BA.png" alt="" /></p>
+<p><img src="pic/%E6%A1%86%E6%9E%B6.png" alt="" /></p>
+<p>(如果没有显示也可以直接复制以下代码)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>然后可以在body部分输入一串内容，比如Hello World，如下</p>
+<p><img src="pic/hw.png" alt="" /></p>
+<p>这样一个简单会显示hello world的网站就做好了。</p>
+<p>然后我们打开git，将这个文件上传到GitHub上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit -m &quot;index.html&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>这个时候刚刚的GitHub仓库中应该就可以出现刚刚上传过的网页了。</p>
+<p><img src="pic/%E4%B8%8A%E4%BC%A0%E8%BF%87%E5%90%8E.png" alt="" /></p>
+<h2 id="三-部署网页"><a class="markdownIt-Anchor" href="#三-部署网页"></a> 三、部署网页</h2>
+<p>接下来就需要使用GitHub pages功能部署刚刚上传的网页。</p>
+<p>来到这个仓库上面右端的Settings，并点击左侧的Pages，来到如下页面</p>
+<p><img src="pic/pages.png" alt="" /></p>
+<p>点击Branch中的None，选择main分支，然后点击save。</p>
+<p><img src="pic/main%E5%88%86%E6%94%AF.png" alt="" /></p>
+<p>这个时候就可以点击页面上方的Action栏，点击里面的pages build and deployment，就可以进入到网页部署界面。</p>
+<p><img src="pic/deploy.png" alt="" /></p>
+<p>如果deploy还没有完成（未显示绿色勾），可以等待一会。在部署完成后，在deploy中就会显示刚刚部署的网页的网址。点击这个网址，我们就可以来到刚刚部署的网站了。</p>
+<p><img src="pic/%E7%BB%93%E6%9E%9C.png" alt="" /></p>
+
             
         </div>
         <footer class="article-footer">
-            <a data-url="https://eternalzero2022.github.io/2023/11/07/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/" data-id="clooifpuv0000a4uw1mrgg4er" data-title="经验/杂谈"
+            <a data-url="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/" data-id="clotvrztc0000j4uwc89dc1kx" data-title="GitHub Pages部署网页指南"
                class="article-share-link">分享</a>
             
             
@@ -205,35 +262,19 @@
         
     <nav id="article-nav" class="wow fadeInUp">
         
-            <div class="article-nav-link-wrap article-nav-link-left">
-                
-                    
-                    
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="个人博客搭建指南" class="lazyload">
-                    
-                
-                <a href="/2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/"></a>
-                <div class="article-nav-caption">前一篇</div>
-                <h3 class="article-nav-title">
-                    
-                        个人博客搭建指南
-                    
-                </h3>
-            </div>
-        
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
                     
                     
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="地球的故事：如何建造一个宜居行星" class="lazyload">
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第四章 矩阵的特征值与特征向量" class="lazyload">
                     
                 
-                <a href="/2023/10/31/%E5%9C%B0%E7%90%83%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E5%BB%BA%E9%80%A0%E4%B8%80%E4%B8%AA%E5%AE%9C%E5%B1%85%E8%A1%8C%E6%98%9F/"></a>
+                <a href="/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/"></a>
                 <div class="article-nav-caption">后一篇</div>
                 <h3 class="article-nav-title">
                     
-                        地球的故事：如何建造一个宜居行星
+                        第四章 矩阵的特征值与特征向量
                     
                 </h3>
             </div>
