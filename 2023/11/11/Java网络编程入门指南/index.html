@@ -23,12 +23,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="Java网络编程入门指南 Java中自带了net库，里面提供了一些socket API，因此可以通过调用这些API来实现网络之间的传输。 与C中的网络编程不同，Java中许多需要执行的步骤都被封装在了一些函数中，省去了WSAStartUp和bind、listen等步骤，因此比C更简洁。 网络编程需要一端作为服务器，一端作为客户端，来进行通信。 接下来以&quot;客户端传输一串字符串,服务器将字">
+    <meta name="description" content="Java网络编程入门指南 Java中自带了net库，里面提供了一些socket API，因此可以通过调用这些API来实现网络之间的传输。 与C++中的网络编程不同，Java中许多需要执行的步骤都被封装在了一些函数中，省去了WSAStartUp和bind、listen等步骤，因此比C++更简洁。 网络编程需要一端作为服务器，一端作为客户端，来进行通信。 接下来以&quot;客户端传输一串字符串,服">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java网络编程入门指南">
 <meta property="og:url" content="https://eternalzero2022.github.io/2023/11/11/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="EternalZero2022 的博客">
-<meta property="og:description" content="Java网络编程入门指南 Java中自带了net库，里面提供了一些socket API，因此可以通过调用这些API来实现网络之间的传输。 与C中的网络编程不同，Java中许多需要执行的步骤都被封装在了一些函数中，省去了WSAStartUp和bind、listen等步骤，因此比C更简洁。 网络编程需要一端作为服务器，一端作为客户端，来进行通信。 接下来以&quot;客户端传输一串字符串,服务器将字">
+<meta property="og:description" content="Java网络编程入门指南 Java中自带了net库，里面提供了一些socket API，因此可以通过调用这些API来实现网络之间的传输。 与C++中的网络编程不同，Java中许多需要执行的步骤都被封装在了一些函数中，省去了WSAStartUp和bind、listen等步骤，因此比C++更简洁。 网络编程需要一端作为服务器，一端作为客户端，来进行通信。 接下来以&quot;客户端传输一串字符串,服">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/pic/postman.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/pic/workspace%E7%95%8C%E9%9D%A2.png">
@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/pic/%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/pic/%E9%94%99%E8%AF%AF.png">
 <meta property="article:published_time" content="2023-11-11T12:40:10.000Z">
-<meta property="article:modified_time" content="2023-11-14T12:37:26.005Z">
+<meta property="article:modified_time" content="2023-11-14T12:38:36.530Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/11/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/pic/postman.png">
@@ -200,7 +200,7 @@
             
                 <h1 id="java网络编程入门指南"><a class="markdownIt-Anchor" href="#java网络编程入门指南"></a> Java网络编程入门指南</h1>
 <p>Java中自带了net库，里面提供了一些socket API，因此可以通过调用这些API来实现网络之间的传输。</p>
-<p>与C<ins>中的网络编程不同，Java中许多需要执行的步骤都被封装在了一些函数中，省去了WSAStartUp和bind、listen等步骤，因此比C</ins>更简洁。</p>
+<p>与C++中的网络编程不同，Java中许多需要执行的步骤都被封装在了一些函数中，省去了WSAStartUp和bind、listen等步骤，因此比C++更简洁。</p>
 <p>网络编程需要一端作为服务器，一端作为客户端，来进行通信。</p>
 <p>接下来以&quot;客户端传输一串字符串,服务器将字符串每个字母变成大写并返回服务器&quot;的关系为例.</p>
 <h2 id="一-导入相关的库"><a class="markdownIt-Anchor" href="#一-导入相关的库"></a> 一、导入相关的库</h2>
