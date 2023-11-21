@@ -1,0 +1,705 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        传输层 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="传输层 第四层：主要是实现了主机之间的通信，数据通信是服务于主机上的会话进程。  一、第四层概述 第四层的功能：  分割上层应用程序数据，第四层只会在终端设备上有，在中间设备是没有的 建立端到端的运营。（end to end） 完成可靠性检验，接收方认为数据错误，在第四层进行要求重传。 流量控制和可靠性：需要外国人重复他的话并慢声说话。  第四层重要协议： 1、传输控制协议TCP，是可靠传输 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="传输层">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="传输层 第四层：主要是实现了主机之间的通信，数据通信是服务于主机上的会话进程。  一、第四层概述 第四层的功能：  分割上层应用程序数据，第四层只会在终端设备上有，在中间设备是没有的 建立端到端的运营。（end to end） 完成可靠性检验，接收方认为数据错误，在第四层进行要求重传。 流量控制和可靠性：需要外国人重复他的话并慢声说话。  第四层重要协议： 1、传输控制协议TCP，是可靠传输 2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8A%A5%E6%96%87.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/%E9%87%8D%E4%BC%A0.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/%E4%B8%A2%E5%A4%B1%E7%A1%AE%E8%AE%A4.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/%E8%BF%9E%E7%BB%ADARQ%E5%8D%8F%E8%AE%AE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/%E9%87%8A%E6%94%BE%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/TCP%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/UDP%E6%95%B0%E6%8D%AE%E5%B8%A7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/NAT.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/NAT%E5%9C%B0%E5%9D%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/PAT%E5%B7%A5%E4%BD%9C.png">
+<meta property="article:published_time" content="2023-11-21T05:46:10.000Z">
+<meta property="article:modified_time" content="2023-11-21T05:46:22.842Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/p/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8A%A5%E6%96%87.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="传输层" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>传输层</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-传输层" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/" class="article-date-link">
+        <time datetime="2023-11-21T05:46:10.000Z"
+              itemprop="datePublished">2023-11-21</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="传输层"><a class="markdownIt-Anchor" href="#传输层"></a> 传输层</h1>
+<p>第四层：主要是实现了主机之间的通信，数据通信是服务于主机上的会话进程。</p>
+<h2 id="一-第四层概述"><a class="markdownIt-Anchor" href="#一-第四层概述"></a> 一、第四层概述</h2>
+<p>第四层的功能：</p>
+<ul>
+<li>分割上层应用程序数据，第四层只会在终端设备上有，在中间设备是没有的</li>
+<li>建立端到端的运营。（end to end）</li>
+<li><strong>完成可靠性检验</strong>，接收方认为数据错误，在第四层进行要求重传。</li>
+<li>流量控制和可靠性：需要外国人重复他的话并慢声说话。</li>
+</ul>
+<p>第四层重要协议：<br />
+1、传输控制协议TCP，是可靠传输<br />
+2、用户数据报协议UDP</p>
+<p>TCP：可靠，效率比较低，面向连接（需要建立三次握手建立连接关系），重新发送丢失或错误的任何内容，需求质量高而不是速率高</p>
+<p>UDP：不可靠，无连接，不使用确认，不进行流量控制，直接丢弃错误的报文，需求速率高而不是质量高</p>
+<h3 id="服务模型"><a class="markdownIt-Anchor" href="#服务模型"></a> 服务模型</h3>
+<p>TCP 和 UDP都使用端口来跟踪（track）同时穿越网络的不同进程</p>
+<h4 id="端口分配规范"><a class="markdownIt-Anchor" href="#端口分配规范"></a> 端口分配规范：</h4>
+<ul>
+<li>0-255：保留给TCP和UDP的公共应用程序使用，</li>
+<li>0-1023：熟知端口，有分发规范，不应该随意使用。</li>
+<li>1024-49151：进行登记使用，需要避免使用已经被某些应用程序使用的端口来避免冲突。</li>
+<li>49152-65536：短暂端口号，和远端通信。</li>
+<li>基于端口号的不同进行不同的分发。</li>
+</ul>
+<h4 id="套接字"><a class="markdownIt-Anchor" href="#套接字"></a> 套接字：</h4>
+<ul>
+<li>表示：（IP地址+端口号）</li>
+<li>每个连接都表示为（source套接字，destination套接字），属于点对点全双工通道</li>
+<li>通讯：一个socket和另一个socket之间的连接</li>
+</ul>
+<h2 id="二-传输控制协议tcp"><a class="markdownIt-Anchor" href="#二-传输控制协议tcp"></a> 二、传输控制协议TCP</h2>
+<h3 id="tcp解决的问题"><a class="markdownIt-Anchor" href="#tcp解决的问题"></a> TCP解决的问题</h3>
+<p>1、可靠传输<br />
+2、流传输（流量控制）<br />
+3、连接控制（三次和四次握手）</p>
+<h3 id="tcp数据段"><a class="markdownIt-Anchor" href="#tcp数据段"></a> TCP数据段：</h3>
+<p><img src="p/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8A%A5%E6%96%87.png" alt="" /></p>
+<p>首部：固定长度：20字节</p>
+<ul>
+<li>源端口、目的端口：2+2字节</li>
+<li>序号字段：4字节（4G），指本报文段所发送的数据的第一个字节的序号。从小到大，到达最大之后会重新开始。</li>
+<li>确认号字段：4字节，期望收到的下一个报文的数据段的第一个字节序号（体现了全双工通信的优点）</li>
+<li>数据偏移：4字节，TCP报文段数据处起始处与整个报文起始处的距离，单位是字（32位），如果数据不满完整一个字，需要使用填充位保证为4字节的整数倍</li>
+<li>保留字段：6位，今后使用，置0</li>
+<li>URG：=1时表面有紧急数据需要尽快传送</li>
+<li>ACK：=1时确认号字段有效</li>
+<li>PSH（PuSH）：尽快地交付接收应用进程，而不再等到整个缓存都填满了后再向上交付。<br />
+TCP 在正常条件下要缓存满了，保证网络可信的时候才发送</li>
+<li>RST：=1 时，表明 TCP 连接中出现严重差错（如由于主机崩溃或其他原因），必须释放连接，然后再重新建立运输连接<br />
+就是重新来过，如果请求方发送的请求，如果应答方不想连接则将 ReSet 置为 1</li>
+<li>SYN：=1：表示这是一个连接请求或连接接受报文（初始的时候才出现）</li>
+<li>FIN（FINish）：用来释放一个连接。FIN = 1 表明此报文段的发送端的数据已发送完毕，并要求释放运输连接。</li>
+<li>窗口：2字节，向发送方说明可以进行传输的窗口大小是多少，即告诉接收方最多能发给我多长的数据，单位为字节</li>
+<li>检验和：2字节，检验的范围包括首部和数据这两部分</li>
+<li>紧急指针字段：2字节。指出在本报文段中紧急数据共有多少个字节（紧急数据放在本报文段数据的最前面）</li>
+<li>选项<br />
+TCP 最初只有一种选项，即最大报文段长度 MSS（Maximum Segment Size）<br />
+MSS 告诉对方缓存所能接收的报文段的数据字段的最大长度是 MSS 个字节<br />
+数据字段加上 TCP 首部才等于整个的 TCP 报文段<br />
+填充字段<br />
+填充字段：这是为了使整个首部长度是 4 字节的整数倍。</li>
+</ul>
+<h3 id="tcp协议"><a class="markdownIt-Anchor" href="#tcp协议"></a> TCP协议</h3>
+<p>主机使用网段（TPDU）交换数据</p>
+<ul>
+<li>
+<p>网段：segment。（数据链路层：frame，网络层：packet，传输层：segement。大小通常是：数据&lt;segment&lt;packet&lt;frame。越往下封装发送数据的单位越大。）</p>
+</li>
+<li>
+<p>每个段都有：部为 20 个字节（可选部分除外）+ 0 或更多数据字节（请求连接的时候）</p>
+</li>
+<li>
+<p>段的大小和IP数据包匹配，并且还需满足底层要求（以太网MTU最大传输单位为1500字节）</p>
+</li>
+<li>
+<p>面向字节传输（TCP传输的数据块可以和上层给的数据块大小不对应（与UDP不同））</p>
+</li>
+</ul>
+<p>可靠传输：红蓝军问题：</p>
+<ul>
+<li>两方必须同时对敌军发动攻击。一方向另一方发送信息，另一方需要确认。收到确认以后，还需要对确认进行确认，然后另一方需要对确认确认的确认进行确认，一直循环下去。因此无论通信多少次都不能确定一个完全可信的时间。</li>
+</ul>
+<h4 id="建立可靠连接"><a class="markdownIt-Anchor" href="#建立可靠连接"></a> 建立可靠连接</h4>
+<p>TCP：三次握手</p>
+<p><img src="p/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt="" /></p>
+<ul>
+<li>A主动打开连接，而B被动打开连接</li>
+<li>第一次握手：客户端向服务器发送连接请求报文（其中的SY同步位为1，初始序号seq为x），同时变为syn-sent状态。</li>
+<li>第二次握手：服务器从LISTEN变为ACCEPT（Syn-Received）状态，如果同意连接就发送确认。报文中的SYN和ACK都为1，并且携带自己的seq为y，ack中为x的seq中携带的x再加1。</li>
+<li>第三次握手：客户端收到后进入Established连接建立状态，并且向服务器发送ACK确认报文。ACK置为1，并再将seq置为x+1，而ack置为刚刚收到的y在加1.</li>
+<li>然后服务器端也进入了Established连接建立阶段。</li>
+</ul>
+<p>当完成三次握手的连接过程后，就会通知上层的应用程序。</p>
+<h4 id="停止等待协议"><a class="markdownIt-Anchor" href="#停止等待协议"></a> 停止等待协议</h4>
+<p><img src="p/%E9%87%8D%E4%BC%A0.png" alt="" /></p>
+<p>发送段后，暂时保留备份（供重传使用）（收到确认后就会丢弃备份）</p>
+<p>当对方应答超过一定时间后就直接进行重发，并且重发时间必须超过平均传输时间*2</p>
+<p>效率很低，实施控制，来进行错误处理</p>
+<p>每个segment和 ACK 必须具有 ID</p>
+<h4 id="丢失确认和确认延迟"><a class="markdownIt-Anchor" href="#丢失确认和确认延迟"></a> 丢失确认和确认延迟</h4>
+<p><img src="p/%E4%B8%A2%E5%A4%B1%E7%A1%AE%E8%AE%A4.png" alt="" /></p>
+<ul>
+<li>发过去没有应答或者丢失：进行重传</li>
+<li>应答超时，有收到请求立即重传</li>
+<li>晚到的应答直接丢弃（不做处理）</li>
+</ul>
+<h3 id="可靠通信"><a class="markdownIt-Anchor" href="#可靠通信"></a> 可靠通信</h3>
+<p><strong>自动重传请求ARQ</strong>：重新发送请求为自动发送，并且无需请求发送方重新发送错误段。<br />
+<strong>连续ARQ协议</strong></p>
+<p><img src="p/%E8%BF%9E%E7%BB%ADARQ%E5%8D%8F%E8%AE%AE.png" alt="" /></p>
+<ul>
+<li>发送方拥有一个发送窗口，指示一些已经发送和即将发送的数据。发送方维护一个指向即将发送的数据（位于窗口中间），指针左边为已发送但未被确认，右边为可发送。</li>
+<li>发送数据时可以收到对方的确认。每收到一个确认，就将发送窗口向前移动一定单位。</li>
+<li>接收端也有一个接收窗口，用来表示允许接收的数据。当接收到一定数据后，就会窗口就会后移，同时向发送方发送ACK报文，并说明还可发送多少数据。</li>
+<li>如果接收窗口为0，那么就无法再接收数据。发送窗口如果全部发送出去但是一个确认都没收到，那么也无法继续发送其他数据，只能重发。</li>
+</ul>
+<p>假如发送方要发送900字节长的数据，可以先划分为9个100字节长的报文段，而发送窗口为500字节。发送方发送了400字节数据时收到了对前200字节的确认。发送窗口向前移动，为200-700字节，还可发送300字节。然后发送端收到了对前400字节的确认，但是通知发送端把窗口减小到400字节。于是发送窗口变为了400-800字节，此时还可以最多发送400字节数据。</p>
+<p><strong>注意：接收端发送的ACK中的是发送方可发送的下一个数据的起始序号。</strong></p>
+<h3 id="释放连接"><a class="markdownIt-Anchor" href="#释放连接"></a> 释放连接</h3>
+<p><img src="p/%E9%87%8A%E6%94%BE%E8%BF%9E%E6%8E%A5.png" alt="" /></p>
+<p>四次握手：</p>
+<ul>
+<li>第一次握手：客户端发起断开连接请求，将FIN置为1，并让初始序列号seq为u，然后进入Fin-Wait-1状态</li>
+<li>第二次握手：服务器收到了客户端发来的断开连接请求，于是发送确认信号，将ACK置为1，并且自己携带序列号v，在ack中放接收到的u再加1，然后服务器接入Close-Wait状态，自己等待一端时间。客户端收到以后就变为Fin-wait-2状态，等待服务器再次发送断开消息。</li>
+<li>第三次握手：服务器等待一段时间后再次发送请求，让客户端断开连接。将Fin置为1，并且ACK也为1，同时seq则更换了新的w字段，ack仍然与上次相同，为u+1。然后接入lask-ack状态。</li>
+<li>第四次握手：客户端收到服务器的允许断开信号后就发送确认信号，然后进入time-wait状态，等待一段时间（2MSL）后就直接关闭。而服务器收到了确认信号之后也直接关闭。<br />
+<strong>注意：在客户端进入closed状态前必须等待2MSL（MSL为最长报文段寿命）的时间，这是为了确保A 发送的最后一个 ACK 可以到达 B，同时可以确保连接上的所有段均已消失</strong></li>
+</ul>
+<h3 id="tcp中的计时器"><a class="markdownIt-Anchor" href="#tcp中的计时器"></a> TCP中的计时器</h3>
+<ul>
+<li>重传计时器：决定多长时间进行重传</li>
+<li>坚持计时器：用于防止死锁（发送端收到得知接收端的接收窗口为0，于是不发送数据。接收端在处理完数据后发送了新的窗口大小的确认信号但是丢失，于是发送端以为窗口还是满的，但是接收端以为发送端已经发送了数据，正在等待接收，于是死锁）计时器可以让发送端收到窗口为0的报文段时每隔一段时间发送一个探测报文来告诉接收端确认报文丢失的事情。</li>
+<li>保活计时器：防止客户端突然故障。如果没收到消息就每隔一段时间（第一次两小时，之后75分钟）发送探测报文段，如果连续数次（10次）没有收到客户端的响应则自动断开连接（认为客户端出现了故障）</li>
+<li>时间等待计时器：客户端断开连接时的等待时间</li>
+</ul>
+<h3 id="tcp有限状态机"><a class="markdownIt-Anchor" href="#tcp有限状态机"></a> TCP有限状态机</h3>
+<p><img src="p/TCP%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA.png" alt="" /></p>
+<p>粗线：正常的服务器端<br><br />
+虚线：正常客户端<br><br />
+细线：异常状态的问题<br></p>
+<h2 id="三-用户数据报协议udp"><a class="markdownIt-Anchor" href="#三-用户数据报协议udp"></a> 三、用户数据报协议UDP</h2>
+<p>为什么需要UDP？没有建立连接，快速；没有拥塞控制；可以按照期望速度传输</p>
+<p>无连接：没有握手，每个UDP段独立处理，容忍损失（需求速率快而不是质量高（流媒体、多媒体等））</p>
+<p>用途：RIP（定期发送路由信息），DNS（快速找到IP地址），SNMP(拥塞时保证可以允许)</p>
+<h3 id="udp数据帧格式"><a class="markdownIt-Anchor" href="#udp数据帧格式"></a> UDP数据帧格式</h3>
+<p><img src="p/UDP%E6%95%B0%E6%8D%AE%E5%B8%A7.png" alt="" /></p>
+<p>UDP首部只有8个字节，其中的校验位需要对data一并校验，出错丢弃。</p>
+<p>UDP不会分片（应用层发多大就传输多大）</p>
+<h3 id="tcp和udp不同"><a class="markdownIt-Anchor" href="#tcp和udp不同"></a> TCP和UDP不同：</h3>
+<p>TCP：缓存满了才同一交付</p>
+<p>UDP：直接转发报文，IP进行划分，应用程序选择合适的UDP大小发送</p>
+<p>共同点：校验是相同的</p>
+<h2 id="四-nat和pat"><a class="markdownIt-Anchor" href="#四-nat和pat"></a> 四、NAT和PAT</h2>
+<p>NAT：网络地址转换</p>
+<ul>
+<li>是在 IP 数据包头中将<strong>一个地址</strong>交换为<strong>另一个地址</strong>的过程</li>
+<li>用于专用地址的主机访问Internet</li>
+<li>IP地址耗尽的解决方案之一</li>
+</ul>
+<p><img src="p/NAT.png" alt="" /></p>
+<p>可以将local IP与Global IP互相转换。需要路由器实现</p>
+<h3 id="nat的类型"><a class="markdownIt-Anchor" href="#nat的类型"></a> NAT的类型</h3>
+<ul>
+<li>静态NAT：固定一个地址到另一个地址的映射</li>
+<li>动态NAT：映射先到先得（通过nat pool来实现）</li>
+<li>PAT：端口地址转换，允许许多内部用户映射到（共享）一个IP地址（基于SOCKET映射，一个IP可以有很多端口）</li>
+</ul>
+<h3 id="nat地址类型"><a class="markdownIt-Anchor" href="#nat地址类型"></a> NAT地址类型</h3>
+<ul>
+<li>内部本地地址（Inside Local address），内网IP</li>
+<li>内部全局地址（Inside Global address）注册地址，用于对外部展示</li>
+<li>外部全局地址（Outside Global address）外部主机地址，也是注册地址</li>
+</ul>
+<p>三个地址都是通过NAT table来翻译的。</p>
+<p><img src="p/NAT%E5%9C%B0%E5%9D%80.png" alt="" /></p>
+<h3 id="nat的优点缺点"><a class="markdownIt-Anchor" href="#nat的优点缺点"></a> NAT的优点缺点</h3>
+<p>优点：使用少量全局地址来服务大量私有寻址的主机。</p>
+<p>缺点：<strong>一一映射</strong>，没有从根本上解决地址短缺的问题。</p>
+<h3 id="pat工作原理"><a class="markdownIt-Anchor" href="#pat工作原理"></a> PAT工作原理</h3>
+<p><img src="p/PAT%E5%B7%A5%E4%BD%9C.png" alt="" /></p>
+<p>映射到的是同一个IP地址的不同端口号。</p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/" data-id="clp7wy5jv000080uwg0mm051x" data-title="传输层"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第五章-实二次型" class="lazyload">
+                    
+                
+                <a href="/2023/11/20/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%9E%E4%BA%8C%E6%AC%A1%E5%9E%8B/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        第五章-实二次型
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">22</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">2</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    50.1k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    03:04
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">22</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">2</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
