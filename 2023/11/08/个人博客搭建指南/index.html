@@ -75,8 +75,9 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/pictures/trueRepositoryEmployed.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/pictures/GitHubPages.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/pictures/blogEmployedToGithub.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/pictures/%E6%89%93%E5%8D%B0%E8%AE%B0%E5%BD%95.png">
 <meta property="article:published_time" content="2023-11-08T04:59:55.000Z">
-<meta property="article:modified_time" content="2023-11-19T12:59:44.857Z">
+<meta property="article:modified_time" content="2023-11-25T07:33:00.343Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/pictures/image2.png">
@@ -377,10 +378,16 @@
 <p><img src="pictures/GitHubPages.png" alt="" /></p>
 <p>进入这个网址，就可以来到你的个人主页。其他人也可以访问你的主页。</p>
 <p><img src="pictures/blogEmployedToGithub.png" alt="" /></p>
-<h2 id="八-更新博客"><a class="markdownIt-Anchor" href="#八-更新博客"></a> 八、更新博客</h2>
+<h2 id="八-更新博客错误处理"><a class="markdownIt-Anchor" href="#八-更新博客错误处理"></a> 八、更新博客/错误处理</h2>
 <p>当我们在本地修改完博客之后，我们可以使用原来相同的hexo g和hexo d命令部署网页，GitHub端应该就会自动进行更新并重新部署。</p>
 <p>如果GitHub没有自动更新，我们可以输入<code>hexo clean</code>清除缓存文件，然后重新使用hexo g和hexo d命令部署网页。</p>
 <p>通常来说，如果想要为某篇文章添加分类和标签，你可以直接打开你选择的那篇文章，然后在开头的那几个键值对中中添加tags项和category项。通常，一个主题会自动对你给这篇文章添加的分类和标签进行相关的处理。</p>
+<p>有的时候，如果你上传了一个过大的文件（不能超过100MB），那么git会提示你上传失败。但是这个时候就算你把文件删除了，git提交的时候仍然会上传那个文件。这个时候就需要使用git的回退的办法。</p>
+<p>首先找到你的博客的.deploy_git文件夹，然后进入，使用git bash</p>
+<p>然后继续使用git log命令打印出所有的上传记录</p>
+<p><img src="pictures/%E6%89%93%E5%8D%B0%E8%AE%B0%E5%BD%95.png" alt="" /></p>
+<p>每个记录上方的黄色字的commit后面的那一串字符就是你这次git的提交的ID，Date就是上传的时间。你需要根据每次上传的时间来确定你还没有上传大文件的那次commit，然后使用回滚。找到那次提交之后只要按一下q，就可以返回命令输入模式。然后只需要输入命令：<br />
+<code>git reset --soft [没上传大文件的那次提交的ID]</code>即可退回到上次记录。然后这个时候返回blog根目录，使用hexo clean清除缓存，再次使用hexo g和hexo d命令部署，就会发现没有再次提交视频。</p>
 <p>自此你的个人博客就已经可以成功运行了。博客还是需要多更新，否则费那么大力气就没有意义了哦。</p>
 
             
@@ -566,10 +573,10 @@
             
                 <div>
                     <span class="icon-brush"></span>
-                    53.8k
+                    54.1k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    03:16
+                    03:17
                 </div>
             
             
