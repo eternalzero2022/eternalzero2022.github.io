@@ -12,7 +12,7 @@
 
     
     <title>
-        GitHub Pages部署网页指南 |
+        登录注册系统实现--基于HTTP报文协议和Java_Socket_API |
         
         EternalZero2022 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,31 +23,17 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="GitHub Pages 网页部署指南 当我们在本地做出了一个网站之后，想要把它部署到网上，让其他人可以通过网址来访问这个网站，该怎么做呢？ 通常，我们会想到租借一个服务器，在上面就可以存放我们的网站内容。但是这样做非常复杂，并且资金消耗也巨大（而且很多时候只能用爱发电）。如果我们制作的网站不是一个规模非常巨大的网站时，我们也可以考虑把我们的网页文件托管到一些免费托管服务平台上。这个时候我们就可">
+    <meta name="description" content="登录注册系统实现–基于HTTP报文协议和Java_Socket_API 注意：在阅读本文章前请先参考我的另一篇博客，学习Java的网络编程有关知识：Java网络编程入门指南  一，思路概述  1、整体思路 本次作业，我们需要基于Java Socket API搭建简单的HTTP客户端和服务器端程序，实现一个简单的注册登录系统。 为了实现这个目的，首先我们需要建立一个服务器，这个服务器可以创建一个s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitHub Pages部署网页指南">
-<meta property="og:url" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:title" content="登录注册系统实现--基于HTTP报文协议和Java_Socket_API">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/index.html">
 <meta property="og:site_name" content="EternalZero2022 的博客">
-<meta property="og:description" content="GitHub Pages 网页部署指南 当我们在本地做出了一个网站之后，想要把它部署到网上，让其他人可以通过网址来访问这个网站，该怎么做呢？ 通常，我们会想到租借一个服务器，在上面就可以存放我们的网站内容。但是这样做非常复杂，并且资金消耗也巨大（而且很多时候只能用爱发电）。如果我们制作的网站不是一个规模非常巨大的网站时，我们也可以考虑把我们的网页文件托管到一些免费托管服务平台上。这个时候我们就可">
+<meta property="og:description" content="登录注册系统实现–基于HTTP报文协议和Java_Socket_API 注意：在阅读本文章前请先参考我的另一篇博客，学习Java的网络编程有关知识：Java网络编程入门指南  一，思路概述  1、整体思路 本次作业，我们需要基于Java Socket API搭建简单的HTTP客户端和服务器端程序，实现一个简单的注册登录系统。 为了实现这个目的，首先我们需要建立一个服务器，这个服务器可以创建一个s">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E7%A4%BA%E4%BE%8B.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E5%88%9B%E5%BB%BA%E5%AE%8C%E6%88%90.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E6%9C%AC%E5%9C%B0%E5%88%9B%E5%BB%BA%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/git%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E4%BB%A3%E7%A0%81%E6%8F%90%E7%A4%BA.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E6%A1%86%E6%9E%B6.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/hw.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E4%B8%8A%E4%BC%A0%E8%BF%87%E5%90%8E.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/pages.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/main%E5%88%86%E6%94%AF.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/deploy.png">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E7%BB%93%E6%9E%9C.png">
-<meta property="article:published_time" content="2023-11-11T09:10:46.000Z">
-<meta property="article:modified_time" content="2023-11-11T10:05:00.363Z">
+<meta property="article:published_time" content="2023-11-28T15:09:16.000Z">
+<meta property="article:modified_time" content="2023-11-28T15:09:40.372Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/pic/%E7%A4%BA%E4%BE%8B.png">
     
         <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
     
@@ -126,7 +112,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="/images/banner.jpg" data-sizes="auto" alt="GitHub Pages部署网页指南" class="lazyload">
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="登录注册系统实现--基于HTTP报文协议和Java_Socket_API" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -134,7 +120,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>GitHub Pages部署网页指南</h1></a>
+                        <a href="/" id="logo"><h1>登录注册系统实现--基于HTTP报文协议和Java_Socket_API</h1></a>
                     
                 
             </div>
@@ -183,22 +169,18 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main"><article id="post-GitHub-Pages部署网页指南" class="h-entry article article-type-post"
+                <section id="main"><article id="post-登录注册系统实现-基于HTTP报文协议和Java-Socket-API" class="h-entry article article-type-post"
          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="article-inner">
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
-    <a href="/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/" class="article-date-link">
-        <time datetime="2023-11-11T09:10:46.000Z"
-              itemprop="datePublished">2023-11-11</time>
+    <a href="/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/" class="article-date-link">
+        <time datetime="2023-11-28T15:09:16.000Z"
+              itemprop="datePublished">2023-11-28</time>
     </a>
 </div>
 
             
-    <div class="article-category wow slideInLeft">
-        <a class="article-category-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a>
-    </div>
-
 
         </div>
         <div class="hr-line"></div>
@@ -206,50 +188,77 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h1 id="github-pages-网页部署指南"><a class="markdownIt-Anchor" href="#github-pages-网页部署指南"></a> GitHub Pages 网页部署指南</h1>
-<p>当我们在本地做出了一个网站之后，想要把它部署到网上，让其他人可以通过网址来访问这个网站，该怎么做呢？</p>
-<p>通常，我们会想到租借一个服务器，在上面就可以存放我们的网站内容。但是这样做非常复杂，并且资金消耗也巨大（而且很多时候只能用爱发电）。如果我们制作的网站不是一个规模非常巨大的网站时，我们也可以考虑把我们的网页文件<font color = orange><strong>托管到一些免费托管服务平台上</strong></font>。这个时候我们就可以在这些托管平台的域名之上部署属于自己的网站。Github Pages就是这样一个网站。</p>
-<p><img src="pic/%E7%A4%BA%E4%BE%8B.png" alt="" /></p>
-<p>例如以上情况，我们自己手动写了一个Hello World网页，并将其托管到了Github Pages上（放进了一个仓库）。此时我们就可以在昵称.github.io的域名之上访问到我们的仓库以及仓库中的网页。</p>
-<p>以下是具体步骤</p>
-<h2 id="一-在github上创建仓库"><a class="markdownIt-Anchor" href="#一-在github上创建仓库"></a> 一、在GitHub上创建仓库</h2>
-<p>先登录GitHub，来到仓库页面，点击右上角绿色的New按钮创建一个新的仓库。</p>
-<p><img src="pic/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" alt="" /></p>
-<p>取一个仓库名字，设置为public，<strong>不要</strong>勾选Add a Readme File。然后点击创建，创建完毕后如下图。</p>
-<p><img src="pic/%E5%88%9B%E5%BB%BA%E5%AE%8C%E6%88%90.png" alt="" /></p>
-<h2 id="二-在本地创建仓库"><a class="markdownIt-Anchor" href="#二-在本地创建仓库"></a> 二、在本地创建仓库</h2>
-<p>在创建仓库之前要先确保你已经设置过了ssh密钥。如果还没有设置的话可以查看我之前一篇文章 <a href="../../../../2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/">个人博客搭建指南</a> 上的第六部分【创建GitHub仓库】的前半部分内容进行设置。</p>
-<p>创建完成后，我们可以在本地选择一个文件夹，作为网页的仓库。然后在这个文件夹下git bash（没有安装过git的可以看<a href="../../../../2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/">个人博客搭建指南</a> 上的第一部分内容），复制刚刚GitHub仓库界面的…or create a new repository on the command line部分的代码，如下：</p>
-<p><img src="pic/%E6%9C%AC%E5%9C%B0%E5%88%9B%E5%BB%BA%E4%BB%A3%E7%A0%81.png" alt="" /></p>
-<p>可以出现如下结果</p>
-<p><img src="pic/git%E7%BB%93%E6%9E%9C.png" alt="" /></p>
-<p>然后，在这个文件夹下创建一个简单的html网页。新建一个txt文件，并<font color = orange>把它的名称包括后缀一起改为<strong>index.html</strong></font>（只有名为index.html的网页文件才会最先显示）。然后使用vscode打开这个文件。在文件中按下英文叹号&quot;!&quot;，然后会显示代码提示，按下回车，就可以建立这样一个简单的网页代码框架。</p>
-<p><img src="pic/%E4%BB%A3%E7%A0%81%E6%8F%90%E7%A4%BA.png" alt="" /></p>
-<p><img src="pic/%E6%A1%86%E6%9E%B6.png" alt="" /></p>
-<p>(如果没有显示也可以直接复制以下代码)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>然后可以在body部分输入一串内容，比如Hello World，如下</p>
-<p><img src="pic/hw.png" alt="" /></p>
-<p>这样一个简单会显示hello world的网站就做好了。</p>
-<p>然后我们打开git，将这个文件上传到GitHub上。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit -m &quot;index.html&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-<p>这个时候刚刚的GitHub仓库中应该就可以出现刚刚上传过的网页了。</p>
-<p><img src="pic/%E4%B8%8A%E4%BC%A0%E8%BF%87%E5%90%8E.png" alt="" /></p>
-<h2 id="三-部署网页"><a class="markdownIt-Anchor" href="#三-部署网页"></a> 三、部署网页</h2>
-<p>接下来就需要使用GitHub pages功能部署刚刚上传的网页。</p>
-<p>来到这个仓库上面右端的Settings，并点击左侧的Pages，来到如下页面</p>
-<p><img src="pic/pages.png" alt="" /></p>
-<p>点击Branch中的None，选择main分支，然后点击save。</p>
-<p><img src="pic/main%E5%88%86%E6%94%AF.png" alt="" /></p>
-<p>这个时候就可以点击页面上方的Action栏，点击里面的pages build and deployment，就可以进入到网页部署界面。</p>
-<p><img src="pic/deploy.png" alt="" /></p>
-<p>如果deploy还没有完成（未显示绿色勾），可以等待一会。在部署完成后，在deploy中就会显示刚刚部署的网页的网址。点击这个网址，我们就可以来到刚刚部署的网站了。</p>
-<p><img src="pic/%E7%BB%93%E6%9E%9C.png" alt="" /></p>
+                <h1 id="登录注册系统实现基于http报文协议和java_socket_api"><a class="markdownIt-Anchor" href="#登录注册系统实现基于http报文协议和java_socket_api"></a> 登录注册系统实现–基于HTTP报文协议和Java_Socket_API</h1>
+<p><font color = orange><strong>注意：在阅读本文章前请先参考我的另一篇博客，学习Java的网络编程有关知识：<a href="../../../../2023/11/11/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">Java网络编程入门指南</a></strong></font></p>
+<h2 id="一思路概述"><a class="markdownIt-Anchor" href="#一思路概述"></a> 一，思路概述</h2>
+<h3 id="1-整体思路"><a class="markdownIt-Anchor" href="#1-整体思路"></a> 1、整体思路</h3>
+<p>本次作业，我们需要基于Java Socket API搭建简单的HTTP客户端和服务器端程序，实现一个简单的注册登录系统。</p>
+<p>为了实现这个目的，首先我们需要建立一个服务器，这个服务器可以创建一个socket，并且允许与客户端连接。连接后，客户端向我们发送http请求报文。我们需要识别报文中的内容，并且根据不同的内容进行相应的处理，最后形成一个新的响应报文并发送回去。（对于服务器端的测试，我们可以使用Postman工具去模拟报文的发送和接收，可以不需要客户端）</p>
+<p>其次，我们需要搭建一个客户端。根据要求，客户端需要实现请求连接，并且在建立连接之后需要向服务器端发送数据，并接受、解析服务器端发来的响应报文，并且根据报文的不同状态码做出相应的处理，包括在命令行输出结果等等。</p>
+<h3 id="2-细节说明"><a class="markdownIt-Anchor" href="#2-细节说明"></a> 2、细节说明</h3>
+<p>为了保持项目的完整性以及规范性，我们选择创建Java的标准结构项目（包含src、test等文件夹）。项目github地址如下：<a target="_blank" rel="noopener" href="https://github.com/eternalzero2022/JavaSocketAPI">https://github.com/eternalzero2022/JavaSocketAPI</a></p>
+<p>我们的包分为org.example.server和org.example.client，分别表示服务器和客户端。</p>
+<p>socket传输时发送的数据通常都是按照http报文的格式的。通常，一个报文分为状态行、首部行和实体主体（实体主体可有可无）。</p>
+<ul>
+<li>状态行为<strong>第一行</strong></li>
+<li>首部行紧接其后，每个首部字段<strong>各占一行</strong>。</li>
+<li>首部结束之后会有一个空行。</li>
+<li>如果有实体主体，那么就会有实体主体部分。</li>
+</ul>
+<p>其中状态行和首部行都是以字符串的形式存在的，而实体主体不一定（需要根据不同的MIME类型来判断）。</p>
+<p>通常来说，请求报文是不需要主体部分的。而响应报文大部分会有主体部分（也有小部分不需要）。</p>
+<p>首部字段本质上就是不同的键值对，但是发送的时候它还是以字符串的形式发送的。因此，对于所有的首部字段，我们需要能够将其从纯字符串变成一种键值对的形式，将其存入一个字典（Map）中。</p>
+<p>除此之外，报文的信息都是我们通过readline的方式接收报文的，因此我们需要了解不同的情况readline后会读到什么东西。</p>
+<ul>
+<li>如果有空行（例如首部行和实体主体之间的空行），那么readline就会读到一个空字符串&quot;&quot;（就算没有主体部分，这个空行也会存在）</li>
+<li>如果这个时候message没有发送信息，那么就会卡住不读任何东西。</li>
+<li>如果这个时候断开了连接，那么message就会读到null</li>
+</ul>
+<p>我们就可以根据不同的情况来推断是否接收到了一个完整的报文。接下来对报文的处理需要根据报文中是GET还是POST请求做出相应的处理。</p>
+<p>当发送回报文时，我们写入的也是一个完整的符合HTTP报文格式的字符串。</p>
+<p>IO模型主要定义了Socket建立连接时的操作，是同步还是异步，阻塞还是非阻塞等等。其中最简单的是BIO模型，是一种同步阻塞的编程方式。同步意味着回轮询查看IO操作是否就绪，而阻塞意味着当我们开始接收消息时，在没有收到发送来的消息的时候就会一直等待。我们可以使用线程池来模拟BIO操作，即当一个连接建立时，在线程池中取出一个线程分配给这个连接，这个线程就一直处理与连接有关的事情。</p>
+<p>服务器端长连接就意味着当我们一个连接的进程读取完一个报文并发送响应报文之后，不能立即关闭连接，而是继续轮询，查看客户端是否发送了数据，直到客户端断开连接。</p>
+<p>MIME需要支持三种类型，意味着我们在发送响应报文时需要添加MIME报文类型，并且实体主体部分的格式也需要符合MIME需求的类型。</p>
+<h2 id="二-整体结构"><a class="markdownIt-Anchor" href="#二-整体结构"></a> 二、整体结构</h2>
+<p>服务器端：位于org.example.server包中。其内部分为六个子包，以及一个Main方法。每个包的职责如下：</p>
+<ul>
+<li>
+<p>main方法：用于实现整体程序的运行，需要维护一个线程池，并且不断监听端口，每产生一个连接就从线程池中分配一个线程给这个连接，并执行control包中的供每个连接使用的run函数。</p>
+</li>
+<li>
+<p>control包：里面有一个ConnectionController类。这个类是一个Runnable类，需要实现供每个线程调用的run函数。这个函数用于保持连接，通过调用io包中的类不断监听客户端发来的请求，并将接收到的报文交给其他Service类进行处理，将处理完毕的报文交给io包中的类发送，然后重复这一过程，直到客户端释放连接。</p>
+</li>
+<li>
+<p>message包：Message抽象类是一个表示报文的类，其中的line是报文开始行，headers是首部，entityBody是实体主体。同时，它还包含一个表示报文类型（请求报文还是响应报文）的messageType。Request类和Response类都属于Message的一种</p>
+</li>
+<li>
+<p>io包：MessageReader类用于从输入流获取一个报文，并调用Parser解析报文，返回的是Message对象。MessageWriter类用于将一个Message对象转变成可以发送的原始形式的HTTP报文形式，并将其发送到输出流中。</p>
+</li>
+<li>
+<p>parser包：MessageParser用于将原始形式的HTTP报文解析成一个Message对象。</p>
+</li>
+<li>
+<p>service包：用于进行不同的服务，分为GetService和PostService，分别处理GET和POST方法。其中，GET方法主要用于登录、注册有关的服务，而POST方法主要用于请求一些服务器的本地资源（文本、图像等）。两个方法需要返回处理完毕后组装的一个用于发送给客户端的新的响应报文。</p>
+</li>
+<li>
+<p>data包：主要存储一些与用户和会话有关的信息。<br><br />
+UserTable是一个用户数据表类，使用了单例模式，用于存储用户的信息，其中定义了添加用户和查找用户的方法。User是UserTable中的一个内部类，每个User有一个比较输入的密码和自身密码的方法，可以使用这个方法来检验密码是否正确。<br><br />
+SessionTable是一个存储会话信息的类，也使用了单例模式。每个会话都有一个独一无二的会话标识符。每次用户成功登录后，都会创建一个会话，并将会话信息存储在表中，同时会返回一个会话标识符，用来发送给客户端。Session是SessionTable的一个内部类，当调用Session的构造函数时，就会自动给Session分配一个会话标识符。</p>
+</li>
+</ul>
+<h2 id="三-具体步骤"><a class="markdownIt-Anchor" href="#三-具体步骤"></a> 三、具体步骤</h2>
+<p>1、main函数需要维护一个线程池。这个线程池可以使用ExecutorService类。每次接收到一个连接时，就调用这个对象的execute方法。这个方法的参数是一个Runnable类，也就是一个继承了Runnable接口的类（就是ConnectionController类）。这个类需要重写一个run函数。当execute方法被调用时，就会自动调用这个Runnable对象的run函数。在run函数开始执行时main函数并不会阻塞，而是继续往下执行。这样也就得到了两个同时正在运行的函数，也就是实现了多线程。</p>
+<p>2、run函数中总共需要执行三件事情：读取请求报文、<strong>区分报文类型</strong>并调用相应服务处理、发送相应报文，然后无限循环直到客户端断开连接。这三件事情都可以通过调用其他包中的函数实现。</p>
+<p>3、MessageReader需要传入的是套接字的输入流，Writer也同理。Reader会自动调用Parser中的解析方法，因此可以直接返回Message类。而Writer类则需要手动将Message中的内容拆成HTTP报文形式，然后使用PrintWriter以及OutputStream本身写数据。</p>
+<p>4、Message类以及区分了开始行、首部行和实体主体。其中开始行和首部行的数据类型都是字符串（首部使用了字典来表示键值对），但是实体主体的内容不一定是字符串（由MIME的Content-Type指定），因此需要使用字节数组byte[]。这里写入的时候需要注意。</p>
+<p>5、会话的作用：当我们登录之后，我们需要为登录的用户创建一个会话。每个用户对应一个唯一的会话标识符，并且用户自己也可以获得这个会话标识符。这个会话标识符就是用户登录的证明，用来鉴别请求数据的用户到底是不用登录过的用户。每次已经登录过的用户在请求数据时需要将之前获得的会话标识符也一并加入报文的首部当中，然后服务端接收到这个会话标识符时就会去会话表中查找，如果找到了匹配的用户，就说明请求者是一个登录过的用户，然后就可以允许发送数据。</p>
+<p>5、注册的时候，需要调用UserTable中的方法往表中添加用户。登录的时候需要注意：我们直接去尝试创建一个会话（因为会话创建时以及包含了检验用户和密码的步骤）。如果会话创建失败就说明登录失败。如果会话创建成功也就说明登录成功了。然后需要将会话标识符发送给客户端。以后客户端在请求数据时就需要带有这个会话标识符。</p>
+<p>6、如果客户端来请求数据，在发送数据前需要先根据客户端发送的会话标识符去会话表中查找，判断是不是已经登录过的用户。只有登录的用户才可以被允许获得数据。如果没有登录就不允许发送数据（直接告诉客户端需要先登录）。</p>
 
             
         </div>
         <footer class="article-footer">
-            <a data-url="https://eternalzero2022.github.io/2023/11/11/GitHub-Pages%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5%E6%8C%87%E5%8D%97/" data-id="clpgx4yk60005dwuwcay30ppu" data-title="GitHub Pages部署网页指南"
+            <a data-url="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/" data-id="clpih5cuk00005ouw2fa366fx" data-title="登录注册系统实现--基于HTTP报文协议和Java_Socket_API"
                class="article-share-link">分享</a>
             
             
@@ -262,35 +271,19 @@
         
     <nav id="article-nav" class="wow fadeInUp">
         
-            <div class="article-nav-link-wrap article-nav-link-left">
-                
-                    
-                    
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="Java网络编程入门指南" class="lazyload">
-                    
-                
-                <a href="/2023/11/11/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"></a>
-                <div class="article-nav-caption">前一篇</div>
-                <h3 class="article-nav-title">
-                    
-                        Java网络编程入门指南
-                    
-                </h3>
-            </div>
-        
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
                     
                     
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第四章 矩阵的特征值与特征向量" class="lazyload">
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="Java-基于SpringBoot的登录系统实现" class="lazyload">
                     
                 
-                <a href="/2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/"></a>
+                <a href="/2023/11/27/Java-%E5%9F%BA%E4%BA%8ESpringBoot%E7%9A%84%E7%99%BB%E5%BD%95%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"></a>
                 <div class="article-nav-caption">后一篇</div>
                 <h3 class="article-nav-title">
                     
-                        第四章 矩阵的特征值与特征向量
+                        Java-基于SpringBoot的登录系统实现
                     
                 </h3>
             </div>
