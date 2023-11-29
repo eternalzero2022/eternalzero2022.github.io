@@ -86,8 +86,24 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/vlan%E5%91%BD%E5%90%8D.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/vlan%E9%85%8D%E7%BD%AE.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/pingvlan.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/ACL%E6%8B%93%E6%89%91.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/ACL%E4%B9%8B%E5%89%8Dping.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/ACL%E4%BD%BF%E7%94%A8access-list%E5%91%BD%E4%BB%A4.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/showlists.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%BD%BF%E7%94%A8accesslist.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%BB%8D%E7%84%B6%E5%8F%AF%E4%BB%A5ping.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E9%87%8D%E6%96%B0%E8%AE%BE%E7%BD%AEACL.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/ACL%E5%90%8Eping%E4%B8%8D%E9%80%9A.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E5%88%A0%E9%99%A4ACL.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%99%9A%E6%8B%9F%E7%BA%BF%E8%B7%AF%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E6%88%90%E5%8A%9F%E7%99%BB%E5%BD%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%AE%BE%E7%BD%AEtcpacl.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/telnet%E5%A4%B1%E8%B4%A5.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E5%88%9B%E5%BB%BA%E5%9F%BA%E7%A1%80ACL.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E5%9F%BA%E7%A1%80ACL%E9%A2%9D%E5%A4%96.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%BE%9D%E7%84%B6%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5.png">
 <meta property="article:published_time" content="2023-10-31T09:11:38.000Z">
-<meta property="article:modified_time" content="2023-11-18T08:04:18.458Z">
+<meta property="article:modified_time" content="2023-11-29T15:37:42.622Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%AE%BE%E5%A4%87.png">
@@ -429,6 +445,57 @@
 <p>然后我们可以尝试在PC0上ping到pc1和pc3.</p>
 <p><img src="pic/pingvlan.png" alt="" /></p>
 <p>可以发现同一个虚拟网段下可以ping通，但是不同的虚拟网段下不行。这就在交换机中划分了网段。</p>
+<h2 id="8-访问控制列表acl"><a class="markdownIt-Anchor" href="#8-访问控制列表acl"></a> 8、访问控制列表ACL</h2>
+<p>ACL其实在之前我们已经使用过了，也就是在创建NAT的时候使用的access-list。它的作用就是用一个IP地址的列表来表示哪些IP地址是被允许的，哪些是不被允许的。</p>
+<p>首先我们先搭建一个简单的拓扑，如图：</p>
+<p><img src="pic/ACL%E6%8B%93%E6%89%91.png" alt="" /></p>
+<p>创建完成之后，我们可以尝试一下从路由器Bping到192.168.1.1.应该是可以成功的</p>
+<p><img src="pic/ACL%E4%B9%8B%E5%89%8Dping.png" alt="" /></p>
+<p>接下来我们就需要使用扩展的ACL封杀从RouterA到RouterB的PING命令。和之前一样，我们需要创建一个access-list，不过格式会有所不同。具体如下：</p>
+<p><img src="pic/ACL%E4%BD%BF%E7%94%A8access-list%E5%91%BD%E4%BB%A4.png" alt="" /></p>
+<p>与往常一样，access-list用于创建一个访问控制列表，100是编号。但是后面的内容与之前有些许不一样。这就是标准ACL和扩展ACL之间的差别。</p>
+<p>对于标准ACL，我们只需要指定<font color = orange><strong>源IP地址</strong></font>，而对于扩展ACL，我们除了可以指定源IP地址之外，还可以指定<font color = orange><strong>目标IP地址、协议、端口号</strong></font>等多种条件来过滤流量。</p>
+<p>首先我们在deny后面添加了一个“icmp”，就说明被deny的内容仅仅是ICMP流量（比如我们的PING命令发送的数据），而其他流量则不受到影响。同时后面跟上了两个IP地址，表示禁止的是从192.168.1.1到192.168.1.2的报文（这里的源和目的两个IP地址就可以体现出是扩展IP地址了）。里面的0.0.0.0就说明IP地址的全部位都是固定的（这个掩码的作用就是：如果哪位为1就说明IP地址对应的这一位可以任意取值，而如果为0就说明IP地址对应的这一位只能取所给出的原本这一位的内容（比如这里就固定只能是192.168.1.1））</p>
+<p>第二行的permit ip any any也就是允许了从任意IP到任意IP的IP流量。这句话本质上和我们之前写的permit any是一模一样的（在Cisco新版本中是这样的）。</p>
+<p><strong>这里需要注意的是access-list命令的执行顺序。每一个流量经过时都需要匹配access-list的规则，并且是<font color = orange>从上往下匹配的</font>。也就是说，假如有一个ICMP报文经过了路由器，那么它会先检查输入的第一条规则。假如第一条命令就是阻止ICMP报文的命令，而第二条规则是允许所有报文，那么它在匹配第一个规则时就匹配成功，不再发送这个报文，并且会忽略其他下面的规则，包括那个允许所有报文的规则。但是，一旦将这两条命令的输入顺序颠倒，那么就会不一样。在检测时，第一条命令就允许了所有的报文，那么它也匹配成功了，并且将其发送了出去，而忽略了下面的阻止ICMP报文的规则。因此，规则的输入顺序很重要</strong></p>
+<p>输入完这两条命令之后，我们可以使用<code>show ip access-lists</code>命令来查看所有创建的访问控制列表的信息</p>
+<p><img src="pic/showlists.png" alt="" /></p>
+<p>我们可以看到刚刚创建的一个访问控制列表。会先拒绝所有从192.168.1.1到192.168.1.2的ICMP报文，并且允许所有其他报文。</p>
+<p>创建完一个access-list之后，我们还需要将其应用到某个具体的端口上。因此我们可以进入f0/0接口并输入<code>ip access-group 100 out</code>命令：</p>
+<p><img src="pic/%E4%BD%BF%E7%94%A8accesslist.png" alt="" /></p>
+<p>其中的100是指刚刚创建的access-list的编号，out是指针对接口的出方向（即使用这个访问控制列表来管理所有从这个端口进入的流量）。如果改成in，就会应用于接口的入方向。</p>
+<p>我们可以再次尝试一下从路由器Aping到192.168.1.2</p>
+<p><img src="pic/%E4%BB%8D%E7%84%B6%E5%8F%AF%E4%BB%A5ping.png" alt="" /></p>
+<p>奇怪的事情发送了：仍然可以ping到（理论上应该是不行的）。其实这是因为：<strong>ACL无法过滤来自本地的数据流</strong>。而由于我们设置ACL和发送报文都处于同一个路由器上，因此ACL也就不会过滤。如果ACL被设置在B上，那么从A到B的报文就可以过滤。</p>
+<p>接下来尝试在路由器B上重新配置ACL</p>
+<p><img src="pic/%E9%87%8D%E6%96%B0%E8%AE%BE%E7%BD%AEACL.png" alt="" /></p>
+<p>这个时候我们再次尝试从Aping到B</p>
+<p><img src="pic/ACL%E5%90%8Eping%E4%B8%8D%E9%80%9A.png" alt="" /></p>
+<p>就会发现已经ping不通了。这说明我们设置的ACL起了作用。</p>
+<p>ACL除了可以设置ICMP报文之外，还可以设置TELNET的访问权限。由于TELNET访问使用的是TCP，我们只需要将设置中的ICMP修改为对tcp的deny即可。</p>
+<p>首先在路由器B上清除刚刚的路由器配置，使用no命令。</p>
+<p><img src="pic/%E5%88%A0%E9%99%A4ACL.png" alt="" /></p>
+<p>我们需要先对路由器B的远程登录相关的配置：</p>
+<p><img src="pic/%E8%99%9A%E6%8B%9F%E7%BA%BF%E8%B7%AF%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt="" /></p>
+<p>首先，我们通过enable secret命令设置了路由器特权模式的密码为abc，然后line vty 0 4代表进入虚拟终端（VTY）线配置模式，选择的是从VTY线0到VTY线4中间的所有线。VTY线就是用来远程登录的，如TELNET。然后我们设置了远程登录密码为abcde，最后的login是表示启用Telnet连接的登录验证，启用后telnet登录时就需要线验证。</p>
+<p>这个时候我们就可以退回到路由器A上，尝试ping路由器B。应该可以成功。</p>
+<p>接下来我们尝试使用telnet远程登陆路由器B，使用telnet命令</p>
+<p><img src="pic/%E6%88%90%E5%8A%9F%E7%99%BB%E5%BD%95.png" alt="" /></p>
+<p>可以看到成功登录了路由器B。</p>
+<p>然后，我们退回到路由器B，设置ACL，阻止来自A的TCP访问。</p>
+<p>首先我们可以先设置扩展访问ACL，如下：</p>
+<p><img src="pic/%E8%AE%BE%E7%BD%AEtcpacl.png" alt="" /></p>
+<p>里面的第一条命令后面的tcp指定了拒绝的是tcp命令，host 192.168.1.1 any说明拒绝所有源主机为192.168.1.1，去往任何地方的报文，eq 23代表端口号为23。</p>
+<p>此时我们再次返回到路由器A取尝试使用telnet：</p>
+<p><img src="pic/telnet%E5%A4%B1%E8%B4%A5.png" alt="" /></p>
+<p>这个时候就无法访问了。说明已经阻止了telnet连接。注意这里的提示是Connection timed out，说明根本就没有发送到目标端口。</p>
+<p>然后我们也可以重新使用基本ACL来实现相同功能。</p>
+<p><img src="pic/%E5%88%9B%E5%BB%BA%E5%9F%BA%E7%A1%80ACL.png" alt="" /></p>
+<p>创建完基础ACL之后需要手动将其添加到虚拟线路上</p>
+<p><img src="pic/%E5%9F%BA%E7%A1%80ACL%E9%A2%9D%E5%A4%96.png" alt="" /></p>
+<p>然后返回到路由器A上尝试使用telnet</p>
+<p><img src="pic/%E4%BE%9D%E7%84%B6%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5.png" alt="" /></p>
+<p>我们会发现依然连接失败了。但是会发现提示信息不同：这里提示connection refused了，而之前使用扩展ACL时提示的是直接timed out。这是因为扩展ACL中，发送的报文根本没到端口，而基础ACL中，发送的信息依然会到端口，然后再被拒绝。这样做会加重端口负担，因此使用扩展ACL是更合适的选择。</p>
 
             
         </div>
@@ -613,10 +680,10 @@
             
                 <div>
                     <span class="icon-brush"></span>
-                    71.8k
+                    73.5k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    04:21
+                    04:27
                 </div>
             
             
