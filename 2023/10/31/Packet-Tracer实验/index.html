@@ -102,8 +102,20 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E5%88%9B%E5%BB%BA%E5%9F%BA%E7%A1%80ACL.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E5%9F%BA%E7%A1%80ACL%E9%A2%9D%E5%A4%96.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E4%BE%9D%E7%84%B6%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E6%8B%96%E3%80%90%E6%8B%93%E6%89%91.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%AE%BE%E7%BD%AEppp.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/R2ppp.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%AE%BE%E7%BD%AE%E9%94%99%E8%AF%AF%E7%94%A8%E6%88%B7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E9%94%99%E8%AF%AF%E7%94%A8%E6%88%B7ping%E4%B8%8D%E9%80%9A.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/RouterB%E6%AD%A3%E7%A1%AE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E6%AD%A3%E7%A1%AE%E7%94%A8%E6%88%B7ping.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/A%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%B7%AF%E7%94%B1%E5%99%A8A%E5%86%8D%E6%AC%A1%E9%85%8D%E7%BD%AEppp.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%B7%AF%E7%94%B1%E5%99%A8B%E5%86%8D%E6%AC%A1%E9%85%8D%E7%BD%AEppp.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/B%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%83%BD%E5%A4%9Fping.png">
 <meta property="article:published_time" content="2023-10-31T09:11:38.000Z">
-<meta property="article:modified_time" content="2023-11-29T15:37:42.622Z">
+<meta property="article:modified_time" content="2023-11-30T12:50:31.173Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2023/10/31/Packet-Tracer%E5%AE%9E%E9%AA%8C/pic/%E8%AE%BE%E5%A4%87.png">
@@ -447,7 +459,7 @@
 <p>可以发现同一个虚拟网段下可以ping通，但是不同的虚拟网段下不行。这就在交换机中划分了网段。</p>
 <h2 id="8-访问控制列表acl"><a class="markdownIt-Anchor" href="#8-访问控制列表acl"></a> 8、访问控制列表ACL</h2>
 <p>ACL其实在之前我们已经使用过了，也就是在创建NAT的时候使用的access-list。它的作用就是用一个IP地址的列表来表示哪些IP地址是被允许的，哪些是不被允许的。</p>
-<p>首先我们先搭建一个简单的拓扑，如图：</p>
+<p>首先我们先搭建一个简单的拓扑，如图：（两个路由器之间使用交叉线连接）</p>
 <p><img src="pic/ACL%E6%8B%93%E6%89%91.png" alt="" /></p>
 <p>创建完成之后，我们可以尝试一下从路由器Bping到192.168.1.1.应该是可以成功的</p>
 <p><img src="pic/ACL%E4%B9%8B%E5%89%8Dping.png" alt="" /></p>
@@ -496,6 +508,40 @@
 <p>然后返回到路由器A上尝试使用telnet</p>
 <p><img src="pic/%E4%BE%9D%E7%84%B6%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5.png" alt="" /></p>
 <p>我们会发现依然连接失败了。但是会发现提示信息不同：这里提示connection refused了，而之前使用扩展ACL时提示的是直接timed out。这是因为扩展ACL中，发送的报文根本没到端口，而基础ACL中，发送的信息依然会到端口，然后再被拒绝。这样做会加重端口负担，因此使用扩展ACL是更合适的选择。</p>
+<h2 id="9-ppp验证实验"><a class="markdownIt-Anchor" href="#9-ppp验证实验"></a> 9、PPP验证实验</h2>
+<p>PPP协议是一种数据链路层的协议，用于点对点连接（Point-to-Point Protocol），为链路上直接相连的两个结点之间提供数据传输的方式。</p>
+<p>其中，PPP协议需要一种用于身份验证的协议，它就是PAP。两个设备连接时，请求方使用明文发送用户名和密码。如果密码匹配，那么连接将被接收。</p>
+<p>首先我们先建立一个实验拓扑，如下：（注意：两个路由器之间使用<strong>Serial线</strong>连接）</p>
+<p><img src="pic/%E6%8B%96%E3%80%90%E6%8B%93%E6%89%91.png" alt="" /></p>
+<p>注意在设置时，必须在DCE端设置clock rate 64000</p>
+<p>我们将RouterA设为服务器，RouterB设为客户端。我们现在RouterA上设置PPP协议有关的内容。</p>
+<p>首先，我们先在RouterA上创建一个用户，然后在一个端口启用PPP协议，并设置认证协议为PAP。输入命令如下：</p>
+<p><img src="pic/%E8%AE%BE%E7%BD%AEppp.png" alt="" /></p>
+<p>首先我们创建了一个用户名为zhangsan，密码为abc的用户，然后进入端口，选择使用ppp协议，然后设置了ppp协议的认证协议为pap。</p>
+<p>之后我们需要进入RouterB，然后也设置端口为PPP协议：</p>
+<p><img src="pic/R2ppp.png" alt="" /></p>
+<p>接下来我们尝试从路由器B上去连接路由器A。我们先尝试设置请求的用户为一个不存在的用户：</p>
+<p><img src="pic/%E8%AE%BE%E7%BD%AE%E9%94%99%E8%AF%AF%E7%94%A8%E6%88%B7.png" alt="" /></p>
+<p>然后使用ping命令尝试联系路由器A：</p>
+<p><img src="pic/%E9%94%99%E8%AF%AF%E7%94%A8%E6%88%B7ping%E4%B8%8D%E9%80%9A.png" alt="" /></p>
+<p>会发现由于用户是一个不在路由器A中的用户列表中，所以ping不通。</p>
+<p>然后我们再次尝试使用在路由器A中添加过的正确的用户名和密码（zhangsan）来ping：</p>
+<p><img src="pic/RouterB%E6%AD%A3%E7%A1%AE.png" alt="" /></p>
+<p><img src="pic/%E6%AD%A3%E7%A1%AE%E7%94%A8%E6%88%B7ping.png" alt="" /></p>
+<p>会发现可以ping通。</p>
+<p>当然，由于pap协议是一个明文发送密码的协议，安全性自然较差。因此我们可以选择另一种安全性更高的协议：CHAP协议。</p>
+<p>这种协议的不同之处在于：发送和接收密码时使用了“挑战-响应”机制。简单来说，服务器要先发送一个随机的挑战字符串，然后客户端使用哈希算法，将密码和挑战字符串进行哈希运算，生成响应字符串，发送回客户端，然后客户端再根据得到的结果与预期结果比较来判断是否认证通过。这种方法避免了发送明文密码，提高了安全性。</p>
+<p>在使用这种协议时，步骤与先前基本相同，只需要将ppp authentication pap中的pap改成chap即可。</p>
+<p>为了防止其他原因干扰，我们可以尝试将两个路由器断电后重新配置。</p>
+<p>在路由器A进行设置：</p>
+<p><img src="pic/A%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7.png" alt="" /><br />
+<img src="pic/%E8%B7%AF%E7%94%B1%E5%99%A8A%E5%86%8D%E6%AC%A1%E9%85%8D%E7%BD%AEppp.png" alt="" /></p>
+<p>在路由器B上设置：（先不输入ppp authentication chap）</p>
+<p><img src="pic/%E8%B7%AF%E7%94%B1%E5%99%A8B%E5%86%8D%E6%AC%A1%E9%85%8D%E7%BD%AEppp.png" alt="" /><br />
+<img src="pic/B%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7.png" alt="" /></p>
+<p>然后尝试去pingA：</p>
+<p><img src="pic/%E8%83%BD%E5%A4%9Fping.png" alt="" /></p>
+<p>这个时候发现是可以ping通的。具体原因可能是由于CHAP验证时使用的是双方共享的密钥，不一定需要保证用户和密码相同。因此在packet tracer中，一旦双方都设置了chap，就一直可以ping通（尝试了很多次都是这样）正常情况下（包括老师给出的实现指南下），只有当双方的密码相同的情况下才可以ping通</p>
 
             
         </div>
@@ -680,10 +726,10 @@
             
                 <div>
                     <span class="icon-brush"></span>
-                    73.5k
+                    74.3k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    04:27
+                    04:30
                 </div>
             
             
