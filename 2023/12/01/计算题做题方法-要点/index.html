@@ -1,0 +1,689 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        计算题做题方法&amp;要点 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="计算题方法&amp;要点  一、计算机性能计算  关键指标：  fff：时钟频率，单位时间内执行最基本操作的次数（单位时间内的时钟周期），单位Hz ttt：时钟周期，执行每次操作最基本的时间，时钟频率的倒数，单位s CPIiCPI_iCPIi​：执行指令i所需要的周期数 CPICPICPI：程序中每条指令的平均需要的周期数 T：一个程序的处理时间 MIPS：每秒百万条指令   公式：  T&#x3D;Ic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算题做题方法&amp;要点">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="计算题方法&amp;要点  一、计算机性能计算  关键指标：  fff：时钟频率，单位时间内执行最基本操作的次数（单位时间内的时钟周期），单位Hz ttt：时钟周期，执行每次操作最基本的时间，时钟频率的倒数，单位s CPIiCPI_iCPIi​：执行指令i所需要的周期数 CPICPICPI：程序中每条指令的平均需要的周期数 T：一个程序的处理时间 MIPS：每秒百万条指令   公式：  T&#x3D;Ic">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E6%A0%87%E5%87%86.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E5%85%A8%E7%9B%B8%E8%81%94%E6%98%A0%E5%B0%84.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E7%BB%84%E7%9B%B8%E8%81%94%E6%98%A0%E5%B0%84.png">
+<meta property="article:published_time" content="2023-12-01T11:44:51.000Z">
+<meta property="article:modified_time" content="2023-12-01T11:45:08.624Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E6%A0%87%E5%87%86.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="计算题做题方法&amp;要点" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>计算题做题方法&amp;要点</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-计算题做题方法-要点" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/" class="article-date-link">
+        <time datetime="2023-12-01T11:44:51.000Z"
+              itemprop="datePublished">2023-12-01</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="计算题方法要点"><a class="markdownIt-Anchor" href="#计算题方法要点"></a> 计算题方法&amp;要点</h1>
+<h2 id="一-计算机性能计算"><a class="markdownIt-Anchor" href="#一-计算机性能计算"></a> 一、计算机性能计算</h2>
+<h3 id="关键指标"><a class="markdownIt-Anchor" href="#关键指标"></a> 关键指标：</h3>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>：时钟频率，单位时间内执行最基本操作的次数（单位时间内的时钟周期），单位Hz</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>：时钟周期，执行每次操作最基本的时间，时钟频率的倒数，单位s</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>P</mi><msub><mi>I</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">CPI_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：执行指令i所需要的周期数</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>P</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">CPI</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span>：程序中每条指令的平均需要的周期数</li>
+<li>T：一个程序的处理时间</li>
+<li>MIPS：每秒百万条指令</li>
+</ul>
+<h3 id="公式"><a class="markdownIt-Anchor" href="#公式"></a> 公式：</h3>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><msub><mi>I</mi><mi>c</mi></msub><mo>×</mo><mi>C</mi><mi>P</mi><mi>I</mi><mo>×</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">T = I_c \times CPI \times t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span> 计算程序执行时间</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>I</mi><mi>P</mi><mi>S</mi><mo>=</mo><mfrac><msub><mi>I</mi><mi>c</mi></msub><mrow><mi>T</mi><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow></mfrac><mo>=</mo><mfrac><mi>f</mi><mrow><mi>C</mi><mi>P</mi><mi>I</mi><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">MIPS = \frac{I_c}{T \times 10^6} = \frac{f}{CPI \times 10^6}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2917619999999999em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884309999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mbin mtight">×</span><span class="mord mtight">1</span><span class="mord mtight"><span class="mord mtight">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.07847em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.335547em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mbin mtight">×</span><span class="mord mtight">1</span><span class="mord mtight"><span class="mord mtight">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>（通常用的更多的是后面的公式，即知道<strong>计算机的频率</strong>和<strong>程序的CPI</strong>就可以求出MIPS）</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>F</mi><mi>L</mi><mi>O</mi><mi>P</mi><mi>S</mi><mo>=</mo><mfrac><msub><mi>N</mi><mrow><mi>f</mi><mi>l</mi><mi>o</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>n</mi><mi>g</mi><mo>−</mo><mi>p</mi><mi>o</mi><mi>i</mi><mi>n</mi><mi>t</mi><mi>o</mi><mi>p</mi></mrow></msub><mrow><mi>T</mi><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">MFLOPS = \frac{N_{floating-point op}}{T \times 10^6}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal">L</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.394742em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9914109999999998em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mbin mtight">×</span><span class="mord mtight">1</span><span class="mord mtight"><span class="mord mtight">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:-0.10903em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>（每秒百万条浮点数操作，相当于将MIPS的公式1中的Ic换成浮点数操作的个数）</li>
+</ul>
+<h3 id="注意点"><a class="markdownIt-Anchor" href="#注意点"></a> 注意点：</h3>
+<ul>
+<li>一定要注意单位换算，1s = 10^3ms = 10^6us = 10^9ns</li>
+<li>有的时候如果想不起来公式，可以通过理解的办法去思考，例如计算MIPS即计算每秒百万条指令，只需要算出一秒钟可以执行几条指令，可以通过将程序的总指令数除以程序的总执行时间去算，而程序的总执行时间就是程序的时钟周期数除以程序每秒钟可以处理的时钟周期数（频率）。</li>
+<li>算数均值就是将所有样本加起来除以样本数，几何均值就是将所有样本乘起来再开n次方，调和均值就是将所有样本的倒数加起来再整体进行倒数运算，再乘以二。</li>
+</ul>
+<h3 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他：</h3>
+<p>各个平均值的使用场景：</p>
+<ul>
+<li>算数平均值：适用于度量值的<strong>总和</strong>也是一个有意义的值的时候（系统执行时间），因为稳定</li>
+<li>调和平均值：适用于计算整体效率的情况（系统的执行速率来衡量系统整体价值），因为需要保证系统中不能出现太小的极端。太小的极端会对调和平均值产生显著影响。</li>
+<li>几何平均值：计算相对性能（基准测试），所有数据需要被赋予相同的权重。</li>
+</ul>
+<h2 id="二-整数-浮点数二进制表示计算"><a class="markdownIt-Anchor" href="#二-整数-浮点数二进制表示计算"></a> 二、整数、浮点数二进制表示计算</h2>
+<h3 id="知识点"><a class="markdownIt-Anchor" href="#知识点"></a> 知识点：</h3>
+<p><strong>整数</strong>：最左边符号位，其余数值位</p>
+<ul>
+<li>原码：最左边符号位，其余位数的大小表示数值大小本身。</li>
+<li>反码：原码符号位不变，其余为取反</li>
+<li>补码：如果是正数，则为原码不变，如果为负数则原码取反+1</li>
+<li>移码：原码整体加减一个偏置常数（主要用于浮点数运算）</li>
+</ul>
+<p>负数原码变补码：原码除符号位的其他为取反+1</p>
+<p>负数补码变原码：用原码变补码一样的方法再操作一次就能变回去（取反+1）</p>
+<p>补码变成相反数：所有位取反+1</p>
+<p>注意：有符号整数能够表示的最大值为所有位全取1，最小值是最大值的相反数再减去1（数值上）</p>
+<p><strong>浮点数</strong>：符号位、阶码、尾数</p>
+<ul>
+<li>符号位S：1位，表示正负（确定符号）</li>
+<li>阶码E：8位，表示最后的数值有2的几次方（确定大小）</li>
+<li>尾数M：23位，表示精确数值（确定精确值）</li>
+</ul>
+<p><strong>注意：规格化数的尾数通常在最前面有一位隐藏位为1</strong></p>
+<p>规格化表示：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mi>S</mi></msup><mo>×</mo><mi>M</mi><mo>×</mo><msup><mn>2</mn><mi>E</mi></msup></mrow><annotation encoding="application/x-tex">(-1)^S \times M \times 2^E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span></span></span></span></span></span></span></span></span></span></span></p>
+<p><strong>注意：</strong> 阶码E是移码，通常偏置常数为127，因此这里E实际表示的值应该为E的原码减去127。</p>
+<p>规格化数：阶码不为全0或全1</p>
+<p><img src="p/%E6%A0%87%E5%87%86.png" alt="" /></p>
+<p>通常，移码的偏置常数应该是最高位取1，其他位取0所得的数（无符号数）减去1。例如：6位阶码的移码应该是63</p>
+<p>非规格化数：特指阶码全为0，但是尾数不为0的数，这种数也可以表示数值，不过与一般规格化数的区别是<strong>尾数中的隐藏位为0</strong></p>
+<p>非规格化表示：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mi>S</mi></msup><mo>×</mo><mn>0.</mn><mi>b</mi><mi>b</mi><mi>b</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi>b</mi><mo>×</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>126</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(-1)^S \times 0.bbb...b \times 2^{-126}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord mathnormal">b</span><span class="mord mathnormal">b</span><span class="mord mathnormal">b</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span><span class="mord mtight">2</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="要点"><a class="markdownIt-Anchor" href="#要点"></a> 要点</h3>
+<p>十进制与二进制的转换方法：</p>
+<ul>
+<li>整数十进制转二进制，对十进制进行短除法，结果把每一位的商<strong>从下往上</strong>写出来</li>
+<li>整数二进制转十进制：用每一位的基数去求和</li>
+<li>十进制小数转二进制浮点数尾数：每次尾数乘以2，如果大于等于1就减1并取该位商为1，否则取商为0，循环此步骤直到为0或精度达到要求。最后的结果把每一位的商<strong>从上往下</strong>写出来</li>
+</ul>
+<h2 id="三-int与float在计算机中的转换计算"><a class="markdownIt-Anchor" href="#三-int与float在计算机中的转换计算"></a> 三、int与float在计算机中的转换计算</h2>
+<h3 id="知识点-2"><a class="markdownIt-Anchor" href="#知识点-2"></a> 知识点：</h3>
+<p>int在计算机中占用4字节，float在计算机中也占用4字节。double占用8字节</p>
+<p>判断会不会丢失精度可以从有效位的位数来判断。</p>
+<ul>
+<li>int的有效位为32位，float的有效位为24位，因此int精度比float高，int转float可能丢失精度</li>
+<li>float可表示的最大数远大于int，因此float转int也会导致不相等。</li>
+<li>因此，int转float或者float转int都可能丢失精度</li>
+<li>double的有效位和最大可表示数值都比int和float大，因此int和float转double都不会丢失精度</li>
+</ul>
+<p>在代入具体数值时，需要判断的是表示这个数值需要多少位的精度</p>
+<ul>
+<li>假如一个整数需要10位表示（1024），那么这个数的有效位低于24，因此转float不会丢失精度。但是如果这个数需要28位表示，则会丢失精度</li>
+</ul>
+<h3 id="要点-2"><a class="markdownIt-Anchor" href="#要点-2"></a> 要点</h3>
+<ul>
+<li>判断一个数经过变换以后是否还和原来相等的几大注意点：<br><br />
+1、数据的精度（有效位个数）<br><br />
+2、数据的最大可表示数<br><br />
+3、数据会不会溢出<br></li>
+<li>int转换成float不会丢失精度的最大值为16777216（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>24</mn></msup></mrow><annotation encoding="application/x-tex">2^{24}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span>），大概是一个八位整数。这是因为浮点数一共只有24位表示数值的有效位</li>
+<li>浮点数加减一个数可能会不相等，因为可能发生溢出（但是整数一般不会，因为浮点数的溢出会变成Infinity）</li>
+<li>一个整数除以0会抛出异常，一个浮点数除以0会变成非数值NaN</li>
+</ul>
+<h2 id="四-dram芯片存储计算"><a class="markdownIt-Anchor" href="#四-dram芯片存储计算"></a> 四、DRAM芯片存储计算</h2>
+<h3 id="知识点-3"><a class="markdownIt-Anchor" href="#知识点-3"></a> 知识点</h3>
+<p>芯片组合方式：</p>
+<ul>
+<li>字扩展：横向扩展，变宽，地址变大</li>
+<li>位扩展：纵向扩展，变厚，每个地址表示的位数变大<br />
+刷新方式：</li>
+<li>集中刷新：所有存储器一起刷新</li>
+<li>分散刷新：每一行分开刷新，夹杂在存取的过程当中</li>
+<li>异步刷新：每一行按固定间隔刷新（最短刷新信号间隔取决于每单元的最短刷新间隔）</li>
+</ul>
+<h3 id="注意点-2"><a class="markdownIt-Anchor" href="#注意点-2"></a> 注意点</h3>
+<ul>
+<li>当使用小的芯片拼成一个大芯片时，如果发生了位扩展（每个地址可表示的位数大于原本的小芯片的每个地址的位数，比如4K*4芯片拼成4K*8），那么在选片时是一次选择多片的。因此，计算地址中用于选片的位数时，不能根据片的个数来推断，而需要根据每个片中包含的内容大小来推断片内选址的位数，然后反推选片位数。</li>
+<li>芯片刷新时是每次刷新一行。如果是多个小芯片组合成大芯片，那么刷新大芯片时，所有小芯片都是同时刷新一行的，因此计算大芯片刷新一次需要刷新的趟数也就是计算小芯片刷新一次的趟数，也就是小芯片的行数（与组合方式无关）</li>
+</ul>
+<h2 id="五-cache计算"><a class="markdownIt-Anchor" href="#五-cache计算"></a> 五、Cache计算</h2>
+<h3 id="知识点-4"><a class="markdownIt-Anchor" href="#知识点-4"></a> 知识点</h3>
+<p>主存地址分成：标记、组号、块内地址</p>
+<p>映射方式的分类：</p>
+<ul>
+<li>直接映射：每组一行（组号即为行号）</li>
+</ul>
+<p><img src="p/%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84.png" alt="" /></p>
+<ul>
+<li>全相联映射：一组即为全部（没有组号）</li>
+</ul>
+<p><img src="p/%E5%85%A8%E7%9B%B8%E8%81%94%E6%98%A0%E5%B0%84.png" alt="" /></p>
+<ul>
+<li>组相联映射：一组包含多行</li>
+</ul>
+<p><img src="p/%E7%BB%84%E7%9B%B8%E8%81%94%E6%98%A0%E5%B0%84.png" alt="" /></p>
+<p>这三种映射方式其实都可以归为组相联映射，只不过直接映射是1路组映射，全相联是n路组映射（n为Cache行号）</p>
+<p>一般而言，一块即为一行</p>
+<p>程序访问的局部性：</p>
+<ul>
+<li>时间局部性：执行的指令在不久后就会再次执行（常见于循环当中）</li>
+<li>空间局部性：访问了一个空间后会接着访问它的相邻空间</li>
+</ul>
+<p>替换算法：</p>
+<ul>
+<li>FIFO：先进先出算法，谁最先进入谁最先被替换</li>
+<li>LRU：最近最少使用算法，谁最久没有被访问就替换谁</li>
+<li>LFU：最不经常使用算法：谁被访问的次数最少就替换谁（有可能会导致新来的总是被替换）</li>
+</ul>
+<p>Cache一行中的内容：</p>
+<ul>
+<li>数据</li>
+<li>标记</li>
+<li>有效位（1位）</li>
+<li>标记位（看情况而定）（如果题目没有说明则不用添加）</li>
+<li>脏位（修改位）（1位，在写回时使用）</li>
+</ul>
+<h3 id="做题方法"><a class="markdownIt-Anchor" href="#做题方法"></a> 做题方法</h3>
+<p>首先先把内存地址示意图画出来，先根据一块（一行）有多少内容算出块内地址的位数，然后算出Cache一共有几行（块）（可以使用Cache总容量除以一行的容量算出来），再根据映射方式算出组号需要几位表示，最后再将内存地址的位数减去组号和块内地址</p>
+<h3 id="技巧"><a class="markdownIt-Anchor" href="#技巧"></a> 技巧</h3>
+<ul>
+<li>一个K即为2的十次方，一个M即为2的二十次方。因此我们拿到一个带有K或M单位的数，可以先算出数字（不看K或M）本身是几次方，然后根据后面带的是K还是M，在指数上对应添加10或20</li>
+<li>计算Cache命中率时，可以尝试将Cache画出来，并使用铅笔表示其中的内容。计算循环时，只需要计算第一次循环和第二次循环时候的情况，其余的情况都与第二次循环的情况一致</li>
+</ul>
+<h3 id="注意点-3"><a class="markdownIt-Anchor" href="#注意点-3"></a> 注意点</h3>
+<ul>
+<li>需要注意单位，是B（字节）还是b（位）</li>
+<li>需要注意编址方式：按字节编址还是按字编址</li>
+<li>在计算命中率时，如果刚开始Cache中不存在东西，那么放进去时也算不命中的。最简单的方法是判断有几次Cache中的项没有发生变化</li>
+<li>需要注意访问内存包括读内存和写内存。如果涉及到的操作同时包含了读取和写入，需要分开计算次数。（在一些根据程序代码判断命中率的题目中会遇到，例如a[k] =a[k] + 32就涉及到了读和写）</li>
+<li>如果有多级Cache，那么当Cache没命中时，它会按顺序访问下一级Cache，并且访问上一级Cache的时间也要加上。这意味着，计算访问时间的时候，如果有多级Cache，并且都没命中，那么就需要将每一级Cache的访问时间和访问内存的时间全部求和，而不能只计算访问内存的时间。</li>
+</ul>
+<h2 id="六-磁盘计算"><a class="markdownIt-Anchor" href="#六-磁盘计算"></a> 六、磁盘计算</h2>
+<h3 id="关键指标-2"><a class="markdownIt-Anchor" href="#关键指标-2"></a> 关键指标</h3>
+<ul>
+<li>旋转速率：单位时间内旋转的圈数，单位rpm（每分钟旋转的圈数）</li>
+<li>磁道数：一个面上的磁道个数</li>
+<li>扇区数：一个磁道上分为不同扇区的个数</li>
+<li>寻道时间：越过一定数量磁道所需要的时间</li>
+<li>数据传输率：传输数据时的速度</li>
+</ul>
+<h3 id="计算方法"><a class="markdownIt-Anchor" href="#计算方法"></a> 计算方法</h3>
+<p>首先，可以先根据旋转速率rpm算出每秒钟旋转的圈数（rmp除以60），然后用你需要旋转的圈数去除以这个数就可以算出旋转延迟。然后可以用你期望跨越的磁道数去除以寻道速度得到寻道时间，最后再通过数据传输率计算传输数据所需要的时间，将其相加，就是读取硬盘数据的时间。</p>
+<h3 id="注意点-4"><a class="markdownIt-Anchor" href="#注意点-4"></a> 注意点</h3>
+<ul>
+<li>平均寻道时间和平均旋转时间都是越过一半磁道数和越过一半盘面所需要的时间</li>
+<li>磁盘读出数据需要分为三步：选择磁道、旋转到对应位置，再是读取数据。因此计算从磁盘上读取数据的时间时需要将三者时间求和，不能漏掉任何一项</li>
+<li>从磁道的一段走到另一端跨国的磁道数不为n，而是n-1（n为磁道总数）</li>
+</ul>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/" data-id="clpmk7ymi0001i8uw0z7ua0yw" data-title="计算题做题方法&amp;要点"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="2023Fall-计算机组织与结构" class="lazyload">
+                    
+                
+                <a href="/2023/12/01/2023Fall-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E7%BB%87%E4%B8%8E%E7%BB%93%E6%9E%84/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        2023Fall-计算机组织与结构
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">28</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    77.5k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    04:42
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">28</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
