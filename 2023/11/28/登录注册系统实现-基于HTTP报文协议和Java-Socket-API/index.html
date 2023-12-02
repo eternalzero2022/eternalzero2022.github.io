@@ -30,10 +30,12 @@
 <meta property="og:site_name" content="EternalZero2022 的博客">
 <meta property="og:description" content="登录注册系统实现–基于HTTP报文协议和Java_Socket_API 注意：在阅读本文章前请先参考我的另一篇博客，学习Java的网络编程有关知识：Java网络编程入门指南  一，思路概述  1、整体思路 本次作业，我们需要基于Java Socket API搭建简单的HTTP客户端和服务器端程序，实现一个简单的注册登录系统。 为了实现这个目的，首先我们需要建立一个服务器，这个服务器可以创建一个s">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84.png">
 <meta property="article:published_time" content="2023-11-28T15:09:16.000Z">
-<meta property="article:modified_time" content="2023-11-28T15:09:40.372Z">
+<meta property="article:modified_time" content="2023-12-02T14:12:30.949Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84.png">
     
         <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
     
@@ -215,11 +217,13 @@
 <li>如果这个时候断开了连接，那么message就会读到null</li>
 </ul>
 <p>我们就可以根据不同的情况来推断是否接收到了一个完整的报文。接下来对报文的处理需要根据报文中是GET还是POST请求做出相应的处理。</p>
+<p>在读取实体主体部分时，使用的是字节流的读取方式，因此无需处理空行等内容，可以直接读取，直到读完为止。</p>
 <p>当发送回报文时，我们写入的也是一个完整的符合HTTP报文格式的字符串。</p>
 <p>IO模型主要定义了Socket建立连接时的操作，是同步还是异步，阻塞还是非阻塞等等。其中最简单的是BIO模型，是一种同步阻塞的编程方式。同步意味着回轮询查看IO操作是否就绪，而阻塞意味着当我们开始接收消息时，在没有收到发送来的消息的时候就会一直等待。我们可以使用线程池来模拟BIO操作，即当一个连接建立时，在线程池中取出一个线程分配给这个连接，这个线程就一直处理与连接有关的事情。</p>
 <p>服务器端长连接就意味着当我们一个连接的进程读取完一个报文并发送响应报文之后，不能立即关闭连接，而是继续轮询，查看客户端是否发送了数据，直到客户端断开连接。</p>
 <p>MIME需要支持三种类型，意味着我们在发送响应报文时需要添加MIME报文类型，并且实体主体部分的格式也需要符合MIME需求的类型。</p>
 <h2 id="二-整体结构"><a class="markdownIt-Anchor" href="#二-整体结构"></a> 二、整体结构</h2>
+<p><img src="p/%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84.png" alt="" /></p>
 <p>服务器端：位于org.example.server包中。其内部分为六个子包，以及一个Main方法。每个包的职责如下：</p>
 <ul>
 <li>
@@ -250,10 +254,17 @@ SessionTable是一个存储会话信息的类，也使用了单例模式。每�
 <p>1、main函数需要维护一个线程池。这个线程池可以使用ExecutorService类。每次接收到一个连接时，就调用这个对象的execute方法。这个方法的参数是一个Runnable类，也就是一个继承了Runnable接口的类（就是ConnectionController类）。这个类需要重写一个run函数。当execute方法被调用时，就会自动调用这个Runnable对象的run函数。在run函数开始执行时main函数并不会阻塞，而是继续往下执行。这样也就得到了两个同时正在运行的函数，也就是实现了多线程。</p>
 <p>2、run函数中总共需要执行三件事情：读取请求报文、<strong>区分报文类型</strong>并调用相应服务处理、发送相应报文，然后无限循环直到客户端断开连接。这三件事情都可以通过调用其他包中的函数实现。</p>
 <p>3、MessageReader需要传入的是套接字的输入流，Writer也同理。Reader会自动调用Parser中的解析方法，因此可以直接返回Message类。而Writer类则需要手动将Message中的内容拆成HTTP报文形式，然后使用PrintWriter以及OutputStream本身写数据。</p>
-<p>4、Message类以及区分了开始行、首部行和实体主体。其中开始行和首部行的数据类型都是字符串（首部使用了字典来表示键值对），但是实体主体的内容不一定是字符串（由MIME的Content-Type指定），因此需要使用字节数组byte[]。这里写入的时候需要注意。</p>
+<p>4、Message类是表示报文类型的类。区分了开始行、首部行和实体主体。其中开始行和首部行的数据类型都是字符串（首部使用了字典来表示键值对），但是实体主体的内容不一定是字符串（由MIME的Content-Type指定），而是二进制数据流。正常情况下需要使用字节数组byte[]存储。但是这里为了便于表示，我们采取使用Base64编码的方式，将二进制数据流转换成字符串来存储。注意：转换为HTTP报文形式的时候需要先将base64编码转换为相应的二进制数据流。</p>
 <p>5、会话的作用：当我们登录之后，我们需要为登录的用户创建一个会话。每个用户对应一个唯一的会话标识符，并且用户自己也可以获得这个会话标识符。这个会话标识符就是用户登录的证明，用来鉴别请求数据的用户到底是不用登录过的用户。每次已经登录过的用户在请求数据时需要将之前获得的会话标识符也一并加入报文的首部当中，然后服务端接收到这个会话标识符时就会去会话表中查找，如果找到了匹配的用户，就说明请求者是一个登录过的用户，然后就可以允许发送数据。</p>
 <p>5、注册的时候，需要调用UserTable中的方法往表中添加用户。登录的时候需要注意：我们直接去尝试创建一个会话（因为会话创建时以及包含了检验用户和密码的步骤）。如果会话创建失败就说明登录失败。如果会话创建成功也就说明登录成功了。然后需要将会话标识符发送给客户端。以后客户端在请求数据时就需要带有这个会话标识符。</p>
 <p>6、如果客户端来请求数据，在发送数据前需要先根据客户端发送的会话标识符去会话表中查找，判断是不是已经登录过的用户。只有登录的用户才可以被允许获得数据。如果没有登录就不允许发送数据（直接告诉客户端需要先登录）。</p>
+<h2 id="四-具体分工任务"><a class="markdownIt-Anchor" href="#四-具体分工任务"></a> 四、具体分工任务</h2>
+<ul>
+<li>需要编写Main函数和ConnectionController中的run方法，用于执行主要的线程任务。（需要学会线程池的使用、了解Runnable类、HTTP报文的发送和接收方式，了解程序整体运行逻辑、项目中其他各种类的功能）</li>
+<li>需要完成MessageWriter类中的WriteMessage方法。用于将报文拆成原始HTTP报文形式并发送给输出流。（需要学会输出流的读写，HTTP原始报文结构，报文发送方式、Base64解码、Message对象的结构）</li>
+<li>需要完成GetService类中的方法。用于处理请求为GET请求时的服务，包含报文解析，检查登录状态、获取数据等。（需要了解会话原理、会话表类的结构、HTTP报文组成、MIME类型处理、Base64编码等）</li>
+<li>需要完成PostService类的方法。用于处理请求为POST请求时的服务，包含注册、登录等。（需要了解登录注册原理、用户表类的结构、会话原理、会话表类的结构、HTTP报文组成等）</li>
+</ul>
 
             
         </div>
@@ -438,10 +449,10 @@ SessionTable是一个存储会话信息的类，也使用了单例模式。每�
             
                 <div>
                     <span class="icon-brush"></span>
-                    77.5k
+                    77.9k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    04:42
+                    04:43
                 </div>
             
             
