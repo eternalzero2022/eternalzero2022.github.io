@@ -12,7 +12,7 @@
 
     
     <title>
-        2023Fall-线性代数 |
+        冗余磁盘阵列-RAID |
         
         EternalZero2022 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,17 +23,32 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="第一章 行列式  第二章 矩阵，向量  第三章 线性方程组解的结构  第四章 矩阵的特征值与特征向量  第五章 实二次型">
+    <meta name="description" content="冗余磁盘阵列  将多个独立操作的磁盘按某种方式组织成磁盘阵列，以增加容量 将数据存储在多个盘体上，通过这些盘并行工作来提高数据传输率 采用数据冗余来进行错误恢复以提高系统可靠性  由一组物理磁盘组成，每个物理磁盘被视为单个逻辑驱动器，数据分布在多个磁盘上，冗余磁盘用于存储校验信息，保证磁盘损坏时可以恢复数据  RAID分类   RAID 0  数据以条带的形式在可用磁盘上分布（条带：一个磁盘阵列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2023Fall-线性代数">
-<meta property="og:url" content="https://eternalzero2022.github.io/2023/11/09/2023Fall-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.html">
+<meta property="og:title" content="冗余磁盘阵列-RAID">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/index.html">
 <meta property="og:site_name" content="EternalZero2022 的博客">
-<meta property="og:description" content="第一章 行列式  第二章 矩阵，向量  第三章 线性方程组解的结构  第四章 矩阵的特征值与特征向量  第五章 实二次型">
+<meta property="og:description" content="冗余磁盘阵列  将多个独立操作的磁盘按某种方式组织成磁盘阵列，以增加容量 将数据存储在多个盘体上，通过这些盘并行工作来提高数据传输率 采用数据冗余来进行错误恢复以提高系统可靠性  由一组物理磁盘组成，每个物理磁盘被视为单个逻辑驱动器，数据分布在多个磁盘上，冗余磁盘用于存储校验信息，保证磁盘损坏时可以恢复数据  RAID分类   RAID 0  数据以条带的形式在可用磁盘上分布（条带：一个磁盘阵列">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-09T13:31:57.000Z">
-<meta property="article:modified_time" content="2023-11-20T13:29:06.805Z">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/RAID.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/0.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/1.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/0110.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/2.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/3.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/4.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/%E4%B8%A4%E8%AF%BB%E4%B8%A4%E5%86%99.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/5.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/50.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/6.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/%E6%AF%941.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/%E6%AF%942.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/%E6%AF%943.png">
+<meta property="article:published_time" content="2023-12-03T14:35:46.000Z">
+<meta property="article:modified_time" content="2023-12-03T14:36:04.574Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/p/RAID.png">
     
         <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
     
@@ -112,7 +127,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="/images/banner.jpg" data-sizes="auto" alt="2023Fall-线性代数" class="lazyload">
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="冗余磁盘阵列-RAID" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -120,7 +135,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>2023Fall-线性代数</h1></a>
+                        <a href="/" id="logo"><h1>冗余磁盘阵列-RAID</h1></a>
                     
                 
             </div>
@@ -169,22 +184,18 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main"><article id="post-2023Fall-线性代数" class="h-entry article article-type-post"
+                <section id="main"><article id="post-冗余磁盘阵列-RAID" class="h-entry article article-type-post"
          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="article-inner">
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
-    <a href="/2023/11/09/2023Fall-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="article-date-link">
-        <time datetime="2023-11-09T13:31:57.000Z"
-              itemprop="datePublished">2023-11-09</time>
+    <a href="/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/" class="article-date-link">
+        <time datetime="2023-12-03T14:35:46.000Z"
+              itemprop="datePublished">2023-12-03</time>
     </a>
 </div>
 
             
-    <div class="article-category wow slideInLeft">
-        <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
-    </div>
-
 
         </div>
         <div class="hr-line"></div>
@@ -192,16 +203,91 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h2 id="第一章-行列式"><a class="markdownIt-Anchor" href="#第一章-行列式"></a> <a href="../../../../2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/">第一章 行列式</a></h2>
-<h2 id="第二章-矩阵向量"><a class="markdownIt-Anchor" href="#第二章-矩阵向量"></a> <a href="../../../../2023/11/09/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%90%91%E9%87%8F/">第二章 矩阵，向量</a></h2>
-<h2 id="第三章-线性方程组解的结构"><a class="markdownIt-Anchor" href="#第三章-线性方程组解的结构"></a> <a href="../../../../2023/11/09/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/">第三章 线性方程组解的结构</a></h2>
-<h2 id="第四章-矩阵的特征值与特征向量"><a class="markdownIt-Anchor" href="#第四章-矩阵的特征值与特征向量"></a> <a href="../../../../2023/11/09/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/">第四章 矩阵的特征值与特征向量</a></h2>
-<h2 id="第五章-实二次型"><a class="markdownIt-Anchor" href="#第五章-实二次型"></a> <a href="../../../../2023/11/20/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%9E%E4%BA%8C%E6%AC%A1%E5%9E%8B/">第五章 实二次型</a></h2>
+                <h1 id="冗余磁盘阵列"><a class="markdownIt-Anchor" href="#冗余磁盘阵列"></a> 冗余磁盘阵列</h1>
+<ul>
+<li>将多个独立操作的磁盘按某种方式组织成磁盘阵列，以增加容量</li>
+<li>将数据存储在多个盘体上，通过这些盘并行工作来提高数据传输率</li>
+<li>采用数据冗余来进行错误恢复以提高系统可靠性</li>
+</ul>
+<p>由一组物理磁盘组成，每个物理磁盘被视为单个逻辑驱动器，数据分布在多个磁盘上，冗余磁盘用于存储校验信息，保证磁盘损坏时可以恢复数据</p>
+<h2 id="raid分类"><a class="markdownIt-Anchor" href="#raid分类"></a> RAID分类</h2>
+<p><img src="p/RAID.png" alt="" /></p>
+<h2 id="raid-0"><a class="markdownIt-Anchor" href="#raid-0"></a> RAID 0</h2>
+<ul>
+<li>数据以条带的形式在可用磁盘上分布（<strong>条带：一个磁盘阵列被分成很多个条带，条带横跨所有数据磁盘，并且每个磁盘上都有这个条带的一部分。每个磁盘上属于每个条带的一部分被称为条带深度。如果时字节级条带化，那么数据存储时，每个数据块的一个字节在一个磁盘上，下一个字节就在下一个磁盘上。以此类推</strong>）</li>
+<li>不采用冗余</li>
+<li>用途：高数据传输率，高速相应IO请求(两个不同的IO请求在不同的磁盘上)</li>
+</ul>
+<p><img src="p/0.png" alt="" /></p>
+<h2 id="raid-1"><a class="markdownIt-Anchor" href="#raid-1"></a> RAID 1</h2>
+<ul>
+<li>采用数据条带：是</li>
+<li>实现冗余方法：简单备份所有数据</li>
+<li>用途：读请求&lt;/font color = blue&gt;块（选择寻道时间较小的那个），写请求<font color = green>受限于写入较慢的磁盘</font>；高速相应IO请求，恢复受损磁盘简单。<br />
+<img src="p/1.png" alt="" /></li>
+</ul>
+<p><strong>RAID01和RAID10</strong></p>
+<p>RAID01：先做0再做1；RAID10：先做1再做0</p>
+<p><img src="p/0110.png" alt="" /></p>
+<h2 id="raid2"><a class="markdownIt-Anchor" href="#raid2"></a> RAID2</h2>
+<ul>
+<li>并行存取（所有磁盘都参与每个IO请求的执行）</li>
+<li>每个驱动器的轴同步旋转，磁头位置相同</li>
+<li>采用数据条带：是，并且数据条带非常小（一个字节或一个字）</li>
+<li>实现冗余方法：海明码，另外的数个校验盘，同一条带的各个数据盘上的数据位计算的校验码存放在校验盘的对应位置</li>
+<li>用途：<font color = orange>读请求要读出请求和校验码</font>，写请求<font color = red>访问所有数据盘和校验盘</font></li>
+<li>价格昂贵，实际基本弃用</li>
+</ul>
+<p><img src="p/2.png" alt="" /></p>
+<h2 id="raid-3"><a class="markdownIt-Anchor" href="#raid-3"></a> RAID 3</h2>
+<ul>
+<li>并行存取，数据条带小</li>
+<li>实现冗余方法：所有数据盘上 同一位置的数据计算奇偶校验码。当某一磁盘损坏时，可以用于重构数据。(假设b0是损坏的盘中的一位，那么<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mn>0</mn></msub><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>⊕</mo><msub><mi>b</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>b</mi><mn>2</mn></msub><mo>⊕</mo><msub><mi>b</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">b_0 = P(b) \oplus b_1 \oplus b_2 \oplus b_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)</li>
+<li>用途：数据传输率<font color = blue>非常高</font>，但是&lt;/font color = orange&gt;一次只能执行一个IO请求</font>。</li>
+</ul>
+<p><img src="p/3.png" alt="" /></p>
+<h2 id="raid4"><a class="markdownIt-Anchor" href="#raid4"></a> RAID4</h2>
+<ul>
+<li>采用独立存取技术（IO并行处理），数据条带较大（常见位=为4KB），即采取了块级条带化&lt;/font color = orange&gt;（这是与RAID3最大的区别，RAID3采取的一般是字节级条带化）</font></li>
+<li>实现冗余方法：各个数据盘上的数据来逐位计算奇偶校验条带，奇偶校验位存储在奇偶校验盘的对应条带上**（生成的内容RAID3一致）**</li>
+<li>用途：写数据时，如果规模小会发生写损失(要修改用户数据和校验位)，规模大可以直接使用新的数据位替代原来的（横跨多个磁盘的时候），并且由于没错都需要使用校验盘，校验盘会成为瓶颈（因此这个基本弃用，并且也诞生了RAID5）</li>
+</ul>
+<p><img src="p/4.png" alt="" /></p>
+<h2 id="raid5"><a class="markdownIt-Anchor" href="#raid5"></a> RAID5</h2>
+<ul>
+<li>与RAID4组织方式相似（独立存取，块级条带化）</li>
+<li>实现冗余方法：在所有磁盘上都分布了奇偶校验条带</li>
+<li>访问时的“两读两写”：</li>
+</ul>
+<p><img src="p/%E4%B8%A4%E8%AF%BB%E4%B8%A4%E5%86%99.png" alt="" /></p>
+<p><img src="p/5.png" alt="" /></p>
+<p><strong>RAID50</strong>：将不同RAID5多组构成条带访问</p>
+<p><img src="p/50.png" alt="" /></p>
+<ul>
+<li>RAID 50在底层的任一组或多组RAID 5中出现1颗硬盘损坏时，仍能维持运作;如果任一组RAID 5中出现2颗或2颗以上硬盘损毁，整组RAID 50就会失效</li>
+<li>性能比起单纯的RAID 5高，但容量利用率比RAID5要低</li>
+</ul>
+<h2 id="raid6"><a class="markdownIt-Anchor" href="#raid6"></a> RAID6</h2>
+<ul>
+<li>实现冗余方法：采用两种不同的校验码，以分开的块存于不同的磁盘中</li>
+<li>用途：提升数据可用性（平均修复间隔内出现3个磁盘故障才会数据损失），但是每次写都要<font color = red>影响两个校验块（写损失，读3个写3个磁盘）</font></li>
+</ul>
+<p><img src="p/6.png" alt="" /></p>
+<h2 id="raid比较"><a class="markdownIt-Anchor" href="#raid比较"></a> RAID比较：</h2>
+<ul>
+<li>RAID 0：提升I/O响应能力，但数据可用性低</li>
+<li>RAID 1：提升数据可用性，但容量利用率低</li>
+<li>RAID 2 和 RAID3：提升数据可用性和数据传输率，但一次只能处理一个I/O请求</li>
+<li>RAID 4 和 RAID 5 和 RAID 6：提升数据可用性和读速率，但写速率受限</li>
+</ul>
+<p><img src="p/%E6%AF%941.png" alt="" /></p>
+<p><img src="p/%E6%AF%942.png" alt="" /></p>
+<p><img src="p/%E6%AF%943.png" alt="" /></p>
 
             
         </div>
         <footer class="article-footer">
-            <a data-url="https://eternalzero2022.github.io/2023/11/09/2023Fall-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" data-id="clpjt691g0003jkuwe5ak69sy" data-title="2023Fall-线性代数"
+            <a data-url="https://eternalzero2022.github.io/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/" data-id="clppl5cfb0000mguwcdqw0vg7" data-title="冗余磁盘阵列-RAID"
                class="article-share-link">分享</a>
             
             
@@ -214,35 +300,19 @@
         
     <nav id="article-nav" class="wow fadeInUp">
         
-            <div class="article-nav-link-wrap article-nav-link-left">
-                
-                    
-                    
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第一章 行列式" class="lazyload">
-                    
-                
-                <a href="/2023/11/09/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F/"></a>
-                <div class="article-nav-caption">前一篇</div>
-                <h3 class="article-nav-title">
-                    
-                        第一章 行列式
-                    
-                </h3>
-            </div>
-        
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
                     
                     
-                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="个人博客搭建指南" class="lazyload">
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="数据校验码" class="lazyload">
                     
                 
-                <a href="/2023/11/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/"></a>
+                <a href="/2023/12/03/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E7%A0%81/"></a>
                 <div class="article-nav-caption">后一篇</div>
                 <h3 class="article-nav-title">
                     
-                        个人博客搭建指南
+                        数据校验码
                     
                 </h3>
             </div>
