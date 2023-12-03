@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%AD%98%E5%82%A8%E5%99%A8-Cache/p/LRU2.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/12/03/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%AD%98%E5%82%A8%E5%99%A8-Cache/p/FIFO.png">
 <meta property="article:published_time" content="2023-12-03T05:59:45.000Z">
-<meta property="article:modified_time" content="2023-12-03T06:00:16.881Z">
+<meta property="article:modified_time" content="2023-12-03T07:50:24.731Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/03/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%AD%98%E5%82%A8%E5%99%A8-Cache/p/%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84.png">
@@ -307,6 +307,14 @@
 </ul>
 <h3 id="多级cache"><a class="markdownIt-Anchor" href="#多级cache"></a> 多级Cache</h3>
 <p>一级Cache未命中后访问二级Cache</p>
+<h3 id="cache中每行的具体内容"><a class="markdownIt-Anchor" href="#cache中每行的具体内容"></a> Cache中每行的具体内容</h3>
+<ul>
+<li>有效位：1位</li>
+<li>标记位</li>
+<li>数据位：一个块中有多少数据</li>
+<li>脏位（写回算法使用）：1位</li>
+<li>部分替换算法需要的位（没有说明则不用考虑）</li>
+</ul>
 
             
         </div>
