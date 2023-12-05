@@ -30,12 +30,14 @@
 <meta property="og:site_name" content="EternalZero2022 的博客">
 <meta property="og:description" content="登录注册系统实现–基于HTTP报文协议和Java_Socket_API 注意：在阅读本文章前请先参考我的另一篇博客，学习Java的网络编程有关知识：Java网络编程入门指南  一，思路概述  1、整体思路 本次作业，我们需要基于Java Socket API搭建简单的HTTP客户端和服务器端程序，实现一个简单的注册登录系统。 为了实现这个目的，首先我们需要建立一个服务器，这个服务器可以创建一个s">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E5%85%B6%E4%BB%96%E5%8C%85.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E5%AE%A2%E6%88%B7%E7%AB%AF.png">
 <meta property="article:published_time" content="2023-11-28T15:09:16.000Z">
-<meta property="article:modified_time" content="2023-12-02T14:12:30.949Z">
+<meta property="article:modified_time" content="2023-12-05T10:52:15.471Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84.png">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E5%85%B6%E4%BB%96%E5%8C%85.png">
     
         <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
     
@@ -199,7 +201,7 @@
 <p>其次，我们需要搭建一个客户端。根据要求，客户端需要实现请求连接，并且在建立连接之后需要向服务器端发送数据，并接受、解析服务器端发来的响应报文，并且根据报文的不同状态码做出相应的处理，包括在命令行输出结果等等。</p>
 <h3 id="2-细节说明"><a class="markdownIt-Anchor" href="#2-细节说明"></a> 2、细节说明</h3>
 <p>为了保持项目的完整性以及规范性，我们选择创建Java的标准结构项目（包含src、test等文件夹）。项目github地址如下：<a target="_blank" rel="noopener" href="https://github.com/eternalzero2022/JavaSocketAPI">https://github.com/eternalzero2022/JavaSocketAPI</a></p>
-<p>我们的包分为org.example.server和org.example.client，分别表示服务器和客户端。</p>
+<p>我们的包分为org.example.server和org.example.client，分别表示服务器和客户端，以及两个包共同会用到的message包、io包和parser包，分别表示报文信息类、输入输出相关方法和解析报文。</p>
 <p>socket传输时发送的数据通常都是按照http报文的格式的。通常，一个报文分为状态行、首部行和实体主体（实体主体可有可无）。</p>
 <ul>
 <li>状态行为<strong>第一行</strong></li>
@@ -222,16 +224,12 @@
 <p>IO模型主要定义了Socket建立连接时的操作，是同步还是异步，阻塞还是非阻塞等等。其中最简单的是BIO模型，是一种同步阻塞的编程方式。同步意味着回轮询查看IO操作是否就绪，而阻塞意味着当我们开始接收消息时，在没有收到发送来的消息的时候就会一直等待。我们可以使用线程池来模拟BIO操作，即当一个连接建立时，在线程池中取出一个线程分配给这个连接，这个线程就一直处理与连接有关的事情。</p>
 <p>服务器端长连接就意味着当我们一个连接的进程读取完一个报文并发送响应报文之后，不能立即关闭连接，而是继续轮询，查看客户端是否发送了数据，直到客户端断开连接。</p>
 <p>MIME需要支持三种类型，意味着我们在发送响应报文时需要添加MIME报文类型，并且实体主体部分的格式也需要符合MIME需求的类型。</p>
+<p>客户端需要一个与用户交互的界面，使用控制台实现。通过用户在控制台中输入命令信息，客户端可以调用相应的服务，并通过与客户端的交互来获取信息。</p>
+<p>在调用相关的与客户端交互的函数过程中使用了Java事件相关内容。通过激活相关的事件来让监听器调用相关的函数。</p>
 <h2 id="二-整体结构"><a class="markdownIt-Anchor" href="#二-整体结构"></a> 二、整体结构</h2>
-<p><img src="p/%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84.png" alt="" /></p>
-<p>服务器端：位于org.example.server包中。其内部分为六个子包，以及一个Main方法。每个包的职责如下：</p>
+<h3 id="1-io包和message包"><a class="markdownIt-Anchor" href="#1-io包和message包"></a> 1、io包和message包</h3>
+<p><img src="p/%E5%85%B6%E4%BB%96%E5%8C%85.png" alt="" /></p>
 <ul>
-<li>
-<p>main方法：用于实现整体程序的运行，需要维护一个线程池，并且不断监听端口，每产生一个连接就从线程池中分配一个线程给这个连接，并执行control包中的供每个连接使用的run函数。</p>
-</li>
-<li>
-<p>control包：里面有一个ConnectionController类。这个类是一个Runnable类，需要实现供每个线程调用的run函数。这个函数用于保持连接，通过调用io包中的类不断监听客户端发来的请求，并将接收到的报文交给其他Service类进行处理，将处理完毕的报文交给io包中的类发送，然后重复这一过程，直到客户端释放连接。</p>
-</li>
 <li>
 <p>message包：Message抽象类是一个表示报文的类，其中的line是报文开始行，headers是首部，entityBody是实体主体。同时，它还包含一个表示报文类型（请求报文还是响应报文）的messageType。Request类和Response类都属于Message的一种</p>
 </li>
@@ -240,6 +238,17 @@
 </li>
 <li>
 <p>parser包：MessageParser用于将原始形式的HTTP报文解析成一个Message对象。</p>
+</li>
+</ul>
+<h3 id="2-服务器端"><a class="markdownIt-Anchor" href="#2-服务器端"></a> 2、服务器端</h3>
+<p><img src="p/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF.png" alt="" /></p>
+<p>位于org.example.server包中。其内部分为三个子包，以及一个Main方法。每个包的职责如下：</p>
+<ul>
+<li>
+<p>main方法：用于实现整体服务器程序的运行，需要维护一个线程池，并且不断监听端口，每产生一个连接就从线程池中分配一个线程给这个连接，并执行control包中的供每个连接使用的run函数。</p>
+</li>
+<li>
+<p>control包：里面有一个ConnectionController类。这个类是一个Runnable类，需要实现供每个线程调用的run函数。这个函数用于保持连接，通过调用io包中的类不断监听客户端发来的请求，并将接收到的报文交给其他Service类进行处理，将处理完毕的报文交给io包中的类发送，然后重复这一过程，直到客户端释放连接。</p>
 </li>
 <li>
 <p>service包：用于进行不同的服务，分为GetService和PostService，分别处理GET和POST方法。其中，GET方法主要用于登录、注册有关的服务，而POST方法主要用于请求一些服务器的本地资源（文本、图像等）。两个方法需要返回处理完毕后组装的一个用于发送给客户端的新的响应报文。</p>
@@ -250,7 +259,28 @@ UserTable是一个用户数据表类，使用了单例模式，用于存储用�
 SessionTable是一个存储会话信息的类，也使用了单例模式。每个会话都有一个独一无二的会话标识符。每次用户成功登录后，都会创建一个会话，并将会话信息存储在表中，同时会返回一个会话标识符，用来发送给客户端。Session是SessionTable的一个内部类，当调用Session的构造函数时，就会自动给Session分配一个会话标识符。</p>
 </li>
 </ul>
+<h3 id="3-客户端"><a class="markdownIt-Anchor" href="#3-客户端"></a> 3、客户端</h3>
+<p><img src="p/%E5%AE%A2%E6%88%B7%E7%AB%AF.png" alt="" /></p>
+<p>位于org.example.client包下，其内部分为四个子包，以及一个Main方法。每个类的职责如下：</p>
+<ul>
+<li>
+<p>Main方法：用于实现整个客户端程序的运行。Main方法需要使用控制台命令行实现与用户的交互，因此需要打印提示信息，引导用户输入命令。启动时需要先建立连接，然后无限循环，通过控制台提示用户输入选择操作，根据用户输入来调用相应的Control方法，并将程序控制权转交给对应的Control方法直到方法结束，直到用户选择断开连接（断开连接也是通过直接调用新建的event包中的事件源来发送事件实现的）。</p>
+</li>
+<li>
+<p>control包：负责处理用户选择的相应的功能，例如注册、登录、获取文件等。在其中的runControl方法中执行相应的功能。需要与用户进行控制台命令行的交互，引导用户输入相关的内容等，例如注册时引导用户输入账号密码。同时在用户输入完相关的信息之后也需要调用Service包中的相关方法来进行具体业务逻辑的实现。同时也需要接收调用Service方法的返回值，根据返回值的状态判断操作是否成功，然后向控制台输出信息。</p>
+</li>
+<li>
+<p>service包：用于处理相关的业务逻辑，需要根据不同的业务，将给出的信息整合成一个报文对象message，然后调用event中的事件源里的相关方法来激活事件，并将报文传递给那个方法，实现更底层的对报文的处理、转发等。也需要获取底层的报文处理的信息，根据其中信息的内容判断是否出现底层的差错，并进行相应处理，然后返回给上级control方法。这一层还有一个额外功能就是需要在控制台中打印出即将发送的报文内容和收到的报文内容（大作业要求，只需要调用Message类中的打印方法即可）</p>
+</li>
+<li>
+<p>event包：这个包是用来处理与事件相关的操作的，里面还分为了许多小包。Java的事件分为事件源、事件和事件监听类。其中，事件源是产生事件的，而事件是触发的事件本身，其中包含了事件的一些信息。事件监听者会在事件发生时被触发（其中的函数被调用）（想要具体理解可以去网上搜一下）。在这里，source包下的SocketManager是事件源类。这个类中包含了一个事件监听者的列表，其他事件监听者可以通过注册来添加到这个列表中。其他类可以调用这个事件源类中的方法，然后这个方法就会触发事件。事件被触发时，事件源类就会对列表中的每个事件监听者发送事件（调用事件监听者的处理函数，并将事件作为对象传递）。事件源类在面对不同的请求时发送不同的事件信息类，事件监听者就在不同的函数中执行不同的操作，而这些操作需要调用connection包中的底层处理函数，例如建立连接、发送数据、断开连接等。</p>
+</li>
+<li>
+<p>connection包：用于处理与最底层的socket连接相关的类，拥有建立连接、传输报文、断开连接的方法。类中有一个socket成员变量。当建立连接时，这个socket对象就会被赋值。然后后面的传输报文就基于这个socket对象来实现传输（必须保证此时已经建立了连接）。在最后退出的时候还需要执行断开连接的方法来断开连接。</p>
+</li>
+</ul>
 <h2 id="三-具体步骤"><a class="markdownIt-Anchor" href="#三-具体步骤"></a> 三、具体步骤</h2>
+<h3 id="服务器端"><a class="markdownIt-Anchor" href="#服务器端"></a> 服务器端：</h3>
 <p>1、main函数需要维护一个线程池。这个线程池可以使用ExecutorService类。每次接收到一个连接时，就调用这个对象的execute方法。这个方法的参数是一个Runnable类，也就是一个继承了Runnable接口的类（就是ConnectionController类）。这个类需要重写一个run函数。当execute方法被调用时，就会自动调用这个Runnable对象的run函数。在run函数开始执行时main函数并不会阻塞，而是继续往下执行。这样也就得到了两个同时正在运行的函数，也就是实现了多线程。</p>
 <p>2、run函数中总共需要执行三件事情：读取请求报文、<strong>区分报文类型</strong>并调用相应服务处理、发送相应报文，然后无限循环直到客户端断开连接。这三件事情都可以通过调用其他包中的函数实现。</p>
 <p>3、MessageReader需要传入的是套接字的输入流，Writer也同理。Reader会自动调用Parser中的解析方法，因此可以直接返回Message类。而Writer类则需要手动将Message中的内容拆成HTTP报文形式，然后使用PrintWriter以及OutputStream本身写数据。</p>
@@ -258,12 +288,26 @@ SessionTable是一个存储会话信息的类，也使用了单例模式。每�
 <p>5、会话的作用：当我们登录之后，我们需要为登录的用户创建一个会话。每个用户对应一个唯一的会话标识符，并且用户自己也可以获得这个会话标识符。这个会话标识符就是用户登录的证明，用来鉴别请求数据的用户到底是不用登录过的用户。每次已经登录过的用户在请求数据时需要将之前获得的会话标识符也一并加入报文的首部当中，然后服务端接收到这个会话标识符时就会去会话表中查找，如果找到了匹配的用户，就说明请求者是一个登录过的用户，然后就可以允许发送数据。</p>
 <p>5、注册的时候，需要调用UserTable中的方法往表中添加用户。登录的时候需要注意：我们直接去尝试创建一个会话（因为会话创建时以及包含了检验用户和密码的步骤）。如果会话创建失败就说明登录失败。如果会话创建成功也就说明登录成功了。然后需要将会话标识符发送给客户端。以后客户端在请求数据时就需要带有这个会话标识符。</p>
 <p>6、如果客户端来请求数据，在发送数据前需要先根据客户端发送的会话标识符去会话表中查找，判断是不是已经登录过的用户。只有登录的用户才可以被允许获得数据。如果没有登录就不允许发送数据（直接告诉客户端需要先登录）。</p>
+<h3 id="客户端"><a class="markdownIt-Anchor" href="#客户端"></a> 客户端：</h3>
+<p>1、main函数启动客户端，首先需要调用event包中的事件源中的方法来建立与客户端的连接（需要判断是否建立了连接），然后就需要在命令行中输出相关信息，用户提示信息，引导用户输入命令，来进行相应的操作。例如提示用户输入1、2、3分别表示注册、登录、发送数据等，然后读取用户在控制台的输入来执行相应的功能。功能的实现只需要调用Controll包中的类的方法即可。</p>
+<p>2、Controller包有不同的类，都继承自ClientControl接口。其中的一个公共方法就是runControl。在不同的子类中，需要实现不同的功能，包括注册、登录和传递数据等。这里执行的操作是面向用户的，因此也需要通过控制台的交互来引导用户进行输入。当用户输入完相关的操作信息后，就需要调用具体的service包中的业务逻辑方法去具体实现这样的业务逻辑，并返回一个执行的结果。根据执行结果是SUCCESS、FAILURE还是ERROR来断定结果如何，然后向用户输出结果信息。</p>
+<p>3、service包用于执行具体的业务逻辑，可以被调用，接收到来自Controller的参数，然后根据不同类中不同的功能，组装成一个报文，并调用event包其中的事件源类中的函数，同时将这个报文作为一个参数传递，让这个事件源产生事件，并进行底层的进一步的操作。</p>
+<p>4、event包是一个与Java事件相关的包。其中的source包中的SocketManager就是事件源，它内部拥有用于监听的事件监听类Listener的一个集合。在本次作业中，一般每个类表中有且只有一个Listener，这个Listener是在new的时候就可以被添加进去的（直接new一个Listener然后加到里面就行）。可以调用其中的addListener添加监听者。其中的State和message成员变量分别用于存放执行操作后的结果。这个类中有三个函数，分别用于开始连接、发送数据和关闭连接。在调用这些函数时，数据源类会自动对Listener集合中的每个listener进行遍历（本次作业中每次遍历都只会遍历到一个Listener），并调用其中的doEvent函数。这个函数会接收一个event参数，会在事件触发的时候由事件源new出来。事件的构造函数中包含一个事件源的引用，因此需要在new事件的时候将this作为参数传递进去。然后Listener的doEvent函数就会根据事件的具体类型做出具体的措施，一般会调用connection类中的连接、传输数据等函数。同时这个函数需要接收connection类中的函数的返回值，并检测得到的报文中的状态码。如果是301等序号，还需要进一步处理。</p>
+<p>5、connection包用于建立与连接相关的最底层的功能。使用的是单例模式，其中包含有建立连接的函数和向服务器发送报文的函数，已经断开连接的函数。这些函数都分别需要对套接字做出某些措施。这个类本身也有一个套接字成员变量。当建立连接时，建立的套接字会被存放在这个成员变量中，之后的传输都是根据这个套接字展开。最后关闭连接的时候也可以直接关闭这个套接字。这里面的发送数据和接收数据都需要设定一个超时时间。如果超过了这个超时时间，就自动接收并返回超时信息。发送数据时，需要将拿到的报文转换成HTTP报文格式后通过outputstream发送出去，然后从inputstream中接收到服务器发送返回的报文，并进行相应处理。</p>
 <h2 id="四-具体分工任务"><a class="markdownIt-Anchor" href="#四-具体分工任务"></a> 四、具体分工任务</h2>
+<h3 id="服务器"><a class="markdownIt-Anchor" href="#服务器"></a> 服务器：</h3>
 <ul>
 <li>需要编写Main函数和ConnectionController中的run方法，用于执行主要的线程任务。（需要学会线程池的使用、了解Runnable类、HTTP报文的发送和接收方式，了解程序整体运行逻辑、项目中其他各种类的功能）</li>
-<li>需要完成MessageWriter类中的WriteMessage方法。用于将报文拆成原始HTTP报文形式并发送给输出流。（需要学会输出流的读写，HTTP原始报文结构，报文发送方式、Base64解码、Message对象的结构）</li>
+<li>需要完成Message中的toString方法，将HTTP报文形式转换成字符串的形式用于打印。同时需要完成MessageWriter类中的WriteMessage方法。用于将报文拆成原始HTTP报文形式并发送给输出流。（需要学会输出流的读写，HTTP原始报文结构，报文发送方式、Base64解码、Message对象的结构）</li>
 <li>需要完成GetService类中的方法。用于处理请求为GET请求时的服务，包含报文解析，检查登录状态、获取数据等。（需要了解会话原理、会话表类的结构、HTTP报文组成、MIME类型处理、Base64编码等）</li>
 <li>需要完成PostService类的方法。用于处理请求为POST请求时的服务，包含注册、登录等。（需要了解登录注册原理、用户表类的结构、会话原理、会话表类的结构、HTTP报文组成等）</li>
+</ul>
+<h3 id="客户端-2"><a class="markdownIt-Anchor" href="#客户端-2"></a> 客户端：</h3>
+<ul>
+<li>需要完成Connection包中的三个函数，分别关于建立连接、发送数据、断开连接。（需要了解服务器与客户端建立连接的方法，需要了解发送接收报文的方法）</li>
+<li>需要完成Main函数以及Control包中的三个功能的方法，Main函数和Control包的方法都需要进行与用户的命令行交互，调用Service中的函数，根据返回值做出相应回应（需要了解整个客户端程序的大致运行原理，需要懂得如何通过命令行与用户交互，需要了解Service类中方法的功能）</li>
+<li>需要完成Service包中的三个业务逻辑的方法。用于将Control方法给的数据根据不同的需要转换成相应的报文，并激活相对应的事件。（需要了解事件的机制，需要了解不同的业务逻辑，需要了解HTTP报文结构以及Message类的内容）</li>
+<li>需要完成event包中的listener中的SocketListener的实现类。根据接收到的不同的事件类型进行相应的对connection类连接、发送等方法的调用，需要根据connection类函数的返回值的报文情况、301等状态码等做出相应措施</li>
 </ul>
 
             
@@ -449,10 +493,10 @@ SessionTable是一个存储会话信息的类，也使用了单例模式。每�
             
                 <div>
                     <span class="icon-brush"></span>
-                    83.2k
+                    85.8k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    05:01
+                    05:10
                 </div>
             
             
