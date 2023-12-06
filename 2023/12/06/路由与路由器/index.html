@@ -1,0 +1,742 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        路由与路由器 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="路由与路由器  1、路由器基础  路由器的内部组件   特殊组件计算机 console口进行具体的调试 辅助口(Auxiliary)：一般不用  1、随机存取存储器RAM 配置文件或临时存储一般作为内存使用，断电时内容丢失 存储内容：  路由表 ARP缓存 快速切换缓存 报文缓存 数据包保留队列  2、非易失随机存取存储器（NVRAM） NVRAM，存储备份&#x2F;启动配置文件，断电后内容不丢失。（内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由与路由器">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="路由与路由器  1、路由器基础  路由器的内部组件   特殊组件计算机 console口进行具体的调试 辅助口(Auxiliary)：一般不用  1、随机存取存储器RAM 配置文件或临时存储一般作为内存使用，断电时内容丢失 存储内容：  路由表 ARP缓存 快速切换缓存 报文缓存 数据包保留队列  2、非易失随机存取存储器（NVRAM） NVRAM，存储备份&#x2F;启动配置文件，断电后内容不丢失。（内">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/P/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E6%9F%A5%E7%9C%8B%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E5%9F%BA%E6%9C%AC%E7%BC%96%E5%9D%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E4%BA%A4%E6%8D%A2%E8%B7%AF%E7%94%B1%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E8%B7%9D%E7%A6%BB%E5%90%91%E9%87%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E8%B7%AF%E7%94%B1%E7%8E%AF%E8%B7%AF.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E9%93%BE%E8%B7%AF%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/p/%E6%AF%94%E8%BE%83.png">
+<meta property="article:published_time" content="2023-12-06T14:04:45.000Z">
+<meta property="article:modified_time" content="2023-12-06T14:05:43.153Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/P/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="路由与路由器" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>路由与路由器</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-路由与路由器" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/" class="article-date-link">
+        <time datetime="2023-12-06T14:04:45.000Z"
+              itemprop="datePublished">2023-12-06</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="路由与路由器"><a class="markdownIt-Anchor" href="#路由与路由器"></a> 路由与路由器</h1>
+<h2 id="1-路由器基础"><a class="markdownIt-Anchor" href="#1-路由器基础"></a> 1、路由器基础</h2>
+<h3 id="路由器的内部组件"><a class="markdownIt-Anchor" href="#路由器的内部组件"></a> 路由器的内部组件</h3>
+<p><img src="P/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE.png" alt="" /></p>
+<ul>
+<li>特殊组件计算机</li>
+<li>console口进行具体的调试<br />
+辅助口(Auxiliary)：一般不用</li>
+</ul>
+<p><strong>1、随机存取存储器RAM</strong><br />
+配置文件或临时存储一般作为内存使用，断电时内容丢失</p>
+<p>存储内容：</p>
+<ul>
+<li>路由表</li>
+<li>ARP缓存</li>
+<li>快速切换缓存</li>
+<li>报文缓存</li>
+<li>数据包保留队列</li>
+</ul>
+<p><strong>2、非易失随机存取存储器（NVRAM）</strong><br />
+NVRAM，存储备份/启动配置文件，断电后内容不丢失。（内置的电池保证不断电），保证快速访问</p>
+<p><strong>3、Flash</strong><br />
+电子可擦除可编程只读存储器EEPROM，存储了Cisco IOS（互联网操作系统），允许更新软件而无需更换闪存芯片；断电保持</p>
+<p><strong>4、只读存储器（ROM）</strong><br />
+ROM，包含POST、引导程序（加载Cisco IOS），作系统软件</p>
+<h3 id="接口"><a class="markdownIt-Anchor" href="#接口"></a> 接口</h3>
+<p>数据包通过其进入和离开路由器的网络连接口，附在主板上或作为单独的模块</p>
+<h2 id="2-路由器启动步骤"><a class="markdownIt-Anchor" href="#2-路由器启动步骤"></a> 2、路由器启动步骤</h2>
+<h3 id="系统启动程序"><a class="markdownIt-Anchor" href="#系统启动程序"></a> 系统启动程序</h3>
+<ul>
+<li>开机自检，从所有硬件模块的ROM执行诊断，如果无法重启就需要对硬件进行检查。</li>
+<li>验证CPU、内存和网络接口的基本操作</li>
+<li>软件初始化</li>
+</ul>
+<h3 id="软件启动程序"><a class="markdownIt-Anchor" href="#软件启动程序"></a> 软件启动程序：</h3>
+<ul>
+<li>ROM在中的通用引导加载程序在CPU卡上执行，</li>
+<li>操作系统可以在配置寄存器的启动字段上表示的位置中找到</li>
+<li>加载操作系统映像（IOS）</li>
+<li>将保存在NVRAM中的配置文件加载到主存储器中，并一次执行一行</li>
+<li>如果NVRAM中没有配置文件，就进入初始配置例程，成为系统配置对话框（设置模式）</li>
+</ul>
+<h3 id="路由器初始化过程"><a class="markdownIt-Anchor" href="#路由器初始化过程"></a> 路由器初始化过程</h3>
+<p><img src="p/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt="" /></p>
+<p><img src="p/%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE.png" alt="" /></p>
+<h3 id="查看和修改基本路由器配置"><a class="markdownIt-Anchor" href="#查看和修改基本路由器配置"></a> 查看和修改基本路由器配置</h3>
+<p><img src="p/%E6%9F%A5%E7%9C%8B%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE.png" alt="" /></p>
+<h3 id="执行基本编址方案"><a class="markdownIt-Anchor" href="#执行基本编址方案"></a> 执行基本编址方案</h3>
+<p><img src="p/%E5%9F%BA%E6%9C%AC%E7%BC%96%E5%9D%80.png" alt="" /></p>
+<ul>
+<li>显示当前随机访问存储器中的配置show running-config</li>
+<li>存储路由器基本配置：copy running-config   startup-config</li>
+<li>显示NVRAM中的配置文件：show startup-config</li>
+<li>显示路由表：show ip route</li>
+<li>显示所有接口的配置信息： show interfaces</li>
+<li>显示接口的简要信息：show ip int brief</li>
+</ul>
+<h2 id="3-路由和配置"><a class="markdownIt-Anchor" href="#3-路由和配置"></a> 3、路由和配置</h2>
+<h3 id="使用网络寻址进行路由"><a class="markdownIt-Anchor" href="#使用网络寻址进行路由"></a> 使用网络寻址进行路由</h3>
+<p>路由器通过两个功能，将报文从一条数据链路交换（中继，relay）到另一条数据链路。</p>
+<ul>
+<li>切换功能（switching function）：允许路由器在一个接口上接收报文并通过第二个端口转发</li>
+<li>路径选择功能（path determination function）：使路由器选择最合适的接口转发数据包</li>
+<li>路由器使用地址的网络部分进行路径选择，将数据包传递到下一个路由器；地址的节点部分由直接连接到目标网络的路由器使用，以将数据包传递到正确的主机。</li>
+</ul>
+<h3 id="静态和动态路由"><a class="markdownIt-Anchor" href="#静态和动态路由"></a> 静态和动态路由</h3>
+<p>静态路由：网关进入路由器进行配置的协议</p>
+<p>动态路由：路由协议自动调整来适应拓扑和网络交通的变化</p>
+<p><strong>1、静态路由</strong><br></p>
+<p><img src="p/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE.png" alt="" /></p>
+<p>如果希望隐藏网络的某些部分，只有一条路径可以访问网络，可以使用静态路由（默认路由，将B所有不知道的位置全部交给A，由A去进行访问）</p>
+<p>这种分区称为末节网络</p>
+<p><strong>2、静态路由配置</strong><br><br />
+允许对路由表的手动配置</p>
+<p>命令格式：<code>ip route network [mask]&#123;address|interface&#125;[distance]</code></p>
+<p>其中：</p>
+<ul>
+<li>network：目的网络或子网</li>
+<li>mask：子网掩码</li>
+<li>address：下一跳地址</li>
+<li>interface：获取目的网络的接口</li>
+<li>distance：管理距离</li>
+</ul>
+<p>管理距离（administrative distance）是路由器信息源的可信赖性的等级，表示从0到255的数值</p>
+<ul>
+<li>数字越大，可信度越低。因此静态路由的管理距离通常设置很短（默认为1）</li>
+<li>管理距离为0：直连网段最可信，比静态路由还高</li>
+</ul>
+<p><strong>3、动态路由</strong><br><br />
+可以重定向网络中不同路径之间的流量traffic（或负载分担loadshare）</p>
+<ul>
+<li>依赖于路由协议在路由器之间共享知识</li>
+<li>取决于两个路由器基本功能：维护路由表、向其他路由表分发路由信息</li>
+<li>彼此交换路由信息</li>
+</ul>
+<p><img src="p/%E4%BA%A4%E6%8D%A2%E8%B7%AF%E7%94%B1%E4%BF%A1%E6%81%AF.png" alt="" /></p>
+<h3 id="收敛时间"><a class="markdownIt-Anchor" href="#收敛时间"></a> 收敛时间</h3>
+<ul>
+<li>从刚启动到网络到达稳定的时间</li>
+<li>从发生变化到再次稳定的时间</li>
+</ul>
+<h3 id="动态路由协议分类"><a class="markdownIt-Anchor" href="#动态路由协议分类"></a> 动态路由协议分类</h3>
+<ul>
+<li>距离向量算法（Distance Vector）</li>
+<li>链路状态（Link state）</li>
+<li>混合路由（Hybird Routing）</li>
+</ul>
+<p>其中Hybrid Routing是在两种中间</p>
+<p><strong>1、距离向量协议</strong><br />
+路由器不需要知道网络的确切拓扑，路由器之间传递的是路由表的周期性副本（只知道可达，不需要知道怎么可达）</p>
+<p><img src="p/%E8%B7%9D%E7%A6%BB%E5%90%91%E9%87%8F.png" alt="" /></p>
+<p>会产生路由环路问题：</p>
+<p><img src="p/%E8%B7%AF%E7%94%B1%E7%8E%AF%E8%B7%AF.png" alt="" /></p>
+<p>Network1突然不可达，此时A的路由表删除了这条路由，但是B就发出了高速A到达E可以经过A，距离为2的消息，被C接收到，然后C传给D，D再传回给A，让A误认为网段1可以经由D到达。于是也接着发送，一直循环，直到最后距离计数到达无穷大。</p>
+<p>解决方案：</p>
+<ul>
+<li>定义最大值：设置最大跳数，比如最多转发15跳</li>
+<li>路由中毒：网络发生故障时，路由器将这个网段的条目设置为不可达而不是直接删除。（可以转发直到整个网段的路由器都受到这条消息）</li>
+<li>水平分隔：从某个端口收到的报文信息，不再从端口发送出去</li>
+<li>计时器：收到网络信息不可达的信息时启动计时器，如果计时设备收到了一个比原来更好的到达的路径就会修改对应记录否则不修改；计时器结束后删除对应的条目</li>
+</ul>
+<p><strong>2、阻止发送路由更新</strong><br />
+防止接口发出任何路由更新信息的命令：<br><br />
+<code>Router（config-router）#Passive-interface f0/0</code><br />
+(只有在使用距离矢量路由协议时才有效)</p>
+<h3 id="链接状态协议link-state-protocol"><a class="markdownIt-Anchor" href="#链接状态协议link-state-protocol"></a> 链接状态协议Link-state Protocol</h3>
+<p>被OSPF使用<br />
+SPF算法，维护复杂的拓扑信息数据库。</p>
+<p>相关的使用信息：</p>
+<ul>
+<li>链接状态广告（LSA）：告诉对方有这个链路</li>
+<li>拓扑数据库：由LSA组成，每个节点都有</li>
+<li>根据SPF算法生成SPF树</li>
+<li>每个网络的路径和端口的路由表</li>
+</ul>
+<p><strong>1、链接状态网络发现</strong></p>
+<p><img src="p/%E9%93%BE%E8%B7%AF%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE7.png" alt="" /></p>
+<p>路由器之间会交换LSA，每个路由器和其他路由器并行构建一个拓扑数据库，包含来自网络的所有LSA。</p>
+<p>SPF算法对逻辑拓扑构建一棵树，以自身为根进行最短路径优先（SPF）排序；路由器在路由表中列出其最佳路径以及这些目标网络的端口。</p>
+<p>链路状态的问题：</p>
+<ul>
+<li>处理和存储要求：需要更多内存执行CPU计算</li>
+<li>带宽要求：初始链路状态数据包的泛洪使得对带宽的需求增加（初始消耗大，之后消耗小）</li>
+</ul>
+<h3 id="问题链接状态更新"><a class="markdownIt-Anchor" href="#问题链接状态更新"></a> 问题：链接状态更新</h3>
+<p>必须确保所有路由器获得所有需要的LSA数据包，各路由器根据不同的拓扑数据计算路由（如果有一个链路的状态发生变化，全部路由器就需要重新计算）。</p>
+<h3 id="比较链接状态算法和距离向量算法"><a class="markdownIt-Anchor" href="#比较链接状态算法和距离向量算法"></a> 比较：链接状态算法和距离向量算法</h3>
+<p><img src="p/%E6%AF%94%E8%BE%83.png" alt="" /></p>
+<p>距离向量协议：</p>
+<ul>
+<li>视野窄，代价小</li>
+<li>基于跳数</li>
+<li>定期交换路由表，收敛慢</li>
+<li>交换路由表</li>
+</ul>
+<p>链路状态协议：</p>
+<ul>
+<li>视野宽，有一定代价</li>
+<li>基于带宽</li>
+<li>初期充分交换，收敛快</li>
+<li>交换Linked State的数据库</li>
+</ul>
+<h3 id="混合协议hybrid-routing"><a class="markdownIt-Anchor" href="#混合协议hybrid-routing"></a> 混合协议：Hybrid Routing</h3>
+<p>同时使用并共享距离向量和链路状态</p>
+<h3 id="主动路由协议"><a class="markdownIt-Anchor" href="#主动路由协议"></a> 主动路由协议</h3>
+<p>Routing Protocol</p>
+<p>IP 主动路由协议的示例包括：</p>
+<table>
+<thead>
+<tr>
+<th>英文缩写</th>
+<th>英文解释</th>
+<th>中文解释</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RIP</td>
+<td>a distance-vector routing protocol</td>
+<td>距离矢量协议</td>
+<td>DV</td>
+</tr>
+<tr>
+<td>IGRP</td>
+<td>Cisco’s distance-vector routing protocol IGRP</td>
+<td>思科的距离矢量路由协议</td>
+<td>DV，基本启用</td>
+</tr>
+<tr>
+<td>OSPF</td>
+<td>Open Shortest Path First</td>
+<td>开放式最短路径优先</td>
+<td>LSP</td>
+</tr>
+<tr>
+<td>EIGRP</td>
+<td>-</td>
+<td>平衡的混合路由协议</td>
+<td>杂合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="路由协议的主要目标"><a class="markdownIt-Anchor" href="#路由协议的主要目标"></a> 路由协议的主要目标</h3>
+<ul>
+<li>最佳路线：选择最佳路路线</li>
+<li>效率：最少使用带宽和路由器处理器资源</li>
+<li>快速收敛：越快越好。有些比其他人收敛更快</li>
+<li>灵活性：可以处理各种情况，例如高使用率和失败的路由</li>
+</ul>
+<p>标准：四个方面都好的协议更好一些；可以同时运行多个进程，之后基于AD度量</p>
+<h3 id="启动动态路由协议"><a class="markdownIt-Anchor" href="#启动动态路由协议"></a> 启动动态路由协议</h3>
+<p>启动protocol：<code>router protocol [RIP…]</code><br />
+公告端口：<code>network [network-number]</code>，要求是直连的网口</p>
+<h3 id="定义默认路由"><a class="markdownIt-Anchor" href="#定义默认路由"></a> 定义默认路由</h3>
+<p>默认路由使得路由表更短；如果路由表中没有目标网络的条目就会将数据包发送到这个默认网络中</p>
+<p>使用动态路由协议定义默认路由：<code>Router（config）## ip default-network [network-number]</code></p>
+<p>将默认路由定义为静态路由：<code>Router（config）## ip route 0.0.0.0 0.0.0.0 [next-hop-ipaddress| exit-interface]</code></p>
+<p>配置默认路由后，使用 show ip route 将显示：（172.16.1.2 是默认的下一跳地址）</p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/" data-id="clptuexxz0000nsuwaiif3di4" data-title="路由与路由器"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="虚拟存储器" class="lazyload">
+                    
+                
+                <a href="/2023/12/05/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        虚拟存储器
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">34</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    89.7k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    05:23
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">34</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
