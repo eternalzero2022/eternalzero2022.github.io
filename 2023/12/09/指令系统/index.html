@@ -1,0 +1,771 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        指令系统 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="指令系统 指令集：CPU能执行的各种不同指令的集合 指令：计算机处理的最基本单位（操作码（执行指令的内容，表明这条指令是什么）+操作数（要操作的对象，指令需要对哪些数据进行处理）） 指令的要素  操作码：指令将要完成的操作 源操作数引用：操作会涉及一个或多个源操作数，这是操作所需的输入 结果操作数引用：操作可能会产生一个结果 下一指令引用：告诉处理器这条指令执行完成后到哪儿去取下一条指令   指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指令系统">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="指令系统 指令集：CPU能执行的各种不同指令的集合 指令：计算机处理的最基本单位（操作码（执行指令的内容，表明这条指令是什么）+操作数（要操作的对象，指令需要对哪些数据进行处理）） 指令的要素  操作码：指令将要完成的操作 源操作数引用：操作会涉及一个或多个源操作数，这是操作所需的输入 结果操作数引用：操作可能会产生一个结果 下一指令引用：告诉处理器这条指令执行完成后到哪儿去取下一条指令   指">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E6%8C%87%E4%BB%A4.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E5%88%86%E6%94%AF%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E8%B7%B3%E6%AD%A5%E6%8C%87%E4%BB%A4.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E5%88%86%E6%94%AF%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E5%A4%A7%E5%B0%8F%E7%AB%AF.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/P/%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E7%9B%B8%E5%AF%B9%E5%81%8F%E7%A7%BB.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E5%81%8F%E7%A7%BB2.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E5%9F%BA%E5%9D%80%E5%AF%84%E5%AD%98%E5%99%A8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E6%A0%88%E5%AF%BB%E5%9D%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E8%80%83%E8%99%91%E5%9B%A0%E7%B4%A0.png">
+<meta property="article:published_time" content="2023-12-09T08:48:41.000Z">
+<meta property="article:modified_time" content="2023-12-09T08:49:02.474Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/p/%E6%8C%87%E4%BB%A4.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="指令系统" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>指令系统</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-指令系统" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/" class="article-date-link">
+        <time datetime="2023-12-09T08:48:41.000Z"
+              itemprop="datePublished">2023-12-09</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="指令系统"><a class="markdownIt-Anchor" href="#指令系统"></a> 指令系统</h1>
+<p>指令集：CPU能执行的各种不同指令的集合</p>
+<p>指令：计算机处理的最基本单位（操作码（执行指令的内容，表明这条指令是什么）+操作数（要操作的对象，指令需要对哪些数据进行处理））</p>
+<p>指令的要素</p>
+<ul>
+<li>操作码：指令将要完成的操作</li>
+<li>源操作数引用：操作会涉及一个或多个源操作数，这是操作所需的输入</li>
+<li>结果操作数引用：操作可能会产生一个结果</li>
+<li>下一指令引用：告诉处理器这条指令执行完成后到哪儿去取下一条指令</li>
+</ul>
+<h2 id="指令表示"><a class="markdownIt-Anchor" href="#指令表示"></a> 指令表示</h2>
+<p>操作码：被缩写成助记符：ADD/SUB/LOAD（由存储器装入）/STOR（保存到存储器）</p>
+<p>操作数：用符号表示，用寄存器编号或内存地址替换操作数</p>
+<h3 id="指令格式"><a class="markdownIt-Anchor" href="#指令格式"></a> 指令格式：</h3>
+<ul>
+<li>| OP | A1 | A2 | A3 | A4 |：(A1) OP (A2) -&gt; A3,A4为下一条将要执行的指令的地址</li>
+<li>| OP | A1 | A2 | A3 |：(A1) OP (A2) -&gt; A3</li>
+<li>| OP | A1 | A2 |:(A1) OP (A2) -&gt; A1</li>
+<li>| OP | A1 |:OP (A1) -&gt; A 或 (ACC累加器) OP (A1) -&gt; ACC</li>
+<li>| OP |</li>
+</ul>
+<h3 id="扩展操作码"><a class="markdownIt-Anchor" href="#扩展操作码"></a> 扩展操作码：</h3>
+<ul>
+<li>定长操作码：𝒏位操作码字段的指令系统最大能够表示𝟐𝒏条指令</li>
+<li>可变长操作码(扩展操作码)：不同地址数的指令具有不同长度的操作码</li>
+</ul>
+<p>假如指令具有以下格式：</p>
+<p><img src="p/%E6%8C%87%E4%BB%A4.png" alt="" /></p>
+<p>可以根据开头的操作码的内容区分操作码长度和n地址指令</p>
+<ul>
+<li>15条三地址指令操作码：0000 ~ 1110（开头四位操作码在0000-1110之间）</li>
+<li>15条二地址指令操作码：1111 0000 ~ 1111 1110（开头是三地址指令唯一剩下的一个四位数：1111，在此基础上后面多使用四位用来区分不同的二地址指令，同时这四位最大为1110）</li>
+<li>15条一地址指令操作码：1111 1111 0000 ~ 1111 1111 1110（开头是二地址指令唯一剩下的八位数：1111 1111，然后后面四位同理，空出最后一种）<br />
+16条零地址指令操作码：剩余的</li>
+</ul>
+<p><strong>例题：假设指令字长为16位，操作数的地址码为6位，指令有零地址、一地<br />
+址、二地址3种格式。</strong><br><br />
+1、设操作码固定，若零地址指令有M种，一地址指令有N种，则二地址指<br />
+令最多有几种？</p>
+<p>方法：由于是定长操作码，可以算出总的指令操作码位数，然后算出指令的个数，减去零地址和一地址指令的数量即可。</p>
+<ul>
+<li>操作码位数：16-6-6 = 4，操作码个数：16，二地址数量：16-M-N</li>
+</ul>
+<p>2、采用扩展操作码技术，二地址指令最多有几种？<br><br />
+0000-1110（空出最后一种给其他一地址和零地址指令）</p>
+<p>3、采用扩展操作码技术，若二地址指令有P条，零地址指令有Q条，则一<br />
+地址指令最多有几种？<br></p>
+<ul>
+<li>可以通过解方程的方法解决，我们可以通过二地址数量算出一地址，再通过一地址算出零地址。</li>
+<li>假设一地址数量为R，则：可以列出方程：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">(</mo><msup><mn>2</mn><mn>4</mn></msup><mo>−</mo><mi>P</mi><mo stretchy="false">)</mo><mo>×</mo><msup><mn>2</mn><mn>6</mn></msup><mo>−</mo><mi>R</mi><mo stretchy="false">]</mo><mo>×</mo><msup><mn>2</mn><mn>6</mn></msup><mo>=</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">[(2^4-P) \times 2^6 - R] \times 2^6 = Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">Q</span></span></span></span>，然后求解即可</li>
+</ul>
+<h2 id="操作码"><a class="markdownIt-Anchor" href="#操作码"></a> 操作码</h2>
+<ul>
+<li>差异：不同的计算机上操作码的数目变动是很大的</li>
+<li>共性：所有计算机上都会存在相同的常用操作类型</li>
+</ul>
+<p>操作码类型：</p>
+<ul>
+<li>数据传送</li>
+<li>算术运算</li>
+<li>逻辑运算</li>
+<li>输入/输出</li>
+<li>控制转移：</li>
+</ul>
+<p>1、分支/跳转指令：把将要执行的下一条指令的地址作为它的操作数之一</p>
+<p><img src="p/%E5%88%86%E6%94%AF%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4.png" alt="" /></p>
+<p>2、跳步指令：包含一个隐含地址，该隐含地址等于下一指令地址加上该指令长度之和</p>
+<p><img src="p/%E8%B7%B3%E6%AD%A5%E6%8C%87%E4%BB%A4.png" alt="" /></p>
+<p>3、过程调用指令：涉及由目前位置转移到过程的调用指令和由过程返回到调用发生位置的返回指令（类似函数的进入和返回）</p>
+<p><img src="p/%E5%88%86%E6%94%AF%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4.png" alt="" /></p>
+<h2 id="操作数"><a class="markdownIt-Anchor" href="#操作数"></a> 操作数</h2>
+<p>常见类型：</p>
+<ul>
+<li>地址</li>
+<li>数值</li>
+<li>字符</li>
+<li>逻辑数据</li>
+</ul>
+<h3 id="地址"><a class="markdownIt-Anchor" href="#地址"></a> 地址</h3>
+<p>每条指令需要有四个地址引用：2个源操作数，1个目的操作数（可以和源操作数相同），以及下一指令地址（可隐藏）</p>
+<p>每条指令中的地址数量越少，会使得：指令的长度越短，不需要复杂CPU，但是指令条数增多，执行时间更长，程序也更长更复杂</p>
+<h3 id="数值"><a class="markdownIt-Anchor" href="#数值"></a> 数值</h3>
+<p>计算机存储的数值是受限的（数值幅值、浮点数精度）</p>
+<p>数值数据的类型：</p>
+<ul>
+<li>二进制整数或定点数</li>
+<li>二进制浮点数</li>
+<li>十进制数</li>
+</ul>
+<h3 id="字符"><a class="markdownIt-Anchor" href="#字符"></a> 字符</h3>
+<ul>
+<li>ASCII：每个字符被表示成唯一的7位二进制串</li>
+<li>扩展的二进制编码的十进制交换码（EBCDIC）：8位编码</li>
+<li>统一码（Unicode）：16 位 / 32 位</li>
+</ul>
+<h3 id="逻辑数据"><a class="markdownIt-Anchor" href="#逻辑数据"></a> 逻辑数据</h3>
+<p>将一个n位单元看成是由n个1位项组成，每项有值0或1</p>
+<h3 id="大端序和小端序"><a class="markdownIt-Anchor" href="#大端序和小端序"></a> 大端序和小端序</h3>
+<ul>
+<li>大端序：数据的低位字节存放在内存的<strong>高位</strong>部分</li>
+<li>小端序：数据的低位字节存放在内存的<strong>低位</strong>部分</li>
+</ul>
+<p>假设有32位的十六进制值12345678，将它存储在可字节寻址的存储器地址184处</p>
+<p><img src="p/%E5%A4%A7%E5%B0%8F%E7%AB%AF.png" alt="" /></p>
+<p>看着顺眼的就是大端序</p>
+<p>端序不影响结构中数据项的次序</p>
+<h3 id="操作数引用"><a class="markdownIt-Anchor" href="#操作数引用"></a> 操作数引用</h3>
+<ul>
+<li>操作数的实际值</li>
+<li>操作数的地址（寄存器或主存/虚拟内存）</li>
+</ul>
+<h3 id="记号"><a class="markdownIt-Anchor" href="#记号"></a> 记号</h3>
+<ul>
+<li>A: 指令中地址字段的内容（指令中本身的信息）</li>
+<li>R: 指向寄存器的指令地址字段内容（指令中本身的关于寄存器地址的信息）</li>
+<li>EA: 被访问位置的实际（有效）地址（数据的地址）</li>
+<li>(X): 存储器位置 X 或寄存器 X 的内容（X指向的寄存器或空间）</li>
+</ul>
+<h3 id="寻址方式"><a class="markdownIt-Anchor" href="#寻址方式"></a> 寻址方式</h3>
+<ul>
+<li>立即寻址</li>
+<li>直接寻址</li>
+<li>间接寻址</li>
+<li>寄存器寻址</li>
+<li>寄存器间接寻址</li>
+<li>偏移寻址</li>
+<li>栈寻址</li>
+</ul>
+<h4 id="立即寻址"><a class="markdownIt-Anchor" href="#立即寻址"></a> 立即寻址</h4>
+<p><img src="p/%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80.png" alt="" /></p>
+<p>操作数<strong>实际值</strong>出现在指令中</p>
+<p>操作数 = A</p>
+<ul>
+<li>快，除了取指令之外，不需要额外的存储器访问</li>
+<li>但是数的大小受限于地址字段的长度</li>
+</ul>
+<h4 id="直接寻址"><a class="markdownIt-Anchor" href="#直接寻址"></a> 直接寻址</h4>
+<p>地址字段含有操作数的<strong>有效地址</strong></p>
+<p>EA = A</p>
+<p><img src="P/%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png" alt="" /></p>
+<ul>
+<li>只要求1次存储器访问，且无需为生成地址而专门计算</li>
+<li>但是只有有限的地址空间</li>
+</ul>
+<h4 id="间接寻址"><a class="markdownIt-Anchor" href="#间接寻址"></a> 间接寻址</h4>
+<p>地址字段指示一个存储器字地址, 而此地址出保存有操作数的全长度地址</p>
+<p>EA = (A)</p>
+<p><img src="p/%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png" alt="" /></p>
+<ul>
+<li>扩大了地址空间</li>
+<li>但是取操作数需要2次访问存储器</li>
+</ul>
+<h4 id="寄存器寻址"><a class="markdownIt-Anchor" href="#寄存器寻址"></a> 寄存器寻址</h4>
+<p>地址字段指示的是寄存器</p>
+<p>EA = R</p>
+<p><img src="p/%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80.png" alt="" /></p>
+<ul>
+<li>指令中仅需要一个较小的地址字段, 且不需要存储器访问</li>
+<li>但是地址空间十分有限</li>
+</ul>
+<h4 id="寄存器间接寻址"><a class="markdownIt-Anchor" href="#寄存器间接寻址"></a> 寄存器间接寻址</h4>
+<p>地址字段指示寄存器</p>
+<p>EA = ®</p>
+<p><img src="p/%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png" alt="" /></p>
+<ul>
+<li>扩大了地址空间，比间接寻址少1次存储器访问</li>
+<li>但是相对于寄存器寻址，需要多1次存储器访问</li>
+</ul>
+<h4 id="偏移寻址相对寻址"><a class="markdownIt-Anchor" href="#偏移寻址相对寻址"></a> 偏移寻址：相对寻址</h4>
+<p>隐含引用的寄存器是程序计数器（PC），此指令后续的下一条指令的地址加上地址字段的值产生有效地址</p>
+<p>EA = (PC) + A</p>
+<p><img src="p/%E7%9B%B8%E5%AF%B9%E5%81%8F%E7%A7%BB.png" alt="" /></p>
+<ul>
+<li>利用程序局部性原理，节省指令中地址的位数</li>
+</ul>
+<h4 id="偏移寻址基址寄存器寻址"><a class="markdownIt-Anchor" href="#偏移寻址基址寄存器寻址"></a> 偏移寻址：基址寄存器寻址</h4>
+<p>被引用的寄存器含有一个存储器地址，地址字段含有一个相对于那个地址的偏移量（通常是无符号整数表示）</p>
+<p>EA = (B) + A</p>
+<p><img src="p/%E5%81%8F%E7%A7%BB2.png" alt="" /></p>
+<h4 id="偏移寻址变址寻址"><a class="markdownIt-Anchor" href="#偏移寻址变址寻址"></a> 偏移寻址：变址寻址</h4>
+<p>指令地址字段引用一个主存地址，被引用的寄存器含有对于该地址的一个正的偏移量</p>
+<p>EA = A + (IX)</p>
+<p><img src="p/%E5%9F%BA%E5%9D%80%E5%AF%84%E5%AD%98%E5%99%A8.png" alt="" /></p>
+<p>为完成重复操作提供一种高效机制</p>
+<p>扩展：结合间接寻址和变址寻址</p>
+<ul>
+<li>前变址：EA = (A + (IX))通过变址寻址得到的数据本身是一个数据地址</li>
+<li>后变址：EA = (A) + (IX)A不是数据地址本身，而是存放数据的地址的空间的地址</li>
+</ul>
+<h4 id="栈寻址"><a class="markdownIt-Anchor" href="#栈寻址"></a> 栈寻址</h4>
+<p>栈指针保存在寄存器中，对寄存器中栈位置的访问实际上是一种寄存器<br />
+间接寻址方式</p>
+<p>与栈相关的是一个指针，它的值是栈顶地址</p>
+<p><img src="p/%E6%A0%88%E5%AF%BB%E5%9D%80.png" alt="" /></p>
+<h2 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h2>
+<p>栈的实现：</p>
+<ul>
+<li>栈基（base）：保存为栈保留的内存块底、部位置的地址</li>
+<li>栈限（limit）：保存为栈保留的内存块另一端的地址</li>
+<li>栈指针（pointer）：保存栈顶的地址</li>
+<li>向上/向下增长：向着地址增大/减小的方向增长</li>
+</ul>
+<p>栈的应用：表达式求值（使用后缀表示（逆波兰表示））</p>
+<h2 id="指令格式的设计原则"><a class="markdownIt-Anchor" href="#指令格式的设计原则"></a> 指令格式的设计原则</h2>
+<ul>
+<li>指令尽量短</li>
+<li>有足够的操作码位数</li>
+<li>操作码的编码必须有唯一的解释</li>
+<li>指令长度是字节的整数倍</li>
+<li>合理选择地址字段的个数</li>
+<li>指令尽量规整</li>
+</ul>
+<h3 id="指令长度"><a class="markdownIt-Anchor" href="#指令长度"></a> 指令长度</h3>
+<p>应该等于存储器的传送长度（即数据总线宽度），或者这两个值其中之一是另一个的整数倍</p>
+<h3 id="位的分配"><a class="markdownIt-Anchor" href="#位的分配"></a> 位的分配</h3>
+<p>对于给定的指令长度，在操作码数目和寻址能力之间存在着权衡考虑</p>
+<ul>
+<li>使用变长的操作码</li>
+<li>使用寻址位的考虑因素</li>
+</ul>
+<p><img src="p/%E8%80%83%E8%99%91%E5%9B%A0%E7%B4%A0.png" alt="" /></p>
+<h3 id="变长指令"><a class="markdownIt-Anchor" href="#变长指令"></a> 变长指令</h3>
+<ul>
+<li>易于提供大的操作码清单，寻址方式灵活</li>
+<li>但是增加了CPU的复杂程度</li>
+</ul>
+<h3 id="指令集设计"><a class="markdownIt-Anchor" href="#指令集设计"></a> 指令集设计</h3>
+<p>设计的基本原则：</p>
+<ul>
+<li>完备性/完整性：操作类型应当尽可能完备，但太复杂了也会给硬件实现增</li>
+<li>加困难</li>
+<li>兼容性：应当兼容以前的指令系统，为软件重复利用带来方便</li>
+<li>均匀性：应当能对多种类型的数据进行处理</li>
+<li>可扩充性：操作码要预留一定的编码空间</li>
+</ul>
+<p>设计的基本问题：</p>
+<ul>
+<li>操作指令表：应提供多少和什么样的操作，操作有多复杂</li>
+<li>数据类型：对哪几种数据类型完成操作</li>
+<li>指令格式：指令的位长度、地址数目、各个字段的大小等</li>
+<li>寄存器：能被指令访问的寄存器数目以及它们的用途</li>
+<li>寻址：寻址方式的种类以及有效地址的计算</li>
+<li>下一条指令地址的确定：通常通过PC寄存器实</li>
+</ul>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2023/12/09/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/" data-id="clpxteio80000x0uwekh213y9" data-title="指令系统"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="总线" class="lazyload">
+                    
+                
+                <a href="/2023/12/09/%E6%80%BB%E7%BA%BF/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        总线
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">37</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    98k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    05:51
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">37</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
