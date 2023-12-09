@@ -1,0 +1,830 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        总线 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="总线 计算机部件互连复杂：采取总线结构  数据传输类型  控制线：控制数据线和地址线的访问和使用 地址线：指定数据总线和地址I&#x2F;0端口上数据来源或去向 数据线：在系统模块之间传输数据  类型：  芯片内部总线：连接芯片内部的各个部分（CPU中连接寄存器、ALU等部分）（小范围） 系统总线：连接CPU、存储器、IO控制器和其他功能设备（中范围） 通信总线：连接主机和I&#x2F;O设备，或连接不同的计算机系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="总线">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="总线 计算机部件互连复杂：采取总线结构  数据传输类型  控制线：控制数据线和地址线的访问和使用 地址线：指定数据总线和地址I&#x2F;0端口上数据来源或去向 数据线：在系统模块之间传输数据  类型：  芯片内部总线：连接芯片内部的各个部分（CPU中连接寄存器、ALU等部分）（小范围） 系统总线：连接CPU、存储器、IO控制器和其他功能设备（中范围） 通信总线：连接主机和I&#x2F;O设备，或连接不同的计算机系">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E6%80%BB%E7%BA%BF.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E8%AE%A1%E6%95%B0%E5%99%A8%E6%9F%A5%E8%AF%A2.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E8%87%AA%E4%B8%BE%E5%BC%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E5%90%8C%E6%AD%A5%E6%97%B6%E5%BA%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E6%8F%A1%E6%89%8B%E7%AD%96%E7%95%A5.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E5%BC%82%E6%AD%A5%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E5%8D%8A%E5%90%8C%E6%AD%A5%E6%97%B6%E5%BA%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E5%88%86%E7%A6%BB%E4%BA%8B%E5%8A%A1.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%842.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E5%A4%9A%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E5%A4%9A%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84II.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E5%A4%9A%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84III.png">
+<meta property="article:published_time" content="2023-12-09T03:14:32.000Z">
+<meta property="article:modified_time" content="2023-12-09T03:14:53.021Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/p/%E6%80%BB%E7%BA%BF.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="总线" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>总线</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-总线" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/12/09/%E6%80%BB%E7%BA%BF/" class="article-date-link">
+        <time datetime="2023-12-09T03:14:32.000Z"
+              itemprop="datePublished">2023-12-09</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="总线"><a class="markdownIt-Anchor" href="#总线"></a> 总线</h1>
+<p>计算机部件互连复杂：采取总线结构</p>
+<p><img src="p/%E6%80%BB%E7%BA%BF.png" alt="" /></p>
+<p>数据传输类型</p>
+<ul>
+<li>控制线：控制数据线和地址线的访问和使用</li>
+<li>地址线：指定数据总线和地址I/0端口上数据来源或去向</li>
+<li>数据线：在系统模块之间传输数据</li>
+</ul>
+<p>类型：</p>
+<ul>
+<li>芯片内部总线：连接芯片内部的各个部分（CPU中连接寄存器、ALU等部分）（小范围）</li>
+<li>系统总线：连接CPU、存储器、IO控制器和其他功能设备（中范围）</li>
+<li>通信总线：连接主机和I/O设备，或连接不同的计算机系统（大范围）</li>
+</ul>
+<h2 id="总线结构"><a class="markdownIt-Anchor" href="#总线结构"></a> 总线结构</h2>
+<ul>
+<li>数据线：数量决定了<strong>一次可以传输的数据的大小</strong></li>
+<li>地址线：数量决定了<strong>寻址空间的大小</strong></li>
+<li>控制线：控制对数据线和地址线的存取和使用（时钟、总线请求、总线允许、中断请求、存储器读、I/O写等）</li>
+</ul>
+<p>总线：同时可以多个设备监听，只能一个设备发送数据。</p>
+<p>发送数据的流程：<br><br />
+1、获取总线的使用权<br><br />
+2、通过总线传送数据<br></p>
+<p>向另一个组件请求数据的流程<br><br />
+1、获得总线的使用权<br><br />
+2、通过总线向另一个设备发送请求，等待另一个设备发送数据</p>
+<h2 id="设计要素"><a class="markdownIt-Anchor" href="#设计要素"></a> 设计要素</h2>
+<p>用途、仲裁、时序、总线带宽、总线层次结构</p>
+<h3 id="用途"><a class="markdownIt-Anchor" href="#用途"></a> 用途</h3>
+<ul>
+<li>专用总线：始终只负责一项功能，或始终分配给特定的计算机组件<br><br />
+优点：高吞吐量，减少冲突；缺点：系统成本规模增加</li>
+<li>复用总线：将同一线路用于多种用途<br />
+优点：布线数量少，减少成本规模；缺点：控制电路复杂，共享降低性能</li>
+</ul>
+<h3 id="仲裁"><a class="markdownIt-Anchor" href="#仲裁"></a> 仲裁</h3>
+<p>当多个设备需要与总线通信时，通过某种策略选择一个设备</p>
+<p>平衡因素：</p>
+<ul>
+<li>优先级：优先级高的设备优先被服务</li>
+<li>公平性：优先级最低的设备不能一直被延迟</li>
+</ul>
+<p>仲裁方案：</p>
+<ul>
+<li>集中式：由仲裁器（arbiter）或总线控制器（bus controller）负责分配总线使用权（包含链式查询、计数器查询和独立请求）</li>
+<li>分布式：每个设备都包含访问控制逻辑，各设备共同作用分享总线（包含自举式和冲突检测）</li>
+</ul>
+<h4 id="链式查询"><a class="markdownIt-Anchor" href="#链式查询"></a> 链式查询</h4>
+<p><img src="p/%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2.png" alt="" /></p>
+<p>所有设备串行连接，允许信号从优先级最高的设备下发到优先级最低的设备</p>
+<ul>
+<li>某个设备发送请求，总线仲裁器收到请求，然后在总线不忙的情况下就会<strong>发送允许信号</strong>。这个允许信号会<strong>从一个设备经过另一个设备（串行）</strong>（通常都是先经过优先级高的设备）。如果期间有谁<strong>发送过请求</strong>，那么该设备就将总线设置为<strong>繁忙</strong>状态，防止允许信号进一步传递</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>确定优先级很简单</li>
+<li>可以灵活添加设备</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>不能保证公平性（处于优先级最低的设备可能永远都得不到请求的响应）</li>
+<li>对电路故障敏感</li>
+<li>限制总线的速度</li>
+</ul>
+<h4 id="计数器查询"><a class="markdownIt-Anchor" href="#计数器查询"></a> 计数器查询</h4>
+<p><img src="p/%E8%AE%A1%E6%95%B0%E5%99%A8%E6%9F%A5%E8%AF%A2.png" alt="" /></p>
+<p>将总线允许线替换为设备ID线</p>
+<ul>
+<li>当总线仲裁器收到总线请求信号，并且总线空闲时，计数器开始计数，计数值通过设备ID线发送到各个部件。如果哪个部件的设备ID等于当前计数，就让它获得总线控制权。（计数方式可以改变）</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>可以设置不同初始计数（收到请求信号时从哪里开始计数）。这样就可以选择强调优先级（每次计数从1开始）还是强调公平性（每次计数从上一个计数完的计数开始循环）。</li>
+<li>对电路故障不敏感</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>需要添加设备ID线</li>
+<li>需要解码和比较设备ID信号</li>
+<li>限制总线的速度</li>
+</ul>
+<h4 id="独立请求"><a class="markdownIt-Anchor" href="#独立请求"></a> 独立请求</h4>
+<p><img src="p/%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82.png" alt="" /></p>
+<p>每个设备都有自己的总线请求线和总线允许线</p>
+<ul>
+<li>设备请求可以通过总线请求线将请求信号发送给总线仲裁器，总线仲裁器决定哪个设备可以使用总线</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>快速响应</li>
+<li>可编程的优先级</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>复杂的控制逻辑</li>
+<li>更多的控制线路</li>
+</ul>
+<h4 id="自举式"><a class="markdownIt-Anchor" href="#自举式"></a> 自举式</h4>
+<p><img src="p/%E8%87%AA%E4%B8%BE%E5%BC%8F.png" alt="" /></p>
+<p>固定优先级，每个设备在其总线请求线上发送请求。每个设备需要自行判断当前请求中自己是否优先级最高。</p>
+<ul>
+<li>所有设备都可以读取到其他比它更高优先级的设备的总线请求线。如果此时处于空闲状态，就判断是否有比自己优先级更高的设备的总线请求线处于激活状态。如果有，就需要等待它们的请求处理完毕；如果其他比自己优先级更高的设备的总线请求线都没有处于激活状态，那么就轮到自己获得总线控制器并激活繁忙状态。</li>
+</ul>
+<h4 id="冲突检测"><a class="markdownIt-Anchor" href="#冲突检测"></a> 冲突检测</h4>
+<p>一个设备想要使用总线时，如果总线空闲就直接使用总线。设备会检查是否发生冲突，如果此时发生总线冲突，就所有使用总线的设备停止传输数据，经过一个随机时间间隔后再次请求总线。（类似计网中报文碰撞时的回退算法）</p>
+<h3 id="时序"><a class="markdownIt-Anchor" href="#时序"></a> 时序</h3>
+<p>确定每个总线事务的开始和结束时间</p>
+<ul>
+<li>一个总线事务：地址+数据+…+数据</li>
+</ul>
+<p>类型：</p>
+<ul>
+<li>同步时序：事件的发生由时钟决定</li>
+<li>异步时序：一个事件的发生取决于前一个事件的发生（顺序）</li>
+<li>半同步：半同步：同步时序和异步时序相结合</li>
+<li>分离事务：分离事务：设备准备数据期间释放总线</li>
+</ul>
+<h4 id="同步时序"><a class="markdownIt-Anchor" href="#同步时序"></a> 同步时序</h4>
+<p><img src="p/%E5%90%8C%E6%AD%A5%E6%97%B6%E5%BA%8F.png" alt="" /></p>
+<ul>
+<li>优点：更容易实现和测试</li>
+<li>缺点：所有设备共享一个时钟，总线长度受到时钟偏差的限制</li>
+</ul>
+<h4 id="异步时序"><a class="markdownIt-Anchor" href="#异步时序"></a> 异步时序</h4>
+<p>握手策略：</p>
+<p><img src="p/%E6%8F%A1%E6%89%8B%E7%AD%96%E7%95%A5.png" alt="" /></p>
+<p>三次握手：准备-确认-准备结束-确认结束</p>
+<p>异步数据传输：</p>
+<p><img src="p/%E5%BC%82%E6%AD%A5%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93.png" alt="" /></p>
+<p>1、CPU 设置地址并设置 ReadReq 线 ➔ 存储器读取相应地址<br />
+2、存储器读取相应地址并设置 Ack 线 ➔ CPU 释放地址线和 ReadReq 线<br />
+3、CPU 释放地址线和 ReadReq 线 ➔ 存储器释放 Ack 线<br />
+4、存储器释放 Ack 线 ➔ 存储器将数据传到数据线<br />
+5、存储器将数据传到数据线并设置 DataRdy 线 ➔ CPU 读取数据<br />
+6、CPU 读取数据并设置 Ack 线 ➔ 存储器释放数据线和 DataRdy 线<br />
+7、存储器释放数据线和 dataRdy 线 ➔ CPU 释放 Ack 线</p>
+<p>注意：这个过程中分为了两个部分，每个部分都是一个三次握手的过程。其中ACK线可以在不同时间属于不同的设备，最开始接收地址的时候ACK线由存储器设置，后面读取数据的时候ACK线由CPU设置。</p>
+<p>4号过程就是中间传输数据的过程。理论上这段时间不使用总线，可以被其他设备使用</p>
+<ul>
+<li>优点：可以灵活协调速度不同的设备</li>
+<li>缺点：接口逻辑复杂，对噪声敏感（被误认为信号）</li>
+</ul>
+<h4 id="半同步时序"><a class="markdownIt-Anchor" href="#半同步时序"></a> 半同步时序</h4>
+<p>为了减少噪声的影响，在异步计时中使用时钟。</p>
+<p><img src="p/%E5%8D%8A%E5%90%8C%E6%AD%A5%E6%97%B6%E5%BA%8F.png" alt="" /></p>
+<p>准备和响应信号在时钟上升沿有效。</p>
+<p>结合了同步和异步定时的优点</p>
+<h4 id="分离事务"><a class="markdownIt-Anchor" href="#分离事务"></a> 分离事务</h4>
+<p>将一个总线事件分为两个过程</p>
+<p><img src="p/%E5%88%86%E7%A6%BB%E4%BA%8B%E5%8A%A1.png" alt="" /></p>
+<ul>
+<li>优点：增加总线利用率</li>
+<li>缺点：增加每个总线事件的持续时间和系统复杂度</li>
+</ul>
+<h2 id="总线带宽和数据传输速率"><a class="markdownIt-Anchor" href="#总线带宽和数据传输速率"></a> 总线带宽和数据传输速率</h2>
+<p>总线带宽：总线的最大传输速率（不考虑总线仲裁、地址传输等因素）</p>
+<p>数据传输速率：考虑地址宽度、握手等因素</p>
+<p>总线宽度：组成总线的线数</p>
+<ul>
+<li>数据总线越宽，一次传输的数据位数就越多</li>
+<li>地址总线越宽，一次传输的地址位数就越多</li>
+</ul>
+<p>注意：总线带宽指的就是物理上的二进制数据的传输，在进行传输时候（而不是准备传输的时候）的最大速度，不管你传输的是什么。而数据传输速率指的是有效数据的传输速度。它是需要准备的，需要包含准备的时间（地址传输、握手等）。它给人的表现就是我要传输这些数据内容，那么传输的过程需要包含传输地址等相关的准备，才可以真正进行有效数据的传输。我不管你实际传输的时候的带宽到底有多快，我只关心我最后传这些东西花了多久，把传输的有效数据量除以这个时间就是数据传输速率。</p>
+<h2 id="同步总线和异步总线的数据传输速率"><a class="markdownIt-Anchor" href="#同步总线和异步总线的数据传输速率"></a> 同步总线和异步总线的数据传输速率</h2>
+<p><strong>例题1：假设同步总线的时钟周期为50ns，每次传输需要一个时钟周期，异步<br />
+总线每次握手需要40ns。两个总线都是32位宽，内存的数据准备时间为200ns。<br />
+当从存储器中读出一个32位的字时，计算两个总线的数据传输速率。</strong></p>
+<p><strong>1、同步总线</strong></p>
+<ul>
+<li>
+<p>数据传输时，需要先传输地址，然后需要内存数据准备，然后再传输数据</p>
+</li>
+<li>
+<p>同步总线：没有三次握手的过程，当拿到地址后，就开始内存数据准备。准备完毕之后就开始传输数据。</p>
+</li>
+<li>
+<p>因此，数据传输总时间为50+200+50=300ns，所以数据传输速率 = 32bit / (50 + 200 + 50)ns = 106.7Mbps</p>
+</li>
+</ul>
+<p><strong>2、异步总线</strong></p>
+<ul>
+<li>
+<p>数据传输时，也是需要经历传输地址-准备数据-传输数据的过程。但是不同之处在于：异步每次传输数据需要经历三次握手。而在传输地址的三次握手中，在第一次握手之后地址就已经准备好了，因此第一次握手之后就可以开始准备数据了。不过在准备完地址后还需要考虑结束第一次握手、以及开始第二次握手所需要的最短时间。准备完地址后，需要完成剩下的两次握手，然后从第一个三次握手（用于传输地址）到第二个三次握手（用于传输数据）之间还需要一次握手的时间。因此，从第一次准备完地址到第二个传输数据的三次握手之间的间隔至少也有相当于三次握手所需的时间间隔。所以我们需要判断准备数据的时间与进行三次握手的时间哪个更大，然后取更大的那个作为从准备完地址到准备完数据的时间。此处就是max(40ns* 3,200ns) = 200ns。然后准备完数据后又需要三次握手来传输数据。</p>
+</li>
+<li>
+<p>因此，它一共数据传输时间为40（准备地址的第一次握手）+200（数据传输时间和三次握手之间的较大值）+120（传输数据的三次握手）=360ns。而数据传输速率即为32bit / (40 + 200 + 120)ns = 88.9Mbps</p>
+</li>
+</ul>
+<hr />
+<p><strong>例题2：假设同步总线的时钟周期为50ns，每次传输需要一个时钟周期，异步总线每次握手需要40ns。两个总线都是32位宽，存储器的数据准备时间为230ns。当从存储器中读出一个32位的字时，计算两个总线的数据传输速率。</strong></p>
+<p><strong>1、同步总线</strong></p>
+<ul>
+<li>
+<p>与之前一样，需要经过传输地址、准备数据、传输数据的过程。但是由于同步总线是必须在时钟周期的整数倍的时候进行操作，不可以在一个时钟周期中间进行操作，因此存储器的准备时间230ns需要扩充至50的倍数，即250ns。</p>
+</li>
+<li>
+<p>因此，数据传输时间为50+250+50=350ns，数据传输速率= 32bit / (50 + 250 + 50)ns = 91.4Mbps</p>
+</li>
+</ul>
+<p><strong>2、异步总线</strong></p>
+<ul>
+<li>
+<p>异步总线与之前的方法一样，先计算一次握手，然后是数据准备和三次握手。</p>
+</li>
+<li>
+<p>因此，数据传输时间为40+230+120ns，数据传输速率= 32bit / (40 + 230 + 120)ns = 82.1Mbps</p>
+</li>
+</ul>
+<h2 id="不同数据块大小的数据传输速率"><a class="markdownIt-Anchor" href="#不同数据块大小的数据传输速率"></a> 不同数据块大小的数据传输速率</h2>
+<p>例题3：假设系统具有以下特征:</p>
+<ol>
+<li>它支持访问大小为4到16个字（每个字32位）的块</li>
+<li>同步总线具有64位宽和200MHz时钟频率，需要1个时钟周期来传输<br />
+地址或64位数据</li>
+<li>在两个总线事务之间有2个空闲时钟周期</li>
+<li>内存访问时准备前4个字需要200ns，后面每4个字准备需要20ns</li>
+<li>当前面的数据在总线上传输时，内存可以同时读取后面的数据</li>
+</ol>
+<ul>
+<li>如果读取256个字，分别计算每次传输4个字和16个字时的数据传输速率、<br />
+传输时间和每秒总线事务数</li>
+</ul>
+<p><strong>每次传输4个字</strong></p>
+<p>一个总线事务即进行一次传输地址-准备数据-传输数据的过程。</p>
+<p>先计算每次总线事务需要多少时间：</p>
+<ul>
+<li>传输地址：1个时钟周期（5ns）</li>
+<li>准备数据：200ns（这里的前4个字指的是每次访问时的前4个字，而不是全局的前4个字）</li>
+<li>传输数据：10ns（每个周期64字即2个字，一次传输4个字需要两个时钟周期）</li>
+<li>空闲：2ns</li>
+</ul>
+<p>因此一次总线事务的时间为5+200+10+2 = 217ns，就可以计算出传输时间 = 2880 * 5ns = 14400ns，每秒总线事务数= (256 / 4) * (1s / 14400ns) = 4.44M，数据传输速率 = 256 * 32bit / 14400ns = 568.9Mbps</p>
+<p><strong>每次传输16个字</strong></p>
+<ul>
+<li>
+<p>与每次传输4个字的区别在于：由于每次系统都支持访问大小为4-16个字的数据，在准备完4个字节的时候就可以直接发送，然后这个时候同时也可以继续传输数据。</p>
+</li>
+<li>
+<p>所以，准备16个字的数据的时间为：第一次4个字需要200ns，在准备完4个字节后直接发送，同时准备后面四个字节。这个时候需要等到原来4个字节发送完并且新4个字节准备完，才可以进一步发送、准备。因此我们需要取出发送4字节的时间与准备4字节的时间之间的较大值。而这个过程需要持续3次（处理剩余12个字，每次能处理4个字，因此需要3次处理）。3次完毕后，就结束了数据传输。数据传输结束后还要记得把最后准备完的4个字节发送出去。</p>
+</li>
+<li>
+<p>因此，一个总线事务中的数据传送的时间为：200+3×max(10,20) = 260ns，而一个总线事务整体的时间为5+260+10+10= 285ns，总传输时间为285×16 = 4560ns， 每秒总线事务数 = 16 * 1s / 4560ns = 3.51M，数据传输速率 = 256 * 32bit / 4560ns = 1796.5Mbps</p>
+</li>
+</ul>
+<h2 id="提高总线的数据传输率"><a class="markdownIt-Anchor" href="#提高总线的数据传输率"></a> 提高总线的数据传输率</h2>
+<p>1、提高时钟频率（时钟周期数不变的情况下）</p>
+<p>2、增加数据总线宽度（每次传输更多的数据）</p>
+<ul>
+<li>成本：更多的总线线路</li>
+</ul>
+<p>3、块传输（传输一次地址就传输一块数据）</p>
+<ul>
+<li>成本：高复杂性</li>
+</ul>
+<p>4、分离总线事务（减少总线空闲时间）</p>
+<ul>
+<li>成本：复杂性高，增加每个事务的持续时间</li>
+</ul>
+<p>5、分离地址线和数据线（同时传输地址和数据）</p>
+<ul>
+<li>成本：更多的总线线路</li>
+</ul>
+<h2 id="总线层次结构"><a class="markdownIt-Anchor" href="#总线层次结构"></a> 总线层次结构</h2>
+<p>1、单总线层次结构</p>
+<p><img src="p/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF.png" alt="" /></p>
+<p>CPU、存储器和 I/O 模块都连接到一条系统总线</p>
+<ul>
+<li>优点：简单，易于扩展</li>
+<li>缺点：传输延迟会随着设备数、总线长度增大而增大；传输量过大时总线会成为瓶颈</li>
+</ul>
+<p>2、双总线结构I</p>
+<p><img src="p/%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.png" alt="" /></p>
+<p>在CPU和存储器中间增加一个存储器总线</p>
+<ul>
+<li>优点：增加CPU和存储器之间的传输效率，同时降低系统总线的负担</li>
+</ul>
+<p>3、双总线结构II</p>
+<p><img src="p/%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%842.png" alt="" /></p>
+<p>将系统总线分为存储器总线、I/O 总线 和 IOP (input/output processer)</p>
+<ul>
+<li>优点：优点：降低I/O对总线的负担</li>
+</ul>
+<p>4、多总线结构I</p>
+<p><img src="p/%E5%A4%9A%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.png" alt="" /></p>
+<p>增加一个 本地总线（local bus）来连接 CPU 和 cache</p>
+<ul>
+<li>优点：分离了CPU和I/O的交互</li>
+</ul>
+<p>5、多总线结构II</p>
+<p><img src="p/%E5%A4%9A%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84II.png" alt="" /></p>
+<p>将系统总线分为存储器总线、I/O 总线和 DMA 总线</p>
+<ul>
+<li>优点：增加 I/O 效率</li>
+</ul>
+<p>6、多总线结构III</p>
+<p><img src="p/%E5%A4%9A%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84III.png" alt="" /></p>
+<p>增加一个 高速 I/O 总线 来连接高速设备</p>
+<ul>
+<li>优点：增加 I/O 交互效率</li>
+</ul>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2023/12/09/%E6%80%BB%E7%BA%BF/" data-id="clpxhgw550000uguw5fkgbh5c" data-title="总线"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="期末上机拓扑搭建指南" class="lazyload">
+                    
+                
+                <a href="/2023/12/08/%E6%9C%9F%E6%9C%AB%E4%B8%8A%E6%9C%BA%E6%8B%93%E6%89%91%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        期末上机拓扑搭建指南
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">36</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    95.3k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    05:42
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">36</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
