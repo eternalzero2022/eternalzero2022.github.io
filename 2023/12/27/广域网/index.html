@@ -1,0 +1,835 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        广域网 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="本文主要参考EagleBear2002的博客  广域网  1、广域网技术和设备 定义：WAN 是通过 WAN 服务提供商连接 LAN 的通信网络。 WAN在 OSI 的前三层运行，但主要集中在物理层和数据链路层。 广域网和局域网相比相对低效。  广域网物理结构   CPE：Customer Premises Equipment，位于公司本地的设备（主要是接入设备），用于连接到网络，将用户的数据传输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="广域网">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="本文主要参考EagleBear2002的博客  广域网  1、广域网技术和设备 定义：WAN 是通过 WAN 服务提供商连接 LAN 的通信网络。 WAN在 OSI 的前三层运行，但主要集中在物理层和数据链路层。 广域网和局域网相比相对低效。  广域网物理结构   CPE：Customer Premises Equipment，位于公司本地的设备（主要是接入设备），用于连接到网络，将用户的数据传输">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/%E5%B9%BF%E5%9F%9F%E7%BD%91.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/%E4%BA%A4%E6%8D%A2%E7%94%B5%E8%B7%AF.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/PPP%E5%B8%A7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/%E5%B8%A7%E6%A0%BC%E5%BC%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/challenge.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/%E6%8A%80%E6%9C%AF%E9%A2%91%E8%B0%B1%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/SDH.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/HFC.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/%E4%B8%8A%E8%A1%8C%E9%80%9A%E9%81%93.png">
+<meta property="article:published_time" content="2023-12-27T15:01:49.000Z">
+<meta property="article:modified_time" content="2023-12-27T15:02:02.762Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/p/%E5%B9%BF%E5%9F%9F%E7%BD%91.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="广域网" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>广域网</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-广域网" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/" class="article-date-link">
+        <time datetime="2023-12-27T15:01:49.000Z"
+              itemprop="datePublished">2023-12-27</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <p>本文主要参考<a target="_blank" rel="noopener" href="https://eaglebear2002.github.io/2022Spring-%E4%BA%92%E8%81%94%E7%BD%91%E8%AE%A1%E7%AE%97/%E4%BA%92%E8%81%94%E7%BD%91%E8%AE%A1%E7%AE%97-10-%E5%B9%BF%E5%9F%9F%E7%BD%91/">EagleBear2002的博客</a></p>
+<h1 id="广域网"><a class="markdownIt-Anchor" href="#广域网"></a> 广域网</h1>
+<h2 id="1-广域网技术和设备"><a class="markdownIt-Anchor" href="#1-广域网技术和设备"></a> 1、广域网技术和设备</h2>
+<p>定义：WAN 是通过 WAN 服务提供商连接 LAN 的通信网络。</p>
+<p>WAN在 OSI 的前三层运行，但主要集中在<strong>物理层和数据链路层</strong>。</p>
+<p>广域网和局域网相比相对低效。</p>
+<h3 id="广域网物理结构"><a class="markdownIt-Anchor" href="#广域网物理结构"></a> 广域网物理结构</h3>
+<p><img src="p/%E5%B9%BF%E5%9F%9F%E7%BD%91.png" alt="" /></p>
+<ul>
+<li>CPE：Customer Premises Equipment，位于公司本地的设备（主要是接入设备），用于连接到网络，将用户的数据传输到服务提供商的网络中</li>
+<li>CO Switch：是位于服务提供商设施中心（Central Office）的交换机设备，连接到中心局，CPE需要与之相连。</li>
+</ul>
+<h3 id="广域网虚拟电路"><a class="markdownIt-Anchor" href="#广域网虚拟电路"></a> 广域网虚拟电路</h3>
+<p>分为两种：SVC和PVC</p>
+<ul>
+<li>交换虚拟电路（SVC，Switched Virtual Circuits）：到目的地的WAN路径，可建立或终止（是一种逻辑上的连接）</li>
+<li>永久虚拟电路（PVC，Permanent Virtual Circuit）：永久建立的虚拟电路</li>
+</ul>
+<h4 id="虚拟电路的三个阶段"><a class="markdownIt-Anchor" href="#虚拟电路的三个阶段"></a> 虚拟电路的三个阶段</h4>
+<ul>
+<li>电路建立-创建虚拟电路（逻辑确定）</li>
+<li>数据传输-发送和接收用户数据（含有虚电路号等）</li>
+<li>电路中断-拆除虚拟电路</li>
+</ul>
+<h4 id="永久虚拟电路的建立"><a class="markdownIt-Anchor" href="#永久虚拟电路的建立"></a> 永久虚拟电路的建立</h4>
+<ul>
+<li>只有一种模式：数据传输</li>
+<li>X.25 和帧中继（Frame Relay）使用 PVC</li>
+<li>减少带宽使用，但增加成本</li>
+</ul>
+<h3 id="链接类型和带宽"><a class="markdownIt-Anchor" href="#链接类型和带宽"></a> 链接类型和带宽</h3>
+<ul>
+<li>T：美国标准</li>
+<li>E：欧洲标准</li>
+<li>OC：同步光纤网标准</li>
+</ul>
+<h3 id="交换电路连接"><a class="markdownIt-Anchor" href="#交换电路连接"></a> 交换电路连接</h3>
+<p><img src="p/%E4%BA%A4%E6%8D%A2%E7%94%B5%E8%B7%AF.png" alt="" /></p>
+<ul>
+<li>PSTN：需要调制解调器，慢</li>
+<li>ISDN：分为基本速率接口BRI和首选速率接口PRI，都是多个 B 信道和 D 信道组合</li>
+<li>BRI：提供两个B通道和一个D通道</li>
+<li>PRI：提供23个（美国或日本）或30个（欧洲）B通道和一个D通道</li>
+<li>每个B通道：64Kbps；每个D通道：16Kbps</li>
+</ul>
+<p>可以根据链接是T还是E判断美国还是欧洲</p>
+<h3 id="网络连接"><a class="markdownIt-Anchor" href="#网络连接"></a> 网络连接</h3>
+<p><img src="p/%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5.png" alt="" /></p>
+<h3 id="广域网设备"><a class="markdownIt-Anchor" href="#广域网设备"></a> 广域网设备</h3>
+<p>1、调制解调器</p>
+<ul>
+<li>也叫CSU/DSU(channel<br />
+service units/digital service units)（通道服务单元/数字服务单元）</li>
+</ul>
+<h2 id="2-广域网和osi模型"><a class="markdownIt-Anchor" href="#2-广域网和osi模型"></a> 2、广域网和OSI模型</h2>
+<p>WAN 标准主要描述 OSI 模型的物理层和数据链路层</p>
+<ul>
+<li>物理层提供电器标准</li>
+<li>数据链路层封装到远程的部分：帧标准。</li>
+</ul>
+<h3 id="wan物理层"><a class="markdownIt-Anchor" href="#wan物理层"></a> WAN物理层</h3>
+<ul>
+<li>描述如何为 WAN 服务提供电气，机械，操作和功能连接的协议</li>
+<li>描述了两种接口：数据终端设备（DTE，Data Terminal Equipment）和数据电路终端设备（DCE，Data Circuit-terminating Equipment）之间的接口</li>
+<li>DCE是服务提供商，DTE是连接的设备（用户路由器）</li>
+</ul>
+<h3 id="wan数据链路层"><a class="markdownIt-Anchor" href="#wan数据链路层"></a> WAN数据链路层</h3>
+<ul>
+<li>描述了如何在单个数据链路上的系统之间承载帧。</li>
+<li>它们包括旨在在专用（dedicated）点对点，多点和多址交换服务上运行的协议。</li>
+<li>为了确保正确：需要为每一个串口指定一个方式组成帧</li>
+</ul>
+<h4 id="数据链路层帧封装"><a class="markdownIt-Anchor" href="#数据链路层帧封装"></a> 数据链路层帧封装</h4>
+<p>定义了如何封装数据以传输到远程站点：</p>
+<ul>
+<li><strong>点对点协议</strong>（PPP，Point-to-Point Protocol）由 IETF 开发，包含用于识别网络层协议的协议字段（包含一个协议单元，指定网络协议），根据不同的网络协议对帧做控制与检查</li>
+<li><strong>高级数据链路控制</strong>（HDLC，High-Level Data Link Control）ISO 标准，支持点对点/多点配置，每个厂商的实现方式不同因此互相不兼容</li>
+<li><strong>帧中继</strong>（Frame Relay）使用简化的封装，对高质量的数字设备不进行纠错。（比较高速）</li>
+<li><strong>ISDN</strong>：通过现有电话线传输语音和数据的一组数字服务。（电路交换）</li>
+<li><strong>平衡的链路访问程序</strong>（LAPB，Link Access Procedure，Balanced）用于在 X.25 堆栈的第二层封装数据包的数据包交换网络。 提供点对点的可靠性和流量控制。</li>
+</ul>
+<h2 id="3-广域网访问方法"><a class="markdownIt-Anchor" href="#3-广域网访问方法"></a> 3、广域网访问方法</h2>
+<h3 id="ppphdlc"><a class="markdownIt-Anchor" href="#ppphdlc"></a> PPP/HDLC</h3>
+<p>他们俩都是广域网点对点链路中的封装方式，HDLC只能同一厂商使用</p>
+<p>拥有相似帧格式：</p>
+<p><img src="p/PPP%E5%B8%A7.png" alt="" /></p>
+<h3 id="ppp"><a class="markdownIt-Anchor" href="#ppp"></a> PPP</h3>
+<p>一种标准的串行线路封装方法</p>
+<ul>
+<li>由 IETF（The Internet Engineering Task）开发；取代 SLIP（Serial Line Internet Protocol）</li>
+<li>包含标识网络层协议的字段</li>
+<li>可以在建立连接期间检查链接质量</li>
+<li>通过密码认证协议（PAP）和挑战握手认证协议（CHAP）提供认证</li>
+</ul>
+<h3 id="hdlc"><a class="markdownIt-Anchor" href="#hdlc"></a> HDLC</h3>
+<p>是 Cisco 串行线的默认封装</p>
+<ul>
+<li>没有窗口或流量控制</li>
+<li>HDLC 帧不能与其他供应商的设备互操作（帧中有一个专有类型码字段）</li>
+</ul>
+<h4 id="提供的功能"><a class="markdownIt-Anchor" href="#提供的功能"></a> 提供的功能</h4>
+<ul>
+<li>网络协议多路复用</li>
+<li>动态分配 IP 地址</li>
+<li>验证：PAP，CHAP</li>
+<li>压缩</li>
+<li>错误检测</li>
+</ul>
+<h4 id="组件"><a class="markdownIt-Anchor" href="#组件"></a> 组件</h4>
+<p>使用 HDLC（ISO HDLC，而非 Cisco HDLC）作为封装第三层数据报的基础</p>
+<ul>
+<li>使用LCP（链接控制协议）以：建立连接、连接配置选项、链接质量测试</li>
+<li>使用NCP（网络控制协议，Network Control Protocol）以选择和配置第 3 层协议。</li>
+</ul>
+<h4 id="帧格式"><a class="markdownIt-Anchor" href="#帧格式"></a> 帧格式</h4>
+<p><img src="p/%E5%B8%A7%E6%A0%BC%E5%BC%8F.png" alt="" /></p>
+<ul>
+<li>Flag： 01111110 标记：帧的开头或结尾，01111110，一位可能会连续接受到多个帧</li>
+<li>Address：11111111，广播地址</li>
+<li>Control：00000011，用户数据作为无序帧传输</li>
+<li>Protocol： 数据字段中的协议类型（既可以指网络层，又可以指数据链路层）</li>
+<li>Data： 数据报，最大默认值为 1500 字节</li>
+<li>FCS： 2 或者 4 字节</li>
+</ul>
+<h4 id="会话建立终止"><a class="markdownIt-Anchor" href="#会话建立终止"></a> 会话建立/终止</h4>
+<p>每次通信需要完成四个阶段：</p>
+<ul>
+<li>步骤一：链接建立和配置协商（negotiation）（LCP）。</li>
+<li>步骤二：链接质量测试。</li>
+<li>步骤三：网络层协议配置（NCP）。</li>
+<li>步骤四：链接终止。</li>
+</ul>
+<p>1、链接建立：</p>
+<ul>
+<li>每个PPP设备发送LCP打开连接，包含一个配置选项字段（没有包含则使用默认值），在已发送和接收配置确认帧时完成此阶段</li>
+</ul>
+<p>2、链路质量确定</p>
+<ul>
+<li>测量链路上的错误率（在已配置情况下通过发送和接收 LCP 数据包实现）</li>
+<li>可选：使用身份验证</li>
+</ul>
+<p>3、网络层协议配置</p>
+<ul>
+<li>PPP 设备发送 NCP 数据包以选择和配置一个或多个网络层协议（例如 IP）</li>
+</ul>
+<p>4、链接终止</p>
+<ul>
+<li>LCP 可以随时终止链接（基于一方请求，链接质量或超时）</li>
+<li>关闭链接时，它将通知网络层协议，以便它们可以采取适当的措施。</li>
+</ul>
+<h4 id="pap-安全认证协议"><a class="markdownIt-Anchor" href="#pap-安全认证协议"></a> PAP 安全认证协议</h4>
+<p>PPP 中一个可选择方法，用于身份认证。PAP 由一方向另一方发起请求，另一方选择是否接受，双方具有相同的用户名和密码，发起方可以多次尝试</p>
+<ul>
+<li>远程节点<strong>重复</strong>发送用户名/密码对，直到确认身份验证或连接终止；</li>
+<li>密码以<strong>明文</strong>形式通过链接发送。</li>
+<li>在建立连接阶段之后，仅对远程节点进行一次身份验证。</li>
+</ul>
+<p>配置命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RTA(config-if)#encapsulation ppp</span><br><span class="line">RTA(config-if)#ppp pap sent-username RTA password ciscoA</span><br></pre></td></tr></table></figure>
+<h4 id="chap"><a class="markdownIt-Anchor" href="#chap"></a> CHAP</h4>
+<p>挑战握手认证协议（Challenge Handshake Authentication Protocol，CHAP），通过三阶段握手，避免了明文发送密码</p>
+<ul>
+<li>服务器使用三阶段握手（three-way handshake） CHAP 协议定期验证主叫方。双方共享一个密钥</li>
+<li>服务器向客户端发送一个随机生成的挑战（Challenge，一个随机值）。</li>
+<li>客户端使用密码和挑战生成一个哈希值，并将其作为响应发送回服务器。</li>
+<li>服务器收到响应后，使用事先共享的密钥和挑战再次生成哈希值。</li>
+<li>服务器比对两次生成的哈希值，如果匹配，则认证成功。否则连接终止</li>
+</ul>
+<p><img src="p/challenge.png" alt="" /></p>
+<p>第一步challenging：RTB请求连接RTA（双方都存储有一个事先商量好的密码以及不同的用户名）；RTA找一个时间发起挑战。</p>
+<p>挑战中的内容：</p>
+<ul>
+<li>编号</li>
+<li>id 是第几次挑战</li>
+<li>random：生成的随机数</li>
+<li>RTA：谁发起的挑战</li>
+</ul>
+<p>第二步acknowledgement：然后RTB将random内容使用MD5算法计算新的值，并存入自己帧的random中进行应答</p>
+<p>第三步Verifying Acknowledgement：收到 RTB 的回复，然后比较是否相同。</p>
+<h4 id="chap命令"><a class="markdownIt-Anchor" href="#chap命令"></a> chap命令</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RTB(config-if)#encapsulation ppp</span><br><span class="line">RTB(config-if)#ppp authentication chap</span><br></pre></td></tr></table></figure>
+<h3 id="综合数字服务网络isdn"><a class="markdownIt-Anchor" href="#综合数字服务网络isdn"></a> 综合数字服务网络ISDN</h3>
+<p>允许通过现有电话线传输数字信号：提供远程站点的连接</p>
+<ul>
+<li>可以携带语音，视频和数据</li>
+<li>使用带外 D（或 Delta）信道比调制解调器（有时&lt;1s）更快的呼叫建立</li>
+<li>使用 B（或屏障）通道以 64kps 提供更快的数据传输<br />
+BRI 和 PRI</li>
+</ul>
+<h4 id="bri和pri"><a class="markdownIt-Anchor" href="#bri和pri"></a> BRI和PRI</h4>
+<p>ISDN 服务有两种：</p>
+<ul>
+<li>BRI（基本速率接口，Basic Rate Interface），用户虚拟电路数据传，HDLC，PPP</li>
+<li>PRI（主速率接口，Primary Rate Interface），发送控制信息，LAPD</li>
+</ul>
+<p>BRI服务提供<strong>两个B信道和一个D</strong>信道</p>
+<ul>
+<li>BRI B ：以<strong>64 kbps</strong>的速率运行</li>
+<li>D： <strong>16kbps</strong> 信令通道</li>
+</ul>
+<p>标准：利用一套ITU-T 标准套件。有几种封装选择，两种最常见的封装是 PPP 和 HDLC。ISDN 默认为 HDLC。</p>
+<h3 id="非对称数字用户线路adsl"><a class="markdownIt-Anchor" href="#非对称数字用户线路adsl"></a> 非对称数字用户线路ADSL</h3>
+<p>Asymmetric Digital Subscriber Line</p>
+<h4 id="xdsl技术"><a class="markdownIt-Anchor" href="#xdsl技术"></a> xDSL技术</h4>
+<p>用数字技术对现有的模拟电话用户线进行改造，使它能够承载宽带业务</p>
+<ul>
+<li>把 0~4 kHz 低端频谱留给传统电话使用，而把原来没有被利用的高端频谱留给用户上网使用</li>
+<li>DSL ：数字用户线(Digital Subscriber Line)，xDSL的前缀 x 表示在数字用户线上实现的不同宽带方案</li>
+</ul>
+<p>类型：</p>
+<ul>
+<li>ADSL (Asymmetric Digital Subscriber Line)：非对称<br />
+数字用户线<br />
+ HDSL (High speed DSL)：高速数字用户线<br />
+ SDSL (Single-line DSL)：1 对线的数字用户线<br />
+ VDSL (Very high speed DSL)：甚高速数字用户线<br />
+ IDSL ：ISDN 用户线<br />
+ RADSL (Rate-Adaptive DSL)：速率自适应 DSL，是<br />
+ADSL 的一个子集，可自动调节线路速率</li>
+</ul>
+<h4 id="adsl"><a class="markdownIt-Anchor" href="#adsl"></a> ADSL</h4>
+<p>1、ADSL的极限传输距离：<br><br />
+与数据率以及用户线的线径都有很大的关系（用户线越细，信号传输时的衰减就越大）</p>
+<p>2、ADSL的特点</p>
+<ul>
+<li>上行和下行带宽不对称：上行指从用户到 ISP，而下行指从 ISP 到用户</li>
+<li>在用户线（铜线）的两端各安装一个 ADSL 调制解调器。</li>
+<li>采用离散多音调 DMT (Discrete Multi-Tone)调制技术</li>
+</ul>
+<p>3、DMT技术<br />
+采用频分复用的方法，把 40 kHz 以上一直到 1.1 MHz 的高端频谱划分为许多的子信道</p>
+<ul>
+<li>上行信道：25个</li>
+<li>下行信道：249个</li>
+<li>每个子信道占据 4 kHz 带宽</li>
+</ul>
+<p><img src="p/%E6%8A%80%E6%9C%AF%E9%A2%91%E8%B0%B1%E5%88%86%E6%9E%90.png" alt="" /></p>
+<p>3、ADSL的数据率</p>
+<ul>
+<li>采用自适应调制技术使用户线能够传送尽可能高的数据率。（因为用户线的具体条件往往相差很大）</li>
+<li>不能保证固定的数据率，通常下行数据率在 <strong>32 kb/s 到 6.4 Mb/s</strong> 之间，而上行数据率在 <strong>32 kb/s 到 640 kb/s</strong> 之间。</li>
+</ul>
+<p>4、第二代ADSL<br />
+ADSL2（G.992.3 和 G.992.4） ADSL2+（G.992.5）</p>
+<ul>
+<li>通过提高调制效率得到了更高的数据率（ADSL2：下行 8 Mb/s、上行 800 kb/s）（ADSL2+：频谱范围从 1.1 MHz 扩展至 2.2 MHz，下行速率可达 16 Mb/s（最大传输速率可达 25 Mb/s），而上行速率可达 800 kb/s）</li>
+<li>采用了无缝速率自适应技术 SRA（Seamless Rate Adaptation），可在运营中自适应地调整数据率</li>
+</ul>
+<h3 id="sonet"><a class="markdownIt-Anchor" href="#sonet"></a> SONET</h3>
+<h4 id="同步光纤网sonet和同步数字系列-sdh"><a class="markdownIt-Anchor" href="#同步光纤网sonet和同步数字系列-sdh"></a> 同步光纤网SONET和同步数字系列 SDH</h4>
+<p>旧的数字传输系统存在的问题：</p>
+<ul>
+<li>速率标准不统一</li>
+<li>不是同步传输</li>
+</ul>
+<h4 id="同步光线网"><a class="markdownIt-Anchor" href="#同步光线网"></a> 同步光线网</h4>
+<p>Synchronous Optical Network，的各级时钟都来自一个非常精确的主时钟（铯原子钟，精度优于10-11秒）</p>
+<ul>
+<li>第 1 级同步传送信号 STS-1的传输速率是 51.84 Mb/s。</li>
+<li>光信号成为第一级光载波OC-1（Optical Carrier）</li>
+</ul>
+<h4 id="同步数字系列sdh"><a class="markdownIt-Anchor" href="#同步数字系列sdh"></a> 同步数字系列SDH</h4>
+<p>ITU-T以美国标准 SONET 为基础，制订出国<br />
+际标准同步数字系列 SDH</p>
+<p>一般可认为 SDH 与 SONET 是同义词。</p>
+<p>SDH 的基本速率为 155.52 Mb/s，称为第 1 级同步传递模块(Synchronous Transfer Module)，即STM-1，对应SONET 体系<br />
+中的 OC-3 速率</p>
+<p>对应关系：</p>
+<p><img src="p/%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB.png" alt="" /></p>
+<h4 id="sdh体系结构"><a class="markdownIt-Anchor" href="#sdh体系结构"></a> SDH体系结构</h4>
+<p><img src="p/SDH.png" alt="" /></p>
+<p>SDH 也是光传输。复用器和复用器之间分成段，使用转发器。</p>
+<h4 id="同步光纤网sonet"><a class="markdownIt-Anchor" href="#同步光纤网sonet"></a> 同步光纤网SONET</h4>
+<p>第 3 级同步传送信号 STS-3 传输速率是 STS-1 的3倍，以此类推</p>
+<p>STS 帧为时分复用帧，8000 帧/秒，每帧 125 μS</p>
+<p>SONET 标准的四个光接口层：</p>
+<ul>
+<li>光子层(Photonic Layer)：处理跨越光缆的比特传送。</li>
+<li>段层(Section Layer)：在光缆上传送 STS-N 帧。</li>
+<li>线路层(Line Layer)：负责路径层的同步和复用。</li>
+<li>路径层(Path Layer)：处理路径端接设备 PTE (PathTerminating Element)之间的业务的传输。</li>
+</ul>
+<h3 id="光纤同轴混合网"><a class="markdownIt-Anchor" href="#光纤同轴混合网"></a> 光纤同轴混合网</h3>
+<p>HFC (Hybrid Fiber Coax)</p>
+<p>目前覆盖面很广的有线电视网 CATV 的基础上开发的一种居民宽带接入网，可传送 CATV 外，还提供电话、数据和其他宽带交互型业务。</p>
+<p>现有的CATV是<strong>树形拓扑结构</strong>的同轴电缆网络，采用模拟技术的<strong>频分复用</strong>对电视节目进行<strong>单向传输</strong>。HFC 网则需要对 CATV 网进行改造，</p>
+<h4 id="hfc的主要特点"><a class="markdownIt-Anchor" href="#hfc的主要特点"></a> HFC的主要特点</h4>
+<ul>
+<li>将原 CATV 网中的同轴电缆主干部分改换为光纤，并使用<strong>模拟光纤</strong>技术。</li>
+<li>在<strong>模拟光纤</strong>中采用光的振幅调制 AM，这比使用数字光纤更为经济。</li>
+<li>模拟光纤从头端连接到<strong>光纤节点</strong>（fiber node），即<strong>光分配节点</strong> ODN（Optical Distribution Node）。在光纤节点光信号被转换为电信号。在光纤节点以下就是同轴电缆。（光信号转换成电信号）</li>
+</ul>
+<p><img src="p/HFC.png" alt="" /></p>
+<p>具有比 CATV 网更宽的频谱，且具有双向传输功能</p>
+<p><img src="p/%E4%B8%8A%E8%A1%8C%E9%80%9A%E9%81%93.png" alt="" /></p>
+<h3 id="用户接口盒uib-user-interface-box"><a class="markdownIt-Anchor" href="#用户接口盒uib-user-interface-box"></a> 用户接口盒UIB (User Interface Box)</h3>
+<p>每个家庭要安装一个用户接口盒，提供三种连接：</p>
+<ul>
+<li>使用同轴电缆连接到机顶盒(set-top box)，然后再连接到用户的电视机。</li>
+<li>使用双绞线连接到用户的电话机。</li>
+<li>使用电缆调制解调器连接到用户的计算机。</li>
+</ul>
+<h4 id="电缆调制解调器"><a class="markdownIt-Anchor" href="#电缆调制解调器"></a> 电缆调制解调器</h4>
+<p>是为 HFC 网而使用的调制解调器。是传输速率高（下行3-10Mb/s，上行0.2-2Mbs）</p>
+<p>比在普通电话线上使用的调制解调器要复杂得多，只安装在用户端。</p>
+<h3 id="fttx技术"><a class="markdownIt-Anchor" href="#fttx技术"></a> FTTx技术</h3>
+<p>（光纤到……）也是一种实现宽带居民接入网的方案。这里字母 x 可代表不同意思。</p>
+<ul>
+<li>光纤到家 FTTH (Fiber To The Home)</li>
+<li>光纤到大楼 FTTB (Fiber To The Building)</li>
+<li>光纤到路边 FTTC (Fiber To The Curb)</li>
+</ul>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2023/12/27/%E5%B9%BF%E5%9F%9F%E7%BD%91/" data-id="clqnwncae0000o8uw00rng7vn" data-title="广域网"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="局域网交换与虚拟局域网" class="lazyload">
+                    
+                
+                <a href="/2023/12/26/%E5%B1%80%E5%9F%9F%E7%BD%91%E4%BA%A4%E6%8D%A2%E4%B8%8E%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        局域网交换与虚拟局域网
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">46</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    135.1k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    08:07
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">46</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
