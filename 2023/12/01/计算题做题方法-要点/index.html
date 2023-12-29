@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E9%A1%B5%E8%A1%A8.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/tlb.png">
 <meta property="article:published_time" content="2023-12-01T11:44:51.000Z">
-<meta property="article:modified_time" content="2023-12-16T13:48:30.875Z">
+<meta property="article:modified_time" content="2023-12-29T15:29:08.169Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E6%A0%87%E5%87%86.png">
@@ -442,6 +442,64 @@
 <li>页表是存储在内存中的，TLB是存储在Cache中的。</li>
 <li>在取出页表或TLB中的物理页号时，需要先检查装入位（valid），如果valid位为1，才说明这一行中存储的是对应的物理页号，否则就需要从硬盘中先加载这个页。</li>
 </ul>
+<h2 id="九-指令周期计算与微操作设计"><a class="markdownIt-Anchor" href="#九-指令周期计算与微操作设计"></a> 九、指令周期计算与微操作设计</h2>
+<h3 id="知识点-7"><a class="markdownIt-Anchor" href="#知识点-7"></a> 知识点</h3>
+<p>要执行一个指令，需要经过以下步骤：</p>
+<ul>
+<li>将地址从PC读到MAR</li>
+<li>从内存中读数据到MBR</li>
+<li>将MBR中的数据读到IR</li>
+<li>执行指令</li>
+</ul>
+<p>执行指令如果要使用ALU，那么就需要先将数据存进ALU读取的寄存器中，然后经过ALU计算存入ALU结果的寄存器中。</p>
+<p>微指令中：<br />
+每一条微指令由三个部分组成：控制字、分支条件、微指令地址。- 控制字：每一位代表一根控制线，控制具体的控制线或开或关</p>
+<ul>
+<li>分支条件：少数几位，用于指示是否跳转到微指令地址字段指向的地址</li>
+<li>微指令地址：表示微指令的存放地址，一般存放在控存中。</li>
+</ul>
+<p>注意：一般控存是几位宽的，那么微指令就是几位的。（控存中存储的就是微指令）</p>
+<h3 id="做题格式"><a class="markdownIt-Anchor" href="#做题格式"></a> 做题格式</h3>
+<p>设计某个微指令格式时，需要为每种不同单元的操作分别分配不同的位数，比如假如ALU有16种操作，移位器有8种，那么你需要为ALU分配4位，移位器分配三位。除此之外，你还要指定ALU的两个输入寄存器和一个输出寄存器。因此你需要根据寄存器的个数确定每个寄存器需要几位表示，再把它乘以3.</p>
+<p>写微操作序列时：</p>
+<p>1、如果要取出IR中的立即数，可以使用IR(Address)表示，即IR的地址字段中存放的就是立即数</p>
+<p>2、如果要将某个数据作为地址从内存中读取数据，可以这样写：</p>
+<ul>
+<li>MAR &lt;- 地址</li>
+<li>MBR &lt;- Memory</li>
+</ul>
+<p>如果是PC中的地址，那么就将PC中的内容放入MAR中，并且取完之后将指令存放入IR中。如果取的不是一条指令，就<strong>不需要</strong>放入IR中</p>
+<p>3、如果想要使用ALU运算，假如这里ALU的两个输入寄存器分别是X和Y，ALU结果寄存器是Z，那么就可以先将一个数据放入Y中，再进行运算。例如想要将R1和R2相加，你可以这样写：</p>
+<ul>
+<li>X &lt;- R1</li>
+<li>Y &lt;- R2</li>
+<li>Z &lt;- X + Y</li>
+</ul>
+<p>这里的加号就隐含了使用了ALU的意思。当然，如果它ALU只给了一个输入寄存器，另一个可以直接使用其他地方的寄存器，就不需要使用Y了，可以直接在加号的右边写上另一个你想使用的寄存器内容</p>
+<p>4、如果想要将一个数存回到内存中，你可以这样写：</p>
+<ul>
+<li>MAR &lt;- 地址</li>
+<li>Memory &lt;- MBR<br />
+只需要记住MAR是地址寄存器，MBR是数据寄存器即可。两者都是可以输入或输出到内存的。</li>
+</ul>
+<h3 id="注意点-6"><a class="markdownIt-Anchor" href="#注意点-6"></a> 注意点</h3>
+<ul>
+<li>
+<p>通常，写某一个命令的微操作序列时，不需要将取址周期的内容加上（即开始时IR中就已经存放了这条指令）</p>
+</li>
+<li>
+<p>需要区分间接寻址和寄存器间接寻址：间接寻址，是指IR中的地址字段存放了一个内存地址，这个内存地址指向的地方存放了另一个内存地址，而不是指IR中指明的寄存器中存放了内存地址（这个叫寄存器间接寻址）</p>
+</li>
+<li>
+<p>一般来说，如果题目没有给ALU的操作数的寄存器和结果寄存器，你最好自己设一下这些寄存器是什么。同理，如果你要使用某种ALU的操作，但是题目没给具体名称，你也最好设一下操作是什么。</p>
+</li>
+</ul>
+<h2 id="十-io处理器计算"><a class="markdownIt-Anchor" href="#十-io处理器计算"></a> 十、I/O处理器计算</h2>
+<h3 id="知识点-8"><a class="markdownIt-Anchor" href="#知识点-8"></a> 知识点</h3>
+<p>IO从外设中读取数据的方式有几种：</p>
+<p>1、查询方式：CPU定期取检查是否I/O就绪，如果就绪就将I/O中的寄存器中的内容传送到内存缓冲区中。</p>
+<p>2、中断驱动方式：一旦I/O检查到了一个数据准备就绪，就向CPU发送中断信号，然后CPU调用中断例程来接收这个数据。</p>
+<p>3、DMA方式：即</p>
 
             
         </div>
@@ -626,10 +684,10 @@
             
                 <div>
                     <span class="icon-brush"></span>
-                    144.9k
+                    146k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    08:41
+                    08:45
                 </div>
             
             
