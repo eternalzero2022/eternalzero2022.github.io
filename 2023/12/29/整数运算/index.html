@@ -1,0 +1,654 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        整数运算 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="整数运算  算术逻辑单元ALU 计算机实际完成数据算术逻辑运算的部件  数据由寄存器提交给ALU，运算结果也存于寄存器 ALU也可以产生一些与运算结果有关的标志值存储在寄存器中 控制器提供控制ALU操作和数据传入送出ALU的信号   全加器  一位加法器：  X和Y表示加数，F表示当前位的结果，Cout表示向高位的进位，Cin表示上一位低位在本位的进位 Cin、X、Y经过逻辑运算可以计算出Cou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整数运算">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="整数运算  算术逻辑单元ALU 计算机实际完成数据算术逻辑运算的部件  数据由寄存器提交给ALU，运算结果也存于寄存器 ALU也可以产生一些与运算结果有关的标志值存储在寄存器中 控制器提供控制ALU操作和数据传入送出ALU的信号   全加器  一位加法器：  X和Y表示加数，F表示当前位的结果，Cout表示向高位的进位，Cin表示上一位低位在本位的进位 Cin、X、Y经过逻辑运算可以计算出Cou">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%B8%80%E4%BD%8D%E5%8A%A0%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%BB%85%E4%B8%BA%E8%AE%A1%E7%AE%97.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%B8%80%E4%BD%8D%E5%8A%A0%E6%B3%95%E5%99%A8%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E6%94%B9%E8%BF%9B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%B8%B2%E8%A1%8C%E8%BF%9B%E4%BD%8D%E5%8A%A0%E6%B3%95%E5%99%A8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E5%85%A8%E5%85%88%E8%A1%8C.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E5%85%A8%E5%85%88%E8%A1%8C%E8%BF%99%E4%B8%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E9%83%A8%E5%88%86%E5%85%88%E8%A1%8C.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E5%8A%A0%E6%B3%95%E6%BA%A2%E5%87%BA.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%B9%98%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%B9%98%E6%B3%951.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%B9%98%E6%B3%952.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%BC%98%E5%8C%96%E4%B9%98%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%B9%98%E6%B3%953.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E8%A1%A5%E7%A0%811%E4%BD%8D%E4%B9%98%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E6%98%AF%E5%90%A6%E6%BA%A2%E5%87%BA.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E9%98%B5%E5%88%97%E4%B9%98%E6%B3%95%E5%99%A8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E9%99%A4%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E9%99%A4%E6%B3%951.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E6%98%AF%E5%90%A6%E5%A4%9F%E5%87%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E6%81%A2%E5%A4%8D%E8%AE%A1%E7%AE%97.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E9%99%A4%E6%B3%952.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/P/%E4%B8%8D%E5%9B%9E%E5%A4%8D.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E9%99%A4%E6%B3%953.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%B8%8D%E6%81%A2%E5%A4%8D%E8%BF%90%E7%AE%97.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E9%98%B5%E5%88%97%E9%99%A4%E6%B3%95%E5%99%A8.png">
+<meta property="article:published_time" content="2023-12-29T09:13:15.000Z">
+<meta property="article:modified_time" content="2023-12-29T09:13:34.015Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/p/%E4%B8%80%E4%BD%8D%E5%8A%A0%E6%B3%95.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="整数运算" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>整数运算</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-整数运算" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/" class="article-date-link">
+        <time datetime="2023-12-29T09:13:15.000Z"
+              itemprop="datePublished">2023-12-29</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="整数运算"><a class="markdownIt-Anchor" href="#整数运算"></a> 整数运算</h1>
+<h2 id="算术逻辑单元alu"><a class="markdownIt-Anchor" href="#算术逻辑单元alu"></a> 算术逻辑单元ALU</h2>
+<p>计算机实际完成数据算术逻辑运算的部件</p>
+<ul>
+<li>数据由寄存器提交给ALU，运算结果也存于寄存器</li>
+<li>ALU也可以产生一些与运算结果有关的标志值存储在寄存器中</li>
+<li>控制器提供控制ALU操作和数据传入送出ALU的信号</li>
+</ul>
+<h3 id="全加器"><a class="markdownIt-Anchor" href="#全加器"></a> 全加器</h3>
+<h4 id="一位加法器"><a class="markdownIt-Anchor" href="#一位加法器"></a> 一位加法器：</h4>
+<p><img src="p/%E4%B8%80%E4%BD%8D%E5%8A%A0%E6%B3%95.png" alt="" /></p>
+<p>X和Y表示加数，F表示当前位的结果，Cout表示向高位的进位，Cin表示上一位低位在本位的进位</p>
+<p>Cin、X、Y经过逻辑运算可以计算出Cout和F</p>
+<p><img src="p/%E4%BB%85%E4%B8%BA%E8%AE%A1%E7%AE%97.png" alt="" /></p>
+<p>一位加法器的结构：</p>
+<p><img src="p/%E4%B8%80%E4%BD%8D%E5%8A%A0%E6%B3%95%E5%99%A8%E7%BB%93%E6%9E%84.png" alt="" /></p>
+<p>假设与门、或门都需要1级门延迟(1ty)，异或门需要3级门延迟(3ty)，那么Cout的形成需要<strong>2ty</strong>，F的形成需要<strong>6ty</strong>。（这点很重要，因为一般只要直到了Cout就可以继续计算下一位加法，而不需要等到F也计算完）</p>
+<p>也可以改进一位加法器的结构：</p>
+<p><img src="p/%E6%94%B9%E8%BF%9B.png" alt="" /></p>
+<h4 id="串行进位行波进位加法器"><a class="markdownIt-Anchor" href="#串行进位行波进位加法器"></a> 串行进位（行波进位）加法器</h4>
+<p><img src="p/%E4%B8%B2%E8%A1%8C%E8%BF%9B%E4%BD%8D%E5%8A%A0%E6%B3%95%E5%99%A8.png" alt="" /></p>
+<p>缺点：延迟慢</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">C_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>需要至少2n级门延迟（每次都需要等待上一级的进位<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">C_{n-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span>计算完毕才可以继续计算，每个进位都需要2级门延迟）</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">F_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>需要至少2n+1级门延迟（不是2n+4是因为计算F_n的六级门延迟是基于X、Y和Cn-1同时开启时的，而实际上在计算Fn时，Xn和Yn早就已经开启了，因此就可以提前通过与Xn和Yn有关的门，然后最后等到Cn-1也出现再通过剩下的门，就可以缩短门延迟至2n+1）</li>
+</ul>
+<p>问题：高位的运算必须等待低位的“进位输出信号”。有没有办法能否提前计算出“进位输出信号” ？</p>
+<h4 id="全先行进位加法器"><a class="markdownIt-Anchor" href="#全先行进位加法器"></a> 全先行进位加法器</h4>
+<p>我们可以利用公式直接通过每位X和Y推导出Cn的值。</p>
+<p><img src="p/%E5%85%A8%E5%85%88%E8%A1%8C.png" alt="" /></p>
+<p>最后的全先行进位加法器是这样的：</p>
+<p><img src="p/%E5%85%A8%E5%85%88%E8%A1%8C%E8%BF%99%E4%B8%80.png" alt="" /></p>
+<p>延迟为1ty+2ty+3ty = 6ty，并且延迟与加法器的位数无关。（计算方法：第一步算出<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">P_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">G_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，需要一级门延迟；然后对其继续与和或的操作算出<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">C_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，需要两级门延迟.（与此同步进行的是X与Y的异或，它也需要3个门延迟，所以在计算出进位的同时这个异或也能够计算完成）最后通过一个异或门，将X与Y的异或结果再与刚刚计算出的进位进行异或操作，算出<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">F_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，需要三级门延迟。因此最后就是1+2+3 = 6）</p>
+<h4 id="部分先行进位加法器"><a class="markdownIt-Anchor" href="#部分先行进位加法器"></a> 部分先行进位加法器</h4>
+<p>相当于结合了行波进位（RCA）和全先行进位（CLA）</p>
+<ul>
+<li>行波进位：65级门延迟（太大了）</li>
+<li>全先行进位：6级门延迟，但是难以实现，C32需要一个或门和32个与门，最大需要33输入的与门和或门</li>
+</ul>
+<p>部分先行进位加法器：串联4个8位CLA，12级门延迟</p>
+<p><img src="p/%E9%83%A8%E5%88%86%E5%85%88%E8%A1%8C.png" alt="" /></p>
+<p>12级门延迟的计算方法：首先，由于<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">P_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">Q_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>都是需要每一部分的最初进位的，而最初只有最右边的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">C_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>最初进位是已知的，因此第一级门延迟需要计算出最右边的加法器的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">P_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">Q_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。然后二级门延迟计算出<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">C_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。这样，第二个加法器的最初进位<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">C_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>就已知了，经过同样的三级门延迟就可以计算出<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">C_{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">6</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，以此类推，直到计算出<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>24</mn></msub></mrow><annotation encoding="application/x-tex">C_{24}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，此时消耗了9级门延迟。而最后我们只需要计算进位和本位的结果，并且是同步进行的，因此只需要取两种中的最大值。计算进位需要3级门延迟，而计算本位的结果是这样的：它本身需要六级门延迟，其中前三级算X与Y的异或，后三级利用这个结果再和上一级的进位进行异或，得出结果。但是这里X和Y是早就已知的，因此可以提前计算出X与Y的异或，所以这里计算本位结果<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">F_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>时只需要执行后面一步的三个门延迟，所以<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">F_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>也只需要三级门延迟。因此，最后一个加法器总体就是三级门延迟。因此，总体的部分先行加法器的延迟就是3+3+3+3 = 12</p>
+<h3 id="计算"><a class="markdownIt-Anchor" href="#计算"></a> 计算</h3>
+<p><strong>加法：补码相加，结果直接截取后n位，忽略进位。</strong></p>
+<p>如何判断溢出？</p>
+<p><img src="p/%E5%8A%A0%E6%B3%95%E6%BA%A2%E5%87%BA.png" alt="" /></p>
+<p>可以通过X与Y与Fn或Cn与Cn-1的逻辑运算算出是否溢出</p>
+<p><strong>减法：X-Y相当于X+(-Y)的补码</strong></p>
+<p>溢出与加法相同</p>
+<p>乘法：与竖式计算方式相同</p>
+<p><img src="p/%E4%B9%98%E6%B3%95.png" alt="" /></p>
+<p>存在的问题：在整体计算的时候需要能够支持n位右移（乘数右移判断当前位数）2n位左移的寄存器（被除数左移，让被乘数整体基数变大），以及2n位加法器（用于将被乘数与部分积相加）</p>
+<p><img src="p/%E4%B9%98%E6%B3%951.png" alt="" /></p>
+<p>优化方法：<br />
+1、加法和移位并行</p>
+<ul>
+<li>时钟上升沿到来前先取出数据，之后寄存器的变化不会影响取出的数据</li>
+</ul>
+<p><img src="p/%E4%B9%98%E6%B3%952.png" alt="" /></p>
+<p>图中将左移、右移、加法操作设为了并行。</p>
+<p>2、减少不必要的硬件<br />
+可以使用一个支持2n位的寄存器来实现乘数和乘积共用。现在只需要一个n位被乘数寄存器和一个2n位寄存器，以及n位加法器</p>
+<p><img src="p/%E4%BC%98%E5%8C%96%E4%B9%98%E6%B3%95.png" alt="" /></p>
+<p>最初部分积在乘数左边，为0，然后每次根据乘数的最后一位对部分积实施加或不加被乘数，然后最后总体为0。</p>
+<p><img src="p/%E4%B9%98%E6%B3%953.png" alt="" /></p>
+<p>简化了整体的操作，不再需要对多个寄存器进行移位，只需要对2n位寄存器整体移位</p>
+<p>当然，寄存器中值的改变和移位寄存器还是需要先后顺序</p>
+<p>乘法存在的问题：无法处理负数的情况</p>
+<h3 id="原码一位乘法"><a class="markdownIt-Anchor" href="#原码一位乘法"></a> 原码一位乘法</h3>
+<ul>
+<li>被乘数与乘数用原码表示，数值位和符号位分开计算</li>
+<li>最后结果再改为补码表示</li>
+</ul>
+<h3 id="补码一位乘法布斯乘法"><a class="markdownIt-Anchor" href="#补码一位乘法布斯乘法"></a> 补码一位乘法：布斯乘法</h3>
+<p><img src="p/%E8%A1%A5%E7%A0%811%E4%BD%8D%E4%B9%98%E6%B3%95.png" alt="" /></p>
+<p>它与普通乘法的不同在于：判断的是乘数最后两位的情况，对部分积实施加或减（加补码）</p>
+<p>判断是否溢出：</p>
+<p><img src="p/%E6%98%AF%E5%90%A6%E6%BA%A2%E5%87%BA.png" alt="" /></p>
+<p>简单来说就是判断高n位的情况。</p>
+<p>阵列乘法器：</p>
+<p><img src="p/%E9%98%B5%E5%88%97%E4%B9%98%E6%B3%95%E5%99%A8.png" alt="" /></p>
+<h3 id="除法"><a class="markdownIt-Anchor" href="#除法"></a> 除法</h3>
+<p>需要根据被除数和除数的情况做特殊处理：</p>
+<p><img src="p/%E9%99%A4%E6%B3%95.png" alt="" /></p>
+<p>手工演算除法：在被除数的左侧补充符号位，将除数的最高位与被除数的次高位对齐；从被除数中减去除数，若够减，则上商为1；若不够减，则上商为0；然后右移除数</p>
+<p>除法运算过程：</p>
+<p><img src="p/%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97%E8%BF%87%E7%A8%8B.png" alt="" /></p>
+<p>简单来讲就是，每次判断余数是否大于除数，如果大于，就减去除数，上商为1，否则不做，然后上商为0；然后除数右移一位</p>
+<p><img src="p/%E9%99%A4%E6%B3%951.png" alt="" /></p>
+<p>优化方法：将余数和商放在一起形成一个支持左移的2n位寄存器，然后使用一个n位寄存器表示除数。</p>
+<p>最初这个2n位寄存器中存放的是被除数补码符号扩展的结果</p>
+<p>异号除法：使用补码加法来表示减法。商需要取补码，并且余数本来就是补码</p>
+<p>通常，除法分为恢复余数除法和不恢复余数除法</p>
+<h4 id="恢复余数除法"><a class="markdownIt-Anchor" href="#恢复余数除法"></a> 恢复余数除法</h4>
+<p>先把被除数减去除数，如果够减，就不做，如果不够减，就加回刚刚减去的数。然后整体左移一位</p>
+<ul>
+<li>如何判断“够减”：就是看余数在减（加）完后会不会变号；如果会变号，说明不够减。（注意：异号除法中用补码加法表示减）</li>
+</ul>
+<p><img src="p/%E6%98%AF%E5%90%A6%E5%A4%9F%E5%87%8F.png" alt="" /></p>
+<p>计算过程：</p>
+<p><img src="p/%E6%81%A2%E5%A4%8D%E8%AE%A1%E7%AE%97.png" alt="" /></p>
+<p>除数寄存器始终不变，每次减完除数后根据余数的符号变化执行具体操作</p>
+<p><img src="p/%E9%99%A4%E6%B3%952.png" alt="" /></p>
+<h3 id="不恢复余数除法"><a class="markdownIt-Anchor" href="#不恢复余数除法"></a> 不恢复余数除法</h3>
+<p>恢复余数成本过高，因此设计了一种办法，不需要恢复余数，而是在下一步中执行不同的操作来实现。</p>
+<p><img src="P/%E4%B8%8D%E5%9B%9E%E5%A4%8D.png" alt="" /></p>
+<p>这里面的Ri都是表示已经减去除数Y过的余数。如果余数足够大，那么新的余数就是Ri直接右移一位然后减去除数Y。如果余数不够大，那么就应该在移位前先加一个除数Y，然后再移位，再减去Y。所以最后化成公式就是2Ri+Y，也就是相当于如果不够减，在下一步减去除数时改为加上除数即可。</p>
+<p>因此，最后的除法流程就可以变成这样：</p>
+<p><img src="p/%E9%99%A4%E6%B3%953.png" alt="" /></p>
+<p>注意在完成步骤后，还需要进行商的修正与余数的修正。</p>
+<p>这样的修正，简单来说就是：商需要左移，左移补的位数由余数和除数的符号决定，应该是对两者异或取反。然后最后如果被除数和除数异号，还得+1。然后余数的修正就是：正常情况下余数符号和被除数应该相等，如果现在符号不同了，那就得加一个除数或减一个除数，把它符号搞的和被除数一样。</p>
+<p><img src="p/%E4%B8%8D%E6%81%A2%E5%A4%8D%E8%BF%90%E7%AE%97.png" alt="" /></p>
+<p>一般一个变量除以<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span>时，采取的是右移操作。如果不能整除，那么最后的位直接朝零舍入（直接去掉）。</p>
+<p>阵列除法器：</p>
+<p><img src="p/%E9%98%B5%E5%88%97%E9%99%A4%E6%B3%95%E5%99%A8.png" alt="" /></p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/" data-id="clqqf2ts600009ouwfk0kfmbe" data-title="整数运算"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="数据的机器级表示" class="lazyload">
+                    
+                
+                <a href="/2023/12/28/%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        数据的机器级表示
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">49</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    141.8k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    08:31
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">49</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
