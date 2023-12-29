@@ -1,0 +1,638 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        内部存储器 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="内部存储器  1、存储器 存储器由一定数量的单元构成，每个单元可以被唯一标识，每个单元都有存储一个数值的能力。  地址：单元的唯一标识符 地址空间：可唯一标识的单元总数（你用这几位最多可以表示出几个地址） 寻址能力：存储在每个单元中信息的位数，即内存中能被单独识别并独立存放一个数据的最小空间（一个地址指向的空间中包含了多少位）   2、存储器层次结构 1、主板内存储器  寄存器 Cache（高速">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内部存储器">
+<meta property="og:url" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="内部存储器  1、存储器 存储器由一定数量的单元构成，每个单元可以被唯一标识，每个单元都有存储一个数值的能力。  地址：单元的唯一标识符 地址空间：可唯一标识的单元总数（你用这几位最多可以表示出几个地址） 寻址能力：存储在每个单元中信息的位数，即内存中能被单独识别并独立存放一个数据的最小空间（一个地址指向的空间中包含了多少位）   2、存储器层次结构 1、主板内存储器  寄存器 Cache（高速">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-1.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-2.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-3.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-4.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-5.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-6.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-9.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-10.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-11.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image-12.png">
+<meta property="article:published_time" content="2023-12-29T13:48:27.000Z">
+<meta property="article:modified_time" content="2023-12-29T13:49:40.689Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/image.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="内部存储器" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>内部存储器</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-内部存储器" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/" class="article-date-link">
+        <time datetime="2023-12-29T13:48:27.000Z"
+              itemprop="datePublished">2023-12-29</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="内部存储器"><a class="markdownIt-Anchor" href="#内部存储器"></a> 内部存储器</h1>
+<h2 id="1-存储器"><a class="markdownIt-Anchor" href="#1-存储器"></a> 1、存储器</h2>
+<p>存储器由一定数量的单元构成，每个单元可以被唯一标识，每个单元都有存储一个数值的能力。</p>
+<ul>
+<li>地址：单元的唯一标识符</li>
+<li>地址空间：可唯一标识的单元总数（你用这几位最多可以表示出几个地址）</li>
+<li>寻址能力：存储在每个单元中信息的位数，即内存中能被单独识别并独立存放一个数据的最小空间（一个地址指向的空间中包含了多少位）</li>
+</ul>
+<h2 id="2-存储器层次结构"><a class="markdownIt-Anchor" href="#2-存储器层次结构"></a> 2、存储器层次结构</h2>
+<p>1、主板内存储器</p>
+<ul>
+<li>寄存器</li>
+<li>Cache（高速缓存）</li>
+<li>主存<br />
+2、主板外存储器</li>
+<li>磁盘</li>
+<li>CD-ROM</li>
+<li>CD-RW</li>
+<li>DVD-RW</li>
+<li>DVD-RAM<br />
+3、离线存储器</li>
+<li>磁带</li>
+</ul>
+<h2 id="3-寄存器基本原理"><a class="markdownIt-Anchor" href="#3-寄存器基本原理"></a> 3、寄存器基本原理</h2>
+<p><img src="image.png" alt="Alt text" /><br><br />
+一个时钟周期分为两个部分：时钟上升沿和时钟下降沿<br><br />
+只有在时钟前半部分可以改变触发器中存储着的数据<br />
+<img src="image-1.png" alt="Alt text" /><br><br />
+图中两条红色虚线之间都是时钟上升沿。第一条红线时，Din是高电平，于是Qout在经历一段时间的延迟后也变成了高电平，与Din保持一致。之后紧接着的时钟上升沿，Din仍然为高电平，因此Qout没有改变。直到第二根红线的位置，Din变成了低电平，于是Qout在经历一段时间的延迟后就变回了低电平。</p>
+<p><strong>半导体存储器</strong><br><br />
+半导体芯片做主存储器是主流选择<br><br />
+位元：半导体存储器的基本元件，存储1位数据</p>
+<ul>
+<li>呈现表示0和1的稳态或半稳态</li>
+<li>能至少被写入一次，能被读取<br />
+<img src="image-2.png" alt="Alt text" /><br />
+<br></li>
+</ul>
+<h2 id="4-随机存取存储器ram"><a class="markdownIt-Anchor" href="#4-随机存取存储器ram"></a> 4、随机存取存储器（RAM）</h2>
+<p>随机访问：访问数据时间与数据位置无关<br><br />
+特性</p>
+<ul>
+<li>可以简单快速进行读写操作</li>
+<li>易失的</li>
+</ul>
+<p>类型</p>
+<ul>
+<li>静态RAM</li>
+<li>动态RAM</li>
+</ul>
+<p><strong>SRAM</strong><br />
+<img src="image-3.png" alt="Alt text" /><br><br />
+信息的保持：字选择线低电平，阻断T5和T6<br><br />
+信息的读取：字选择线打开，如果存1，则左边线高电平，T2阻断，右端会产生负脉冲；如果存0则相反<br><br />
+信息的写入：字选择线打开，如果想要存1，那么右端低电平，使左端电位上升，T2阻断<br></p>
+<p>可以想象为两个游泳池，每个游泳池底下有排水管，上面有一个水位传感器，可以控制另一个游泳池的排水管的打开与关闭（如果感应到了水位就会打开对面泳池的排水管使得对面的水被排走）。而两个泳池同时也各自有入水管。<br><br />
+信息的保持：入水管关闭，泳池内部保持原有状态<br><br />
+信息的读取：入水管打开，如果哪边的水位高，那么就会导致另一边泳池的排水管被打开，从而泳池一直漏水（在这种情况下漏水的那边没法除法上面的水传感器，也就没法让水位高的那边漏水，就可以维持这种状态），因而入水管流入的水一直在被漏走，我们就可以根据哪边的加进来的水在被漏走判断是1还是0<br><br />
+信息的写入：入水管打开，如果想要写入1，那么可以主动把右边的水抽干，使得右边的传感器失效，左边的排水管关闭，水不会被排走，一直累计水直到碰到水传感器，打开右边的排水管，使得右边本不富裕的水更是雪上加霜，也就改变了水池的状态。<br></p>
+<p><strong>DRAM</strong><br />
+<img src="image-4.png" alt="Alt text" /><br><br />
+通过电容来存储数据，读数据时直接读取电容中的电平，写数据时给电容充电或不充。</p>
+<p><strong>SRAM和DRAM的对比</strong><br />
+<img src="image-5.png" alt="Alt text" /><br><br />
+可以把SRAM想象为C++，DRAM想象为Java，C++集成度低（偏底层），功耗高（写起来很痛苦），但是速度快，不用刷新（没有自动释放内存的操作），价格低；而Java集成度高（很多功能都被封装起来了，不那么底层），功耗低（写起来比较轻松），但是速度慢（比较一下Java和基岩版的我的世界就知道，Java垃圾回收机制等大大降低了程序速度），需要刷新（得不停检测垃圾），价格高</p>
+<h2 id="5-只读存储器rom"><a class="markdownIt-Anchor" href="#5-只读存储器rom"></a> 5、只读存储器（ROM）</h2>
+<p>可以长期保存信息的存储器，断电后信息仍可保存，工作时只可读取不可写入<br><br />
+非易失的，用户无法写入数据</p>
+<p><strong>可编程ROM(PROM)</strong><br />
+只能被写入一次，写过程用电信号执行，需要特殊设备完成写过程</p>
+<h2 id="6-主要进行读操作的存储器"><a class="markdownIt-Anchor" href="#6-主要进行读操作的存储器"></a> 6、主要进行读操作的存储器</h2>
+<p>写操作和读操作相比较为困难</p>
+<p><strong>光可擦除/可编程只读存储器EPROM</strong><br><br />
+电写入（1-&gt;0），光擦除（0-&gt;1）<br />
+<img src="image-6.png" alt="Alt text" /></p>
+<p><strong>电可擦除/可编程只读存储器EEPROM</strong><br><br />
+电写入（1-&gt;0），电擦除（0-&gt;1）<br />
+<img src="image-7.png" alt="Alt text" /></p>
+<p><strong>快闪存储器</strong><br><br />
+电可擦除，可以在块级擦除，不能在字节级擦除，需要先擦除再写入<br><br />
+分类：NOR Flash（数据线和地址线分开，可以读任意字节），NAND Flash（数据线和地址线共有，只能按页读取）<br />
+<img src="image-8.png" alt="Alt text" /></p>
+<p>各类ROM对比<br />
+<img src="image-9.png" alt="Alt text" /></p>
+<h2 id="6-存储阵列"><a class="markdownIt-Anchor" href="#6-存储阵列"></a> 6、存储阵列</h2>
+<p><img src="image-10.png" alt="Alt text" /><br />
+如何寻址？</p>
+<p>第一步先获得总线控制权，然后发送地址，从地址中读出行地址和列地址，然后将其分别发出，分别从行译码器和列译码器中选出行和列，（先处理行，处理完毕后再处理列，有先后顺序）</p>
+<p><strong>刷新方式</strong></p>
+<ul>
+<li>集中式刷新：停止读写，逐行刷新，此时无法操作内存</li>
+<li>分散式刷新：读写完成时刷新，一次读写完成刷新一行，增加每个存储周期时间</li>
+<li>异步刷新：固定间隔刷新，DRAM在译码阶段刷新，有效利用时间</li>
+</ul>
+<h2 id="7-高级的dram架构"><a class="markdownIt-Anchor" href="#7-高级的dram架构"></a> 7、高级的DRAM架构</h2>
+<p>传统DRAM是异步的，处理器必须等待存取延迟<br><br />
+高级DARM架构是同步的<br><br />
+<em>同步DRAM,双速率SDRAM</em></p>
+<p><img src="image-11.png" alt="Alt text" /></p>
+<ul>
+<li>SDRAM：先行选，然后列选，然后每个时钟周期发送一次数据。</li>
+</ul>
+<p><img src="image-12.png" alt="Alt text" /></p>
+<ul>
+<li>DDR SDRAM：发送数据时，每个时钟周期发送两次数据。因此，频率也会增加。</li>
+</ul>
+<h2 id="8-模块组织"><a class="markdownIt-Anchor" href="#8-模块组织"></a> 8、模块组织</h2>
+<p>三种扩展：</p>
+<ul>
+<li>位扩展：地址线不变，数据线增加（相当于每个地址能够表示的数据量增加了,芯片看上去变的更“厚”）（使用8块4K*1的芯片组成4K*8的芯片）</li>
+<li>字扩展：地址线增加，数据线不变（增加了地址的总量，而每个地址能够表示的位数不变，芯片看上去变的更“宽”）（使用4个16K*8的芯片构成64K*8的芯片）</li>
+<li>字、位同时扩展：地址线增加，数据线增加（使用8个16K*4bit的芯片组成64K*8bit的存储器）</li>
+</ul>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2023/12/29/%E5%86%85%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/" data-id="clqqoy16n0000uouw2h3f0i42" data-title="内部存储器"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="二进制编码的十进制数运算" class="lazyload">
+                    
+                
+                <a href="/2023/12/29/%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%BC%96%E7%A0%81%E7%9A%84%E5%8D%81%E8%BF%9B%E5%88%B6%E6%95%B0%E8%BF%90%E7%AE%97/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        二进制编码的十进制数运算
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">52</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    144.9k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    08:41
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">52</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
