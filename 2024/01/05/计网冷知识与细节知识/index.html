@@ -1,0 +1,575 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        计网冷知识与细节知识 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="计网中的一些冷知识&#x2F;细节知识  IPV6并不是简单的6个字节，而是达到了128位 应用层通常使用的是TCP，使用UDP的一共只有以下几个：DNS,TFTP,DHCP,SNMP 专用（私有）IP地址为：10.0.0.0到10.255.255.255，172.16.0.0到172.31.255.255，192.168.0.0到192.168.255.255。要注意的是127.0.0.1不属于专用地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网冷知识与细节知识">
+<meta property="og:url" content="https://eternalzero2022.github.io/2024/01/05/%E8%AE%A1%E7%BD%91%E5%86%B7%E7%9F%A5%E8%AF%86%E4%B8%8E%E7%BB%86%E8%8A%82%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="计网中的一些冷知识&#x2F;细节知识  IPV6并不是简单的6个字节，而是达到了128位 应用层通常使用的是TCP，使用UDP的一共只有以下几个：DNS,TFTP,DHCP,SNMP 专用（私有）IP地址为：10.0.0.0到10.255.255.255，172.16.0.0到172.31.255.255，192.168.0.0到192.168.255.255。要注意的是127.0.0.1不属于专用地址">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-05T15:59:06.000Z">
+<meta property="article:modified_time" content="2024-01-05T15:59:41.600Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="计网冷知识与细节知识" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>计网冷知识与细节知识</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-计网冷知识与细节知识" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2024/01/05/%E8%AE%A1%E7%BD%91%E5%86%B7%E7%9F%A5%E8%AF%86%E4%B8%8E%E7%BB%86%E8%8A%82%E7%9F%A5%E8%AF%86/" class="article-date-link">
+        <time datetime="2024-01-05T15:59:06.000Z"
+              itemprop="datePublished">2024-01-05</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="计网中的一些冷知识细节知识"><a class="markdownIt-Anchor" href="#计网中的一些冷知识细节知识"></a> 计网中的一些冷知识/细节知识</h1>
+<ul>
+<li>IPV6并不是简单的6个字节，而是达到了128位</li>
+<li>应用层通常使用的是TCP，使用UDP的一共只有以下几个：DNS,TFTP,DHCP,SNMP</li>
+<li>专用（私有）IP地址为：<strong>10.0.0.0到10.255.255.255，172.16.0.0到172.31.255.255，192.168.0.0到192.168.255.255</strong>。要注意的是127.0.0.1不属于专用地址，它只是本地环回地址（根本不是一个网络地址）。</li>
+<li>对于每个类的地址来说，A类地址最多网络号为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>7</mn></msup><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2^7-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>（减去网络号为0和127）；B类地址为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>14</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{14}-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>（减去网络号为128.0.0.0）；C类地址为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>2</mn></msup><mn>1</mn><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^21-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>（减去网络号为192.0.0.0）</li>
+<li>网络号全0表示本网络，全1只会在主机号也为全1时使用，此时也表示本网络；主机号全0表示本主机，全1表示广播。所以当网络号和主机号全为0时表示本网络上的本主机，网络号和主机号全为1时表示本网络上进行广播。</li>
+<li>注意缩写中字母“T”当表示类似“传输trans…”的意思时，大部分情况下表示的是“Transfer”，当然也有两个例外：NAT的T是Translation，TCP的T是Transmission</li>
+<li>ARP请求分组中本身并不包含数据帧的内容。想要转发数据帧，就必须在ARP高速缓存中存在对应的IP地址或者在已经进行过一次ARP请求和响应之后再转发这个数据帧。</li>
+<li>需要注意MTU和MSS的区别：MTU指的是数据链路层的<strong>帧</strong>的<strong>数据字段</strong>的最大长度（例如整个IP数据报的最大长度），默认为1500字节，而MSS指的是运输层的<strong>段</strong>的<strong>数据字段</strong>的最大长度，默认为536字节。把536字节加上TCP首部长度为556字节，再加上IP数据报长度就是576字节，这也是IP协议规定的所有主机和路由器必须能够接受的长度的数据报。</li>
+<li>数据链路层只能保证传输的数据<strong>无比特差错</strong>（每个位都是对的），但是不能保证<strong>可靠传输</strong>（发送可能会乱序），而可靠传输是运输层TCP的任务</li>
+<li>通常来说，如果一个报文是属于哪个层的，那么这个报文整体就出现在这个层对应数据的<strong>数据字段</strong>当中。例如：ICMP报文属于网络层，因此它就整体，连同ICMP报文的首部和数据部分，一起作为IP数据报的数据部分。</li>
+<li>ARP报文的通常格式是：先开头8字节ARP报头，然后是6+4+6+4，分别为源MAC，源IP，目的MAC，目的IP。（注意：使用时ARP报文整个是需要作为数据部分封装在以太网MAC帧中的，会在以太网MAC帧中的帧类型字段标识出这是一个ARP帧（ARP的标识为0x0806））</li>
+<li>IP数据报中的三个字段：首部长度、总长度、片偏移，这三种字段表示长度的单位分别为<strong>4字节、1字节、8字节</strong></li>
+<li>RIP协议的报文通常有以下几个字段：前4字节首部，后面的每20个字节代表一条<strong>路由信息</strong>，并且可以存放多个这样的20字节。在这20个字节中，四个字节包含了地址族标识符和路由表标记，然后的16个字节，每4个分别表示网络地址、子网掩码、下一跳路由器地址、距离。注意：RIP报文整体是作为<strong>UDP数据报的数据部分</strong>存在的。</li>
+<li>ICMP报文通常首部有8个字节，第一个字节表示类型，就是表示ICMP报文的类型，具体的取值有：（差错报告报文中）3=终点不可达；4=源点抑制；5=改变路由；11=时间超过；12=参数问题；（询问报文中）8或0=回送请求或回答；13或14=时间戳请求或回答</li>
+<li>ICMP差错报告报文中的数据部分存放的是需要给出差错的IP数据报的首部+数据部分前八个字节。这前八个字节就是为了获取到运输层的内容，如果是TCP就可以得到源端口、目的端口、序号；如果是UDP就可以得到源端口、目的端口、长度、检验和</li>
+<li>Transport Layer可以称为传输层，也可以称为运输层，两种称呼没有区别</li>
+<li>差分曼彻斯特编码的<strong>第一位</strong>与曼斯特彻编码的第一位是相同的，即从低到高表示0，从高到低表示1.之后的位就遵循差分曼彻斯特的编码规则。</li>
+<li>在同一个局域网（广播域）内转发报文时，帧的MAC地址不会发生改变，并且此时MAC帧也并没有被拆开。当到达一个路由器时，路由器可能会将其放到另一个端口，传送到另一个局域网（广播域），这个时候会<strong>拆开</strong>MAC帧，并在另一个端口<strong>重新组装</strong>，这个时候往往就会<strong>改变</strong>其MAC地址了。</li>
+<li>MAC帧最前面的八个字节（前同步码、帧开始定界符）是不属于MAC帧的首部的，它们应该属于物理层</li>
+<li>STP可以是屏蔽双绞线（Shielded Twisted Pair），也可以是生成树协议（Spanning Tree Protocol）。如果考试考到的话答<strong>生成树协议</strong>可能会更好一点（毕竟物理层我们不需要关注太多）</li>
+<li>UTP是无屏蔽双绞线，相比STP（屏蔽双绞线）少了一层屏蔽层。你可以根据它与STP的不同猜测它会发生什么改变</li>
+<li>数据封装的格式顺序通常是报文Message-&gt;数据段Segment（传输层）-&gt;数据包Packet（网络层）-&gt;数据帧Frame（数据链路层）-&gt;位Bit（物理层），通常都是越往下的每个数据越大（前提是不分段分片等）</li>
+<li>需要分清楚各个协议的使用场景：**STP（生成树协议）**是在数据链路层交换机使用的，需要经历选择根桥、根端口、指定端口的操作；**Split Horizon（水平分割）<strong>是在RIP中使用的协议，用于避免路由环路，通常指的是从一个端口收到的更新信息不允许再从这个端口转发出去。而</strong>SPF（最短路径优先）**是OSPF使用的，用于计算最短路径，使用的是数据结构中的最短路径算法（dijkstra算法）</li>
+<li>RIP中当跳数达到16时就将该表项的度量值设为无穷大，这是有专有名词的，叫做<strong>路由毒化（route poisoning）</strong></li>
+<li>通常，属于<strong>物理层</strong>的设备有：hub（集线器）、repeater（中继器，也叫转发器）、Modem（调制解调器）；属于<strong>数据链路层</strong>的设备有：Bridge（网桥，也叫桥接器）、Switch（交换机）；属于<strong>网络层</strong>的设备有：Router（路由器）；属于网络层以上的设备有：Gateway（网关）（不确定）</li>
+<li>IP数据报的标志位位于第7个字节的高2位，分别为MF和DF。当MF = 1表示后面还有分片，MF= 0表示是若干数据报片中的最后一个。DF = 0表示允许分片，DF = 1表示不允许分片</li>
+<li>IP数据报中的协议字段（位于第10个字节）指明了数据报<strong>数据字段的</strong>协议，其中常见的有：1=ICMP；2=IGMP；4=IP；6=TCP；8=EGP；9=IGP；17=UDP；41=IPv6；50=ESP；89=0SPF</li>
+<li>注意RIPv2和RIPv1的区别：RIPv1使用<strong>广播更新</strong>，而RIPv2使用<strong>多播更新</strong>（D类地址，通常更新报文为224.0.0.9，请求报文为224.0.0.10）；RIPv2支持<strong>无类编址</strong>，也就是支持传递子网掩码信息，而RIPv1不行；RIPv1网络中所有子网掩码<strong>必须相同</strong>，而RIPv2可以不同（因为可以使用VLSM）；RIPv1满16跳是<strong>自动废弃</strong>，而RIPv2满16跳是算作<strong>无限距离</strong>，所以前者最高支持15跳，后者支持16跳；RIPv2允许更新时进行<strong>身份鉴别</strong>，而RIPv1不行；RIPv1的默认管理距离为<strong>120</strong>，而RIPv2对使用下一跳的路由器的默认管理距离为<strong>100</strong>，低于RIPv1</li>
+<li>一些重要的熟知端口号：20=FTP数据传输，21=FTP建立控制连接，23=TELNET，25=SMTP，53=DNS，69=TFTP，80=HTTP，161=SNMP，162=SNMP（trap）</li>
+<li>FTP和TFTP都是传输整个文件的，而NFS允许打开远地文件并在某个位置开始读写数据（NFS不需要掌握）。</li>
+<li>统计时分复用STDM与TDM的区别在于STDM在各用户有数据时就<strong>直接发往集中器</strong>，集中器在输入缓存中保存这些信息，并且在信息<strong>装满一个时分复用帧</strong>后就将其发送出去。</li>
+<li>RIP中如果收到的更新信息中到某个路由器的距离与原来的<strong>相同</strong>，但是下一跳路由器不同，它是<strong>不会更新</strong>的（只有小于才会更新）</li>
+<li>TCP/IP与OSI的异同点：同：分层；模块化；都有网络传输应用层。异：具体层次不同，TCP更简洁；TCP基于实际使用的协议，更加可信；传统网络建立在TCP基础上，TCP被广泛普及使用。</li>
+<li>一次建立连接和断开连接所需要发送的报文数最少是6个而不是7个。因为建立连接的三次握手的最后一次握手和断开连接的四次握手的第一次握手<strong>可以合并</strong>，也就是同时带有对建立连接的确认以及对关闭的请求（ACK和FIN都设为1）。</li>
+<li>注意：TCP报文字段中是<strong>没有</strong>数据部分长度的字段的，实际上数据部分长度是隐含在<strong>IP数据报中的“总长度”字段中</strong>的，只需要将总长度减去TCP首部长度（在TCP报文的数据偏移字段中表示），就是TCP报文的数据部分的长度。</li>
+<li>OSPF中，选举DR和BDR并不是为了让其与其他自治系统中的路由器通信的，并且也不必须在主干区域中。DR和BDR的选举与OSPF本身大体的结构是无关的，它只是用于多点链路的情况（也就是一根线要连接多个设备，而不是传统的一根线连接两端的两个设备。无线局域网一般也是多路复用）</li>
+<li>DCE和DTE的选择：DCE通常是<strong>服务提供商</strong>，DTE通常是<strong>连接的设备</strong></li>
+<li>Routed protocol是<strong>被动路由协议</strong>，一般用来为网络层提供支持，是使用在路由器之间用来保证路由器之间连通的，而Routing protocol是<strong>主动路由协议</strong>，需要用来构建路由表。例如IP协议是Routed protocol，而RIP，OSPF都是Routing protocol</li>
+<li>通常，BGP发言人是在一个自治系统中与其他自治系统进行信息交流的路由器，<strong>不一定</strong>是BGP边界路由器</li>
+<li>代理ARP（Proxy ARP）指的是某个设备可以代理响应另一个设备的ARP请求。比如路由器就可以响应其他子网上的ARP请求。一个设备想要直到另一个网段的主机的MAC地址，可以先询问路由器，然后路由器将信息发送回来，这样你就知道了那个MAC地址，并直接以这个MAC作为以太网帧的目的MAC地址发送（尽管不在同一个网段上）</li>
+<li>注意区分STP选根桥和OSPF选DR的区别：STP选根桥看的是root BID<strong>最低的</strong>，而选DR看的是priority或Router ID<strong>最高的</strong>。</li>
+<li>OSPF选举DR时，Router ID一般是各端口IP中最大的那个。但是如果配置了回环地址，那么需要优先使用<strong>回环地址的IP</strong>作为Router ID。但是注意，这并不意味着DR一定出自配置了回环地址的IP。另外，如果一个设备的priority被设为了0，也就代表它不再参与DR的选举。</li>
+<li>Root BID通常为8个字节，前2个字节是十进制的网桥优先级，默认为32768，后6个字节为交换机的MAC地址。</li>
+<li>通常，一个交换机只有一个MAC地址，但是一个路由器可以有多个MAC地址，每个端口各一个</li>
+<li>需要记住一些基本的路径代价，用于生成树协议：4Mbps=250；10Mbps=100；16Mbps=62；45Mbps=39，100Mbps=19，155Mbps=14；622Mbps=6，1Gbps=4；10Gbps=2；如果记不住的话也可以简单用1000除一下各个速率，大致数值关系应该是差不多的（更高的速率可能会有所差别）</li>
+<li>BPDU帧是用于STP协议的交流的帧，它的报文结构：前五个字节是一些信息，后面8个字节为Root BID，4个字节Root Path Cost，8个字节Sender BID，2个字节Port ID（发送方的端口号）</li>
+<li>OSPF中IP为224.0.0.5是<strong>所有OSPF路由器都可以接收到</strong>的，而224.0.0.6是<strong>只有DR和BDR接收的到</strong>的，因此Hello报文的目的IP地址都是使用224.0.0.5，然后选举DR和BDR使用的目的IP是224.0.0.6</li>
+<li>三次握手和四次握手中的seq表示的是TCP报文段中的序号字段，每发送一个字节就会+1。如果发送的报文中携带了数据（数据部分有东西），那么seq就需要增加相应的大小。当然，假如发送的是SYN=1的报文或FIN=1的报文，那么它不携带数据，但是这个序号<strong>仍然需要+1</strong>。</li>
+<li>一般vlan中，骨干（backbone）链路<strong>就是trunk链路</strong>，也就是可以同时聚集多个vlan的一条线路，而不需要为每一个vlan都配置一条物理线路。并且骨干网必须是快速以太网端口，需要达到百兆以上</li>
+<li>IEEE802.3是<strong>以太网</strong>标准，IEEE802.11是<strong>无线局域网协议</strong>标准，IEEE802.1q是对<strong>VLAN</strong>的定义</li>
+<li>需要对IEEE802.11的不同标准作区分：802.11b频段2.4GHz，数据率最高11Mb/s，信号传播远；802.11a频段5GHz，数据率最高54Mbps，信号传播短；802.11g频段2.4GHz，数据率最高54Mbps，信号传播远；802.11n频段可以为2.4也可以为5，数据率最高600Mbps，</li>
+<li>注意直通线和交叉线的选择：并不是简单的相同设备用交叉线，不同设备用直通线，这需要推理的。也就是说，我们需要把所有的设备归为<strong>正反两类</strong>，同类就用<strong>交叉线</strong>，不同类就用<strong>直通线</strong>。然后我们只需要记住两个结论就行了：<strong>PC和路由器是同类；PC和交换机是不同类</strong>。其他的就都可以根据这两个结论去推。比如假设PC是正，那么路由器也是正，交换机就是反，所以交换机连路由器是直通线，而交换机连交换机使用交叉线（同样的设备的类别肯定相同）。假设突然又出现了一种新的设备，然后知道路由器连接这个设备要用直通线，那么我们就可以推理得出它和路由器不是同一类，是反的，所以因为交换机也是反的，所以交换机和这个设备相连的时候用的就是交叉线。</li>
+<li>标准ACL通常会使用序号1-99，以及1300-1999；扩展ACL通常会使用需要100-199和2000-2699。标准ACL最好需要放在靠近目的地的位置，而扩展ACL最好放在靠近源的位置。</li>
+<li>如果配置标准ACL的时候使用了host，就默认代表它的反掩码是0.0.0.0</li>
+<li>反掩码通常与子网掩码是相反的，子网掩码（subnet mask）如果是255.255.255.0，那么反掩码（wildcard-mask）就是0.0.0.255</li>
+<li>数据链路层是<strong>有流量控制</strong>的，具体体现在LLC子层和MAC子层的CSMA/CD中</li>
+<li>CHAP协议中，password指的是<strong>事先双方就商量好的密钥</strong>，而不是在鉴别时发送的一串随机数。</li>
+<li>移动站与接入点AP之间建立关联的方法有<strong>被动扫描</strong>（移动站等待接受点AP发出的信标帧）以及<strong>主动扫描</strong>（移动站主动发出探测请求帧）。注意这里的主动和被动都是针对移动站而言的。</li>
+<li>在TCP的对已发送数据的确认中，确认的序号是下一个期望接收到的报文，而不是上一个已经接收到的报文</li>
+<li>LSA是OSPF中的表示链路状态的数据结构，Link State Advertisements。大量的LSA都存储在链路状态数据库LSDB中，而DBD是数据库的摘要信息，LSU中包含的是一条或多条LSA。</li>
+<li>LSA包含多种类型，其中有：<strong>LSA1</strong>，所有运行OSPF的设备都能产生，包含通告者的Router ID，并且只能在本区域area内传递（不能穿透区域边界路由器ABR）；<strong>LSA2</strong>，由DR设备产生，把LSA1打包，传递网段信息；<strong>LSA3</strong>，ABR设备产生的，传递路由中的网段信息，把LSA1和LSA2转化为LSA3，可以跨区域穿透ABR设备；<strong>LSA4</strong>，也是ABR产生的，指向的是自治系统边界路由器ASBR；<strong>LSA5</strong>，ASBR产生的，告诉本自治区通往外部自治区的路径，想要穿透ABR则需要搭配LSA4；<strong>LSA7</strong>，ASBR产生，传递网段信息，想要穿透ABR需要先转化为LSA5再加入FA地址（即产生这个LSA7的router id）</li>
+</ul>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2024/01/05/%E8%AE%A1%E7%BD%91%E5%86%B7%E7%9F%A5%E8%AF%86%E4%B8%8E%E7%BB%86%E8%8A%82%E7%9F%A5%E8%AF%86/" data-id="clr0tnzp70000f4uw43c05do9" data-title="计网冷知识与细节知识"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="计网名词解释" class="lazyload">
+                    
+                
+                <a href="/2023/12/31/%E8%AE%A1%E7%BD%91%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        计网名词解释
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">55</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2024
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    158.2k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    09:28
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">55</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
