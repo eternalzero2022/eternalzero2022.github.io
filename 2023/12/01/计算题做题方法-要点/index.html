@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E4%B8%AD%E6%96%AD.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E5%BC%82%E6%AD%A5%E6%80%BB%E7%BA%BF.png">
 <meta property="article:published_time" content="2023-12-01T11:44:51.000Z">
-<meta property="article:modified_time" content="2024-01-08T08:06:35.690Z">
+<meta property="article:modified_time" content="2024-01-08T12:15:41.158Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/p/%E6%A0%87%E5%87%86.png">
@@ -593,6 +593,8 @@
 <ul>
 <li>同步总线下，操作的时间都要以时钟周期的整数倍为单位，如果一个操作是12ns，而时钟周期是5ns，那么你就必须将其看为15ns而不是12ns。也因此，我们在计算关于同步总线的时间时，用的单位都是几个时钟周期，而不是具体的时间数值。例如这里的操作我们就可以将其说成使用3个时钟周期。</li>
 <li>异步总线下，操作的时间不需要考虑时钟周期，因此可以直接以时间为单位。</li>
+<li>通常来说，第一步传递地址花费的通常是一个时钟周期的时间或者一次握手的时间（如果一次能传的最大数据量比一个地址的大小小，那么可能需要分多次去传，但是每次也都是一个时钟周期或者一次握手）</li>
+<li>异步总线下，读取数据都是可以持续进行的，但是每读取一个单位的数据后就必须将其传输掉（这个时候也是可以同步读取下一个单位的数据的）。而每次传输一个单位的数据就要经历四次握手（四次是因为在中间过程中，除了前三次握手用于传输数据外，还需要额外一次握手来通知存储器可以进行下一次的读取任务），因此中间每次准备和读取一个单位数据的时间就是准备数据的时间和4n次握手的时间的较大值。而在传输最后一个单位的数据时，由于无须通知存储器读取往后的任务，因此就只要三次握手。</li>
 </ul>
 <h2 id="十二-海明码计算"><a class="markdownIt-Anchor" href="#十二-海明码计算"></a> 十二、海明码计算</h2>
 <h3 id="知识点-10"><a class="markdownIt-Anchor" href="#知识点-10"></a> 知识点</h3>
@@ -806,10 +808,10 @@
             
                 <div>
                     <span class="icon-brush"></span>
-                    160.2k
+                    160.5k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    09:36
+                    09:37
                 </div>
             
             
