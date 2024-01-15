@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E5%AE%A2%E6%88%B7%E7%AB%AF.png">
 <meta property="article:published_time" content="2023-11-28T15:09:16.000Z">
-<meta property="article:modified_time" content="2023-12-05T10:52:15.471Z">
+<meta property="article:modified_time" content="2024-01-15T15:00:48.837Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2023/11/28/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%92%8CJava-Socket-API/p/%E5%85%B6%E4%BB%96%E5%8C%85.png">
@@ -286,7 +286,7 @@ SessionTable是一个存储会话信息的类，也使用了单例模式。每�
 <p>3、MessageReader需要传入的是套接字的输入流，Writer也同理。Reader会自动调用Parser中的解析方法，因此可以直接返回Message类。而Writer类则需要手动将Message中的内容拆成HTTP报文形式，然后使用PrintWriter以及OutputStream本身写数据。</p>
 <p>4、Message类是表示报文类型的类。区分了开始行、首部行和实体主体。其中开始行和首部行的数据类型都是字符串（首部使用了字典来表示键值对），但是实体主体的内容不一定是字符串（由MIME的Content-Type指定），而是二进制数据流。正常情况下需要使用字节数组byte[]存储。但是这里为了便于表示，我们采取使用Base64编码的方式，将二进制数据流转换成字符串来存储。注意：转换为HTTP报文形式的时候需要先将base64编码转换为相应的二进制数据流。</p>
 <p>5、会话的作用：当我们登录之后，我们需要为登录的用户创建一个会话。每个用户对应一个唯一的会话标识符，并且用户自己也可以获得这个会话标识符。这个会话标识符就是用户登录的证明，用来鉴别请求数据的用户到底是不用登录过的用户。每次已经登录过的用户在请求数据时需要将之前获得的会话标识符也一并加入报文的首部当中，然后服务端接收到这个会话标识符时就会去会话表中查找，如果找到了匹配的用户，就说明请求者是一个登录过的用户，然后就可以允许发送数据。</p>
-<p>5、注册的时候，需要调用UserTable中的方法往表中添加用户。登录的时候需要注意：我们直接去尝试创建一个会话（因为会话创建时以及包含了检验用户和密码的步骤）。如果会话创建失败就说明登录失败。如果会话创建成功也就说明登录成功了。然后需要将会话标识符发送给客户端。以后客户端在请求数据时就需要带有这个会话标识符。</p>
+<p>5、注册的时候，需要调用UserTable中的方法往表中添加用户。登录的时候需要注意：我们直接去尝试创建一个会话（因为会话创建时已经包含了检验用户和密码的步骤）。如果会话创建失败就说明登录失败。如果会话创建成功也就说明登录成功了。然后需要将会话标识符发送给客户端。以后客户端在请求数据时就需要带有这个会话标识符。</p>
 <p>6、如果客户端来请求数据，在发送数据前需要先根据客户端发送的会话标识符去会话表中查找，判断是不是已经登录过的用户。只有登录的用户才可以被允许获得数据。如果没有登录就不允许发送数据（直接告诉客户端需要先登录）。</p>
 <h3 id="客户端"><a class="markdownIt-Anchor" href="#客户端"></a> 客户端：</h3>
 <p>1、main函数启动客户端，首先需要调用event包中的事件源中的方法来建立与客户端的连接（需要判断是否建立了连接），然后就需要在命令行中输出相关信息，用户提示信息，引导用户输入命令，来进行相应的操作。例如提示用户输入1、2、3分别表示注册、登录、发送数据等，然后读取用户在控制台的输入来执行相应的功能。功能的实现只需要调用Controll包中的类的方法即可。</p>
