@@ -1,0 +1,816 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        CSS页面布局学习 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="CSS页面布局学习  一、盒子模型 看透网页布局的本质 网页布局的过程：  准备好网页元素 利用CSS设置好盒子样式，并摆到相应的位置上去 在盒子里面装内容   1、盒子模型的组成  边框border 内边距padding 外边距margin 实际内容content    2、边框 由三部分组成：  border-width边框粗细 border-style边框样式 border-color边框">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS页面布局学习">
+<meta property="og:url" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="CSS页面布局学习  一、盒子模型 看透网页布局的本质 网页布局的过程：  准备好网页元素 利用CSS设置好盒子样式，并摆到相应的位置上去 在盒子里面装内容   1、盒子模型的组成  边框border 内边距padding 外边距margin 实际内容content    2、边框 由三部分组成：  border-width边框粗细 border-style边框样式 border-color边框">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E7%9B%92%E5%AD%90%E9%98%B4%E5%BD%B1.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E6%96%87%E5%AD%97%E9%98%B4%E5%BD%B1.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E6%B5%AE%E5%8A%A81.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E6%B5%AE%E5%8A%A82.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E6%B5%AE%E5%8A%A83.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E5%B8%83%E5%B1%80%E9%A1%BA%E5%BA%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E5%AE%9A%E4%BD%8D%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E8%BE%B9%E5%81%8F%E7%A7%BB.png">
+<meta property="article:published_time" content="2024-02-24T15:29:40.000Z">
+<meta property="article:modified_time" content="2024-02-24T15:29:53.432Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/p/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="CSS页面布局学习" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>CSS页面布局学习</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-CSS页面布局学习" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/" class="article-date-link">
+        <time datetime="2024-02-24T15:29:40.000Z"
+              itemprop="datePublished">2024-02-24</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="css页面布局学习"><a class="markdownIt-Anchor" href="#css页面布局学习"></a> CSS页面布局学习</h1>
+<h2 id="一-盒子模型"><a class="markdownIt-Anchor" href="#一-盒子模型"></a> 一、盒子模型</h2>
+<p>看透网页布局的本质</p>
+<p>网页布局的过程：</p>
+<ul>
+<li>准备好网页元素</li>
+<li>利用CSS设置好盒子样式，并摆到相应的位置上去</li>
+<li>在盒子里面装内容</li>
+</ul>
+<h3 id="1-盒子模型的组成"><a class="markdownIt-Anchor" href="#1-盒子模型的组成"></a> 1、盒子模型的组成</h3>
+<ul>
+<li>边框border</li>
+<li>内边距padding</li>
+<li>外边距margin</li>
+<li>实际内容content</li>
+</ul>
+<p><img src="p/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B.png" alt="" /></p>
+<h3 id="2-边框"><a class="markdownIt-Anchor" href="#2-边框"></a> 2、边框</h3>
+<p>由三部分组成：</p>
+<ul>
+<li>border-width边框粗细</li>
+<li>border-style边框样式</li>
+<li>border-color边框颜色</li>
+</ul>
+<h4 id="border-width"><a class="markdownIt-Anchor" href="#border-width"></a> border-width</h4>
+<p>通常使用px为单位</p>
+<h4 id="border-style"><a class="markdownIt-Anchor" href="#border-style"></a> border-style</h4>
+<ul>
+<li>solid：实线边框</li>
+<li>dashed：虚线</li>
+<li>dotted：点线</li>
+</ul>
+<h4 id="border-color"><a class="markdownIt-Anchor" href="#border-color"></a> border-color</h4>
+<p>使用三种颜色的表示方式来表示（名称、十六进制、rgb）</p>
+<h4 id="边框的简写"><a class="markdownIt-Anchor" href="#边框的简写"></a> 边框的简写</h4>
+<p><code>border: 1px solid red</code></p>
+<p>三者之间没有顺序</p>
+<p><strong>边框各部分可以分开来写</strong>，例如：</p>
+<p><code>border-top: 5px solid red</code></p>
+<p>border-top的权重比border更高</p>
+<h4 id="表格边框合并"><a class="markdownIt-Anchor" href="#表格边框合并"></a> 表格边框合并</h4>
+<p>如果在表格中每个单元格存在多个相邻边框而导致边框过粗，可以选择相邻边框合并</p>
+<p>使用border-collapse: collapse</p>
+<p><strong>注意：边框是加在原有盒子尺寸之外的，会扩大原有的盒子，因此确定盒子大小时如果想要添加边框，需要在盒子大小中减去内边距的值</strong></p>
+<h3 id="3-内边距"><a class="markdownIt-Anchor" href="#3-内边距"></a> 3、内边距</h3>
+<p>有四个属性，分别为四个方向的内边距</p>
+<ul>
+<li>padding-left</li>
+<li>padding-right</li>
+<li>padding-top</li>
+<li>padding-bottom</li>
+</ul>
+<p>padding属性单写时，可以有1到4个值</p>
+<ul>
+<li>1个值：上下左右</li>
+<li>2个值：上下、左右</li>
+<li>3个值：上、左右、下</li>
+<li>4个值：上、右、下、左</li>
+</ul>
+<p><strong>注意：padding也会影响盒子实际的大小，因此确定盒子大小时如果想要添加内边距，需要在盒子大小中减去内边距的值</strong></p>
+<p>padding的应用：为不同字数的按钮设定不同的宽度（利用padding来设置一个字左右固定的内边距）</p>
+<p>padding不会撑开盒子的情况：盒子未指定这个宽度或高度的属性，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">height: 100px;</span><br><span class="line">padding: 20px;</span><br></pre></td></tr></table></figure>
+<p>此时盒子的实际大小会变大为140px，但是宽度与原来一样不变。一般都与父元素相同</p>
+<h3 id="4-外边距"><a class="markdownIt-Anchor" href="#4-外边距"></a> 4、外边距</h3>
+<p>控制盒子与盒子之间的距离</p>
+<p>margin可以设置上下左右的值，当然也可以像padding一样简写</p>
+<p>应用：可以让块级盒子水平居中，但是必须满足两个条件：</p>
+<ul>
+<li>盒子必须指定了宽度</li>
+<li>盒子左右的外边距都设为auto</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">width: 300px;</span><br><span class="line">margin: 0 auto;</span><br></pre></td></tr></table></figure>
+<p>注意：如果想要让行内元素或行内块元素水平居中，只需要让其父元素设置text-align: center即可</p>
+<p><strong>外边距合并：</strong>（两个竖直方向相邻盒子之间的垂直距离为两个盒子分别的上下外边距的较大者，而不是和）。</p>
+<p>解决方案为尽量只给一个盒子添加margin值</p>
+<p>**嵌套块元素的塌陷：**子元素设置margin-top时，父元素跟着一起下来（父元素会塌陷较大的外边距值）,也就是说子盒子和父盒子依然贴在一起</p>
+<p>解决方案：</p>
+<ul>
+<li>1、为父盒子添加一个border边框</li>
+<li>2、为父盒子添加一个padding内边距</li>
+<li>3、为父盒子添加一个属性：overflow: hidden;</li>
+</ul>
+<h3 id="5-清除内外边距"><a class="markdownIt-Anchor" href="#5-清除内外边距"></a> 5、清除内外边距</h3>
+<p>网页元素很多都有默认的内外边距，因此需要先清除网页元素的内外边距</p>
+<p>方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">    margin: 0;</span><br><span class="line">    padding: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一般都是css的第一行代码</p>
+<p><strong>注意：行内元素尽量只设置左右的内外边距，而不要设置上下的内外边距</strong></p>
+<p><strong>PS的使用方法</strong></p>
+<ul>
+<li>ctrl+R：添加标尺</li>
+<li>ctrl+加号/减号：放大/缩小图片（视图上）</li>
+<li>ctrl+空格：拖动图片</li>
+<li>选区：点击左上角方框并选择区域，可以测量大小</li>
+<li>吸管工具：取色</li>
+<li>不同图片格式的特点：jpg：色彩丰富；gif：可以保存透明背景和动画效果；png：结合jpg和gif：既色彩丰富又可以保存透明效果；psd文件：Photoshop工程文件，可以从中复制字、等等</li>
+</ul>
+<h3 id="6-小技巧"><a class="markdownIt-Anchor" href="#6-小技巧"></a> 6、小技巧</h3>
+<ul>
+<li>如果想要让盒子与上一个盒子保持一段距离，又不想撑开盒子，就可以使用margin来修改而不是padding</li>
+<li>如果想要让一张很大的图片缩小以后放在屏幕上，可以直接插入一个img，而不是使用background-image属性（这样不仅盒子的大小不确定，而且也很难缩小图片）</li>
+<li>盒子不需要全部使用div标签，标题一般都使用h标签，大量文字则可以使用p标签</li>
+<li>多使用类名，就可以对每个类具体使用样式</li>
+</ul>
+<h3 id="7-圆角矩形"><a class="markdownIt-Anchor" href="#7-圆角矩形"></a> 7、圆角矩形</h3>
+<p>可以让盒子变成圆角</p>
+<p>使用border-radius属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border-radius: 10px</span><br></pre></td></tr></table></figure>
+<p>让矩形产生了四个角的半径为10px的圆角</p>
+<p><strong>产生圆形的方法：<code>border-radius: 50%</code></strong></p>
+<p>设置不同的角：在属性中添加四个值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border:radius: 10px 20px 30px 40px;</span><br></pre></td></tr></table></figure>
+<p>分别设置了左上、右上、右下、左下的值</p>
+<p>分开写：border-top-right-radius/…</p>
+<h3 id="8-盒子阴影"><a class="markdownIt-Anchor" href="#8-盒子阴影"></a> 8、盒子阴影</h3>
+<p>box-shadow: h-shadow v-shadow blur spread color inset</p>
+<p><img src="p/%E7%9B%92%E5%AD%90%E9%98%B4%E5%BD%B1.png" alt="" /></p>
+<p>会产生一个影子，影子形状与原元素形状相同。 inset属性会设置盒子本身塌陷称为阴影</p>
+<p><strong>盒子阴影不占用空间，不会影响其他盒子的排列</strong></p>
+<h3 id="9-文字阴影"><a class="markdownIt-Anchor" href="#9-文字阴影"></a> 9、文字阴影</h3>
+<p>可以使用text-shadow设置文字的阴影</p>
+<p><img src="p/%E6%96%87%E5%AD%97%E9%98%B4%E5%BD%B1.png" alt="" /></p>
+<h2 id="二-浮动"><a class="markdownIt-Anchor" href="#二-浮动"></a> 二、浮动</h2>
+<p>传统网页的三种布局方式</p>
+<ul>
+<li>普通流（标准流）</li>
+<li>浮动</li>
+<li>定位</li>
+</ul>
+<p>**标准流：**标签按照规定好的默认排列方式，例如：块级元素一行一行显示，行内元素在一行内从左到右按顺序排序，碰到父元素边缘自动换行</p>
+<p>标准流无法实现的东西：</p>
+<ul>
+<li>标签一个在左一个在右</li>
+<li>有的页面元素定死在屏幕上</li>
+</ul>
+<p><strong>为什么需要浮动？</strong></p>
+<ul>
+<li>如何实现<strong>多个块级盒子排列在一行</strong>，并且盒子间的间距确定?或者消除(行内块元素本质上属于行内元素，因此margin和padding不能改变一行中的不同行内块元素之间的间距，只能修改这全部的行内块元素与左边的距离)</li>
+<li>如何实现两个盒子的左右对齐？</li>
+</ul>
+<p>应用方式：可以让多个块级元素纵向排列（而不是以行内块元素的显示方式来排列）</p>
+<h3 id="1-什么是浮动"><a class="markdownIt-Anchor" href="#1-什么是浮动"></a> 1、什么是浮动？</h3>
+<ul>
+<li>用于创建浮动框，将其移动到一边，直到触及包含块的边界或另一个块</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float: 属性值（none/left/right）</span><br></pre></td></tr></table></figure>
+<p>left和right表示元素向左或向右浮动</p>
+<h3 id="2-浮动的特性"><a class="markdownIt-Anchor" href="#2-浮动的特性"></a> 2、浮动的特性</h3>
+<ul>
+<li>浮动的元素会脱离标准流，不再保留原先的位置（脱标）（即其他标准流中的元素会无视这个浮动的元素，移动到特定的位置）</li>
+<li>浮动的元素会一行内显示，且顶端对齐排列</li>
+<li>浮动的元素会具有行内块元素的特性，不管原先是什么元素（<strong>如果行内元素设置了浮动，则不需要转换为行内块元素就可以直接设置高度和宽度，并且当没有设置宽度时的大小根据内容来决定）</strong></li>
+</ul>
+<h3 id="3-浮动元素与标准流的父级元素搭配使用"><a class="markdownIt-Anchor" href="#3-浮动元素与标准流的父级元素搭配使用"></a> 3、浮动元素与标准流的父级元素搭配使用</h3>
+<ul>
+<li>先用标准父元素上下排列，之后内部子元素浮动排列左右位置</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=&quot;border-color: transparent; margin: 0 auto; height: 400px;width: 500px;&quot;&gt;</span><br><span class="line">    &lt;div style=&quot;height: 100%; width: 30%; background-color:red; float: left;&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div style=&quot;height: 50%; width: 35%; background-color: yellow; float: left;&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div style=&quot;height: 50%; width: 35%; background-color: green;; float: left;&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div style=&quot;height: 50%; width: 35%; background-color: blue; float: left;&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div style=&quot;height: 50%; width: 35%; background-color: purple; float: left;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="4-常见网页布局"><a class="markdownIt-Anchor" href="#4-常见网页布局"></a> 4、常见网页布局</h3>
+<p><img src="p/%E6%B5%AE%E5%8A%A81.png" alt="" /></p>
+<p><img src="p/%E6%B5%AE%E5%8A%A82.png" alt="" /></p>
+<p><img src="p/%E6%B5%AE%E5%8A%A83.png" alt="" /></p>
+<p><strong>浮动布局注意点：</strong></p>
+<ul>
+<li>通常，先用标准流排列上下元素，再用浮动排列左右元素</li>
+<li>一个元素浮动了，其余兄弟元素理论上也应该都浮动</li>
+<li>浮动的盒子只会影响浮动盒子后面的标准流，而不会影响前面的标准流（不会遮挡或占用其位置）</li>
+</ul>
+<h3 id="5-清除浮动"><a class="markdownIt-Anchor" href="#5-清除浮动"></a> 5、清除浮动</h3>
+<p>如果当需要浮动的元素不确定个数时，我们可以不给父元素设置高度，但是这样会导致父元素高度为0（浮动脱标之后父元素就视为内部没有内容，从而高度降低为0）</p>
+<p>清除浮动的本质：清除浮动元素造成的影响</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clear: 属性值;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>left：不允许左侧有浮动元素</li>
+<li>right：不允许右侧有浮动元素</li>
+<li>both：两边都不允许</li>
+</ul>
+<p>清除浮动的策略：闭合浮动（将浮动只限制在父元素中）</p>
+<h4 id="额外标签法"><a class="markdownIt-Anchor" href="#额外标签法"></a> 额外标签法</h4>
+<p>找到最后一个浮动盒子，在其后面添加一个新标签，并添加clear标签</p>
+<ul>
+<li>优点：通俗易懂</li>
+<li>缺点：添加许多无意义的标签</li>
+</ul>
+<p>注意：添加的这个元素必须是块级元素</p>
+<h4 id="父元素overflow法"><a class="markdownIt-Anchor" href="#父元素overflow法"></a> 父元素overflow法</h4>
+<p>给父元素添加overflow: hidden</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">overflow: 属性</span><br></pre></td></tr></table></figure>
+<p>hidden/auto/scroll</p>
+<ul>
+<li>优点：代码简洁</li>
+<li>缺点：无法显示溢出的部分</li>
+</ul>
+<h4 id="after伪元素法"><a class="markdownIt-Anchor" href="#after伪元素法"></a> after伪元素法</h4>
+<p>使用css添加一个after伪元素，类似额外标签法，但是是加在父亲身上的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after &#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    display: block;</span><br><span class="line">    height: 0;</span><br><span class="line">    clear: both;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>较为高级</p>
+<h4 id="双伪元素清除浮动"><a class="markdownIt-Anchor" href="#双伪元素清除浮动"></a> 双伪元素清除浮动</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:before, .clearfix:after &#123;</span><br><span class="line">    content:&quot;&quot;;</span><br><span class="line">    display:table;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix:after &#123;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>总结</strong></p>
+<p><img src="p/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8.png" alt="" /></p>
+<h3 id="6-css属性书写顺序"><a class="markdownIt-Anchor" href="#6-css属性书写顺序"></a> 6、CSS属性书写顺序</h3>
+<p><img src="p/%E5%B8%83%E5%B1%80%E9%A1%BA%E5%BA%8F.png" alt="" /></p>
+<p><strong>页面布局整体思路：</strong></p>
+<ul>
+<li>必须确定版面的核心，我们测量可得知（版心可以自己定义一个类）</li>
+<li>分析页面中的行模块，以及每个行模块中的列模块</li>
+<li>一行中的列模块经常浮动布局，先确定每个列的大小，再确定每个列的位置</li>
+<li>遵循先有结构后有样式的原则</li>
+</ul>
+<p><strong>注意点：</strong></p>
+<ul>
+<li>实际开发中，通常不会直接使用链接a，而是使用li包含a的方法</li>
+</ul>
+<h2 id="三-定位"><a class="markdownIt-Anchor" href="#三-定位"></a> 三、定位</h2>
+<p>为什么需要定位？</p>
+<ul>
+<li>某个元素在一个盒子内移动位置，并且压住其他盒子</li>
+<li>某些元素固定在窗口的固定位置</li>
+</ul>
+<p>定位：将盒子定在某一个位置</p>
+<p>定位=定位模式+边偏移</p>
+<p>**定位模式：**四个属性</p>
+<p><img src="p/%E5%AE%9A%E4%BD%8D%E6%A8%A1%E5%BC%8F.png" alt="" /></p>
+<p>**边偏移：**四个属性，表示定位的盒子移动到的最终位置</p>
+<p><img src="p/%E8%BE%B9%E5%81%8F%E7%A7%BB.png" alt="" /></p>
+<h3 id="1-静态定位"><a class="markdownIt-Anchor" href="#1-静态定位"></a> 1、静态定位</h3>
+<p>元素的默认定位方式，无定位的意思，按照标准流的特性摆放位置</p>
+<h3 id="2-相对定位"><a class="markdownIt-Anchor" href="#2-相对定位"></a> 2、相对定位</h3>
+<p>元素在移动位置的时候，相对于它原来的位置<br />
+如果top值，则会下移；如果left值，则会右移</p>
+<p>特点：</p>
+<ul>
+<li>相对于<strong>自己原来的位置</strong>来移动的</li>
+<li>原有的位置会保留（不脱标）</li>
+</ul>
+<h3 id="3-绝对定位"><a class="markdownIt-Anchor" href="#3-绝对定位"></a> 3、绝对定位</h3>
+<p>移动时相对于它的祖先元素来说的</p>
+<ul>
+<li><strong>没有父元素或父元素没有定位</strong>，则以浏览器为准定位</li>
+<li>如果父元素没有定位，但是爷爷有定位，则会以爷爷为准</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>绝对定位不再占用原有的位置</li>
+</ul>
+<p>口诀：<strong>子绝父相</strong>（孩子使用绝对定位，父亲需要使用相对定位）</p>
+<h3 id="4-固定定位"><a class="markdownIt-Anchor" href="#4-固定定位"></a> 4、固定定位</h3>
+<p>固定于浏览器可视区的位置，滚动元素时元素的位置不会改变</p>
+<p>小技巧：固定定位还可以通过算法固定在版心右侧位置（先让left值设为浏览器宽度的一半，再设置margin-left为版心宽度的一半）</p>
+<h3 id="5-粘性定位"><a class="markdownIt-Anchor" href="#5-粘性定位"></a> 5、粘性定位</h3>
+<p>可以认为是相对定位和固定定位的混合</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">position: sticky; top: 10px;</span><br></pre></td></tr></table></figure>
+<p>特点：</p>
+<ul>
+<li>以浏览器的可视窗口为参照点移动元素（固定定位特点）</li>
+<li>粘性定位占有原先的位置（相对定位特点）</li>
+<li>必须添加top/left/right/bottom中的一个才有效</li>
+</ul>
+<p>兼容性差</p>
+<h3 id="6-定位叠放次序"><a class="markdownIt-Anchor" href="#6-定位叠放次序"></a> 6、定位叠放次序</h3>
+<p>可能出现盒子重叠的情况，使用z-index来设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z-index: 1</span><br></pre></td></tr></table></figure>
+<p>可以是0，正负整数，数值越大就越高</p>
+<p>如果属性的值相同，就按照书写的先后顺序来确定，越后越靠前</p>
+<p>只有定位的盒子才有z-index属性</p>
+<h3 id="7-定位的拓展"><a class="markdownIt-Anchor" href="#7-定位的拓展"></a> 7、定位的拓展</h3>
+<p>1、实现绝对定位的盒子居中（不能使用margin: auto）：使用算法（left设置50%，margin设置-50%，自己宽度的一半）</p>
+<p>2、定位特殊特性：</p>
+<ul>
+<li>行内元素添加绝对或固定定位，可以直接添加高度和宽度</li>
+<li>块级元素添加绝对或固定定位后，如果不添加宽度高度，默认大小为内容的大小</li>
+</ul>
+<p>3、绝对定位或固定定位会完全压住盒子（浮动元素只会压住它下面标准流的盒子，但并不会压住其中的文字，这是因为浮动最初就是为了文字环绕而产生的）</p>
+<h2 id="4-元素的显示于隐藏"><a class="markdownIt-Anchor" href="#4-元素的显示于隐藏"></a> 4、元素的显示于隐藏</h2>
+<p>本质：让一个元素在页面中隐藏或显示出来</p>
+<h3 id="1-display属性"><a class="markdownIt-Anchor" href="#1-display属性"></a> 1、display属性</h3>
+<ul>
+<li>display: none表示隐藏对象</li>
+<li>display: block除了转换为块级元素之外，还有显示元素的意思</li>
+</ul>
+<p>隐藏后元素不再占有原来的位置</p>
+<p>搭配js可以做很多的网页特效</p>
+<h3 id="2-visibility属性"><a class="markdownIt-Anchor" href="#2-visibility属性"></a> 2、visibility属性</h3>
+<p>表示可见性</p>
+<p>visibility: visible/hidden</p>
+<p>元素继续占用原来的位置</p>
+<h3 id="3-overflow"><a class="markdownIt-Anchor" href="#3-overflow"></a> 3、overflow</h3>
+<p>对溢出的部分进行显示或隐藏</p>
+<p>overflow: visible(可见)/hidden(隐藏)/scroll(滚动条)/auto(需要时显示滚动条)</p>
+<p>注意：有定位的盒子慎用hidden</p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2024/02/24/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/" data-id="clt08mejn00009ouwghrgh4xo" data-title="CSS页面布局学习"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="CSS基础学习" class="lazyload">
+                    
+                
+                <a href="/2024/02/21/CSS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        CSS基础学习
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">59</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2024
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    169.5k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    10:10
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">59</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
