@@ -1,0 +1,615 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        01-软件工程基础 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="软件工程基础  一、软件的变革   30年代：数字计算机的建立   40年代：软件是硬件的一部分   50年代：软件工程与硬件工程一致   60年代：软件不是硬件 软件的特性： 1、软件与显示世界关系更加密切，对需求的规格化更加困难 2、软件与现实世界关系更加密切，对需求的规格化更加困难 ， 软件⽐硬件容易修改的多，并且不需要昂贵的⽣产线复制产品 3、软件没有损耗 4、软件不可⻅   70~80">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01-软件工程基础">
+<meta property="og:url" content="https://eternalzero2022.github.io/2024/02/28/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="软件工程基础  一、软件的变革   30年代：数字计算机的建立   40年代：软件是硬件的一部分   50年代：软件工程与硬件工程一致   60年代：软件不是硬件 软件的特性： 1、软件与显示世界关系更加密切，对需求的规格化更加困难 2、软件与现实世界关系更加密切，对需求的规格化更加困难 ， 软件⽐硬件容易修改的多，并且不需要昂贵的⽣产线复制产品 3、软件没有损耗 4、软件不可⻅   70~80">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/28/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80/p/%E4%BA%91%E5%8E%9F%E7%94%9F.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/28/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80/p/%E5%B7%A5%E7%A8%8B%E7%A7%91%E5%AD%A6.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/02/28/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80/p/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%B4%BB%E5%8A%A8.png">
+<meta property="article:published_time" content="2024-02-28T06:16:20.000Z">
+<meta property="article:modified_time" content="2024-02-28T06:17:23.091Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2024/02/28/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80/p/%E4%BA%91%E5%8E%9F%E7%94%9F.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="01-软件工程基础" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>01-软件工程基础</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-01-软件工程基础" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2024/02/28/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="article-date-link">
+        <time datetime="2024-02-28T06:16:20.000Z"
+              itemprop="datePublished">2024-02-28</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="软件工程基础"><a class="markdownIt-Anchor" href="#软件工程基础"></a> 软件工程基础</h1>
+<h2 id="一-软件的变革"><a class="markdownIt-Anchor" href="#一-软件的变革"></a> 一、软件的变革</h2>
+<ul>
+<li>
+<p>30年代：数字计算机的建立</p>
+</li>
+<li>
+<p>40年代：软件是硬件的一部分</p>
+</li>
+<li>
+<p>50年代：软件工程与硬件工程一致</p>
+</li>
+<li>
+<p>60年代：软件不是硬件</p>
+<p>软件的特性：</p>
+<p>1、软件与显示世界关系更加密切，对需求的规格化更加困难</p>
+<p>2、软件与现实世界关系更加密切，对需求的规格化更加困难 ， 软件⽐硬件容易修改的多，并且不需要昂贵的⽣产线复制产品</p>
+<p>3、软件没有损耗</p>
+<p>4、软件不可⻅</p>
+</li>
+<li>
+<p>70~80年代：程序=算法+数据结构</p>
+</li>
+<li>
+<p>90年代~2010s：软件发展比编程更加复杂</p>
+</li>
+</ul>
+<h2 id="二-软件"><a class="markdownIt-Anchor" href="#二-软件"></a> 二、软件</h2>
+<h3 id="软件的应用"><a class="markdownIt-Anchor" href="#软件的应用"></a> 软件的应用</h3>
+<ul>
+<li>云</li>
+<li>众</li>
+<li>大数据</li>
+<li>AI</li>
+<li>短视频、Web3.0</li>
+</ul>
+<h3 id="云原生"><a class="markdownIt-Anchor" href="#云原生"></a> 云原生</h3>
+<p><img src="p/%E4%BA%91%E5%8E%9F%E7%94%9F.png" alt="云原生" /></p>
+<p>serverless架构：只有当需要使用服务的时候才开启服务器</p>
+<h3 id="软件的类型"><a class="markdownIt-Anchor" href="#软件的类型"></a> 软件的类型</h3>
+<ul>
+<li>系统软件：操作系统/数据库/数据仓库/嵌入式设备/安全</li>
+<li>编程软件：IDE/测试/持续集成/建模/度量</li>
+<li>应用软件：商业/政府/休闲/医疗/教育/国防/个人/专业/科学</li>
+</ul>
+<p>应用软件基于现实又高于现实</p>
+<h3 id="什么是软件总结"><a class="markdownIt-Anchor" href="#什么是软件总结"></a> 什么是软件？总结</h3>
+<ul>
+<li>独立于硬件</li>
+<li>是一个工具</li>
+<li>软件=程序+文档+数据+知识</li>
+<li>软件发展比编程更复杂</li>
+<li>应用软件从现实中诞生，反作用于现实</li>
+</ul>
+<h2 id="三-软件工程"><a class="markdownIt-Anchor" href="#三-软件工程"></a> 三、软件工程</h2>
+<p><strong>软件工程的定义：</strong></p>
+<p>1、对系统化、被约束、可量化的方法的应用，来开发、操作、维护软件，也就是将工程运用到软件中</p>
+<p>2、对1中方法的研究</p>
+<h3 id="工程师"><a class="markdownIt-Anchor" href="#工程师"></a> 工程师</h3>
+<p>• ⼯程师通过⼀系列的讨论决策，仔细评估项⽬的可选活动，并在每个决策点选择⼀种在当前环境中适合 当前任务的⽅法进⾏⼯作。可以通过对成本和收益进⾏折衷分析调整相应策略。</p>
+<p>• ⼯程师需要对某些对象进⾏度量，有时需要定量的⼯作；他们要校准和确认度量⽅法，并根据经验和实 验数据进⾏估算。</p>
+<p>• 软件⼯程师强调项⽬设计过程的纪律性，这是团队⾼效⼯作的条件。</p>
+<p>• ⼯程师可胜任研究、开发、设计、⽣产、测试、构造、操作、管理，以及销售、咨询和培训等多种⻆⾊。</p>
+<p>• ⼯程师们需要在某些过程中使⽤⼯具，选择和使⽤合适的⼯具是⼯程的关键要素。</p>
+<p>• ⼯程师们通过专业协会发展和确认原理、标准和最佳实践⽅法，并提⾼个⼈能⼒。</p>
+<p>• ⼯程师们能够重⽤设计和设计制品。</p>
+<h3 id="工程学科的发展"><a class="markdownIt-Anchor" href="#工程学科的发展"></a> 工程学科的发展</h3>
+<p><img src="p/%E5%B7%A5%E7%A8%8B%E7%A7%91%E5%AD%A6.png" alt="" /></p>
+<h3 id="关于工程的因素"><a class="markdownIt-Anchor" href="#关于工程的因素"></a> 关于工程的因素</h3>
+<ul>
+<li>问题（现实世界与期望不符）</li>
+<li>科学知识（工程=科学+原则+艺术）</li>
+<li>解决方法/机器（虚拟计算机=通用计算机+特殊的解决方案）</li>
+<li>成本效益</li>
+</ul>
+<h3 id="对软件工程的理解"><a class="markdownIt-Anchor" href="#对软件工程的理解"></a> 对软件工程的理解</h3>
+<p>• 软件⼯程是⼀种⼯程活动</p>
+<p>• 软件⼯程的动机是解决实际问题</p>
+<p>• 软件⼯程是科学性、实践性和⼯艺性并重的</p>
+<p>• 软件⼯程追求⾜够好，不是最好</p>
+<p>• 软件⼯程真正的产品是基于虚拟计算机的软件⽅案</p>
+<p>• 软件⼯程的最终⽬的是要促进整个社会的进步</p>
+<h2 id="四-知识领域"><a class="markdownIt-Anchor" href="#四-知识领域"></a> 四、知识领域</h2>
+<p>软件开发活动：</p>
+<p><img src="p/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%B4%BB%E5%8A%A8.png" alt="" /></p>
+<p>需要经历的阶段：需求开发-软件设计-软件构造-软件测试-软件移交与演化-软件维护</p>
+<h3 id="角色分工"><a class="markdownIt-Anchor" href="#角色分工"></a> 角色分工</h3>
+<ul>
+<li>需求工程师（需求开发工作）</li>
+<li>软件体系结构师（软件体系结构设计）</li>
+<li>软件设计师（软件体系结构设计完毕后分配部件，对这一部件进行详细设计）</li>
+<li>程序员（软件构造，通常与软件设计师是同一批人）</li>
+<li>人机交互设计师（可以与软件设计师是同一批人，也可不同）</li>
+<li>软件测试人员（独立于其他开发人员角色）</li>
+<li>项目管理人员（计划、领导、协调和控制软件开发的各项工作，一个团队只有一个）</li>
+<li>软件配置管理人员（管理软件开发中产生的各种制品，对重要制品进行标识、变更控制、状态报告等，一个团队只有一个）</li>
+<li>质量保障人员（生产过程中监督和控制软件产品质量）</li>
+<li>培训和支持人员（软件移交与维护）</li>
+<li>文档编写人员（专门负责写文档，解放软件体系结构师和需求工程师等人力资源）</li>
+</ul>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2024/02/28/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80/" data-id="clt5eo4qc00004kuw3f75hfcs" data-title="01-软件工程基础"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="2024Spring-软件工程与计算II" class="lazyload">
+                    
+                
+                <a href="/2024/02/27/2023Spring-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%8E%E8%AE%A1%E7%AE%97II/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        2024Spring-软件工程与计算II
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">64</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2024
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    172.7k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    10:23
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">64</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+

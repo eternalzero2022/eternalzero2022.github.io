@@ -175,6 +175,213 @@
         
     <div class="post-wrap-left wow fadeInUp">
         
+            <a class="post-link" href="/2023/12/06/%E8%B7%AF%E7%94%B1%E4%B8%8E%E8%B7%AF%E7%94%B1%E5%99%A8/"></a>
+        
+        
+        <div class="post-cover-left">
+            
+                
+                
+                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="路由与路由器" class="lazyload">
+                
+            
+
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
+                <a><span class="icon-calendar"></span>2023-12-06</a>
+                
+                    <a><span class="icon-pencil"></span>2.3k 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>8 分钟</a>
+                
+            </div>
+            <h2 class="post-title">路由与路由器</h2>
+            <article class="post-article">
+                
+                     路由与路由器
+ 1、路由器基础
+ 路由器的内部组件
+
+
+特殊组件计算机
+console口进行具体的调试
+辅助口(Auxiliary)：一般不用
+
+1、随机存取存储器RAM
+配置文件或临时存储一般作为内存使用，断电时内容丢失
+存储内容：
+
+路由表
+ARP缓存
+快速切换缓存
+报文缓存
+数据包保留队列
+
+2、非易失随机存取存储器（NVRAM）
+NVRAM，存储备份/启动配置文件，断电后内容不丢失。（内置的电池保证不断电），保证快速访问
+3、Flash
+电子可擦除可编程只读存储器EEPROM，存储了Cisco IOS（互联网操作系统），允许更新软件而无需更换闪存芯片；断电保持
+4、只读存储器（ROM
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-right wow fadeInUp">
+        
+            <a class="post-link" href="/2023/12/05/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8/"></a>
+        
+        <div class="post-cover-right">
+            
+                
+                
+                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="虚拟存储器" class="lazyload">
+                
+            
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
+                <a><span class="icon-calendar"></span>2023-12-05</a>
+                
+                    <a><span class="icon-pencil"></span>1.6k 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>5 分钟</a>
+                
+            </div>
+            <h2 class="post-title">虚拟存储器</h2>
+            <article class="post-article">
+                
+                     虚拟存储器
+操作系统：一种控制应用程序运行和在计算机用户与计算机硬件之间提供接口的程序，目标：使计算机使用起来更方便，允许计算机系统的资源以有效的方式使用
+存储器管理：早期主存：系统软件和一个用户程序；现在：操作系统和若干个用户程序
+如何将更多更大的任务装入主存？
+
+增大主存容量
+分区分页
+虚拟存储器
+
+虚拟存储器：每次访问仅将当前需要的页面调入主存，其他不活跃的页面放在外存磁盘上
+ 分区方式
+1、系统区：固定的地址范围内，存放操作系统
+2、用户区：存放所有用户程序
+
+简单固定分区：用户区划分成长度不等的固定长的分区；任务调入主存时分配可以容纳他的最小分区。（优点：简单；缺点：浪费主存空间）
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-left wow fadeInUp">
+        
+            <a class="post-link" href="/2023/12/03/%E5%86%97%E4%BD%99%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-RAID/"></a>
+        
+        
+        <div class="post-cover-left">
+            
+                
+                
+                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="冗余磁盘阵列-RAID" class="lazyload">
+                
+            
+
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
+                <a><span class="icon-calendar"></span>2023-12-03</a>
+                
+                    <a><span class="icon-pencil"></span>1.2k 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>4 分钟</a>
+                
+            </div>
+            <h2 class="post-title">冗余磁盘阵列-RAID</h2>
+            <article class="post-article">
+                
+                     冗余磁盘阵列
+
+将多个独立操作的磁盘按某种方式组织成磁盘阵列，以增加容量
+将数据存储在多个盘体上，通过这些盘并行工作来提高数据传输率
+采用数据冗余来进行错误恢复以提高系统可靠性
+
+由一组物理磁盘组成，每个物理磁盘被视为单个逻辑驱动器，数据分布在多个磁盘上，冗余磁盘用于存储校验信息，保证磁盘损坏时可以恢复数据
+ RAID分类
+
+ RAID 0
+
+数据以条带的形式在可用磁盘上分布（条带：一个磁盘阵列被分成很多个条带，条带横跨所有数据磁盘，并且每个磁盘上都有这个条带的一部分。每个磁盘上属于每个条带的一部分被称为条带深度。如果时字节级条带化，那么数据存储时，每个数据块的一个字节在一个磁盘上，下一个字
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-right wow fadeInUp">
+        
+            <a class="post-link" href="/2023/12/03/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E7%A0%81/"></a>
+        
+        <div class="post-cover-right">
+            
+                
+                
+                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="数据校验码" class="lazyload">
+                
+            
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
+                <a><span class="icon-calendar"></span>2023-12-03</a>
+                
+                    <a><span class="icon-pencil"></span>1.1k 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>4 分钟</a>
+                
+            </div>
+            <h2 class="post-title">数据校验码</h2>
+            <article class="post-article">
+                
+                     数据校验码
+数据在计算机内部计算，存取和传输过程中会出现差错。
+解决方案：采取数据验错和校正措施
+纠错：存储额外的信息以进行检验和校正
+处理过程：
+
+数据输入：在原数据中使用函数f生成K位校验码C’
+数据输出：在接收到的数据中使用函数f生成新的K位校验码C’’
+C’与C’&#39;进行比较，
+没有差错则直接使用收到的数据
+有差错且可以校正：校正数据；
+有差错且不可以校正：报告
+
+ 奇偶校验码
+增加一位校验码表示数据中1的数量是奇数还是偶数
+
+奇校验：使传输的数据中有奇数个1（1的数量为奇数个时校验码为0）
+偶校验：使传输的数据中有偶数个1（1的数量为偶数个时校验码为0）
+
+优点：代价低；缺点：发现错
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-left wow fadeInUp">
+        
             <a class="post-link" href="/2023/12/03/%E5%A4%96%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/"></a>
         
         
@@ -475,189 +682,11 @@ MIPS=IcT×106=fCPI×106MIPS = \frac{I_c}{T \time
 
 
     
-        
-    <div class="post-wrap-left wow fadeInUp">
-        
-            <a class="post-link" href="/2023/11/27/Java-%E5%9F%BA%E4%BA%8ESpringBoot%E7%9A%84%E7%99%BB%E5%BD%95%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"></a>
-        
-        
-        <div class="post-cover-left">
-            
-                
-                
-                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="Java-基于SpringBoot的登录系统实现" class="lazyload">
-                
-            
-
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2023-11-27</a>
-                
-                    <a><span class="icon-pencil"></span>12.8k 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>49 分钟</a>
-                
-            </div>
-            <h2 class="post-title">Java-基于SpringBoot的登录系统实现</h2>
-            <article class="post-article">
-                
-                     Java 基于SpringBoot的登录系统实现
- 一、spring boot项目创建
-首先，打开IDEA。（不需要选择在文件夹中打开）
-先点击上方的File-新建-项目，来到新建项目的部分
-
-检查左方有没有关于spring initializer的内容。
-
-如果像图中一样没有spring initializer，那么说明你使用的是社区版。需要去插件中安装一个spring boot的插件。
-来到当前窗口上面的搜索框，直接输入spring，然后点击“在Marketplace中搜索”，选择spring boot helper安装
-
-注意：这个插件只有30天的试用期，如果想要继续使用需要付费激活许
-                
-            </article>
-        </div>
-    </div>
-
-
-    
-        
-    <div class="post-wrap-right wow fadeInUp">
-        
-            <a class="post-link" href="/2023/11/23/%E3%80%90%E6%98%8E%E6%97%A5%E6%96%B9%E8%88%9F%E3%80%91%E5%8D%B1%E6%9C%BA%E5%90%88%E7%BA%A6-%E7%81%BC%E7%87%83%E4%BD%9C%E6%88%98-600&620%E5%88%86%E8%AE%B0%E5%BD%95-%E9%80%9A%E5%85%B3%E6%80%9D%E8%B7%AF/"></a>
-        
-        <div class="post-cover-right">
-            
-                
-                
-                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="【明日方舟】危机合约-灼燃作战-600&amp;620分记录&amp;通关思路" class="lazyload">
-                
-            
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2023-11-23</a>
-                
-                    <a><span class="icon-pencil"></span>3.8k 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>12 分钟</a>
-                
-            </div>
-            <h2 class="post-title">【明日方舟】危机合约-灼燃作战-600&amp;620分记录&amp;通关思路</h2>
-            <article class="post-article">
-                
-                     灼燃作战 600&amp;amp;620分 记录/通关思路
-这次新一期的危机合约：灼燃作战，推出两天后成功上到了605分。总体来说难度适中，想要上到600分需要合理分配词条。
-（现在已经成功上到620分。在更多词条开放后可以选择一个新的词条）
-
- 一、总体评价
-这是第一次在一次危机合约中打出如此高的分数（上一次还是认真打危机合约还是在赝波行动，作为四个月新玩家拿下合约18）。这次是在作为一个一年四个月玩家重新认真挑战危机合约。
-这次的最大的难点在于枯朽萃聚使徒（俗称斐济杯）。它源源不断发出高伤害的枯朽之种，对我方干员造成巨大打击。想要打好就必须合理利用芦苇丛。但是沼泽探测车也会让我放隐匿失效，也是一
-                
-            </article>
-        </div>
-    </div>
-
-
-    
-        
-    <div class="post-wrap-left wow fadeInUp">
-        
-            <a class="post-link" href="/2023/11/21/%E4%BC%A0%E8%BE%93%E5%B1%82/"></a>
-        
-        
-        <div class="post-cover-left">
-            
-                
-                
-                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="传输层" class="lazyload">
-                
-            
-
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2023-11-21</a>
-                
-                    <a><span class="icon-pencil"></span>3.3k 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>11 分钟</a>
-                
-            </div>
-            <h2 class="post-title">传输层</h2>
-            <article class="post-article">
-                
-                     传输层
-第四层：主要是实现了主机之间的通信，数据通信是服务于主机上的会话进程。
- 一、第四层概述
-第四层的功能：
-
-分割上层应用程序数据，第四层只会在终端设备上有，在中间设备是没有的
-建立端到端的运营。（end to end）
-完成可靠性检验，接收方认为数据错误，在第四层进行要求重传。
-流量控制和可靠性：需要外国人重复他的话并慢声说话。
-
-第四层重要协议：
-1、传输控制协议TCP，是可靠传输
-2、用户数据报协议UDP
-TCP：可靠，效率比较低，面向连接（需要建立三次握手建立连接关系），重新发送丢失或错误的任何内容，需求质量高而不是速率高
-UDP：不可靠，无连接，不使用确认，不进行流量控制，直
-                
-            </article>
-        </div>
-    </div>
-
-
-    
-        
-    <div class="post-wrap-right wow fadeInUp">
-        
-            <a class="post-link" href="/2023/11/20/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%9E%E4%BA%8C%E6%AC%A1%E5%9E%8B/"></a>
-        
-        <div class="post-cover-right">
-            
-                
-                
-                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第五章-实二次型" class="lazyload">
-                
-            
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2023-11-20</a>
-                
-                    <a><span class="icon-pencil"></span>2.5k 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>9 分钟</a>
-                
-            </div>
-            <h2 class="post-title">第五章-实二次型</h2>
-            <article class="post-article">
-                
-                     第五章 实二次型
- 一、基础知识
-二次曲线方程：
-a11x2+2a12xy+a22y2+2a13x+2a23y+a33=0a_{11}x^2+2a_{12}xy+a_{22}y^2+2a_{13}x+2a_{23}y+a_{33}=0a11​x2+2a12​xy+a22​y2+2a13​x+2a23​y+a33​=0
-可以表示成：
-(x,y,1)(a11a12a13a12a22a32a13a23a33)(xy1)(x,y,1)\begin{pmatrix}
-a_{11}&amp;amp;a_{12}&amp;amp;a_{13}\\
-a_{12}&amp;amp;a_{22}&amp;amp;a_{32}\\
-a_{13}
-                
-            </article>
-        </div>
-    </div>
-
-
-    
 
 
     <nav id="page-nav" class="wow fadeInUp">
         
-        <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
     </nav>
 
 
@@ -673,7 +702,7 @@ a_{13}
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">60</div>
+                <div class="sidebar-state-number">64</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -779,10 +808,10 @@ a_{13}
             
                 <div>
                     <span class="icon-brush"></span>
-                    171.6k
+                    172.7k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    10:17
+                    10:23
                 </div>
             
             
@@ -809,7 +838,7 @@ a_{13}
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">60</div>
+                <div class="sidebar-state-number">64</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
