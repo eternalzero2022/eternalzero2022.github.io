@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/02/29/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/p/%E5%B1%82%E6%AC%A1%E5%BC%8F%E7%BB%93%E6%9E%842.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/02/29/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/p/%E5%8D%95%E5%86%85%E6%A0%B8%E4%B8%8E%E5%BE%AE%E5%86%85%E6%A0%B8.png">
 <meta property="article:published_time" content="2024-02-29T11:56:26.000Z">
-<meta property="article:modified_time" content="2024-02-29T11:57:17.684Z">
+<meta property="article:modified_time" content="2024-03-04T04:03:15.529Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eternalzero2022.github.io/2024/02/29/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/p/%E7%94%A8%E6%88%B7%E8%A7%86%E5%9B%BE.png">
@@ -303,9 +303,9 @@
 <h4 id="操作系统的类型"><a class="markdownIt-Anchor" href="#操作系统的类型"></a> 操作系统的类型</h4>
 <p><strong>操作控制方式看：</strong></p>
 <ul>
-<li>多道批处理操作系统，脱机操作系统</li>
-<li>分时操作系统，交互式控制方式</li>
-<li>实时操作系统</li>
+<li>多道批处理操作系统，脱机操作系统（可以不使用人工，offline的情况下驾驶）</li>
+<li>分时操作系统，交互式控制方式(允许多个用户共享计算机资源，每间隔一段时间就切换一个进程来处理)</li>
+<li>实时操作系统（需要在给定的时间内完成任务）</li>
 </ul>
 <p><strong>应用领域分类</strong></p>
 <ul>
@@ -321,10 +321,10 @@
 <h2 id="三-深入观察操作系统"><a class="markdownIt-Anchor" href="#三-深入观察操作系统"></a> 三、深入观察操作系统</h2>
 <h3 id="1-资源管理的视角"><a class="markdownIt-Anchor" href="#1-资源管理的视角"></a> 1、资源管理的视角</h3>
 <p>硬件资源：处理器、内存、外设</p>
-<p>信息资源：数据、程序</p>
+<p>信息资源：数据、程序（软件层面的资源）</p>
 <p>屏蔽资源使用的底层细节：驱动程序（直接监视各类硬件资源，并向上提供接口）</p>
 <p>资源的共享方式：独占/共享</p>
-<p>资源的分配策略：静态分配（运行前一次拿到全部，使用效率低），动态分配（使用前临时申请，会有死锁），资源抢占方式（被抢占资源的进程需要回滚执行）</p>
+<p>资源的分配策略：静态分配（运行前一次拿到全部，使用效率低），动态分配（使用前临时申请，会有死锁），资源抢占方式（可以撤销某一个进程已经获得的资源）（被抢占资源的进程需要回滚执行）</p>
 <h3 id="2-控制程序执行的视角"><a class="markdownIt-Anchor" href="#2-控制程序执行的视角"></a> 2、控制程序执行的视角</h3>
 <p>多道程序同时计算，同时假如内存抢CPU，才可以使外围设备充分运行，提高效率</p>
 <p>多道程序处理器利用率计算：找出图中一个重复的区间，答案即为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mtext>处理器占用时间</mtext><mtext>区间的总时间</mtext></mfrac></mrow><annotation encoding="application/x-tex">\frac{处理器占用时间}{区间的总时间}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">区</span><span class="mord cjk_fallback mtight">间</span><span class="mord cjk_fallback mtight">的</span><span class="mord cjk_fallback mtight">总</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">处</span><span class="mord cjk_fallback mtight">理</span><span class="mord cjk_fallback mtight">器</span><span class="mord cjk_fallback mtight">占</span><span class="mord cjk_fallback mtight">用</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
@@ -590,10 +590,10 @@
             
                 <div>
                     <span class="icon-brush"></span>
-                    179.9k
+                    180.1k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    10:47
+                    10:48
                 </div>
             
             
