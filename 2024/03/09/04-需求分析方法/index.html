@@ -1,0 +1,715 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        04-需求分析方法 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="需求分析方法  一、需求分析基础 为什么要需求分析？知识点  需要通过需求分析，将用户的理解、问题的描述转化为共同的理解、解决方案的描述 需求分析的任务：知识点  建立分析模型，达成开发者和用户对需求信息的共同理解 依据共同的理解，发挥创造性，创建软件系统解决方案   需求分析模型：知识点  常见分析模型：知识点   二、面向对象分析 面向对象分析的过程：知识点   用例的定义：知识点   在子">
+<meta property="og:type" content="article">
+<meta property="og:title" content="04-需求分析方法">
+<meta property="og:url" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="需求分析方法  一、需求分析基础 为什么要需求分析？知识点  需要通过需求分析，将用户的理解、问题的描述转化为共同的理解、解决方案的描述 需求分析的任务：知识点  建立分析模型，达成开发者和用户对需求信息的共同理解 依据共同的理解，发挥创造性，创建软件系统解决方案   需求分析模型：知识点  常见分析模型：知识点   二、面向对象分析 面向对象分析的过程：知识点   用例的定义：知识点   在子">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E7%94%A8%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E8%B6%85%E5%B8%82%E9%94%80%E5%94%AE%E7%B3%BB%E7%BB%9F%E7%94%A8%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E7%BB%86%E5%8C%96%E7%9A%84%E7%94%A8%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E7%94%A8%E4%BE%8B%E6%A8%A1%E6%9D%BF.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E4%BE%8B1.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E4%BE%8B2.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E4%BE%8B3.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E4%BE%8B4.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E5%90%8D%E8%AF%8D%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E7%94%9F%E6%88%90%E6%A6%82%E5%BF%B5%E7%B1%BB.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E7%B1%BB%E5%9B%BE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E8%AF%86%E5%88%AB%E9%87%8D%E8%A6%81%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E9%A1%BA%E5%BA%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E6%B6%88%E6%81%AF%E7%A7%8D%E7%B1%BB.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E7%B3%BB%E7%BB%9F%E9%A1%BA%E5%BA%8F%E6%8F%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E8%BD%AC%E5%8C%96%E5%9B%BE%E7%A4%BA.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E8%A1%8C%E4%B8%BA.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E9%94%80%E5%94%AE%E5%A4%84%E7%90%86%E7%94%A8%E4%BE%8B%E7%8A%B6%E6%80%81.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E7%8A%B6%E6%80%812.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E7%BB%93%E6%9E%84%E5%8C%96%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A02.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%9B%BE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/0%E5%B1%82%E5%9B%BE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/N%E5%B1%82%E5%9B%BE.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/P/%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E5%85%B3%E7%B3%BB%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/ERD.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E5%9B%BE.png">
+<meta property="article:published_time" content="2024-03-09T07:26:51.000Z">
+<meta property="article:modified_time" content="2024-03-09T07:27:18.864Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/p/%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="04-需求分析方法" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>04-需求分析方法</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-04-需求分析方法" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/" class="article-date-link">
+        <time datetime="2024-03-09T07:26:51.000Z"
+              itemprop="datePublished">2024-03-09</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="需求分析方法"><a class="markdownIt-Anchor" href="#需求分析方法"></a> 需求分析方法</h1>
+<h2 id="一-需求分析基础"><a class="markdownIt-Anchor" href="#一-需求分析基础"></a> 一、需求分析基础</h2>
+<p>为什么要需求分析？<strong>知识点</strong></p>
+<p><img src="p/%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90.png" alt="" /></p>
+<p>需要通过需求分析，将用户的理解、问题的描述转化为共同的理解、解决方案的描述</p>
+<p>需求分析的任务：<strong>知识点</strong></p>
+<ul>
+<li>建立分析模型，达成开发者和用户对需求信息的共同理解</li>
+<li>依据共同的理解，发挥创造性，创建软件系统解决方案</li>
+</ul>
+<h3 id="需求分析模型知识点"><a class="markdownIt-Anchor" href="#需求分析模型知识点"></a> 需求分析模型：<strong>知识点</strong></h3>
+<p><img src="p/%E6%A8%A1%E5%9E%8B.png" alt="" /></p>
+<p>常见分析模型：<strong>知识点</strong></p>
+<p><img src="p/%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B.png" alt="" /></p>
+<h2 id="二-面向对象分析"><a class="markdownIt-Anchor" href="#二-面向对象分析"></a> 二、面向对象分析</h2>
+<p>面向对象分析的过程：<strong>知识点</strong></p>
+<p><img src="p/%E7%94%A8%E4%BE%8B.png" alt="" /></p>
+<h3 id="用例的定义知识点"><a class="markdownIt-Anchor" href="#用例的定义知识点"></a> 用例的定义：<strong>知识点</strong></h3>
+<ul>
+<li>
+<p>在子系统（或者子系统或者类）和外部对象的交互当中所执行的行为序列的描述，包括各种不同的序列和错误的序列，它们能够联合提供一种有价值的服务</p>
+</li>
+<li>
+<p>用例描述了在不同条件下系统对某一用户的请求的响应。根据用户的请求和请求时的系统条件，系统将执行不同的行为序列，每一个行为序列被称为一个场景。一个用例是多个场景的集合</p>
+</li>
+</ul>
+<p>例如：销售处理可以是一个用例。它在一切顺利时是一种正常行为流程。当然，购买多个商品可以分别输入商品号与数量，可能商品无法识别或用户提出退回商品。上述每个行为是一个场景，联合起来构成用例</p>
+<h3 id="用例图基本元素知识点"><a class="markdownIt-Anchor" href="#用例图基本元素知识点"></a> 用例图基本元素：<strong>知识点</strong></h3>
+<ul>
+<li>用例</li>
+<li>参与者</li>
+<li>关系</li>
+<li>系统边界</li>
+</ul>
+<h3 id="用例图的建立知识点"><a class="markdownIt-Anchor" href="#用例图的建立知识点"></a> 用例图的建立：<strong>知识点</strong></h3>
+<ul>
+<li>目标分析与解决方向的确定</li>
+<li>寻找参与者</li>
+<li>寻找用例</li>
+<li>细化用例</li>
+</ul>
+<p>超市销售系统用例：</p>
+<p><img src="p/%E8%B6%85%E5%B8%82%E9%94%80%E5%94%AE%E7%B3%BB%E7%BB%9F%E7%94%A8%E4%BE%8B.png" alt="" /></p>
+<p>细化：如果用例的粒度不合适就需要进行细化和调整</p>
+<p>例如：特价策略制定、赠送策略制定的业务目的、发起源、过程基本相同，仅仅是业务数据不同。可以合并为一个用例销售策略制定</p>
+<p><img src="p/%E7%BB%86%E5%8C%96%E7%9A%84%E7%94%A8%E4%BE%8B.png" alt="" /></p>
+<p>常见错误：</p>
+<ul>
+<li>不要将用例细化为单个操作（增加、修改、删除）</li>
+<li>不要将同一个业务目标细化为不同用例（特价和赠送策略制定）</li>
+<li>不要将没有业务价值的内容作为用例（登录、数据库连接）</li>
+</ul>
+<h3 id="用例模板知识点"><a class="markdownIt-Anchor" href="#用例模板知识点"></a> 用例模板：<strong>知识点</strong></h3>
+<p><img src="p/%E7%94%A8%E4%BE%8B%E6%A8%A1%E6%9D%BF.png" alt="" /></p>
+<p>例子：</p>
+<p><img src="p/%E4%BE%8B1.png" alt="" /></p>
+<p><img src="p/%E4%BE%8B2.png" alt="" /></p>
+<p><img src="p/%E4%BE%8B3.png" alt="" /></p>
+<p><img src="p/%E4%BE%8B4.png" alt="" /></p>
+<h3 id="概念类图知识点"><a class="markdownIt-Anchor" href="#概念类图知识点"></a> 概念类图：<strong>知识点</strong></h3>
+<ul>
+<li>又称为“领域模型”</li>
+<li>类图是面向对象分析方法的核心（描述类和这些类（对象）之间的关系）</li>
+<li>与设计类图不同：关注系统与外界的交互</li>
+<li>类型、方法、可见性等复杂软件构造细节不会在其中</li>
+</ul>
+<p>基本元素：</p>
+<p><img src="p/%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0.png" alt="" /></p>
+<h3 id="建立概念类图知识点"><a class="markdownIt-Anchor" href="#建立概念类图知识点"></a> 建立概念类图：<strong>知识点</strong></h3>
+<ul>
+<li>对每个用例文本描述，尤其是场景描述，建立局部的概念类图（先根据用例文本描述识别候选类，筛选候选类，确定概念类，识别关联，识别重要属性）</li>
+<li>将所有用例产生的局部概念类图合并，建立软件系统的整体概念类图</li>
+</ul>
+<p>候选类：软件系统与外界交互时可能设计的对象与类（行为分析、名词分析等）</p>
+<h4 id="名词分析"><a class="markdownIt-Anchor" href="#名词分析"></a> 名词分析：</h4>
+<p><img src="p/%E5%90%8D%E8%AF%8D%E5%88%86%E6%9E%90.png" alt="" /></p>
+<p>确定概念类：依据系统的需求/该类的对象实例状态与行为是否完全必要</p>
+<p>候选类向概念类的转化：只有既要维持状态又要依据状态表现一定的行为的才需要确定为一个概念类。只有状态：附加为其他概念类的属性；只有行为：审视需求是否有漏洞，如果没有也得剔除；都没有：完全剔除</p>
+<p><img src="p/%E7%94%9F%E6%88%90%E6%A6%82%E5%BF%B5%E7%B1%BB.png" alt="" /></p>
+<h4 id="识别关联"><a class="markdownIt-Anchor" href="#识别关联"></a> 识别关联</h4>
+<p>分析用例文本描述，发现概念类之间的协作</p>
+<p><img src="p/%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90.png" alt="" /></p>
+<p><img src="p/%E7%B1%BB%E5%9B%BE.png" alt="" /></p>
+<p>其中：三角形表示继承；空心正方形表示聚合；实心正方形表示组合</p>
+<h4 id="识别重要属性"><a class="markdownIt-Anchor" href="#识别重要属性"></a> 识别重要属性：</h4>
+<p><img src="p/%E8%AF%86%E5%88%AB%E9%87%8D%E8%A6%81%E5%B1%9E%E6%80%A7.png" alt="" /></p>
+<h3 id="顺序图知识点"><a class="markdownIt-Anchor" href="#顺序图知识点"></a> 顺序图：<strong>知识点</strong></h3>
+<p>分析阶段，主要是利用系统顺序图，表达系统和外部参与者之间的交互行为。</p>
+<p>简单示例：</p>
+<p><img src="p/%E9%A1%BA%E5%BA%8F%E5%9B%BE.png" alt="" /></p>
+<p>消息种类：</p>
+<p><img src="p/%E6%B6%88%E6%81%AF%E7%A7%8D%E7%B1%BB.png" alt="" /></p>
+<p>同步消息是实现，三角箭头。返回消息应该是虚线。Opt是可选项。Loop是循环。alt多选一</p>
+<p><img src="p/%E7%B3%BB%E7%BB%9F%E9%A1%BA%E5%BA%8F%E6%8F%90.png" alt="" /></p>
+<p><img src="p/%E8%BD%AC%E5%8C%96%E5%9B%BE%E7%A4%BA.png" alt="" /></p>
+<h3 id="状态图知识点"><a class="markdownIt-Anchor" href="#状态图知识点"></a> 状态图：<strong>知识点</strong></h3>
+<p>表明了软件会如何对外部事件做出反应</p>
+<p>状态：可观测的情况集合，表明了一定时间内系统的行为的特征</p>
+<p>状态转换State translation：从一个状态进入另一个状态</p>
+<p>事件Event：导致系统展现出一些可预测的行为的发生的事情</p>
+<p>活动Action：作为进行一个转变的序列发生的过程</p>
+<p><img src="p/%E8%A1%8C%E4%B8%BA.png" alt="" /></p>
+<h3 id="建立状态图知识点"><a class="markdownIt-Anchor" href="#建立状态图知识点"></a> 建立状态图：<strong>知识点</strong></h3>
+<ul>
+<li>确定上下文环境（状态图是立足于状态快照进行行为描述的，先要搞清楚状态的主体。状态主体：类、用例、多个用例和整个系统）</li>
+<li>识别状态：状态主体会表现出一些稳定的状态，需要被识别出来。</li>
+<li>建立状态转换：根据需求所描述的系统行为，建立各个稳定状态之间可能存在的转换。</li>
+<li>补充详细信息，完善状态图：添加转换的触发事件、转换行为和监护条件等详细信息</li>
+</ul>
+<p>例：销售处理用例状态图：</p>
+<p><img src="p/%E9%94%80%E5%94%AE%E5%A4%84%E7%90%86%E7%94%A8%E4%BE%8B%E7%8A%B6%E6%80%81.png" alt="" /></p>
+<p>建立状态转换示例：</p>
+<p><img src="p/%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E7%A4%BA%E4%BE%8B.png" alt="" /></p>
+<p>其中，y表示可以从i行到j列的状态</p>
+<p><img src="p/%E7%8A%B6%E6%80%812.png" alt="" /></p>
+<h2 id="三-结构化分析"><a class="markdownIt-Anchor" href="#三-结构化分析"></a> 三、结构化分析</h2>
+<p>结构化分析思想：</p>
+<ul>
+<li>自顶向下分解</li>
+<li>图（数据流图、实体关系图、状态转移图）</li>
+</ul>
+<p>结构化分析的简单过程</p>
+<p><img src="p/%E7%BB%93%E6%9E%84%E5%8C%96%E5%88%86%E6%9E%90.png" alt="" /></p>
+<h3 id="数据流图dfd"><a class="markdownIt-Anchor" href="#数据流图dfd"></a> 数据流图（DFD）</h3>
+<p>将系统看成是过程的集合；过程就是对数据的处理：接收输入，进行数据转换，输出结果</p>
+<p>数据的变化包括：被转换、被存储、或者被分布</p>
+<p>数据流图：<strong>知识点</strong></p>
+<p><img src="p/%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE.png" alt="" /></p>
+<p>数据流图的基本元素：</p>
+<p><img src="p/%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A02.png" alt="" /></p>
+<p>语法规则：必须有输入和输出，输入数据集和输出数据集需要存在差异；数据流必须和过程产生关系，要么是过程的输入，要么是输出。</p>
+<p>分层：上下文图/0层图/N层图</p>
+<h4 id="上下文图"><a class="markdownIt-Anchor" href="#上下文图"></a> 上下文图：</h4>
+<p><img src="p/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%9B%BE.png" alt="" /></p>
+<p>整个系统只有一个过程</p>
+<h4 id="0层图"><a class="markdownIt-Anchor" href="#0层图"></a> 0层图</h4>
+<p>单一过程的细节描述</p>
+<p><img src="p/0%E5%B1%82%E5%9B%BE.png" alt="" /></p>
+<h4 id="n层图"><a class="markdownIt-Anchor" href="#n层图"></a> N层图</h4>
+<p>0层图的每个过程都可以继续分层</p>
+<p><img src="p/N%E5%B1%82%E5%9B%BE.png" alt="" /></p>
+<h4 id="过程分解的平衡原则"><a class="markdownIt-Anchor" href="#过程分解的平衡原则"></a> 过程分解的平衡原则</h4>
+<p>必须保证子图的输入输出和父图保持一致</p>
+<h3 id="实体关系图知识点"><a class="markdownIt-Anchor" href="#实体关系图知识点"></a> 实体关系图：<strong>知识点</strong></h3>
+<p>数据的建模，说明数据的结构、定义和关系等</p>
+<p>实体：需要在系统中收集和存储的现实世界事物的类别描述</p>
+<p>关系：</p>
+<p><img src="P/%E5%85%B3%E7%B3%BB.png" alt="" /></p>
+<p>例如：</p>
+<p><img src="p/%E5%85%B3%E7%B3%BB%E7%A4%BA%E4%BE%8B.png" alt="" /></p>
+<p>ERD的图形表示：</p>
+<p><img src="p/ERD.png" alt="" /></p>
+<p><img src="p/%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E5%9B%BE.png" alt="" /></p>
+<h2 id="四-使用需求分析方法细化和明确需求"><a class="markdownIt-Anchor" href="#四-使用需求分析方法细化和明确需求"></a> 四、使用需求分析方法细化和明确需求</h2>
+<h3 id="细化和明确需求知识点"><a class="markdownIt-Anchor" href="#细化和明确需求知识点"></a> 细化和明确需求：<strong>知识点</strong></h3>
+<p>为什么要细化？</p>
+<ul>
+<li>用户需求的描述的模糊性和系统设计所需要的严谨性之间的矛盾</li>
+</ul>
+<p>如何细化？</p>
+<ul>
+<li>需求分析建模</li>
+<li>发现其中的遗漏、冲突、冗余和错误</li>
+<li>迭代</li>
+</ul>
+<h3 id="建立系统需求"><a class="markdownIt-Anchor" href="#建立系统需求"></a> 建立系统需求</h3>
+<p>需要建立系统与外界的基本交互顺序（刺激，响应）</p>
+<p>通常是编号与需求描述的一张表，编号是类名和成员变量/方法</p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2024/03/09/04-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/" data-id="cltjrjuf70000lwuw953g9kth" data-title="04-需求分析方法"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="防止CSDN登录复制小技巧" class="lazyload">
+                    
+                
+                <a href="/2024/03/09/%E9%98%B2%E6%AD%A2CSDN%E7%99%BB%E5%BD%95%E5%A4%8D%E5%88%B6%E5%B0%8F%E6%8A%80%E5%B7%A7/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        防止CSDN登录复制小技巧
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">73</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2024
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    187.4k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    11:13
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">73</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
