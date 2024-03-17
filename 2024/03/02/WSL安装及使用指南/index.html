@@ -23,26 +23,30 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="WSL安装及使用指南 WSL是一个可以用于在Windows系统上使用Linux操作系统的软件。 区别于虚拟机，它不需要你为虚拟机额外分配一块永久固定的内存，也没有专门的桌面。它的资源是与你的Windows共享的。  一、安装 在任意文件夹下打开Powershell（管理员），然后输入命令： 1wsl --install 就可以自动安装wsl以及默认的Linux发行版所需的功能（通常是Ubuntu">
+    <meta name="description" content="WSL安装及使用指南 WSL是一个可以用于在Windows系统上使用Linux操作系统的软件。 区别于虚拟机，它不需要你为虚拟机额外分配一块永久固定的内存，也没有专门的桌面。它的资源是与你的Windows共享的。  一、安装 在安装之前，先在底部搜索栏中搜索“Windows功能”，进入“启动或关闭Windows功能”页面，选中其中的“适用于Linux的Windows子系统”和“虚拟机平台”  在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WSL安装及使用指南">
 <meta property="og:url" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="EternalZero2022 的博客">
-<meta property="og:description" content="WSL安装及使用指南 WSL是一个可以用于在Windows系统上使用Linux操作系统的软件。 区别于虚拟机，它不需要你为虚拟机额外分配一块永久固定的内存，也没有专门的桌面。它的资源是与你的Windows共享的。  一、安装 在任意文件夹下打开Powershell（管理员），然后输入命令： 1wsl --install 就可以自动安装wsl以及默认的Linux发行版所需的功能（通常是Ubuntu">
+<meta property="og:description" content="WSL安装及使用指南 WSL是一个可以用于在Windows系统上使用Linux操作系统的软件。 区别于虚拟机，它不需要你为虚拟机额外分配一块永久固定的内存，也没有专门的桌面。它的资源是与你的Windows共享的。  一、安装 在安装之前，先在底部搜索栏中搜索“Windows功能”，进入“启动或关闭Windows功能”页面，选中其中的“适用于Linux的Windows子系统”和“虚拟机平台”  在">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%90%AF%E7%94%A8.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%AE%89%E8%A3%85.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%86%8D%E6%AC%A1%E5%AE%89%E8%A3%85.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%AE%89%E8%A3%85%E7%9A%84wsl.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%AF%BC%E5%87%BA.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%8D%B8%E8%BD%BD%E5%88%86%E5%8F%91.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%AF%BC%E5%85%A5.png">
 <meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%86%8D%E6%AC%A1%E7%99%BB%E5%BD%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/remote.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E7%BC%96%E7%A8%8B.png">
 <meta property="article:published_time" content="2024-03-02T11:58:11.000Z">
-<meta property="article:modified_time" content="2024-03-02T13:24:19.074Z">
+<meta property="article:modified_time" content="2024-03-17T14:37:46.314Z">
 <meta property="article:author" content="EternalZero2022">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%AE%89%E8%A3%85.png">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2024/03/02/WSL%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/p/%E5%90%AF%E7%94%A8.png">
     
         <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
     
@@ -205,16 +209,23 @@
 <p>WSL是一个可以用于在Windows系统上使用Linux操作系统的软件。</p>
 <p>区别于虚拟机，它不需要你为虚拟机额外分配一块永久固定的内存，也没有专门的桌面。它的资源是与你的Windows共享的。</p>
 <h2 id="一-安装"><a class="markdownIt-Anchor" href="#一-安装"></a> 一、安装</h2>
+<p>在安装之前，先在底部搜索栏中搜索“Windows功能”，进入“启动或关闭Windows功能”页面，选中其中的“适用于Linux的Windows子系统”和“虚拟机平台”</p>
+<p><img src="p/%E5%90%AF%E7%94%A8.png" alt="" /></p>
 <p>在任意文件夹下打开Powershell（管理员），然后输入命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --install</span><br></pre></td></tr></table></figure>
 <p>就可以自动安装wsl以及默认的Linux发行版所需的功能（通常是Ubuntu）</p>
 <p><img src="p/%E5%AE%89%E8%A3%85.png" alt="" /></p>
+<p>注意：如果你想要选择不同的版本，你可以先使用<code>wsl --list --online</code>命令查看有哪些不同的版本，然后在安装的时候输入以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --install -d 发行版名称</span><br></pre></td></tr></table></figure>
 <p>安装完成后需要重启电脑。</p>
 <p>重启完电脑后，我们可以使用<code>wsl</code>命令，这个时候它应该就会自动帮我们启动Ubuntu。（当然，如果尝试再次使用刚刚的install命令它也会自动帮我们打开）</p>
 <p><img src="p/%E5%86%8D%E6%AC%A1%E5%AE%89%E8%A3%85.png" alt="" /></p>
 <h2 id="二-使用指南"><a class="markdownIt-Anchor" href="#二-使用指南"></a> 二、使用指南</h2>
 <p>每次打开时，就可以使用<code>wsl</code>来启动Ubuntu。</p>
 <p>退出：使用<code>exit</code>命令</p>
+<p>如果想要切换不同的版本，可以在wsl后面加参数，例如：<code>wsl -d 发行版名称</code></p>
+<p>当然，一般情况下，我们也可以在powershell上方点击朝下的箭头直接选择对应的版本：</p>
+<p><img src="p/%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80.png" alt="" /></p>
 <p>当你不再使用wsl后，你可以使用<code>wsl --shutdown</code>关闭wsl来节省内存空间</p>
 <p>当然，我们也可以修改它的安装位置（需要在安装完成之后再手动修改）</p>
 <h3 id="修改安装位置"><a class="markdownIt-Anchor" href="#修改安装位置"></a> 修改安装位置</h3>
@@ -237,6 +248,15 @@
 <p><img src="p/%E5%86%8D%E6%AC%A1%E7%99%BB%E5%BD%95.png" alt="" /></p>
 <p>我们会发现账户改成了root。不过不要紧，如果需要修改默认账户的话，只需要<code>vim /etc/wsl.conf</code>来修改配置文件，并且在最上面添加以下内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">default=你的用户名</span><br></pre></td></tr></table></figure>
+<h3 id="使用vscode编辑代码"><a class="markdownIt-Anchor" href="#使用vscode编辑代码"></a> 使用vscode编辑代码</h3>
+<p>如果你在Windows上安装了vscode，那么你可以直接通过windows上安装的vscode在wsl中进行编程</p>
+<p>首先，我们可以在自己的vscode上安装remote development插件：</p>
+<p><img src="p/remote.png" alt="" /></p>
+<p>然后进入wsl中，在命令行中直接输入以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+<p>这个时候就可以自动打开安装在windows上的vscode。不过需要注意的是大部分插件都需要重新下载。</p>
+<p>然后我们就可以切换到代码页面进行编辑代码了。</p>
+<p><img src="p/%E7%BC%96%E7%A8%8B.png" alt="" /></p>
 
             
         </div>
@@ -421,10 +441,10 @@
             
                 <div>
                     <span class="icon-brush"></span>
-                    187.4k
+                    187.7k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    11:13
+                    11:14
                 </div>
             
             
