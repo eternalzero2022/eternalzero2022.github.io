@@ -175,6 +175,105 @@
         
     <div class="post-wrap-left wow fadeInUp">
         
+            <a class="post-link" href="/2023/12/29/%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97/"></a>
+        
+        
+        <div class="post-cover-left">
+            
+                
+                
+                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="浮点数运算" class="lazyload">
+                
+            
+
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
+                <a><span class="icon-calendar"></span>2023-12-29</a>
+                
+                    <a><span class="icon-pencil"></span>1.1k 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>3 分钟</a>
+                
+            </div>
+            <h2 class="post-title">浮点数运算</h2>
+            <article class="post-article">
+                
+                     浮点数运算
+ 浮点数加减法
+步骤：
+
+检查0：运算双方是否有一方等于0？
+对齐有效值：阶码向大阶对齐，也就是需要将阶码小的那个数的阶码增加m位，直到与阶码大的数的阶码相同。每次阶码+1就要把尾数右移1位。
+加或减有效值：进行尾数的运算。需要带上原来的隐藏位
+规格化结果：最后得出的结果需要转变为规格化数的形式。如果小于1就要左归（尾数左移，阶码减少）；大于等于2就要右规（尾数右移，阶码增加）
+
+ 乘法和除法
+计算步骤：
+
+检查0：运算双方是否有0存在？需要针对不同情况进行不同处理
+阶码相加减：两个数的乘除就相当于对阶码相加减。注意：使用移码进行阶码的加减时需要额外加减一次偏置常数，如果是乘法，
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-right wow fadeInUp">
+        
+            <a class="post-link" href="/2023/12/29/%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/"></a>
+        
+        <div class="post-cover-right">
+            
+                
+                
+                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="整数运算" class="lazyload">
+                
+            
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
+                <a><span class="icon-calendar"></span>2023-12-29</a>
+                
+                    <a><span class="icon-pencil"></span>2.3k 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>8 分钟</a>
+                
+            </div>
+            <h2 class="post-title">整数运算</h2>
+            <article class="post-article">
+                
+                     整数运算
+ 算术逻辑单元ALU
+计算机实际完成数据算术逻辑运算的部件
+
+数据由寄存器提交给ALU，运算结果也存于寄存器
+ALU也可以产生一些与运算结果有关的标志值存储在寄存器中
+控制器提供控制ALU操作和数据传入送出ALU的信号
+
+ 全加器
+ 一位加法器：
+
+X和Y表示加数，F表示当前位的结果，Cout表示向高位的进位，Cin表示上一位低位在本位的进位
+Cin、X、Y经过逻辑运算可以计算出Cout和F
+
+一位加法器的结构：
+
+假设与门、或门都需要1级门延迟(1ty)，异或门需要3级门延迟(3ty)，那么Cout的形成需要2ty，F的形成需要6ty。（这点很重要，因为一般只要直到了Cout就可
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-left wow fadeInUp">
+        
             <a class="post-link" href="/2023/12/28/%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/"></a>
         
         
@@ -618,127 +717,6 @@ I/O模块是计算机内部系统和外设之间的桥梁
 
 
     
-        
-    <div class="post-wrap-left wow fadeInUp">
-        
-            <a class="post-link" href="/2023/12/18/%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F%E5%92%8C%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4%E7%BA%BF/"></a>
-        
-        
-        <div class="post-cover-left">
-            
-                
-                
-                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="指令周期和指令流水线" class="lazyload">
-                
-            
-
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2023-12-18</a>
-                
-                    <a><span class="icon-pencil"></span>2.1k 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>7 分钟</a>
-                
-            </div>
-            <h2 class="post-title">指令周期和指令流水线</h2>
-            <article class="post-article">
-                
-                     指令周期和指令流水线
- 指令周期
-指令周期：处理单个指令的时间，简单分为取址周期和执行周期
-状态图：
-
-并非所有指令的周期都一样
- 带中断的指令周期
-如果中断允许，那么会在执行指令结束后，检查有无中断及处理中断
-状态图：
-
- 间址周期
-间接寻址，在取操作数时需要额外的存储器访问
-间址周期：把间接地址的读取看成一个额外的指令子空间
-状态图：
-
-取操作数发生了两次：根据地址取有效地址，再根据有效地址取操作数
- CPU的任务
-
-取指令
-解释指令
-取数据
-处理数据
-写数据
-
-CPU需求：寄存器：
-
-1个存储地址寄存器：MAR
-1个存储缓冲寄存器：MBR/存储数据寄存器：MDR（这两者并没有太大的区别
-                
-            </article>
-        </div>
-    </div>
-
-
-    
-        
-    <div class="post-wrap-right wow fadeInUp">
-        
-            <a class="post-link" href="/2023/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E9%A1%B6%E5%B1%82%E8%A7%86%E5%9B%BE/"></a>
-        
-        <div class="post-cover-right">
-            
-                
-                
-                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="计算机的顶层视图" class="lazyload">
-                
-            
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2023-12-18</a>
-                
-                    <a><span class="icon-pencil"></span>857 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>2 分钟</a>
-                
-            </div>
-            <h2 class="post-title">计算机的顶层视图</h2>
-            <article class="post-article">
-                
-                     计算机的顶层视图
-基本功能
-
-数据处理
-数据存储
-数据传输
-
-冯诺伊曼结构
-
-哈佛结构
-
-两者的不同之处在于：哈佛结构将存储器分为了指令存储器和数据存储器，两者分别有各自的总线
- 计算机顶层结构
-早期：组件之间：分散方式；现在：总线方式
-冯诺依曼最重要思想：存储程序
-任何要计算机完成的工作都要先被编写成程序，然后将程序和原始数据送入主
-存并启动执行。一旦程序被启动，计算机应能在不需要操作人员干预下，自动
-完成逐条取出指令和执行指令的任务。
-
-应该有个主存 ，用来存放程序和数据
-程序由指令构成
-应该有一个自动逐条取出指令的部件
-应该有具体执行指令的部件
-指令描述如何对数据进行处理
-应该有将程序
-                
-            </article>
-        </div>
-    </div>
-
-
-    
 
 
     <nav id="page-nav" class="wow fadeInUp">
@@ -759,7 +737,7 @@ CPU需求：寄存器：
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">78</div>
+                <div class="sidebar-state-number">80</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -865,10 +843,10 @@ CPU需求：寄存器：
             
                 <div>
                     <span class="icon-brush"></span>
-                    200.6k
+                    202.9k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    12:03
+                    12:12
                 </div>
             
             
@@ -895,7 +873,7 @@ CPU需求：寄存器：
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">78</div>
+                <div class="sidebar-state-number">80</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>

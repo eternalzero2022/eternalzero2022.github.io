@@ -175,6 +175,114 @@
         
     <div class="post-wrap-left wow fadeInUp">
         
+            <a class="post-link" href="/2023/12/03/%E5%A4%96%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8/"></a>
+        
+        
+        <div class="post-cover-left">
+            
+                
+                
+                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="外部存储器" class="lazyload">
+                
+            
+
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
+                <a><span class="icon-calendar"></span>2023-12-03</a>
+                
+                    <a><span class="icon-pencil"></span>1.5k 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>5 分钟</a>
+                
+            </div>
+            <h2 class="post-title">外部存储器</h2>
+            <article class="post-article">
+                
+                     外部存储器
+外部存储器：存储不经常使用的，数据量较大的信息。
+
+磁盘存储器
+光存储器
+磁带
+U盘，固态硬盘
+
+磁盘存储器：是由涂有可磁化材料的非磁性材料（基材）构成的圆形盘片
+ 磁盘存储器结构：
+
+
+一个硬盘有多个盘片，每个盘片有一个读写磁头。所有磁头通过机械方式固定在一起，同时移动。
+
+
+
+每个盘片有多个磁道，磁道呈同心圆环形结构，每个磁头运动的轨迹就是一个磁道。
+一个磁道分为多个扇区，每个扇区是计算机每次读取的数据的最小单位。
+一个扇区默认大小为512B
+磁道从外往里递增，外面小里面大
+磁道与磁道之间有间隙；扇区与扇区之间也有间隙
+
+数据组织：
+
+恒定角速度：磁盘能够以恒定的角速度扫描信
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-right wow fadeInUp">
+        
+            <a class="post-link" href="/2023/12/03/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%AD%98%E5%82%A8%E5%99%A8-Cache/"></a>
+        
+        <div class="post-cover-right">
+            
+                
+                
+                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="高速缓存存储器(Cache)" class="lazyload">
+                
+            
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
+                <a><span class="icon-calendar"></span>2023-12-03</a>
+                
+                    <a><span class="icon-pencil"></span>1.5k 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>5 分钟</a>
+                
+            </div>
+            <h2 class="post-title">高速缓存存储器(Cache)</h2>
+            <article class="post-article">
+                
+                     高速缓存存储器(Cache)
+存在的问题：CPU的速度比内存的快，两者差距不断增大（内存墙）
+解决方法：使用Cache
+ Cache基本思路
+在使用主存之余，添加一块小而快的Cache，位于CPU和主存之间，存储主存中最经常被访问的信息副本
+CPU访问一块内存（字）：
+
+先检查Cache中是否存在。
+存在：命中，直接把这个字返回CPU；
+不存在：未命中，再访问内存，取出这个字，然后把这个字写入Cache中
+
+Cache通过标记来标识它在主存中的对应位置。这里标记就是内存地址中的高位的几个位。
+ 程序访问的局部性原理
+
+时间局部性：在相对较短的时间内重复访问特定的信息（一条指令一旦执行就有可能
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-left wow fadeInUp">
+        
             <a class="post-link" href="/2023/12/01/%E8%AE%A1%E7%AE%97%E9%A2%98%E5%81%9A%E9%A2%98%E6%96%B9%E6%B3%95-%E8%A6%81%E7%82%B9/"></a>
         
         
@@ -545,103 +653,6 @@ a_{13}
 
 
     
-        
-    <div class="post-wrap-left wow fadeInUp">
-        
-            <a class="post-link" href="/2023/11/19/%E7%BD%91%E7%BB%9C%E5%B1%82/"></a>
-        
-        
-        <div class="post-cover-left">
-            
-                
-                
-                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="网络层" class="lazyload">
-                
-            
-
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2023-11-19</a>
-                
-                    <a><span class="icon-pencil"></span>3.9k 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>13 分钟</a>
-                
-            </div>
-            <h2 class="post-title">网络层</h2>
-            <article class="post-article">
-                
-                     网络层
-本文主要参考eaglebear2002的博客
-使用IP地址（而不使用硬件地址）的原因：
-
-设备数量和供应商多
-规格不一致
-定位复杂
-
- 一、网络层概述
-
-对于不同帧使用同一的方案进行处理
-希望通过路由选择算法进行路径的选择和转发，对第二层是透明的。（即第二层的具体实现不影响第三层）
-第三层只能避免拥塞（流量控制在第四层）
-
- 第三层职责
-
-通过网络来移动数据，划分广播域，跨网段传播数据。
-使用分层寻址方案（IP地址）
-细分网络
-减少交通拥堵，基于IP做分段和传达
-与其他网络交谈
-
-一般，第三次负责的是联通和传达，而数据可靠性由终端设备（第四层及以上）来进行保证（不然会带来比较大的计算
-                
-            </article>
-        </div>
-    </div>
-
-
-    
-        
-    <div class="post-wrap-right wow fadeInUp">
-        
-            <a class="post-link" href="/2023/11/11/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"></a>
-        
-        <div class="post-cover-right">
-            
-                
-                
-                    <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="Java网络编程入门指南" class="lazyload">
-                
-            
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2023-11-11</a>
-                
-                    <a><span class="icon-pencil"></span>5k 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>19 分钟</a>
-                
-            </div>
-            <h2 class="post-title">Java网络编程入门指南</h2>
-            <article class="post-article">
-                
-                    本篇主要参考以下文章：https://www.runoob.com/java/java-networking.html
- Java网络编程入门指南
-Java中想要接收和发送报文其实很简单。Java中自带了net库，里面提供了一些socket API，因此可以通过调用这些API来实现网络之间的传输。
-与C++中的网络编程不同，Java中许多需要执行的步骤都被封装在了一些函数中，省去了WSAStartUp和bind、listen等步骤，因此比C++更简洁。
-网络编程需要一端作为服务器，一端作为客户端，来进行通信。
-当然，如果需要构建一个功能丰富的，拥有完善的处理报文的机制的应用，光使用socket
-                
-            </article>
-        </div>
-    </div>
-
-
-    
 
 
     <nav id="page-nav" class="wow fadeInUp">
@@ -662,7 +673,7 @@ Java中想要接收和发送报文其实很简单。Java中自带了net库，里
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">78</div>
+                <div class="sidebar-state-number">80</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -768,10 +779,10 @@ Java中想要接收和发送报文其实很简单。Java中自带了net库，里
             
                 <div>
                     <span class="icon-brush"></span>
-                    200.6k
+                    202.9k
                     &nbsp;|&nbsp;
                     <span class="icon-coffee"></span>
-                    12:03
+                    12:12
                 </div>
             
             
@@ -798,7 +809,7 @@ Java中想要接收和发送报文其实很简单。Java中自带了net库，里
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">78</div>
+                <div class="sidebar-state-number">80</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
