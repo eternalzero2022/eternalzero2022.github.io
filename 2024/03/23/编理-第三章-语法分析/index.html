@@ -1,0 +1,896 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        编理-第三章-语法分析 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="语法分析  一、引言  语法分析生成语法树   文法 一种用于描述程序设计语言语法的表示方法，能够自然地描述程序设计语言构造的层次化语法结构 基于文法构造语法分析器  语法分析器 输入：词法分析器输出的词法单元序列 输出：语法树表示 语法分析器的类型：  通用型 自顶向下：处理LL文法 自底向上：处理LR文法   代表性文法  上面为LR文法类；下面为LL文法类（无左递归，自顶向下分析）  二、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编理-第三章-语法分析">
+<meta property="og:url" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="语法分析  一、引言  语法分析生成语法树   文法 一种用于描述程序设计语言语法的表示方法，能够自然地描述程序设计语言构造的层次化语法结构 基于文法构造语法分析器  语法分析器 输入：词法分析器输出的词法单元序列 输出：语法树表示 语法分析器的类型：  通用型 自顶向下：处理LL文法 自底向上：处理LR文法   代表性文法  上面为LR文法类；下面为LL文法类（无左递归，自顶向下分析）  二、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E8%AF%AD%E6%B3%95%E6%A0%91.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E4%BB%A3%E8%A1%A8%E6%80%A7%E6%96%87%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E4%BE%8B%E5%AD%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9C%89%E5%85%B3.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E6%96%87%E6%B3%95%E5%AE%9A%E4%B9%89.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E7%AC%A6%E5%8F%B7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E6%8E%A8%E5%AF%BC.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E6%8E%A8%E5%88%B02.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E5%B7%A6%E5%8F%B3.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E5%88%86%E6%9E%90%E6%A0%91%E5%AE%9E%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E5%88%86%E6%9E%90%E6%A0%91.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E4%BA%8C%E4%B9%89%E6%80%A7.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E8%AF%AD%E8%A8%80.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E6%AF%94%E8%BE%83.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/NFA%E5%88%B0%E6%96%87%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E7%AB%8B%E5%8D%B3%E5%B7%A6%E9%80%92%E5%BD%92.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E6%B6%88%E9%99%A4%E4%BC%AA%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E6%B6%88%E9%99%A4%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E6%8E%A8%E5%AF%BC%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/follow%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90%E8%A1%A8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E5%88%86%E6%9E%90%E8%A1%A8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E9%A2%84%E6%B5%8B%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E8%A7%84%E7%BA%A6.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E8%A7%84%E7%BA%A6%E4%BE%8B%E5%AD%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E8%A7%84%E7%BA%A6%E5%86%B2%E7%AA%81.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E7%82%B9.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E4%BE%8B%E5%AD%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E4%BD%9C%E7%94%A8%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/lr%E5%88%86%E6%9E%90%E8%A1%A8.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E6%9C%89%E6%95%88%E9%A1%B9.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E6%81%90%E6%85%8C%E6%A8%A1%E5%BC%8F.png">
+<meta property="article:published_time" content="2024-03-23T07:09:08.000Z">
+<meta property="article:modified_time" content="2024-03-23T07:09:26.360Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/p/%E5%88%86%E6%9E%90.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="编理-第三章-语法分析" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>编理-第三章-语法分析</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-编理-第三章-语法分析" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" class="article-date-link">
+        <time datetime="2024-03-23T07:09:08.000Z"
+              itemprop="datePublished">2024-03-23</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="语法分析"><a class="markdownIt-Anchor" href="#语法分析"></a> 语法分析</h1>
+<h2 id="一-引言"><a class="markdownIt-Anchor" href="#一-引言"></a> 一、引言</h2>
+<p><img src="p/%E5%88%86%E6%9E%90.png" alt="" /></p>
+<p>语法分析生成语法树</p>
+<p><img src="p/%E8%AF%AD%E6%B3%95%E6%A0%91.png" alt="" /></p>
+<h3 id="文法"><a class="markdownIt-Anchor" href="#文法"></a> 文法</h3>
+<p>一种用于描述程序设计语言语法的表示方法，能够自然地描述程序设计语言构造的层次化语法结构</p>
+<p>基于文法构造语法分析器</p>
+<h3 id="语法分析器"><a class="markdownIt-Anchor" href="#语法分析器"></a> 语法分析器</h3>
+<p>输入：词法分析器输出的词法单元序列</p>
+<p>输出：语法树表示</p>
+<p>语法分析器的类型：</p>
+<ul>
+<li>通用型</li>
+<li>自顶向下：处理LL文法</li>
+<li>自底向上：处理LR文法</li>
+</ul>
+<h3 id="代表性文法"><a class="markdownIt-Anchor" href="#代表性文法"></a> 代表性文法</h3>
+<p><img src="p/%E4%BB%A3%E8%A1%A8%E6%80%A7%E6%96%87%E6%B3%95.png" alt="" /></p>
+<p>上面为LR文法类；下面为LL文法类（无左递归，自顶向下分析）</p>
+<h2 id="二-上下文无关语法"><a class="markdownIt-Anchor" href="#二-上下文无关语法"></a> 二、上下文无关语法</h2>
+<p>CFG</p>
+<p>CFG的构成：</p>
+<ul>
+<li>终结符号：组成串的基本符号</li>
+<li>非终结符号：语法变量</li>
+<li>一个开始符号</li>
+<li>一组产生式：描述将终结符号和非终结符号组成串的方法</li>
+</ul>
+<p><strong>什么是上下文？</strong><br />
+前后已经推导出的部分结果就是上下文</p>
+<p>上下文无关：之前推导出的不管（只要文法的定义里有某个<br />
+产生式，不管一个非终结符前后的串是什么，就<br />
+可以应用相应的产生式进行推导）</p>
+<p>上下文无关例子：</p>
+<p><img src="p/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E4%BE%8B%E5%AD%90.png" alt="" /></p>
+<p>其中：英文字母为非终结符；汉字为终结符；|表示或</p>
+<p>上下文有关例子：</p>
+<p><img src="p/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9C%89%E5%85%B3.png" alt="" /></p>
+<p>用于描述算术表达式的文法定义：</p>
+<p><img src="p/%E6%96%87%E6%B3%95%E5%AE%9A%E4%B9%89.png" alt="" /></p>
+<h3 id="符号约定"><a class="markdownIt-Anchor" href="#符号约定"></a> 符号约定</h3>
+<p><img src="p/%E7%AC%A6%E5%8F%B7.png" alt="" /></p>
+<h3 id="推导"><a class="markdownIt-Anchor" href="#推导"></a> 推导</h3>
+<p>产生式又可称为重写规则</p>
+<p>推导：将待处理的串中的某个非终结符号替换为这个非终结符号的某个产生式的体</p>
+<p>例如：</p>
+<p><img src="p/%E6%8E%A8%E5%AF%BC.png" alt="" /></p>
+<p><img src="p/%E6%8E%A8%E5%88%B02.png" alt="" /></p>
+<p>句型：如果S零或多步推导出α，那么α就是文法的一个句型</p>
+<p>句子：不包含任何非终结符号的句型</p>
+<p>语言：文法G的语言就是G的句子的集合，记为L(G)</p>
+<p>语法分析的任务：接受一个终结符号串作为输入，找出从文法的开始符号推导出这个串的方法</p>
+<h3 id="非终结符号的推导顺序"><a class="markdownIt-Anchor" href="#非终结符号的推导顺序"></a> 非终结符号的推导顺序</h3>
+<ul>
+<li>最左推导：总是选择每个句型的最左非终结符号（箭头下为lm）</li>
+<li>最右推导：总是选择最右边的非终结符号（箭头下为rm）</li>
+</ul>
+<p><img src="p/%E5%B7%A6%E5%8F%B3.png" alt="" /></p>
+<p>语法分析树：</p>
+<ul>
+<li>根结点的标号是文法的开始符号</li>
+<li>每个叶子结点的标号是非终结符号、终结符号或ε</li>
+<li>每个内部节点的标号是非终结符号</li>
+<li>每个内部结点表示某个产生式的一次应用</li>
+</ul>
+<p>-(id+id)的语法分析树：</p>
+<p><img src="p/%E5%88%86%E6%9E%90%E6%A0%91%E5%AE%9E%E4%BE%8B.png" alt="" /></p>
+<p><img src="p/%E5%88%86%E6%9E%90%E6%A0%91.png" alt="" /></p>
+<h3 id="二义性文法"><a class="markdownIt-Anchor" href="#二义性文法"></a> 二义性文法</h3>
+<p>如果一个文法可以为一个句子生成多棵不同的语法分析树，则该文法为二义性文法</p>
+<p>例如：id+id*id的语法分析树</p>
+<p><img src="p/%E4%BA%8C%E4%B9%89%E6%80%A7.png" alt="" /></p>
+<p>程序设计语言的文法通常都应该是无二义性的</p>
+<p>例如：stmt:if expr then stmt | if expr then stmt else stmt | other就是无二义性文法</p>
+<h3 id="语言"><a class="markdownIt-Anchor" href="#语言"></a> 语言</h3>
+<p>由文法的开始符号出发，能够推导得到的所有句子的集合</p>
+<p><img src="p/%E8%AF%AD%E8%A8%80.png" alt="" /></p>
+<p>验证文法生成的语言：双向验证</p>
+<ul>
+<li>证明L(G)包含于L：按照推导序列长度进行数学归纳</li>
+<li>证明L包含于L(G)：按照符号串的长度来构造推导序列</li>
+</ul>
+<h3 id="词法分析和语法分析"><a class="markdownIt-Anchor" href="#词法分析和语法分析"></a> 词法分析和语法分析</h3>
+<p>词法分析和语法分析比较：</p>
+<p><img src="p/%E6%AF%94%E8%BE%83.png" alt="" /></p>
+<p>文法的类别：Chomsky文法类</p>
+<ul>
+<li>0型文法：短语结构文法，α-&gt;β</li>
+<li>1型文法：上下文相关文法，αAβ-&gt;αγβ</li>
+<li>2型文法：上下文无关文法。A-&gt;γ</li>
+<li>3型文法：正则文法，A-&gt;t，A-&gt;tB</li>
+</ul>
+<p>0包含1包含2包含3</p>
+<p>上下文无关文法的表达能力比正则表达式更强</p>
+<p>例如：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mi>n</mi></msup><msup><mi>b</mi><mi>n</mi></msup><mi mathvariant="normal">∣</mi><mi>n</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">{a^nb^n|n&gt;0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span></span></span></span></span>可以使用上下文无关文法：S-&gt;aSb描述，但是语言无法用DFA识别。（DFA无法数数）</p>
+<p><strong>为NFA构造等价文法：</strong></p>
+<ul>
+<li>对NFA每个状态i，创建一个非终结符号Ai</li>
+<li>如果有i通过a到达j，就加入Ai-&gt;aAj；如果这个a是ε，那么加入Ai-&gt;Aj</li>
+<li>如果i是一个接受状态，加入产生式Ai-&gt;ε</li>
+<li>如果i是自动机的开始状态，令Ai为所得文法的开始符号</li>
+</ul>
+<p><img src="p/NFA%E5%88%B0%E6%96%87%E6%B3%95.png" alt="" /></p>
+<p>进行语法分析前，需要对文法做以下处理：</p>
+<ul>
+<li>消除二义性</li>
+<li>消除左递归（文法中一个非终结符号A使得对某个串α，存在一个推导A一步或多步推出Aα，则称这个文法是左递归的）</li>
+<li>提取左公因子</li>
+</ul>
+<h4 id="消除二义性例如ifthenelse的例子中保证then和else之间的语句是已匹配的then通常并不是改变文法来消除二义性"><a class="markdownIt-Anchor" href="#消除二义性例如ifthenelse的例子中保证then和else之间的语句是已匹配的then通常并不是改变文法来消除二义性"></a> 消除二义性：例如if/then/else的例子中，保证then和else之间的语句是已匹配的then（通常并不是改变文法来消除二义性）</h4>
+<h4 id="消除立即左递归立即左递归一步推出"><a class="markdownIt-Anchor" href="#消除立即左递归立即左递归一步推出"></a> 消除立即左递归：(立即左递归：一步推出)</h4>
+<p>为什么要消除左递归？以下是个人的一些理解：</p>
+<p>假如有文法S-&gt;a|Sa，当出现一个非终结符号，并需要解析一个串时，通常这个串都是一个字节一个字节读入的。当我读到第一个符号为a时，由于我不知道在后面是否还会出现另外的符号a，我不确定S究竟是直接转化为a还是应该扩展为Sa。如果扩展为a，那么就无法处理后面还出现另一个a的情况。如果扩展为Sa，那么就无法处理后面没有a的情况。</p>
+<p><img src="p/%E7%AB%8B%E5%8D%B3%E5%B7%A6%E9%80%92%E5%BD%92.png" alt="" /></p>
+<p>假设A可以推出<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mi>α</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><mi>A</mi><msub><mi>α</mi><mn>2</mn></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">∣</mi><mi>A</mi><msub><mi>α</mi><mi>m</mi></msub><mi mathvariant="normal">∣</mi><msub><mi>β</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>β</mi><mn>2</mn></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msub><mi>β</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">A\alpha_1|A\alpha_2|...|A\alpha_m|\beta_1|\beta_2...\beta_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">A</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">A</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord">∣</span><span class="mord mathnormal">A</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，那么我们可以替换为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>−</mo><mo>&gt;</mo><msub><mi>β</mi><mn>1</mn></msub><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi mathvariant="normal">∣</mi><msub><mi>β</mi><mn>2</mn></msub><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi mathvariant="normal">∣</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">∣</mi><msub><mi>β</mi><mi>n</mi></msub><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">A-&gt;\beta_1A&#x27;|\beta_2A&#x27;|...|\beta_nA&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">A</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>，同时<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><msub><mi>α</mi><mn>1</mn></msub><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi mathvariant="normal">∣</mi><msub><mi>α</mi><mn>2</mn></msub><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi mathvariant="normal">∣</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">∣</mi><mspace linebreak="newline"></mspace><mi>a</mi><mi>l</mi><mi>p</mi><mi>h</mi><msub><mi>a</mi><mi>m</mi></msub><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi mathvariant="normal">∣</mi><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">A&#x27;=\alpha_1A&#x27;|\alpha_2A&#x27;|...|\\alpha_mA&#x27;|\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord">∣</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">p</span><span class="mord mathnormal">h</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">ϵ</span></span></span></span></p>
+<h4 id="消除多步左递归"><a class="markdownIt-Anchor" href="#消除多步左递归"></a> 消除多步左递归：</h4>
+<p>就是把后面出现的前面的式子给替换掉，然后转换成消除立即左递归</p>
+<p><img src="p/%E6%B6%88%E9%99%A4%E4%BC%AA%E4%BB%A3%E7%A0%81.png" alt="" /></p>
+<p><img src="p/%E6%B6%88%E9%99%A4%E7%AE%97%E6%B3%95.png" alt="" /></p>
+<h4 id="提取左公因子"><a class="markdownIt-Anchor" href="#提取左公因子"></a> 提取左公因子</h4>
+<p>假如<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>a</mi><msub><mi>b</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><mi>a</mi><msub><mi>b</mi><mn>2</mn></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">∣</mi><mi>a</mi><msub><mi>b</mi><mi>n</mi></msub><mi mathvariant="normal">∣</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">A\rightarrow ab_1|ab_2|...|ab_n|y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord">∣</span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>，那么可以替换为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>a</mi><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">A\rightarrow aA&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>，并且<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>→</mo><msub><mi>b</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>b</mi><mn>2</mn></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">∣</mi><msub><mi>b</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">A&#x27;\rightarrow b_1|b_2|...|b_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p>这里提取的是最长左公因子</p>
+<p>注意：非上下文无关语言通常不都再语义分析阶段完成</p>
+<h3 id="自顶向下分析技术"><a class="markdownIt-Anchor" href="#自顶向下分析技术"></a> 自顶向下分析技术</h3>
+<p>递归下降分析框架。输入一个式子时，先读一个字母。如果是终结符号并且相等，就读入下一个字母。如果非终结符号就展开。</p>
+<p><img src="p/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B.png" alt="" /></p>
+<p>预测分析技术：每次都从最左边的非终结符号选择适当的产生式</p>
+<p>两个函数：</p>
+<ul>
+<li>FIRST(α)：可以从α推导得到的串的首符号集合（可以包括ε）</li>
+<li>FOLLOW(A)：可能在某些句型中紧跟在A右边的终结符号的集合</li>
+</ul>
+<p>FIRST可以用于预测产生式的选择。方法：将非终结符号不断替换，直到首字母是一个终结符号</p>
+<ul>
+<li>如果FIRST(X1X2…Xn)，先添加FIRST(X1)，如果它包含ε，就把FIRST(X2)的东西加进去。以此类推</li>
+</ul>
+<p><img src="p/%E6%8E%A8%E5%AF%BC%E7%A4%BA%E4%BE%8B.png" alt="" /></p>
+<p>FOLLOW如果A位于最右边，那么可以使用$，这个符号表示结束标记。</p>
+<p>FOLLOW可以用于当A可以推出ε时帮助我们选择恰当的表达式</p>
+<p>简单的算法：注意：我们不是一个一个字母算的，而是一个式子一个式子考虑的，当考虑完全部的式子之后所有的字母的FOLLOW也会自然出来。</p>
+<ul>
+<li>先计算出所有的=字母的First值</li>
+<li>先列出所有的字母的FOLLOW括号，并在其中包含一个$</li>
+<li>选一个式子。考虑右侧式子。其中，第n个字母的follow值为第n+1个字母的first值。这一步先遍历一遍所有的式子。</li>
+<li>考虑左侧字母。最右边字母的follow值包含了这个左侧字母的follow值。当然，如果最右边字母的first包含了ε，那么需要继续考虑右边第二个字母的follow值，它也包含这个左侧字母。注意这一步不展开，而是直接写成follow的形式</li>
+<li>然后开始把所有的follow表达式代换。注意只有一个字母自己的follow中不包含任何其他follow值，才可以用来在其他的字母中代换</li>
+</ul>
+<p><img src="p/follow%E7%A4%BA%E4%BE%8B.png" alt="" /></p>
+<h3 id="ll1文法"><a class="markdownIt-Anchor" href="#ll1文法"></a> LL(1)文法</h3>
+<p>第一个L表示自左向右推导；第二个L指产生最左推导；而1则表示向前看一个输入符号</p>
+<p>定义：</p>
+<ul>
+<li>FIRST(α)∩FIRST(β) = Φ;</li>
+<li>如果ε∈FIRST(β)，那么FIRST(α) ∩FOLLOW(A) = Φ；反之亦然。</li>
+</ul>
+<h4 id="ll1文法预测分析技术"><a class="markdownIt-Anchor" href="#ll1文法预测分析技术"></a> LL1文法预测分析技术</h4>
+<p>预测分析表：可以由当前<strong>非终结符号A</strong>和<strong>输入符号a</strong>推出选择<strong>哪条产生式</strong></p>
+<p><img src="p/%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90%E8%A1%A8.png" alt="" /></p>
+<p>规则/方法：（对于每个元素来说）</p>
+<ul>
+<li>先遍历A的产生式，看看产生式中的First哪个包含a，谁有就选哪个产生式</li>
+<li>先看看a在不在A的Follow中。如果在，再找一下A的产生式中谁可以推出ε。如果有，就选择这个产生式。</li>
+<li>如果a现在是$，那么只要这个符号在Follow(A)中，就直接随便从A中选一个产生式。</li>
+</ul>
+<p>方法：（最快构造的方法，从每个非终结符号来出发）</p>
+<p>对于每个非终结符号A：</p>
+<ul>
+<li>遍历它每个产生式α，<strong>产生式</strong>的First有哪些符号，就在对应A的行、对应符号列下面填入A-&gt;α</li>
+<li>在做上面的步骤时，如果其中一个产生式的First包含了ε，就直接对A的Follow做上一步的操作（Follow有哪些符号（包括$），就在对应A的行、对应符号列下面填入A-&gt;α）</li>
+</ul>
+<p>完成后，如果有格子没有产生式就填为Error</p>
+<p><img src="p/%E5%88%86%E6%9E%90%E8%A1%A8.png" alt="" /></p>
+<p>二义性文法的预测分析表：会有多个项在一个格子中</p>
+<h3 id="非递归的预测分析"><a class="markdownIt-Anchor" href="#非递归的预测分析"></a> 非递归的预测分析</h3>
+<p>分析处理过程：</p>
+<ul>
+<li>初始化时，栈中仅包含开始符号。</li>
+<li>替换栈顶的非终结符号（使用预测分析表）</li>
+</ul>
+<p><img src="p/%E9%A2%84%E6%B5%8B%E8%BF%87%E7%A8%8B.png" alt="" /></p>
+<ul>
+<li>文法符号栈</li>
+<li>输入缓冲区</li>
+<li>控制程序</li>
+</ul>
+<p><img src="p/%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90.png" alt="" /></p>
+<h2 id="三-语法分析技术"><a class="markdownIt-Anchor" href="#三-语法分析技术"></a> 三、语法分析技术</h2>
+<h3 id="自底向上语法分析"><a class="markdownIt-Anchor" href="#自底向上语法分析"></a> 自底向上语法分析</h3>
+<p>为一个输入串构造语法分析树的过程</p>
+<p>从叶子（输入串的终结符号）开始，向上到达根结点</p>
+<p>通用框架：<strong>移入-规约</strong></p>
+<p><img src="p/%E8%A7%84%E7%BA%A6.png" alt="" /></p>
+<p>每一步规约，就把一个与某产生式体相匹配的特定子串被替换为该产生式头部的非终结符号。一次规约实际上是一个推导的反向操作</p>
+<p>但是有时候不确定选择哪部分规约</p>
+<h4 id="句柄"><a class="markdownIt-Anchor" href="#句柄"></a> 句柄</h4>
+<p>最右句型：每次都选择最右侧的非终结符号进行替换。</p>
+<p>满足下述条件的产生式A→β及串β在γ中出现的位置</p>
+<ul>
+<li>条件：将这个位置上的β替换为A之后得到的串是γ的某个最右推导序列中出现在位于γ之前的最右句型</li>
+</ul>
+<p>通俗的讲，就是假如有一个表达式，它被规约了。那么被规约的那一部分就是句柄。例如：有规则E-&gt;a+b，在规约c*a+b的过程中，把它规约到了c*E，那么这个步骤中a+b就是句柄。</p>
+<p>句柄的形式定义：S推出αAw推出αβw，那么紧跟α的β可以一步规约到A。w是所有<strong>终结符号串</strong></p>
+<p>句柄剪枝：反向最右推导过程</p>
+<p>如何找到句柄？</p>
+<h4 id="移入-规约分析技术"><a class="markdownIt-Anchor" href="#移入-规约分析技术"></a> 移入-规约分析技术</h4>
+<p>使用一个栈保存规约/扫描移入的文法符号。栈中符号（从底向上）和待扫描的符号组成一个最右句型。</p>
+<ul>
+<li>开始时，栈中只包含<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>，输入为</mtext><mi>w</mi></mrow><annotation encoding="application/x-tex">，输入为w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">入</span><span class="mord cjk_fallback">为</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span>。</li>
+<li>成功时，栈中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mtext>，输入为</mtext></mrow><annotation encoding="application/x-tex">S，输入为</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">入</span><span class="mord cjk_fallback">为</span></span></span></span></li>
+</ul>
+<p>动作：</p>
+<ul>
+<li>移入：将下一个符号移动到栈顶</li>
+<li>规约：将句柄规约为相应的非终结符号。注意：句柄总是在栈顶，规约时将句柄弹出并压入规约后的形式</li>
+</ul>
+<p><img src="p/%E8%A7%84%E7%BA%A6%E4%BE%8B%E5%AD%90.png" alt="" /></p>
+<p>移入-规约技术不能处理所有上下文无关文法（不能确定是否是句柄，存在多个可能的归约）</p>
+<p>例如：</p>
+<p><img src="p/%E8%A7%84%E7%BA%A6%E5%86%B2%E7%AA%81.png" alt="" /></p>
+<p>怎么解决冲突？</p>
+<h3 id="lr语法分析技术"><a class="markdownIt-Anchor" href="#lr语法分析技术"></a> LR语法分析技术</h3>
+<p>LR(k)的语法分析概念：L表示最左扫描，R表示反向构造出最右推导，K表示最多向前看k个符号</p>
+<p>我们只考虑k&lt;=1的情况</p>
+<p>LR语法分析器试图用一些状态来表明我们在移进规约语法分析的过程中所处的位置，从而做出移入-规约决定</p>
+<p>项：指明在语法分析过程中的给定点上，我们已经看到了一个产生式的哪些部分。项的集合对应于一个状态</p>
+<p>LR(0)项：文法的产生式加上其中某处一个点。</p>
+<p><img src="p/%E7%82%B9.png" alt="" /></p>
+<p>直观含义：项A-&gt;α.β表示已经扫描/规约到了α，并期望接下来的输入中经过扫描/规约得到β，然后把αβ规约到A</p>
+<p>项也可以用一对整数(i,j)，i表示第i条规则，j表示右部第j个位置</p>
+<h3 id="以项为基础构造自动机"><a class="markdownIt-Anchor" href="#以项为基础构造自动机"></a> 以项为基础构造自动机</h3>
+<ul>
+<li>开始状态：S’-&gt;S</li>
+<li>转换：A-&gt;α.Bβ到B-&gt;.γ有一个ε转换；从A-&gt;α.Xβ到A-&gt;αX.β有一个X转换</li>
+<li>接收状态：A-&gt;α.，即点在最后的项</li>
+</ul>
+<p>三个概念：</p>
+<ul>
+<li>增广文法</li>
+<li>项集闭包CLOSURE</li>
+<li>GOTO</li>
+</ul>
+<p>增广文法：</p>
+<ul>
+<li>G的增广文法G’是在G中新开始符号S’并假如产生式S’-&gt;S而得到的。引入的目的是告诉语法分析器何时宣布接收输入符号串，即用S’-&gt;S进行规约时，表明分析结束</li>
+</ul>
+<p>构造时用到的子函数：</p>
+<ul>
+<li>CLOSURE(I):I的项集闭包，对应于DFA算法的ε-closure；</li>
+<li>GOTO(I,X)：I的X后继，对应于DFA算法的MOVE(I,X)；</li>
+</ul>
+<h4 id="closurei的构造算法i是文法g的一个项集也就是说i是多个推导式的集合"><a class="markdownIt-Anchor" href="#closurei的构造算法i是文法g的一个项集也就是说i是多个推导式的集合"></a> CLOSURE(I)的构造算法：（I是文法G的一个项集，也就是说I是多个推导式的集合）</h4>
+<ul>
+<li>将I中的所有项加入</li>
+<li>如果A-&gt;α.Bβ在闭包中，就把任意B-&gt;.γ加入到闭包中，不断重复</li>
+</ul>
+<p>（简单来说就是：推导式本身加入。然后推导式的点后面是哪个字母，就将从那个字母推出的式子也加入，重复）</p>
+<p>内核项：初始项S’-&gt;.S、以及所有点不在最左边的项</p>
+<p>非内核项：除了S’-&gt;.S之外，点在最左边的项</p>
+<p>由于表可能很大，实现算法时可以考虑只保存非终结符号，然后使用时调用closure去算</p>
+<h4 id="gotoix函数的构造算法"><a class="markdownIt-Anchor" href="#gotoix函数的构造算法"></a> GOTO(I,X)函数的构造算法：</h4>
+<p>定义：I中所有形如[A-&gt;α.Xβ]所对应的项[A-&gt;αX.β]的集合的闭包</p>
+<p>简单来说计算方法就是：先在I中找到所有含有.X的项，然后每个把它转化为点在后面的形式，即把A-&gt;α.Xβ转化为A-&gt;αX.β，然后这个时候去求这个式子的闭包即可</p>
+<h4 id="为文法g构造lr0项集规范族c"><a class="markdownIt-Anchor" href="#为文法g构造lr0项集规范族c"></a> 为文法G构造LR(0)项集规范族C</h4>
+<ul>
+<li>构造增广文法G’:S’-&gt;S…</li>
+<li>构造I0=CLOSURE(S’-&gt;.S)，I0是C的初始项集</li>
+<li>对C中的每个项集<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">I_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>及每个文法符号<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">x_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>，将GOTO(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>X</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">I_i,X_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>)加入到C中</li>
+</ul>
+<p>例子：</p>
+<p><img src="p/%E4%BE%8B%E5%AD%90.png" alt="" /></p>
+<p>简单来说方法就是：</p>
+<ul>
+<li>先把最开始的增广文法放到I0中，就是E’-&gt;E。此时只有I0一个</li>
+<li>然后每次创建一个新的I，就去求它的闭包。</li>
+<li>求完闭包之后，就去求这里面每个点后面字母的MOVE。这样它可以构造出其他的I。让原来的I指向新产生的I。然后就回到上一步不断重复。</li>
+</ul>
+<p>构造完毕后，如何决定是否移入或规约：</p>
+<ul>
+<li>如果下一个输入符号位a，且当前所处的状态上有a的转换，就移入a</li>
+<li>否则就规约。状态中的项会告诉我们使用哪个产生式进行规约</li>
+</ul>
+<p>假如输入γ后，当前在状态j。如果j中有一个A-&gt;α.，那么如果γ后面添加终结符号可以得到最右句型，α是γ的后缀。</p>
+<p>假如j中有一个B-&gt;α.Xβ，那么在γ之后添加Xβ，然后再添加一个终结符号串可得到一个最右句型，这个句型中B-&gt;αXβ是句柄，此时表示还没有找到句柄，需要移入。</p>
+<p>示例：</p>
+<p><img src="p/%E4%BD%9C%E7%94%A8%E7%A4%BA%E4%BE%8B.png" alt="" /></p>
+<p>刚开始栈什么都没有，在状态0.输入符号时前往新状态。如果输入一个符号时没有路径可走，那么就根据当前状态中的式子来规约。规约后的状态的确定就是先把状态栈退一格，然后输入这个规约后的式子，前往新的状态。例如这里从0 2 7 5进行id变F的规约时，我先推导0 2 7，然后再从状态7输入F，前往状态10.因此也就变成了0 2 7 10</p>
+<p>LR语法分析器的结构</p>
+<p><img src="p/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%BB%93%E6%9E%84.png" alt="" /></p>
+<p>两个部分：动作ACTION，转换GOTO</p>
+<ul>
+<li>ACTION的两个参数：状态i、终结符号a</li>
+<li>GOTO函数：GOTO[i,A]=j，表示从状态i上输入A可以进入j状态</li>
+</ul>
+<p>格局：包含了栈中内容和余下输入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>s</mi><mn>0</mn></msub><msub><mi>s</mi><mn>1</mn></msub><mo>…</mo><msub><mi>s</mi><mi>m</mi></msub><mo separator="true">,</mo><msub><mi>a</mi><mi>i</mi></msub><msub><mi>a</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>…</mo><msub><mi>a</mi><mi>n</mi></msub><mi mathvariant="normal">$</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(s_0s_1…s_m, a_ia_{i+1}…a_n\$)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">$</span><span class="mclose">)</span></span></span></span></p>
+<p>LR语法分析器的每一个状态都对应一个文法符号（S0除外）</p>
+<h4 id="lr分析表"><a class="markdownIt-Anchor" href="#lr分析表"></a> LR分析表</h4>
+<p><img src="p/lr%E5%88%86%E6%9E%90%E8%A1%A8.png" alt="" /></p>
+<p>其中，s表示转换，即切换到对应数字的状态中；r表示规约，即使用对应数字的规则进行规约。</p>
+<h3 id="slr分析表"><a class="markdownIt-Anchor" href="#slr分析表"></a> SLR分析表</h3>
+<p>SLR：Simple LR</p>
+<p>构造算法：</p>
+<ul>
+<li>构造G’LR(0)项集规范族C={I0,I1,…In}</li>
+<li>对于状态i中的项，如果[A → α·aβ]且GOTO[Ii,a]=Ij, 那么ACTION[i,a]=移入j；如果[A → α·]，那么对于FOLLOW(A)中的所有a， ACTION[i,a]=归约A → α；如果[S’ →S·], 那么ACTION[i,$]=接受</li>
+<li>如果GOTOGOTO[Ii,A]=Ij，那么GOTO[i ,A]=j</li>
+<li>规则2和3没有定义的所有条目设置为报错</li>
+</ul>
+<p>简单来说就是：先构造项集规范族（很多个箭头的那个图），然后去遍历每一个状态中的每一个项。拿到一个项，根据它点的位置进行处理：如果点在中间，那么就直接在表中添加一项：当前状态，碰到点右边的字母，跳到对应的状态。如果点在最右边，那么我就去拿到项左边字母的FOLLOW集，然后在表中添加：当前状态碰到这个follow中的字母就直接规约为点左边的字母。</p>
+<p>构造完毕后，如果每个格子最多只有一个条目，说明是SLR(1)文法。如果有格子出现了多个条目，说明不是SLR(1)文法</p>
+<p>LR(0)自动机刻画了可能出现在语法分析栈中的文法符号串（能够识别可行前缀）</p>
+<p>可行前缀：定义：某个最右句型的前缀，且没有越过该句型的句<br />
+柄的右端</p>
+<p>有效项：</p>
+<p><img src="p/%E6%9C%89%E6%95%88%E9%A1%B9.png" alt="" /></p>
+<p>意义：帮助我们决定移入还是规约（β2不等于空就移入或等待规约；如果β2等于空就规约）</p>
+<p>SLR解决冲突：输入一个新的终结符号时，如果当前已经在末尾，同时也可以跳转，那么就去看每个表达式右边的式子中出现的当前规约后的字母。看看在这些字母后面有没有一个跟着当前输入的字母的项，有的话就规约。当然，如果规约后栈中的式子不可能是某个最右句型的前缀就仍然不能按照这个方法规约</p>
+<h3 id="语法错误的处理"><a class="markdownIt-Anchor" href="#语法错误的处理"></a> 语法错误的处理</h3>
+<p>程序中存在不同层次的错误：</p>
+<ul>
+<li>词法错误</li>
+<li>语法错误</li>
+<li>语义错误</li>
+<li>逻辑错误</li>
+</ul>
+<p>语法分析器中错误处理程序的设计目标：</p>
+<ul>
+<li>清晰报告错误和位置</li>
+<li>能从错误恢复，继续检测后面的错误</li>
+<li>减少开销</li>
+</ul>
+<p>两类错误恢复方法：</p>
+<ul>
+<li>恐慌模式</li>
+<li>短语层次的恢复</li>
+</ul>
+<h4 id="恐慌模式"><a class="markdownIt-Anchor" href="#恐慌模式"></a> 恐慌模式：</h4>
+<p>忽略输入中的一些符号，直到出现由设计者选定的某个同步词法单元</p>
+<p>解释：程序总是视图找到某个非终结符号对应的串，这里就假装已经找到了这个串。同步词法单元就是这个程序结构结束的标志</p>
+<p>同步集合的启发式规则：</p>
+<ul>
+<li>FOLLOW(A)的所有符号</li>
+<li>FIRST(A)的所有符号</li>
+<li>栈顶的终结符号匹配错误，可以直接弹出相应的符号</li>
+</ul>
+<p>例子：</p>
+<p><img src="p/%E6%81%90%E6%85%8C%E6%A8%A1%E5%BC%8F.png" alt="" /></p>
+<p>空条目表示忽略输入符号，synch也表示忽略输入符号，一直忽略，直到这个符号是同步集合中的符号，然后弹出这个非终结符号</p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" data-id="clu3r34rr0000c8uwhufo887m" data-title="编理-第三章-语法分析"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="编理-第二章-词法分析" class="lazyload">
+                    
+                
+                <a href="/2024/03/23/%E7%BC%96%E7%90%86-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        编理-第二章-词法分析
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">81</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2024
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    208.1k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    12:31
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">81</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
