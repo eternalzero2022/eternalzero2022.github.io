@@ -1,0 +1,694 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        第四章-数据库安全性 |
+        
+        EternalZero2022 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="第四章 数据库安全性  一、数据库安全性 数据库的特点：数据可以共享，必然带来数据库的安全性问题。数据共享不是无条件的共享（军事机密） 数据库的安全性是指保护数据库以防止不合法使用所造成的数据泄露、更改或破坏 不安全因素：非授权用户对数据库的恶意存取和破坏，重要或敏感的数据被泄露，安全环境的脆弱性  TCSEC&#x2F;TDI安全级别划分 按系统可靠或可信程度逐渐增高。   D级：一切不符合更高标准的系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四章-数据库安全性">
+<meta property="og:url" content="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/index.html">
+<meta property="og:site_name" content="EternalZero2022 的博客">
+<meta property="og:description" content="第四章 数据库安全性  一、数据库安全性 数据库的特点：数据可以共享，必然带来数据库的安全性问题。数据共享不是无条件的共享（军事机密） 数据库的安全性是指保护数据库以防止不合法使用所造成的数据泄露、更改或破坏 不安全因素：非授权用户对数据库的恶意存取和破坏，重要或敏感的数据被泄露，安全环境的脆弱性  TCSEC&#x2F;TDI安全级别划分 按系统可靠或可信程度逐渐增高。   D级：一切不符合更高标准的系">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/p/%E5%AE%89%E5%85%A8%E7%BA%A7%E5%88%AB.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/p/EAL.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/p/%E5%AE%89%E5%85%A8%E6%80%A7%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/p/%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E5%AF%B9%E8%B1%A1.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/p/%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/p/%E6%9D%83%E9%99%90.png">
+<meta property="og:image" content="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/p/%E6%A3%80%E6%9F%A5.png">
+<meta property="article:published_time" content="2024-04-02T12:59:56.000Z">
+<meta property="article:modified_time" content="2024-04-02T13:00:12.295Z">
+<meta property="article:author" content="EternalZero2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/p/%E5%AE%89%E5%85%A8%E7%BA%A7%E5%88%AB.png">
+    
+        <link rel="alternate" href="/atom.xml" title="EternalZero2022 的博客" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.7/dist/katex.min.css">
+
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="第四章-数据库安全性" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>第四章-数据库安全性</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://eternalzero2022.github.io"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-第四章-数据库安全性" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/" class="article-date-link">
+        <time datetime="2024-04-02T12:59:56.000Z"
+              itemprop="datePublished">2024-04-02</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="第四章-数据库安全性"><a class="markdownIt-Anchor" href="#第四章-数据库安全性"></a> 第四章 数据库安全性</h1>
+<h2 id="一-数据库安全性"><a class="markdownIt-Anchor" href="#一-数据库安全性"></a> 一、数据库安全性</h2>
+<p>数据库的特点：数据可以共享，必然带来数据库的安全性问题。数据共享不是无条件的共享（军事机密）</p>
+<p>数据库的安全性是指保护数据库以防止不合法使用所造成的数据泄露、更改或破坏</p>
+<p>不安全因素：非授权用户对数据库的恶意存取和破坏，重要或敏感的数据被泄露，安全环境的脆弱性</p>
+<h3 id="tcsectdi安全级别划分"><a class="markdownIt-Anchor" href="#tcsectdi安全级别划分"></a> TCSEC/TDI安全级别划分</h3>
+<p>按系统可靠或可信程度逐渐增高。</p>
+<p><img src="p/%E5%AE%89%E5%85%A8%E7%BA%A7%E5%88%AB.png" alt="" /></p>
+<ul>
+<li>D级：一切不符合更高标准的系统</li>
+<li>C1级：初级的自主安全保护，实现对用户和数据的分离。</li>
+<li>
+<ul>
+<li>自主存取控制DAC</li>
+</ul>
+</li>
+<li>C2级：安全产品的最低档次，将C1的DAC进一步细化</li>
+<li>B1级：标记安全保护：安全或可信的文档，对系统的数据加以标记，对标记的主体和客体进行强制存取控制。</li>
+<li>B2级：结构化保护，对系统内所有主体和客体实施DAC和MAC</li>
+<li>B3级：安全域，TCB必须满足访问监控器的要求，提供系统恢复功能</li>
+<li>A1级：验证设计，提供B3保护的同时给出系统形式化设计说明</li>
+</ul>
+<p>CC：提出国际公认的表述信息技术的安全性结构，把信息产品的安全要求分为：</p>
+<ul>
+<li>安全功能需求</li>
+<li>安全保证要求</li>
+</ul>
+<p>CC评估保证级EAL划分：</p>
+<p><img src="p/EAL.png" alt="" /></p>
+<p>计算机系统的安全模型：安全措施一级一级层层设置。数据以密码的形式存储到数据库中</p>
+<p><img src="p/%E5%AE%89%E5%85%A8%E6%80%A7%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B.png" alt="" /></p>
+<h2 id="二-存取控制"><a class="markdownIt-Anchor" href="#二-存取控制"></a> 二、存取控制</h2>
+<p>存取控制机制：</p>
+<ul>
+<li>定义用户权限，将用户权限登记到数据字典中</li>
+<li>合法权限检查</li>
+</ul>
+<h3 id="自主存取控制dac"><a class="markdownIt-Anchor" href="#自主存取控制dac"></a> 自主存取控制DAC</h3>
+<p>C2级，用户对不同的数据对象有不同的存取权限，不同的用户对同一对象也有不同的权限。可以将拥有的存取权限转授给其他用户</p>
+<p>自主存取控制方法：</p>
+<ul>
+<li>通过SQL的GRANT和REVODE语句实现。</li>
+</ul>
+<p>授权：定义存储权限（数据库对象、操作类型）</p>
+<p>存取控制对象：</p>
+<p><img src="p/%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E5%AF%B9%E8%B1%A1.png" alt="" /></p>
+<p>授权机制：</p>
+<ul>
+<li>数据库管理员：拥有所有对象的所有权限，可以授权给不同用户</li>
+<li>用户：拥有自己建立的对象的全部操作权限</li>
+<li>被授权的用户如果有继续授权的许可，可以继续把授予的权限授予其他用户</li>
+</ul>
+<h4 id="grant语句"><a class="markdownIt-Anchor" href="#grant语句"></a> GRANT语句：</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GRANT &lt;权限&gt;[,&lt;权限&gt;]... </span><br><span class="line">       ON &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名&gt;]…</span><br><span class="line">       TO &lt;用户&gt;[,&lt;用户&gt;]...</span><br><span class="line">       [WITH GRANT OPTION];</span><br></pre></td></tr></table></figure>
+<p>WITH GRANT OPTION表示可以再授权</p>
+<p>授予全部权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILIGES </span><br><span class="line">ON TABLE Student,Course </span><br><span class="line">TO U2,U3;</span><br></pre></td></tr></table></figure>
+<p>授予全部用户：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT SELECT </span><br><span class="line">ON TABLE SC </span><br><span class="line">TO PUBLIC;</span><br></pre></td></tr></table></figure>
+<p>修改学生学号的权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT UPDATE(Sno), SELECT </span><br><span class="line">ON TABLE Student </span><br><span class="line">TO U4;</span><br></pre></td></tr></table></figure>
+<p>用户权限定义表：</p>
+<p><img src="p/%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90.png" alt="" /></p>
+<h4 id="revoke语句"><a class="markdownIt-Anchor" href="#revoke语句"></a> REVOKE语句</h4>
+<p>由授权者收回授予的权限</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">REVOKE &lt;权限&gt;[,&lt;权限&gt;]... </span><br><span class="line">   ON &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt;&lt;对象名&gt;]…</span><br><span class="line">   FROM &lt;用户&gt;[,&lt;用户&gt;]...[CASCADE | RESTRICT];</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">REVOKE UPDATE(Sno)</span><br><span class="line">    ON TABLE Student </span><br><span class="line">    FROM U4;</span><br></pre></td></tr></table></figure>
+<h4 id="创建数据库模式的权限"><a class="markdownIt-Anchor" href="#创建数据库模式的权限"></a> 创建数据库模式的权限</h4>
+<p>数据库管理员再创建用户时实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &lt;username&gt; [WITH][DBA|RESOURCE|CONNECT]</span><br></pre></td></tr></table></figure>
+<p>注意:CREATE USER不是SQL标准</p>
+<p>三种用户权限：</p>
+<ul>
+<li>CONNECT：默认，不能创建用户、模式、基本表，只能登录数据库</li>
+<li>RESOURCE：能创建基本表和视图，不能创建模式和新用户</li>
+<li>DBA：超级用户，可以创建新的用户、模式、基本表和视图等，拥有对数据库对象的存储权限</li>
+</ul>
+<p><img src="p/%E6%9D%83%E9%99%90.png" alt="" /></p>
+<h4 id="数据库角色"><a class="markdownIt-Anchor" href="#数据库角色"></a> 数据库角色</h4>
+<p>被命名的一组域数据库操作相关的权限。角色是权限的集合，可以为一组具有相同权限的用户创建一个角色。</p>
+<p>角色的创建：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE  ROLE  &lt;角色名&gt; </span><br></pre></td></tr></table></figure>
+<p>给角色授权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT  &lt;权限&gt;[,&lt;权限&gt;]… </span><br><span class="line"> ON &lt;对象类型&gt;对象名  </span><br><span class="line"> TO &lt;角色&gt;[,&lt;角色&gt;]…</span><br></pre></td></tr></table></figure>
+<p>将一个角色授予其他的角色或用户：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT  &lt;角色1&gt;[,&lt;角色2&gt;]…</span><br><span class="line">TO  &lt;角色3&gt;[,&lt;用户1&gt;]… </span><br><span class="line">[WITH ADMIN OPTION]</span><br></pre></td></tr></table></figure>
+<p>角色权限的收回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">REVOKE &lt;权限&gt;[,&lt;权限&gt;]…</span><br><span class="line">ON &lt;对象类型&gt; &lt;对象名&gt;</span><br><span class="line">FROM &lt;角色&gt;[,&lt;角色&gt;]…</span><br></pre></td></tr></table></figure>
+<p>REVOKE的执行者是角色的创建者或用于再在这个角色上的ADMIN OPTION</p>
+<p>自主存取控制缺点：可能存在数据的无意泄露。（仅仅通过对数据的存取权限来进行安全控制，而数据本身并无安全性标记）</p>
+<p>解决：对系统控制下的所有主客体实施<strong>强制存取控制</strong>策略</p>
+<h3 id="强制存取控制mac"><a class="markdownIt-Anchor" href="#强制存取控制mac"></a> 强制存取控制，MAC</h3>
+<p>B1级，保证更高程度的安全性。每个数据对象被标以一定的密级，每个用户被授予某一个级别的许可证。</p>
+<p>适用于对数据有严格而固定密级分类的部门</p>
+<h4 id="实体"><a class="markdownIt-Anchor" href="#实体"></a> 实体</h4>
+<p>MAC中实体被分为主体和客体两大类</p>
+<ul>
+<li>主体：实际用户，代表用户的各进程</li>
+<li>客体：系统中的被动实体，受主体操纵（文件，基本表，索引，视图）</li>
+</ul>
+<p>敏感度标记：为每个主体和客体的实例指派一个敏感度标记</p>
+<ul>
+<li>绝密，TopSecret，TS</li>
+<li>机密，Secret，S</li>
+<li>可信，Confidential，C</li>
+<li>公开，Public，P</li>
+</ul>
+<p>主体的敏感度标记称为<strong>许可证级别</strong>；客体的敏感度标记称为<strong>密级</strong></p>
+<p>强制存取控制规则：</p>
+<ul>
+<li>仅当主体的许可证级别<strong>大于等于</strong>客体的密级：可以读取客体</li>
+<li>仅当主体的许可证级别<strong>小于等于</strong>客体的密级：写相应的客体</li>
+</ul>
+<h4 id="dacma"><a class="markdownIt-Anchor" href="#dacma"></a> DAC+MA</h4>
+<p>实现强制存取控制要先实现自主存取控制</p>
+<p>原因：较高安全性级别提供的安全保护要包含较低级别的所有保护。</p>
+<p>先进行自主存取控制检查，通过的对象再由系统进行强制存取控制检查。</p>
+<p><img src="p/%E6%A3%80%E6%9F%A5.png" alt="" /></p>
+<h2 id="三-视图机制-审计-数据加密及其他"><a class="markdownIt-Anchor" href="#三-视图机制-审计-数据加密及其他"></a> 三、视图机制、审计、数据加密及其他</h2>
+<h3 id="视图机制"><a class="markdownIt-Anchor" href="#视图机制"></a> 视图机制</h3>
+<p>把要保密的数据对无权存取这些数据的用户隐藏起来。</p>
+<h3 id="审计"><a class="markdownIt-Anchor" href="#审计"></a> 审计</h3>
+<p>启用一个专用的审计日志将用户对数据库的所有操作记录在上面</p>
+<p>审计很废时间和空间，DBA可以灵活打开或关闭</p>
+<ul>
+<li>
+<p>审计事件：审计数据库服务器发生的事件。</p>
+</li>
+<li>
+<p>系统权限：对系统拥有的结构或模式对象进行操作的审计，要求该操作的权限是通过系统权限获得的</p>
+</li>
+<li>
+<p>语句事件：对SQL语句，如DDL、DML、DQL和DCL语句的审计</p>
+</li>
+<li>
+<p>模式对象事件：对特定模式对象上进行的SELECT或DML操作的审计</p>
+</li>
+</ul>
+<p>审计功能：提供多种审计查阅方式</p>
+<ul>
+<li>多套审计规则，提供审计分析和报表功能</li>
+<li>提供查询审计设置及审计记录信息的专门视图</li>
+</ul>
+<p>审计级别：</p>
+<ul>
+<li>用户级审计：任何用户可设置的审计，针对用户自己创建的数据库表和视图</li>
+<li>系统级审计：只能由数据库管理员设置，监测成功或失败的登录要求、授权和收回操作、其他数据库级权限下的操作。</li>
+</ul>
+<h4 id="审计语句audit设置审计功能和noaudit取消审计功能"><a class="markdownIt-Anchor" href="#审计语句audit设置审计功能和noaudit取消审计功能"></a> 审计语句：AUDIT（设置审计功能）和NOAUDIT（取消审计功能）</h4>
+<p>例如：对修改SC表结构或修改SC表数据的操作进行审计</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AUDIT ALTER,UPDATE  </span><br><span class="line">ON  SC;</span><br></pre></td></tr></table></figure>
+<p>取消对SC表的一切审计</p>
+<pre class="highlight"><code class="NOAUDIT">ON  SC;```
+
+### 数据加密
+明文变密文
+
+加密方法：
+- 存储加密
+- 传输加密
+
+存储加密：
+- 透明存储加密：内核级加密保护方式，对用户完全透明
+- 非透明存储加密：通过多个加密函数实现
+
+传输加密：
+- 链路加密：在链路层进行加密，报文报头均加密
+- 端到端加密：发送端加密，接收端解密，只加密报文不加密报头
+
+#### 其他安全性保护
+- 推理控制
+- 隐蔽信道
+- 数据隐私保护</code></pre>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="https://eternalzero2022.github.io/2024/04/02/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/" data-id="cluie09tu0001hkuw7krb3s4d" data-title="第四章-数据库安全性"
+               class="article-share-link">分享</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="第三章-关系数据库标准语言SQL" class="lazyload">
+                    
+                
+                <a href="/2024/04/02/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%87%E5%87%86%E8%AF%AD%E8%A8%80SQL/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        第三章-关系数据库标准语言SQL
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">83</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C-%E6%9D%82%E8%B0%88/">经验/杂谈</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2024
+                <span class="footer-info-sep"></span>
+                EternalZero2022
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    213.8k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    12:52
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="EternalZero2022" class="lazyload">
+            <div class="sidebar-author-name">EternalZero2022</div>
+            <div class="sidebar-description">卑微软工狗一个，属于德克萨斯小姐</div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">83</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/eternalzero2022 itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
